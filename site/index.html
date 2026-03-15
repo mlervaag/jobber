@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Exposure of the US Job Market</title>
+<title>KItrusselen – Hvordan KI påvirker norske jobber</title>
+<meta name="description" content="Se hvordan kunstig intelligens påvirker det norske arbeidsmarkedet. Utforsk KI-eksponering for over 500 yrker.">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -12,7 +13,7 @@
   --bg2: #12121a;
   --fg: #e0e0e8;
   --fg2: #888894;
-  --sidebar-w: 220px;
+  --sidebar-w: 240px;
 }
 
 body {
@@ -38,8 +39,8 @@ body {
 }
 
 #sidebar h1 {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.3;
 }
@@ -138,7 +139,7 @@ body {
   font-size: 11px;
 }
 .hbar-label {
-  width: 68px;
+  width: 80px;
   flex-shrink: 0;
   color: var(--fg2);
   font-size: 10px;
@@ -163,30 +164,54 @@ body {
   text-align: right;
 }
 
-.view-toggle {
-  display: flex;
-  gap: 4px;
-}
-.view-toggle button {
-  flex: 1;
-  padding: 5px 0;
-  font-size: 10px;
-  font-weight: 500;
+#searchBox {
+  width: 100%;
+  padding: 7px 10px;
+  font-size: 12px;
   border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  color: var(--fg);
+  outline: none;
+  font-family: inherit;
+}
+#searchBox::placeholder { color: var(--fg2); }
+#searchBox:focus { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.07); }
+
+#searchResults {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 4px;
+}
+#searchResults .sr-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  font-size: 11px;
   border-radius: 4px;
-  background: transparent;
+  cursor: pointer;
+  gap: 8px;
+}
+#searchResults .sr-item:hover { background: rgba(255,255,255,0.08); }
+#searchResults .sr-item .sr-title { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#searchResults .sr-item .sr-score { flex-shrink: 0; font-size: 10px; font-weight: 600; }
+
+.tier-row { cursor: pointer; border-radius: 4px; padding: 2px 4px; margin: -2px -4px; }
+.tier-row:hover { background: rgba(255,255,255,0.06); }
+.tier-row.active { background: rgba(255,255,255,0.1); }
+
+#filterClear {
+  display: none;
+  font-size: 10px;
   color: var(--fg2);
   cursor: pointer;
-  transition: all 0.15s;
+  margin-top: 2px;
 }
-.view-toggle button.active {
-  background: rgba(255,255,255,0.08);
-  color: var(--fg);
-  border-color: rgba(255,255,255,0.2);
-}
-.view-toggle button:hover:not(.active) {
-  background: rgba(255,255,255,0.04);
-}
+#filterClear:hover { color: var(--fg); }
 
 .gradient-legend {
   display: flex;
@@ -216,7 +241,7 @@ canvas#canvas {
   padding: 12px 16px;
   font-size: 13px;
   line-height: 1.5;
-  max-width: 340px;
+  max-width: 360px;
   opacity: 0;
   transition: opacity 0.12s;
   z-index: 20;
@@ -255,57 +280,58 @@ canvas#canvas {
 
 <div id="sidebar">
   <div>
-    <h1>AI Exposure of the US Job Market</h1>
-    <div class="subtitle">342 occupations &middot; color = AI exposure<br>Data from <a href="https://www.bls.gov/ooh/">BLS</a>, scored by Gemini Flash<br><a href="https://github.com/karpathy/jobs">GitHub</a></div>
-  </div>
-
-  <div class="view-toggle">
-    <button class="active" onclick="setView('treemap')">Treemap</button>
-    <button onclick="setView('scatter')">Exposure vs Outlook</button>
+    <h1>KItrusselen</h1>
+    <div class="subtitle">Hvordan KI påvirker norske jobber<br>Farge = KI-eksponering<br>Data fra <a href="https://utdanning.no">utdanning.no</a> og <a href="https://www.ssb.no">SSB</a><br><a href="https://github.com/mlervaag/jobber">GitHub</a></div>
   </div>
 
   <div class="stat-section">
-    <h3>Total jobs</h3>
-    <div class="stat-big" id="statTotalJobs">—</div>
+    <input type="text" id="searchBox" placeholder="S&oslash;k etter yrke...">
+    <div id="searchResults"></div>
   </div>
 
   <div class="stat-section">
-    <h3>Weighted avg. exposure</h3>
-    <div class="stat-big" id="statAvgExposure">—</div>
-    <div class="stat-label">job-weighted, 0–10 scale</div>
+    <h3>Totalt sysselsatte</h3>
+    <div class="stat-big" id="statTotalJobs">&mdash;</div>
   </div>
 
   <div class="stat-section">
-    <h3>Jobs by exposure (weighted by employment)</h3>
+    <h3>Vektet gj.snitt eksponering</h3>
+    <div class="stat-big" id="statAvgExposure">&mdash;</div>
+    <div class="stat-label">sysselsettingsvektet, 0&ndash;10 skala</div>
+  </div>
+
+  <div class="stat-section">
+    <h3>Sysselsatte etter eksponering</h3>
     <div class="histogram" id="histogram"></div>
     <div class="hist-labels"><span>0</span><span>5</span><span>10</span></div>
   </div>
 
   <div class="stat-section">
-    <h3>Breakdown</h3>
+    <h3>Fordeling</h3>
     <div class="tier-bar" id="tierBar"></div>
+    <div id="filterClear" onclick="clearFilter()">&#x2715; Vis alle yrker</div>
   </div>
 
   <div class="stat-section">
-    <h3>Exposure by pay</h3>
+    <h3>Eksponering etter l&oslash;nn</h3>
     <div class="hbar-chart" id="payChart"></div>
   </div>
 
   <div class="stat-section">
-    <h3>Exposure by education</h3>
+    <h3>Eksponering etter utdanning</h3>
     <div class="hbar-chart" id="eduChart"></div>
   </div>
 
   <div class="stat-section">
-    <h3>Wages exposed</h3>
-    <div class="stat-big" id="statWages">—</div>
-    <div class="stat-label" id="statWagesDesc">annual wages in high-exposure jobs (7+)</div>
+    <h3>L&oslash;nn eksponert</h3>
+    <div class="stat-big" id="statWages">&mdash;</div>
+    <div class="stat-label" id="statWagesDesc">&aring;rsl&oslash;nn i h&oslash;yt eksponerte yrker (7+)</div>
   </div>
 
   <div class="gradient-legend">
-    <span>Low</span>
+    <span>Lav</span>
     <canvas id="gradientLegend" width="80" height="8"></canvas>
-    <span>High</span>
+    <span>H&oslash;y</span>
   </div>
 </div>
 
@@ -342,25 +368,6 @@ function exposureColor(score) {
 
 function exposureColorCSS(score, alpha) {
   const [r, g, b] = exposureColor(score);
-  return `rgba(${r},${g},${b},${alpha})`;
-}
-
-function outlookColorCSS(outlook, alpha) {
-  if (outlook == null) return `rgba(128,128,128,${alpha})`;
-  // Clamp to +/-12% for good saturation without overdoing it
-  const t = Math.max(0, Math.min(1, (outlook + 12) / 24));
-  let r, g, b;
-  if (t < 0.5) {
-    const s = t / 0.5;
-    r = Math.round(220 - s * 40);
-    g = Math.round(60 + s * 100);
-    b = Math.round(50 - s * 20);
-  } else {
-    const s = (t - 0.5) / 0.5;
-    r = Math.round(180 - s * 130);
-    g = Math.round(160 + s * 10);
-    b = Math.round(30 + s * 30);
-  }
   return `rgba(${r},${g},${b},${alpha})`;
 }
 
@@ -446,7 +453,6 @@ function worstAspect(row, rowSum, side, totalArea, availableExtent) {
 let data = [];
 let rects = [];
 let hovered = null;
-let currentView = "treemap";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -454,15 +460,6 @@ let dpr = window.devicePixelRatio || 1;
 
 const MARGIN = 12;
 const GAP = 1.5;
-
-function setView(view) {
-  currentView = view;
-  document.querySelectorAll(".view-toggle button").forEach(b => b.classList.remove("active"));
-  document.querySelector(`.view-toggle button[onclick="setView('${view}')"]`).classList.add("active");
-  hovered = null;
-  hideTooltip();
-  resize();
-}
 
 function layout() {
   const sidebarW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w'));
@@ -481,7 +478,7 @@ function layout() {
 
   const byCategory = {};
   for (const d of data) {
-    const cat = d.category;
+    const cat = d.category || "Annet";
     if (!byCategory[cat]) byCategory[cat] = [];
     byCategory[cat].push(d);
   }
@@ -515,8 +512,11 @@ function draw() {
   ctx.fillStyle = "#0a0a0f";
   ctx.fillRect(0, 0, w / dpr, h / dpr);
 
+  const hasFilter = searchQuery || filterRange || highlightSlug;
+
   for (const r of rects) {
     const isHovered = r === hovered;
+    const lit = !hasFilter || isHighlighted(r);
 
     const g = GAP / 2;
     const rx = r.rx + g;
@@ -526,19 +526,27 @@ function draw() {
 
     if (rw <= 0 || rh <= 0) continue;
 
-    const fillAlpha = isHovered ? 0.8 : 0.5;
-    ctx.fillStyle = exposureColorCSS(r.exposure, fillAlpha);
+    if (lit) {
+      const fillAlpha = isHovered ? 0.85 : 0.6;
+      ctx.fillStyle = exposureColorCSS(r.exposure, fillAlpha);
+    } else {
+      ctx.fillStyle = "rgba(40,40,50,0.5)";
+    }
     ctx.fillRect(rx, ry, rw, rh);
 
-    if (isHovered) {
+    if (isHovered && lit) {
       ctx.strokeStyle = "#fff";
       ctx.lineWidth = 2;
+      ctx.strokeRect(rx, ry, rw, rh);
+    } else if (lit && hasFilter) {
+      ctx.strokeStyle = exposureColorCSS(r.exposure, 0.6);
+      ctx.lineWidth = 1;
       ctx.strokeRect(rx, ry, rw, rh);
     }
 
     const minW = 50;
     const minH = 18;
-    if (rw > minW && rh > minH) {
+    if (rw > minW && rh > minH && lit) {
       ctx.save();
       ctx.beginPath();
       ctx.rect(rx + 4, ry + 2, rw - 8, rh - 4);
@@ -546,13 +554,13 @@ function draw() {
 
       const fontSize = Math.min(13, Math.max(9, Math.min(rw / 10, rh / 3)));
       ctx.font = `500 ${fontSize}px -apple-system, system-ui, sans-serif`;
-      ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.85)";
+      ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.9)";
       ctx.textBaseline = "top";
       ctx.fillText(r.title, rx + 5, ry + 4);
 
       if (rh > 34 && rw > 60) {
         const info = (r.exposure != null ? r.exposure + "/10" : "") +
-                     (r.jobs ? " \u00b7 " + formatNumber(r.jobs) + " jobs" : "");
+                     (r.jobs ? " \u00b7 " + formatNumber(r.jobs) + " sysselsatte" : "");
         ctx.font = `400 ${Math.max(8, fontSize - 2)}px -apple-system, system-ui, sans-serif`;
         ctx.fillStyle = "rgba(255,255,255,0.5)";
         ctx.fillText(info, rx + 5, ry + 4 + fontSize + 2);
@@ -578,14 +586,21 @@ function hitTest(mx, my) {
 
 function formatNumber(n) {
   if (n == null) return "\u2014";
-  if (n >= 1000000) return (n / 1000000).toFixed(1) + "M";
-  if (n >= 1000) return Math.round(n / 1000) + "K";
-  return n.toLocaleString();
+  if (n >= 1000000) return (n / 1000000).toFixed(1).replace(".", ",") + " mill.";
+  if (n >= 1000) return Math.round(n / 1000) + " 000";
+  return n.toLocaleString("nb-NO");
 }
 
 function formatPay(n) {
   if (n == null) return "\u2014";
-  return "$" + n.toLocaleString();
+  return n.toLocaleString("nb-NO") + " kr";
+}
+
+function formatPayShort(n) {
+  if (n == null) return "\u2014";
+  if (n >= 1000000) return (n / 1000000).toFixed(1).replace(".", ",") + " mill. kr";
+  if (n >= 1000) return Math.round(n / 1000) + " 000 kr";
+  return n.toLocaleString("nb-NO") + " kr";
 }
 
 function showTooltip(d, mx, my) {
@@ -598,7 +613,7 @@ function showTooltip(d, mx, my) {
     const barWidth = score * 10;
     const color = exposureColorCSS(score, 1);
     tt.querySelector(".tt-exposure").innerHTML =
-      `<span style="color:${color};font-weight:600;">AI Exposure: ${score}/10</span>` +
+      `<span style="color:${color};font-weight:600;">KI-eksponering: ${score}/10</span>` +
       `<div style="margin-top:3px;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;">` +
       `<div style="height:100%;width:${barWidth}%;background:${color};border-radius:2px;"></div></div>`;
   } else {
@@ -606,10 +621,9 @@ function showTooltip(d, mx, my) {
   }
 
   tt.querySelector(".tt-stats").innerHTML = `
-    <span class="label">Median pay</span><span class="value">${formatPay(d.pay)}</span>
-    <span class="label">Jobs (2024)</span><span class="value">${formatNumber(d.jobs)}</span>
-    <span class="label">Outlook</span><span class="value">${d.outlook != null ? d.outlook + '%' : '\u2014'} ${d.outlook_desc ? '(' + d.outlook_desc + ')' : ''}</span>
-    <span class="label">Education</span><span class="value">${d.education || '\u2014'}</span>
+    <span class="label">Median årslønn</span><span class="value">${formatPay(d.pay)}</span>
+    <span class="label">Sysselsatte</span><span class="value">${formatNumber(d.jobs)}</span>
+    <span class="label">Utdanning</span><span class="value">${d.education || '\u2014'}</span>
   `;
 
   tt.querySelector(".tt-rationale").textContent =
@@ -618,7 +632,7 @@ function showTooltip(d, mx, my) {
   const pad = 16;
   let tx = mx + pad;
   let ty = my - pad;
-  if (tx + 340 > window.innerWidth) tx = mx - 340 - pad;
+  if (tx + 360 > window.innerWidth) tx = mx - 360 - pad;
   if (ty < 10) ty = my + pad;
   if (ty + 200 > window.innerHeight) ty = my - 200;
 
@@ -629,165 +643,6 @@ function showTooltip(d, mx, my) {
 
 function hideTooltip() {
   document.getElementById("tooltip").classList.remove("visible");
-}
-
-// ── Column view (exposure x outlook) ────────────────────────────────────
-
-let colRects = [];
-
-function layoutColumns() {
-  const sidebarW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w'));
-  const w = (window.innerWidth - sidebarW);
-  const h = window.innerHeight;
-
-  canvas.width = w * dpr;
-  canvas.height = h * dpr;
-  canvas.style.width = w + "px";
-  canvas.style.height = h + "px";
-
-  const pad = { top: 20, bottom: 24, left: 4, right: 4 };
-  const plotW = w - pad.left - pad.right;
-  const plotH = h - pad.top - pad.bottom;
-  const colGap = 2;
-
-  // Group by exposure score
-  const byExposure = {};
-  let totalJobs = 0;
-  for (const d of data) {
-    if (d.exposure == null) continue;
-    if (!byExposure[d.exposure]) byExposure[d.exposure] = [];
-    byExposure[d.exposure].push(d);
-    totalJobs += d.jobs || 0;
-  }
-
-  // Find which exposure scores exist
-  const scores = Object.keys(byExposure).map(Number).sort((a, b) => a - b);
-  const numCols = scores.length;
-
-  // Column widths proportional to total jobs in that exposure level
-  const colJobTotals = scores.map(s => byExposure[s].reduce((sum, d) => sum + (d.jobs || 0), 0));
-  const totalGap = colGap * (numCols - 1);
-  const availW = plotW - totalGap;
-
-  colRects = [];
-  let cx = pad.left;
-
-  for (let i = 0; i < scores.length; i++) {
-    const score = scores[i];
-    const items = byExposure[score];
-    const colJobs = colJobTotals[i];
-    const colW = (colJobs / totalJobs) * availW;
-
-    // Sort by outlook descending (best outlook at top)
-    items.sort((a, b) => (b.outlook || 0) - (a.outlook || 0));
-
-    let cy = pad.top;
-    for (const d of items) {
-      const jobs = d.jobs || 0;
-      const itemH = colJobs > 0 ? (jobs / colJobs) * plotH : 0;
-      if (itemH < 0.3) { cy += itemH; continue; }
-      colRects.push({ ...d, rx: cx, ry: cy, rw: colW, rh: itemH });
-      cy += itemH;
-    }
-
-    cx += colW + colGap;
-  }
-
-  // Store metadata for axis drawing
-  colRects._meta = { scores, pad, colJobTotals, totalJobs, availW, plotH, colGap };
-}
-
-function drawColumns() {
-  const w = canvas.width;
-  const h = canvas.height;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.fillStyle = "#0a0a0f";
-  ctx.fillRect(0, 0, w / dpr, h / dpr);
-
-  const meta = colRects._meta;
-  if (!meta) return;
-
-  // Draw column headers (exposure scores)
-  ctx.font = "500 11px -apple-system, system-ui, sans-serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "bottom";
-
-  let hx = meta.pad.left;
-  for (let i = 0; i < meta.scores.length; i++) {
-    const colW = (meta.colJobTotals[i] / meta.totalJobs) * meta.availW;
-    if (colW > 16) {
-      ctx.fillStyle = exposureColorCSS(meta.scores[i], 0.7);
-      ctx.fillText(meta.scores[i], hx + colW / 2, meta.pad.top - 5);
-    }
-    hx += colW + meta.colGap;
-  }
-
-  // Draw axis label
-  ctx.fillStyle = "rgba(255,255,255,0.4)";
-  ctx.font = "11px -apple-system, system-ui, sans-serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "top";
-  const canvasW = w / dpr;
-  ctx.fillText("AI Exposure", meta.pad.left + meta.availW / 2, meta.pad.top + meta.plotH + 6);
-
-  // Draw rectangles
-  const gap = 0.5;
-  for (const r of colRects) {
-    const isHovered = r === hovered;
-    const rx = r.rx + gap;
-    const ry = r.ry + gap;
-    const rw = r.rw - gap * 2;
-    const rh = r.rh - gap * 2;
-    if (rw <= 0 || rh <= 0) continue;
-
-    const fillAlpha = isHovered ? 0.8 : 0.5;
-    ctx.fillStyle = outlookColorCSS(r.outlook, fillAlpha);
-    ctx.fillRect(rx, ry, rw, rh);
-
-    if (isHovered) {
-      ctx.strokeStyle = "#fff";
-      ctx.lineWidth = 2;
-      ctx.strokeRect(rx, ry, rw, rh);
-    }
-
-    // Labels
-    if (rw > 40 && rh > 14) {
-      ctx.save();
-      ctx.beginPath();
-      ctx.rect(rx + 3, ry + 1, rw - 6, rh - 2);
-      ctx.clip();
-
-      const fontSize = Math.min(12, Math.max(8, Math.min(rw / 12, rh / 2.5)));
-      ctx.font = `500 ${fontSize}px -apple-system, system-ui, sans-serif`;
-      ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.85)";
-      ctx.textBaseline = "top";
-      ctx.textAlign = "left";
-      ctx.fillText(r.title, rx + 4, ry + 2);
-
-      if (rh > 28 && rw > 50) {
-        const info = (r.outlook != null ? (r.outlook > 0 ? "+" : "") + r.outlook + "%" : "") +
-                     (r.jobs ? " \u00b7 " + formatNumber(r.jobs) : "");
-        ctx.font = `400 ${Math.max(7, fontSize - 2)}px -apple-system, system-ui, sans-serif`;
-        ctx.fillStyle = "rgba(255,255,255,0.5)";
-        ctx.fillText(info, rx + 4, ry + 2 + fontSize + 1);
-      }
-
-      ctx.restore();
-    }
-  }
-}
-
-function hitTestColumns(mx, my) {
-  const sidebarW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w'));
-  const cx = mx - sidebarW;
-  const cy = my;
-  for (let i = colRects.length - 1; i >= 0; i--) {
-    const r = colRects[i];
-    if (cx >= r.rx && cx < r.rx + r.rw && cy >= r.ry && cy < r.ry + r.rh) {
-      return r;
-    }
-  }
-  return null;
 }
 
 // ── Sidebar stats ──────────────────────────────────────────────────────
@@ -816,10 +671,10 @@ function computeStats() {
   // Tiers
   const tiers = [
     { name: "Minimal", range: [0, 1], color: exposureColorCSS(0.5, 1) },
-    { name: "Low", range: [2, 3], color: exposureColorCSS(2.5, 1) },
-    { name: "Moderate", range: [4, 5], color: exposureColorCSS(4.5, 1) },
-    { name: "High", range: [6, 7], color: exposureColorCSS(6.5, 1) },
-    { name: "Very high", range: [8, 10], color: exposureColorCSS(9, 1) },
+    { name: "Lav", range: [2, 3], color: exposureColorCSS(2.5, 1) },
+    { name: "Moderat", range: [4, 5], color: exposureColorCSS(4.5, 1) },
+    { name: "Høy", range: [6, 7], color: exposureColorCSS(6.5, 1) },
+    { name: "Svært høy", range: [8, 10], color: exposureColorCSS(9, 1) },
   ];
   for (const tier of tiers) {
     tier.jobs = 0;
@@ -841,37 +696,42 @@ function computeStats() {
   }
 
   // Render
-  document.getElementById("statTotalJobs").textContent =
-    (totalJobs / 1e6).toFixed(0) + "M";
+  if (totalJobs >= 1000000) {
+    document.getElementById("statTotalJobs").textContent =
+      (totalJobs / 1e6).toFixed(1).replace(".", ",") + " mill.";
+  } else {
+    document.getElementById("statTotalJobs").textContent =
+      totalJobs.toLocaleString("nb-NO");
+  }
   document.getElementById("statAvgExposure").innerHTML =
-    `<span style="color:${exposureColorCSS(weightedAvg, 1)}">${weightedAvg.toFixed(1)}</span>`;
+    `<span style="color:${exposureColorCSS(weightedAvg, 1)}">${weightedAvg.toFixed(1).replace(".", ",")}</span>`;
 
   // Histogram
   const maxHist = Math.max(...histogram);
   const histEl = document.getElementById("histogram");
   histEl.innerHTML = histogram.map((count, i) => {
     const h = maxHist > 0 ? (count / maxHist * 100) : 0;
-    return `<div class="bar" style="height:${Math.max(2, h)}%;background:${exposureColorCSS(i, 0.7)}" title="${i}: ${formatNumber(count)} jobs"></div>`;
+    return `<div class="bar" style="height:${Math.max(2, h)}%;background:${exposureColorCSS(i, 0.7)}" title="${i}: ${formatNumber(count)} sysselsatte"></div>`;
   }).join("");
 
   // Tier breakdown
   const tierEl = document.getElementById("tierBar");
   tierEl.innerHTML = tiers.map(t =>
-    `<div class="tier-row">
+    `<div class="tier-row" data-lo="${t.range[0]}" data-hi="${t.range[1]}" onclick="setTierFilter(${t.range[0]},${t.range[1]})">
       <div class="tier-color" style="background:${t.color}"></div>
-      <span class="tier-name">${t.name} (${t.range[0]}-${t.range[1]})</span>
+      <span class="tier-name">${t.name} (${t.range[0]}\u2013${t.range[1]})</span>
       <span class="tier-jobs">${formatNumber(t.jobs)}</span>
       <span class="tier-pct">${t.pct.toFixed(0)}%</span>
     </div>`
   ).join("");
 
-  // Exposure by pay band
+  // Exposure by pay band (NOK)
   const payBands = [
-    { label: "<$35K", min: 0, max: 35000 },
-    { label: "$35–50K", min: 35000, max: 50000 },
-    { label: "$50–75K", min: 50000, max: 75000 },
-    { label: "$75–100K", min: 75000, max: 100000 },
-    { label: "$100K+", min: 100000, max: Infinity },
+    { label: "<350 000", min: 0, max: 350000 },
+    { label: "350\u2013500 000", min: 350000, max: 500000 },
+    { label: "500\u2013650 000", min: 500000, max: 650000 },
+    { label: "650\u2013800 000", min: 650000, max: 800000 },
+    { label: "800 000+", min: 800000, max: Infinity },
   ];
   const payChartEl = document.getElementById("payChart");
   payChartEl.innerHTML = payBands.map(band => {
@@ -888,17 +748,17 @@ function computeStats() {
     return `<div class="hbar-row">
       <span class="hbar-label">${band.label}</span>
       <div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${exposureColorCSS(avg, 0.8)}"></div></div>
-      <span class="hbar-val">${avg.toFixed(1)}</span>
+      <span class="hbar-val">${avg.toFixed(1).replace(".", ",")}</span>
     </div>`;
   }).join("");
 
-  // Exposure by education
+  // Exposure by education (Norwegian levels)
   const eduGroups = [
-    { label: "No degree/HS", match: ["No formal educational credential", "High school diploma or equivalent"] },
-    { label: "Postsec/Assoc", match: ["Postsecondary nondegree award", "Some college, no degree", "Associate's degree"] },
-    { label: "Bachelor's", match: ["Bachelor's degree"] },
-    { label: "Master's", match: ["Master's degree"] },
-    { label: "Doctoral/Prof", match: ["Doctoral or professional degree"] },
+    { label: "Grunnskole/VGS", match: ["Grunnskole", "Videregående", "Ingen formelle krav"] },
+    { label: "Fagbrev/fagskole", match: ["Fagbrev/fagskole"] },
+    { label: "Bachelor", match: ["Bachelor"] },
+    { label: "Master", match: ["Master"] },
+    { label: "Doktorgrad", match: ["Doktorgrad"] },
   ];
   const eduChartEl = document.getElementById("eduChart");
   eduChartEl.innerHTML = eduGroups.map(grp => {
@@ -914,23 +774,140 @@ function computeStats() {
     return `<div class="hbar-row">
       <span class="hbar-label">${grp.label}</span>
       <div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${exposureColorCSS(avg, 0.8)}"></div></div>
-      <span class="hbar-val">${avg.toFixed(1)}</span>
+      <span class="hbar-val">${avg.toFixed(1).replace(".", ",")}</span>
     </div>`;
   }).join("");
 
   // Wages
-  const trillions = wagesExposed / 1e12;
-  document.getElementById("statWages").textContent =
-    "$" + trillions.toFixed(1) + "T";
+  const mrdKr = wagesExposed / 1e9;
+  if (mrdKr >= 1000) {
+    document.getElementById("statWages").textContent =
+      (mrdKr / 1000).toFixed(1).replace(".", ",") + " bill. kr";
+  } else {
+    document.getElementById("statWages").textContent =
+      Math.round(mrdKr) + " mrd. kr";
+  }
+}
+
+// ── Search & filter ────────────────────────────────────────────────────
+
+let searchQuery = "";
+let filterRange = null; // [lo, hi] or null
+let highlightSlug = null;
+
+function matchesFilter(d) {
+  if (filterRange && d.exposure != null) {
+    return d.exposure >= filterRange[0] && d.exposure <= filterRange[1];
+  }
+  if (filterRange && d.exposure == null) return false;
+  return true;
+}
+
+function matchesSearch(d) {
+  if (!searchQuery) return true;
+  return d.title.toLowerCase().includes(searchQuery);
+}
+
+function isHighlighted(r) {
+  if (highlightSlug) return r.slug === highlightSlug;
+  if (searchQuery) return matchesSearch(r);
+  if (filterRange) return matchesFilter(r);
+  return true;
+}
+
+const searchBox = document.getElementById("searchBox");
+const searchResults = document.getElementById("searchResults");
+
+searchBox.addEventListener("input", () => {
+  searchQuery = searchBox.value.toLowerCase().trim();
+  highlightSlug = null;
+
+  if (searchQuery.length >= 1) {
+    const matches = data
+      .filter(d => d.title.toLowerCase().includes(searchQuery))
+      .sort((a, b) => {
+        // Exact start match first, then by jobs
+        const aStart = a.title.toLowerCase().startsWith(searchQuery) ? 0 : 1;
+        const bStart = b.title.toLowerCase().startsWith(searchQuery) ? 0 : 1;
+        if (aStart !== bStart) return aStart - bStart;
+        return (b.jobs || 0) - (a.jobs || 0);
+      })
+      .slice(0, 12);
+
+    if (matches.length > 0) {
+      searchResults.style.display = "flex";
+      searchResults.innerHTML = matches.map(d => {
+        const color = exposureColorCSS(d.exposure, 1);
+        const scoreText = d.exposure != null ? d.exposure + "/10" : "\u2014";
+        return `<div class="sr-item" data-slug="${d.slug}">
+          <span class="sr-title">${d.title}</span>
+          <span class="sr-score" style="color:${color}">${scoreText}</span>
+        </div>`;
+      }).join("");
+
+      searchResults.querySelectorAll(".sr-item").forEach(el => {
+        el.addEventListener("click", () => {
+          highlightSlug = el.dataset.slug;
+          searchQuery = "";
+          searchBox.value = data.find(d => d.slug === highlightSlug)?.title || "";
+          searchResults.style.display = "none";
+          draw();
+          // Show tooltip for the highlighted item
+          const r = rects.find(r => r.slug === highlightSlug);
+          if (r) {
+            const sidebarW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w'));
+            showTooltip(r, sidebarW + r.rx + r.rw / 2, r.ry + r.rh / 2);
+          }
+        });
+      });
+    } else {
+      searchResults.style.display = "flex";
+      searchResults.innerHTML = `<div style="font-size:11px;color:var(--fg2);padding:4px 8px;">Ingen treff</div>`;
+    }
+  } else {
+    searchResults.style.display = "none";
+  }
+  draw();
+});
+
+searchBox.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    searchBox.value = "";
+    searchQuery = "";
+    highlightSlug = null;
+    searchResults.style.display = "none";
+    searchBox.blur();
+    draw();
+  }
+});
+
+function setTierFilter(lo, hi) {
+  if (filterRange && filterRange[0] === lo && filterRange[1] === hi) {
+    clearFilter();
+    return;
+  }
+  filterRange = [lo, hi];
+  document.getElementById("filterClear").style.display = "block";
+  document.querySelectorAll(".tier-row").forEach(el => {
+    el.classList.toggle("active", el.dataset.lo == lo && el.dataset.hi == hi);
+  });
+  draw();
+}
+
+function clearFilter() {
+  filterRange = null;
+  document.getElementById("filterClear").style.display = "none";
+  document.querySelectorAll(".tier-row").forEach(el => el.classList.remove("active"));
+  draw();
 }
 
 // ── Events ─────────────────────────────────────────────────────────────
 
 canvas.addEventListener("mousemove", (e) => {
-  const hit = currentView === "treemap" ? hitTest(e.clientX, e.clientY) : hitTestColumns(e.clientX, e.clientY);
+  const hit = hitTest(e.clientX, e.clientY);
   if (hit !== hovered) {
     hovered = hit;
-    currentView === "treemap" ? draw() : drawColumns();
+    draw();
   }
   if (hovered) {
     showTooltip(hovered, e.clientX, e.clientY);
@@ -942,7 +919,7 @@ canvas.addEventListener("mousemove", (e) => {
 });
 
 canvas.addEventListener("click", (e) => {
-  const hit = currentView === "treemap" ? hitTest(e.clientX, e.clientY) : hitTestColumns(e.clientX, e.clientY);
+  const hit = hitTest(e.clientX, e.clientY);
   if (hit && hit.url) {
     window.open(hit.url, "_blank");
   }
@@ -951,18 +928,13 @@ canvas.addEventListener("click", (e) => {
 canvas.addEventListener("mouseleave", () => {
   hovered = null;
   hideTooltip();
-  currentView === "treemap" ? draw() : drawColumns();
+  draw();
 });
 
 function resize() {
   dpr = window.devicePixelRatio || 1;
-  if (currentView === "treemap") {
-    layout();
-    draw();
-  } else {
-    layoutColumns();
-    drawColumns();
-  }
+  layout();
+  draw();
 }
 
 // ── Legend gradient ────────────────────────────────────────────────────
