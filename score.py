@@ -18,11 +18,12 @@ import time
 import httpx
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv('.env')
+load_dotenv('.env.local', override=True)
 
-DEFAULT_MODEL = "google/gemini-3-flash-preview"
+DEFAULT_MODEL = "gpt-4o-mini"
 OUTPUT_FILE = "scores.json"
-API_URL = "https://openrouter.ai/api/v1/chat/completions"
+API_URL = "https://api.openai.com/v1/chat/completions"
 
 SYSTEM_PROMPT = """\
 You are an expert analyst evaluating how exposed different occupations are to \
@@ -89,7 +90,7 @@ def score_occupation(client, text, model):
     response = client.post(
         API_URL,
         headers={
-            "Authorization": f"Bearer {os.environ['OPENROUTER_API_KEY']}",
+            "Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}",
         },
         json={
             "model": model,

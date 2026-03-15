@@ -1,0 +1,4638 @@
+{
+  "0": {
+    "code": "0",
+    "name": "Militære yrker og uoppgitt",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0"
+  },
+  "00": {
+    "code": "00",
+    "name": "Uoppgitt / yrker som ikke kan identifiseres",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Uoppgitt / yrker som ikke kan identifiseres",
+    "sub_code": "00"
+  },
+  "000": {
+    "code": "000",
+    "name": "Uoppgitt / yrker som ikke kan identifiseres",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Uoppgitt / yrker som ikke kan identifiseres",
+    "sub_code": "00"
+  },
+  "0000": {
+    "code": "0000",
+    "name": "Uoppgitt / yrker som ikke kan identifiseres",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Uoppgitt / yrker som ikke kan identifiseres",
+    "sub_code": "00"
+  },
+  "01": {
+    "code": "01",
+    "name": "Offiserer fra fenrik og høyere grad",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Offiserer fra fenrik og høyere grad",
+    "sub_code": "01"
+  },
+  "011": {
+    "code": "011",
+    "name": "Offiserer fra fenrik og høyere grad",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Offiserer fra fenrik og høyere grad",
+    "sub_code": "01"
+  },
+  "0110": {
+    "code": "0110",
+    "name": "Offiserer fra fenrik og høyere grad",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Offiserer fra fenrik og høyere grad",
+    "sub_code": "01"
+  },
+  "02": {
+    "code": "02",
+    "name": "Befal med sersjant grad",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Befal med sersjant grad",
+    "sub_code": "02"
+  },
+  "021": {
+    "code": "021",
+    "name": "Befal med sersjant grad",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Befal med sersjant grad",
+    "sub_code": "02"
+  },
+  "0210": {
+    "code": "0210",
+    "name": "Befal med sersjant grad",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Befal med sersjant grad",
+    "sub_code": "02"
+  },
+  "03": {
+    "code": "03",
+    "name": "Menige",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Menige",
+    "sub_code": "03"
+  },
+  "031": {
+    "code": "031",
+    "name": "Menige",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Menige",
+    "sub_code": "03"
+  },
+  "0310": {
+    "code": "0310",
+    "name": "Menige",
+    "major_group": "Militære yrker og uoppgitt",
+    "major_code": "0",
+    "sub_group": "Menige",
+    "sub_code": "03"
+  },
+  "1": {
+    "code": "1",
+    "name": "Ledere",
+    "major_group": "Ledere",
+    "major_code": "1"
+  },
+  "11": {
+    "code": "11",
+    "name": "Politikere og toppledere",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Politikere og toppledere",
+    "sub_code": "11"
+  },
+  "111": {
+    "code": "111",
+    "name": "Politikere og toppledere i offentlig administrasjon",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Politikere og toppledere",
+    "sub_code": "11"
+  },
+  "1111": {
+    "code": "1111",
+    "name": "Politikere",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Politikere og toppledere",
+    "sub_code": "11"
+  },
+  "1112": {
+    "code": "1112",
+    "name": "Toppledere i offentlig administrasjon",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Politikere og toppledere",
+    "sub_code": "11"
+  },
+  "1114": {
+    "code": "1114",
+    "name": "Toppledere i interesseorganisasjoner",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Politikere og toppledere",
+    "sub_code": "11"
+  },
+  "112": {
+    "code": "112",
+    "name": "Administrerende direktører",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Politikere og toppledere",
+    "sub_code": "11"
+  },
+  "1120": {
+    "code": "1120",
+    "name": "Administrerende direktører",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Politikere og toppledere",
+    "sub_code": "11"
+  },
+  "12": {
+    "code": "12",
+    "name": "Administrative og merkantile ledere",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Administrative og merkantile ledere",
+    "sub_code": "12"
+  },
+  "121": {
+    "code": "121",
+    "name": "Ledere av administrative enheter",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Administrative og merkantile ledere",
+    "sub_code": "12"
+  },
+  "1211": {
+    "code": "1211",
+    "name": "Finans- og økonomisjefer",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Administrative og merkantile ledere",
+    "sub_code": "12"
+  },
+  "1212": {
+    "code": "1212",
+    "name": "Personalsjefer",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Administrative og merkantile ledere",
+    "sub_code": "12"
+  },
+  "1213": {
+    "code": "1213",
+    "name": "Strategi- og planleggingssjefer",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Administrative og merkantile ledere",
+    "sub_code": "12"
+  },
+  "1219": {
+    "code": "1219",
+    "name": "Andre administrative ledere",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Administrative og merkantile ledere",
+    "sub_code": "12"
+  },
+  "122": {
+    "code": "122",
+    "name": "Ledere av salgs-, PR- og forskningsenheter",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Administrative og merkantile ledere",
+    "sub_code": "12"
+  },
+  "1221": {
+    "code": "1221",
+    "name": "Salgs- og markedssjefer",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Administrative og merkantile ledere",
+    "sub_code": "12"
+  },
+  "1222": {
+    "code": "1222",
+    "name": "PR- og informasjonssjefer",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Administrative og merkantile ledere",
+    "sub_code": "12"
+  },
+  "1223": {
+    "code": "1223",
+    "name": "Forsknings- og utviklingsledere",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Administrative og merkantile ledere",
+    "sub_code": "12"
+  },
+  "13": {
+    "code": "13",
+    "name": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "131": {
+    "code": "131",
+    "name": "Ledere i gartnerier, akvakultur mv.",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1311": {
+    "code": "1311",
+    "name": "Ledere i skogbruk, gartnerier mv.",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1312": {
+    "code": "1312",
+    "name": "Ledere innen akvakultur mv.",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "132": {
+    "code": "132",
+    "name": "Ledere av produksjon, utvinning, bygg og anlegg, transport",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1321": {
+    "code": "1321",
+    "name": "Ledere av industriproduksjon mv.",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1322": {
+    "code": "1322",
+    "name": "Ledere av olje- og gassutvinning mv.",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1323": {
+    "code": "1323",
+    "name": "Ledere av bygge- og anleggsvirksomhet",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1324": {
+    "code": "1324",
+    "name": "Ledere av logistikk og transport mv.",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "133": {
+    "code": "133",
+    "name": "Ledere av IKT-enheter",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1330": {
+    "code": "1330",
+    "name": "Ledere av IKT-enheter",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "134": {
+    "code": "134",
+    "name": "Ledere av utdanning, helse- og sosialtjenester",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1341": {
+    "code": "1341",
+    "name": "Ledere av omsorgstjenester for barn",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1342": {
+    "code": "1342",
+    "name": "Ledere av helsetjenester",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1343": {
+    "code": "1343",
+    "name": "Ledere av eldreomsorg",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1344": {
+    "code": "1344",
+    "name": "Ledere av sosialomsorg",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1345": {
+    "code": "1345",
+    "name": "Ledere av utdanning og undervisning",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1346": {
+    "code": "1346",
+    "name": "Ledere av forsikring og finansvirksomhet",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "1349": {
+    "code": "1349",
+    "name": "Andre ledere av produksjon og tjenesteyting",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere av enheter for vareproduksjon og tjenesteyting",
+    "sub_code": "13"
+  },
+  "14": {
+    "code": "14",
+    "name": "Ledere i hotell, restaurant, varehandel mv.",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere i hotell, restaurant, varehandel mv.",
+    "sub_code": "14"
+  },
+  "141": {
+    "code": "141",
+    "name": "Ledere i hotell og restaurant",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere i hotell, restaurant, varehandel mv.",
+    "sub_code": "14"
+  },
+  "1411": {
+    "code": "1411",
+    "name": "Hotellsjefer",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere i hotell, restaurant, varehandel mv.",
+    "sub_code": "14"
+  },
+  "1412": {
+    "code": "1412",
+    "name": "Restaurantsjefer",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere i hotell, restaurant, varehandel mv.",
+    "sub_code": "14"
+  },
+  "142": {
+    "code": "142",
+    "name": "Varehandelssjefer",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere i hotell, restaurant, varehandel mv.",
+    "sub_code": "14"
+  },
+  "1420": {
+    "code": "1420",
+    "name": "Varehandelssjefer",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere i hotell, restaurant, varehandel mv.",
+    "sub_code": "14"
+  },
+  "143": {
+    "code": "143",
+    "name": "Daglige ledere, andre tjenesteytende virksomheter",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere i hotell, restaurant, varehandel mv.",
+    "sub_code": "14"
+  },
+  "1431": {
+    "code": "1431",
+    "name": "Sports-, rekreasjons- og kultursenterledere",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere i hotell, restaurant, varehandel mv.",
+    "sub_code": "14"
+  },
+  "1439": {
+    "code": "1439",
+    "name": "Andre daglige ledere i tjenesteytende virksomheter",
+    "major_group": "Ledere",
+    "major_code": "1",
+    "sub_group": "Ledere i hotell, restaurant, varehandel mv.",
+    "sub_code": "14"
+  },
+  "2": {
+    "code": "2",
+    "name": "Akademiske yrker",
+    "major_group": "Akademiske yrker",
+    "major_code": "2"
+  },
+  "21": {
+    "code": "21",
+    "name": "Realister, sivilingeniører mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "211": {
+    "code": "211",
+    "name": "Fysikere, kjemikere mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2111": {
+    "code": "2111",
+    "name": "Fysikere og astronomer",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2112": {
+    "code": "2112",
+    "name": "Meteorologer",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2113": {
+    "code": "2113",
+    "name": "Kjemikere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2114": {
+    "code": "2114",
+    "name": "Geologer og geofysikere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "212": {
+    "code": "212",
+    "name": "Matematikere, statistikere mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2120": {
+    "code": "2120",
+    "name": "Matematikere, statistikere mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "213": {
+    "code": "213",
+    "name": "Biologiske yrker mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2131": {
+    "code": "2131",
+    "name": "Biologer, botanikere, zoologer mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2132": {
+    "code": "2132",
+    "name": "Sivilagronomer mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2133": {
+    "code": "2133",
+    "name": "Miljøvernrådgivere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "214": {
+    "code": "214",
+    "name": "Sivilingeniører (unntatt elektroteknologi)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2141": {
+    "code": "2141",
+    "name": "Sivilingeniører (industri og produksjon)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2142": {
+    "code": "2142",
+    "name": "Sivilingeniører (bygg og anlegg)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2143": {
+    "code": "2143",
+    "name": "Sivilingeniører (miljøteknikk)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2144": {
+    "code": "2144",
+    "name": "Sivilingeniører (maskin- og marin-teknikk)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2145": {
+    "code": "2145",
+    "name": "Sivilingeniører (kjemi)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2146": {
+    "code": "2146",
+    "name": "Sivilingeniører (geofag, petro-leumsteknologi, metallurgi mv.)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2149": {
+    "code": "2149",
+    "name": "Andre sivilingeniører (unntatt elektroteknologi)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "215": {
+    "code": "215",
+    "name": "Sivilingeniører elektroteknologi",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2151": {
+    "code": "2151",
+    "name": "Sivilingeniører (elkraftteknikk)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2152": {
+    "code": "2152",
+    "name": "Sivilingeniører (elektronikk)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2153": {
+    "code": "2153",
+    "name": "Sivilingeniører (telekommunikasjon)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "216": {
+    "code": "216",
+    "name": "Arkitekter, designere mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2161": {
+    "code": "2161",
+    "name": "Sivilarkitekter",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2162": {
+    "code": "2162",
+    "name": "Landskapsarkitekter",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2163": {
+    "code": "2163",
+    "name": "Produkt- og klesdesignere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2164": {
+    "code": "2164",
+    "name": "Arealplanleggere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2165": {
+    "code": "2165",
+    "name": "Landmålere, kartografer mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "2166": {
+    "code": "2166",
+    "name": "Grafiske- og multimediadesignere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Realister, sivilingeniører mv.",
+    "sub_code": "21"
+  },
+  "22": {
+    "code": "22",
+    "name": "Medisinske yrker",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "221": {
+    "code": "221",
+    "name": "Leger",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2211": {
+    "code": "2211",
+    "name": "Allmennpraktiserende leger",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2212": {
+    "code": "2212",
+    "name": "Legespesialister",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "222": {
+    "code": "222",
+    "name": "Sykepleiere og spesialsykepleiere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2221": {
+    "code": "2221",
+    "name": "Spesialsykepleiere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2222": {
+    "code": "2222",
+    "name": "Jordmødre",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2223": {
+    "code": "2223",
+    "name": "Sykepleiere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2224": {
+    "code": "2224",
+    "name": "Vernepleiere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "225": {
+    "code": "225",
+    "name": "Veterinærer",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2250": {
+    "code": "2250",
+    "name": "Veterinærer",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "226": {
+    "code": "226",
+    "name": "Andre medisinske yrker",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2261": {
+    "code": "2261",
+    "name": "Tannleger",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2262": {
+    "code": "2262",
+    "name": "Farmasøyter",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2263": {
+    "code": "2263",
+    "name": "Helse- og miljørådgivere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2264": {
+    "code": "2264",
+    "name": "Fysioterapeuter",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2265": {
+    "code": "2265",
+    "name": "Ernæringsfysiologer",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2266": {
+    "code": "2266",
+    "name": "Audiografer og logopeder",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2267": {
+    "code": "2267",
+    "name": "Ergoterapeuter",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "2269": {
+    "code": "2269",
+    "name": "Kiropraktorer mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Medisinske yrker",
+    "sub_code": "22"
+  },
+  "23": {
+    "code": "23",
+    "name": "Undervisningsyrker",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "231": {
+    "code": "231",
+    "name": "Universitets- og høyskolelektorer/-lærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2310": {
+    "code": "2310",
+    "name": "Universitets- og høyskolelektorer/-lærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "232": {
+    "code": "232",
+    "name": "Yrkesfaglærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2320": {
+    "code": "2320",
+    "name": "Yrkesfaglærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "233": {
+    "code": "233",
+    "name": "Lektorer mv (videregående skole)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2330": {
+    "code": "2330",
+    "name": "Lektorer mv. (videregående skole)",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "234": {
+    "code": "234",
+    "name": "Grunnskole- og førskole-/barnehagelærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2341": {
+    "code": "2341",
+    "name": "Grunnskolelærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2342": {
+    "code": "2342",
+    "name": "Førskole-/barnehagelærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "235": {
+    "code": "235",
+    "name": "Andre lærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2351": {
+    "code": "2351",
+    "name": "Spesialister i pedagogikk",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2352": {
+    "code": "2352",
+    "name": "Spesiallærere / spesialpedagoger",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2353": {
+    "code": "2353",
+    "name": "Andre språklærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2354": {
+    "code": "2354",
+    "name": "Andre musikklærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2355": {
+    "code": "2355",
+    "name": "Andre lærere i estetiske fag",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2356": {
+    "code": "2356",
+    "name": "Andre IKT-lærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "2359": {
+    "code": "2359",
+    "name": "Andre lærere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Undervisningsyrker",
+    "sub_code": "23"
+  },
+  "24": {
+    "code": "24",
+    "name": "Rådgivere innen økonomi, administrasjon og salg",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "241": {
+    "code": "241",
+    "name": "Finansrådgivere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "2411": {
+    "code": "2411",
+    "name": "Revisorer, regnskapsrådgivere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "2412": {
+    "code": "2412",
+    "name": "Finans- og investeringsrådgivere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "2413": {
+    "code": "2413",
+    "name": "Finansanalytikere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "242": {
+    "code": "242",
+    "name": "Administrasjonsrådgivere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "2421": {
+    "code": "2421",
+    "name": "Organisasjonsrådgivere mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "2422": {
+    "code": "2422",
+    "name": "Høyere saksbehandlere i offentlig og privat virksomhet",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "2423": {
+    "code": "2423",
+    "name": "Personal- og karriererådgivere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "2424": {
+    "code": "2424",
+    "name": "Rådgivere innen kompetanseutvikling",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "243": {
+    "code": "243",
+    "name": "Rådgivere innen salg, markedsføring mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "2431": {
+    "code": "2431",
+    "name": "Reklame- og markedsføringsrådgivere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "2432": {
+    "code": "2432",
+    "name": "Informasjonsrådgivere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "2433": {
+    "code": "2433",
+    "name": "Salgskonsulenter innen tekniske og medisinske produkter",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "2434": {
+    "code": "2434",
+    "name": "Salgskonsulenter innen IKT-produkter",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Rådgivere innen økonomi, administrasjon og salg",
+    "sub_code": "24"
+  },
+  "25": {
+    "code": "25",
+    "name": "IKT-rådgivere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "251": {
+    "code": "251",
+    "name": "Programvare- og applikasjonsutviklere/analytikere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "2511": {
+    "code": "2511",
+    "name": "Systemanalytikere/-arkitekter",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "2512": {
+    "code": "2512",
+    "name": "Programvareutviklere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "2513": {
+    "code": "2513",
+    "name": "Nett- og multimediautviklere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "2514": {
+    "code": "2514",
+    "name": "Applikasjonsprogrammerere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "2519": {
+    "code": "2519",
+    "name": "Andre programvare- og applikasjonsutviklere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "252": {
+    "code": "252",
+    "name": "Databasedesignere, systemadministratorer mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "2521": {
+    "code": "2521",
+    "name": "Databasedesignere og -administratorer",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "2522": {
+    "code": "2522",
+    "name": "Systemadministratorer",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "2523": {
+    "code": "2523",
+    "name": "Nettverksansvarlige",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "2529": {
+    "code": "2529",
+    "name": "Sikkerhetsanalytikere mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "IKT-rådgivere",
+    "sub_code": "25"
+  },
+  "26": {
+    "code": "26",
+    "name": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "261": {
+    "code": "261",
+    "name": "Juridiske yrker",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2611": {
+    "code": "2611",
+    "name": "Jurister og advokater",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2612": {
+    "code": "2612",
+    "name": "Dommere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2619": {
+    "code": "2619",
+    "name": "Andre juridiske yrker",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "262": {
+    "code": "262",
+    "name": "Bibliotekarer, arkivarer mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2621": {
+    "code": "2621",
+    "name": "Arkivarer og kuratorer",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2622": {
+    "code": "2622",
+    "name": "Bibliotekarer og andre informasjonsarbeidere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "263": {
+    "code": "263",
+    "name": "Samfunnsvitenskapelige, humanistiske og religiøse yrker",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2631": {
+    "code": "2631",
+    "name": "Rådgivere/forskere, samfunnsøkonomi",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2632": {
+    "code": "2632",
+    "name": "Rådgivere/forskere, samfunnsvitenskap",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2633": {
+    "code": "2633",
+    "name": "Rådgivere/forskere, humanistiske fag",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2634": {
+    "code": "2634",
+    "name": "Psykologer",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2635": {
+    "code": "2635",
+    "name": "Rådgivere innen sosiale fagfelt",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2636": {
+    "code": "2636",
+    "name": "Geistlige yrker",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "264": {
+    "code": "264",
+    "name": "Forfattere, journalister mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2641": {
+    "code": "2641",
+    "name": "Forfattere mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2642": {
+    "code": "2642",
+    "name": "Journalister",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2643": {
+    "code": "2643",
+    "name": "Oversettere, tolker mv.",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "265": {
+    "code": "265",
+    "name": "Profesjonelle kunstnere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2651": {
+    "code": "2651",
+    "name": "Skulptører, kunstmalere og andre billedkunstnere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2652": {
+    "code": "2652",
+    "name": "Dirigenter, komponister, musikere og sangere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2653": {
+    "code": "2653",
+    "name": "Koreografer og dansere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2654": {
+    "code": "2654",
+    "name": "Regissører",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2655": {
+    "code": "2655",
+    "name": "Skuespillere",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2656": {
+    "code": "2656",
+    "name": "Programledere i TV og radio",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "2659": {
+    "code": "2659",
+    "name": "Andre utøvende kunstneriske yrker",
+    "major_group": "Akademiske yrker",
+    "major_code": "2",
+    "sub_group": "Juridiske, samfunnsvitenskapelige og humanistiske yrker",
+    "sub_code": "26"
+  },
+  "3": {
+    "code": "3",
+    "name": "Høyskoleyrker",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3"
+  },
+  "31": {
+    "code": "31",
+    "name": "Ingeniører mv.",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "311": {
+    "code": "311",
+    "name": "Ingeniører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3112": {
+    "code": "3112",
+    "name": "Bygningsingeniører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3113": {
+    "code": "3113",
+    "name": "Elkraftingeniører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3114": {
+    "code": "3114",
+    "name": "Elektronikkingeniører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3115": {
+    "code": "3115",
+    "name": "Maskiningeniører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3116": {
+    "code": "3116",
+    "name": "Kjemiingeniører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3117": {
+    "code": "3117",
+    "name": "Ingeniører innen petroleum, bergverk og metallurgi",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3118": {
+    "code": "3118",
+    "name": "Tekniske tegnere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3119": {
+    "code": "3119",
+    "name": "Andre ingeniører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "312": {
+    "code": "312",
+    "name": "Arbeidsledere innen bergfag, industri, bygg og anlegg",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3121": {
+    "code": "3121",
+    "name": "Arbeidsleder, bergfag",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3122": {
+    "code": "3122",
+    "name": "Arbeidsleder, industri",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3123": {
+    "code": "3123",
+    "name": "Arbeidsleder, bygg og anlegg",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "313": {
+    "code": "313",
+    "name": "Prosesskontrollører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3131": {
+    "code": "3131",
+    "name": "Energikontrolloperatører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3132": {
+    "code": "3132",
+    "name": "Kontrolloperatører ved forbrennings- kjøle- og vannrenseanlegg mv.",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3133": {
+    "code": "3133",
+    "name": "Kontrolloperatører innen kjemisk prosessindustri",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3134": {
+    "code": "3134",
+    "name": "Kontrolloperatører ved olje- og naturgassraffineringsanlegg",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3135": {
+    "code": "3135",
+    "name": "Kontrolloperatører innen metallproduksjon",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3139": {
+    "code": "3139",
+    "name": "Andre prosesskontrolloperatører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "314": {
+    "code": "314",
+    "name": "Bioteknikere mv.",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3141": {
+    "code": "3141",
+    "name": "Bioteknikere (ikke-medisinske laboratorier)",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3142": {
+    "code": "3142",
+    "name": "Agroteknikere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3143": {
+    "code": "3143",
+    "name": "Skogteknikere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "315": {
+    "code": "315",
+    "name": "Skipoffiserer, flygere, flygeledere mv.",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3151": {
+    "code": "3151",
+    "name": "Skipsmaskinister",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3152": {
+    "code": "3152",
+    "name": "Dekksoffiserer og loser",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3153": {
+    "code": "3153",
+    "name": "Flygere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3154": {
+    "code": "3154",
+    "name": "Flygeledere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "3155": {
+    "code": "3155",
+    "name": "Teknikere innen luftfartssikkerhet",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Ingeniører mv.",
+    "sub_code": "31"
+  },
+  "32": {
+    "code": "32",
+    "name": "Helserelaterte yrker",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "321": {
+    "code": "321",
+    "name": "Radiografer, proteseteknikere, reseptarer mv.",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3211": {
+    "code": "3211",
+    "name": "Radiografer mv.",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3212": {
+    "code": "3212",
+    "name": "Bioingeniører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3213": {
+    "code": "3213",
+    "name": "Reseptarer",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3214": {
+    "code": "3214",
+    "name": "Protese- og tannteknikere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "323": {
+    "code": "323",
+    "name": "Yrker innen alternativ medisin",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3230": {
+    "code": "3230",
+    "name": "Yrker innen alternativ medisin",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "324": {
+    "code": "324",
+    "name": "Dyrepleiere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3240": {
+    "code": "3240",
+    "name": "Dyrepleiere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "325": {
+    "code": "325",
+    "name": "Andre helseyrker",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3251": {
+    "code": "3251",
+    "name": "Tannpleiere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3254": {
+    "code": "3254",
+    "name": "Optikere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3256": {
+    "code": "3256",
+    "name": "Helsesekretærer",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3257": {
+    "code": "3257",
+    "name": "Helse- og miljøkontrollører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3258": {
+    "code": "3258",
+    "name": "Ambulansepersonell",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "3259": {
+    "code": "3259",
+    "name": "Andre helseyrker",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Helserelaterte yrker",
+    "sub_code": "32"
+  },
+  "33": {
+    "code": "33",
+    "name": "Medarbeidere innen økonomi, administrasjon og salg",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "331": {
+    "code": "331",
+    "name": "Yrker innen finanstjenester",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3311": {
+    "code": "3311",
+    "name": "Finansmeglere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3312": {
+    "code": "3312",
+    "name": "Kundebehandlere lån og kreditt",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3313": {
+    "code": "3313",
+    "name": "Regnskapsførere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3315": {
+    "code": "3315",
+    "name": "Takstmenn",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "332": {
+    "code": "332",
+    "name": "Agenter og meglere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3321": {
+    "code": "3321",
+    "name": "Forsikringsagenter",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3322": {
+    "code": "3322",
+    "name": "Selgere (engros)",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3323": {
+    "code": "3323",
+    "name": "Innkjøpere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3324": {
+    "code": "3324",
+    "name": "Handels- og skipsmeglere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "333": {
+    "code": "333",
+    "name": "Forretningstjenesteyrker",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3331": {
+    "code": "3331",
+    "name": "Speditører og befraktere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3332": {
+    "code": "3332",
+    "name": "Konferanse- og arrangementsplanleggere mv.",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3333": {
+    "code": "3333",
+    "name": "Arbeidsformidlere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3334": {
+    "code": "3334",
+    "name": "Eiendomsmeglere og - forvaltere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3339": {
+    "code": "3339",
+    "name": "Andre yrker innen forretningstjenester",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "334": {
+    "code": "334",
+    "name": "Sekretærer og arbeidsledere for kontorpersonell",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3341": {
+    "code": "3341",
+    "name": "Arbeidsledere for kontorpersonell",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3342": {
+    "code": "3342",
+    "name": "Advokatsekretær",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3343": {
+    "code": "3343",
+    "name": "Sjefssekretærer",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "335": {
+    "code": "335",
+    "name": "Yrker innen offentlig forvaltning",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3351": {
+    "code": "3351",
+    "name": "Tollere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3352": {
+    "code": "3352",
+    "name": "Skattefunksjonærer",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3353": {
+    "code": "3353",
+    "name": "Saksbehandlere innen sosiale ytelser",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3354": {
+    "code": "3354",
+    "name": "Saksbehandlere for førerkort, importlisenser mv.",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3355": {
+    "code": "3355",
+    "name": "Politibetjenter mv.",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "3359": {
+    "code": "3359",
+    "name": "Andre yrker innen offentlig forvaltning",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Medarbeidere innen økonomi, administrasjon og salg",
+    "sub_code": "33"
+  },
+  "34": {
+    "code": "34",
+    "name": "Yrker innen kultur, idrett mv.",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "341": {
+    "code": "341",
+    "name": "Yrker innen sosialarbeid og kultur",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "3411": {
+    "code": "3411",
+    "name": "Privatetterforskere mv.",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "3412": {
+    "code": "3412",
+    "name": "Miljøarbeidere innen sosiale fagfelt",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "3413": {
+    "code": "3413",
+    "name": "Religiøse yrker",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "342": {
+    "code": "342",
+    "name": "Yrker innen sport og idrett",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "3421": {
+    "code": "3421",
+    "name": "Idrettsutøvere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "3422": {
+    "code": "3422",
+    "name": "Trenere og idrettsdommere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "3423": {
+    "code": "3423",
+    "name": "Sports- og aktivitetsinstruktører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "343": {
+    "code": "343",
+    "name": "Yrker innen estetiske fag",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "3431": {
+    "code": "3431",
+    "name": "Fotografer og filmfotografer",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "3432": {
+    "code": "3432",
+    "name": "Interiørdesignere og dekoratører",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "3433": {
+    "code": "3433",
+    "name": "Tekniske konservatorer",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "3434": {
+    "code": "3434",
+    "name": "Sjefskokker",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "3439": {
+    "code": "3439",
+    "name": "Andre yrker innen estetiske fag",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "Yrker innen kultur, idrett mv.",
+    "sub_code": "34"
+  },
+  "35": {
+    "code": "35",
+    "name": "IKT-teknikere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "IKT-teknikere",
+    "sub_code": "35"
+  },
+  "351": {
+    "code": "351",
+    "name": "Operatører og brukerstøtte, IKT",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "IKT-teknikere",
+    "sub_code": "35"
+  },
+  "3511": {
+    "code": "3511",
+    "name": "Driftsteknikere, IKT",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "IKT-teknikere",
+    "sub_code": "35"
+  },
+  "3512": {
+    "code": "3512",
+    "name": "Brukerstøtte, IKT",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "IKT-teknikere",
+    "sub_code": "35"
+  },
+  "3513": {
+    "code": "3513",
+    "name": "Nettverks- og systemteknikere, IKT",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "IKT-teknikere",
+    "sub_code": "35"
+  },
+  "3514": {
+    "code": "3514",
+    "name": "Internett-teknikere",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "IKT-teknikere",
+    "sub_code": "35"
+  },
+  "352": {
+    "code": "352",
+    "name": "Teknikere innen kringkasting og telekom",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "IKT-teknikere",
+    "sub_code": "35"
+  },
+  "3521": {
+    "code": "3521",
+    "name": "Teknikere innen radio og tv",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "IKT-teknikere",
+    "sub_code": "35"
+  },
+  "3522": {
+    "code": "3522",
+    "name": "Teknikere innen telekom",
+    "major_group": "Høyskoleyrker",
+    "major_code": "3",
+    "sub_group": "IKT-teknikere",
+    "sub_code": "35"
+  },
+  "4": {
+    "code": "4",
+    "name": "Kontoryrker",
+    "major_group": "Kontoryrker",
+    "major_code": "4"
+  },
+  "41": {
+    "code": "41",
+    "name": "Kontormedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kontormedarbeidere",
+    "sub_code": "41"
+  },
+  "411": {
+    "code": "411",
+    "name": "Kontormedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kontormedarbeidere",
+    "sub_code": "41"
+  },
+  "4110": {
+    "code": "4110",
+    "name": "Kontormedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kontormedarbeidere",
+    "sub_code": "41"
+  },
+  "413": {
+    "code": "413",
+    "name": "Dataregistrere og stenografer",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kontormedarbeidere",
+    "sub_code": "41"
+  },
+  "4131": {
+    "code": "4131",
+    "name": "Stenografer mv.",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kontormedarbeidere",
+    "sub_code": "41"
+  },
+  "4132": {
+    "code": "4132",
+    "name": "Dataregistrere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kontormedarbeidere",
+    "sub_code": "41"
+  },
+  "42": {
+    "code": "42",
+    "name": "Kundeserviceyrker",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "421": {
+    "code": "421",
+    "name": "Kundebehandlere, penger og pengespill",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4211": {
+    "code": "4211",
+    "name": "Kundebehandlere, bank og postkontor",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4212": {
+    "code": "4212",
+    "name": "Bingoverter, bookmakere mv.",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4213": {
+    "code": "4213",
+    "name": "Pantelånere mv.",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4214": {
+    "code": "4214",
+    "name": "Inkassomedarbeidere mv.",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "422": {
+    "code": "422",
+    "name": "Reisebyrå-, resepsjons- og andre opplysningsmedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4221": {
+    "code": "4221",
+    "name": "Reisebyråmedarbeidere mv.",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4222": {
+    "code": "4222",
+    "name": "Kundesentermedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4223": {
+    "code": "4223",
+    "name": "Sentralbordoperatører",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4224": {
+    "code": "4224",
+    "name": "Hotellresepsjonister",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4225": {
+    "code": "4225",
+    "name": "Informasjonsskrankemedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4226": {
+    "code": "4226",
+    "name": "Resepsjonister (ekskl. hotell)",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4227": {
+    "code": "4227",
+    "name": "Intervjuere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "4229": {
+    "code": "4229",
+    "name": "Andre opplysningsmedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Kundeserviceyrker",
+    "sub_code": "42"
+  },
+  "43": {
+    "code": "43",
+    "name": "Økonomi- og logistikkmedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Økonomi- og logistikkmedarbeidere",
+    "sub_code": "43"
+  },
+  "431": {
+    "code": "431",
+    "name": "Regnskaps- og lønnsmedarbeidere mv.",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Økonomi- og logistikkmedarbeidere",
+    "sub_code": "43"
+  },
+  "4311": {
+    "code": "4311",
+    "name": "Regnskapsmedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Økonomi- og logistikkmedarbeidere",
+    "sub_code": "43"
+  },
+  "4312": {
+    "code": "4312",
+    "name": "Forsikrings- og finansmedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Økonomi- og logistikkmedarbeidere",
+    "sub_code": "43"
+  },
+  "4313": {
+    "code": "4313",
+    "name": "Lønningsmedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Økonomi- og logistikkmedarbeidere",
+    "sub_code": "43"
+  },
+  "432": {
+    "code": "432",
+    "name": "Lager- og transportmedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Økonomi- og logistikkmedarbeidere",
+    "sub_code": "43"
+  },
+  "4321": {
+    "code": "4321",
+    "name": "Lagermedarbeidere og material-forvaltere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Økonomi- og logistikkmedarbeidere",
+    "sub_code": "43"
+  },
+  "4322": {
+    "code": "4322",
+    "name": "Logistikkmedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Økonomi- og logistikkmedarbeidere",
+    "sub_code": "43"
+  },
+  "4323": {
+    "code": "4323",
+    "name": "Transportfunksjonærer",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Økonomi- og logistikkmedarbeidere",
+    "sub_code": "43"
+  },
+  "44": {
+    "code": "44",
+    "name": "Postbud, arkiv- og personalkontormedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Postbud, arkiv- og personalkontormedarbeidere",
+    "sub_code": "44"
+  },
+  "441": {
+    "code": "441",
+    "name": "Postbud, arkiv- og personalkontor-medarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Postbud, arkiv- og personalkontormedarbeidere",
+    "sub_code": "44"
+  },
+  "4411": {
+    "code": "4411",
+    "name": "Bibliotekassistenter",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Postbud, arkiv- og personalkontormedarbeidere",
+    "sub_code": "44"
+  },
+  "4412": {
+    "code": "4412",
+    "name": "Postbud og postsorterere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Postbud, arkiv- og personalkontormedarbeidere",
+    "sub_code": "44"
+  },
+  "4413": {
+    "code": "4413",
+    "name": "Kodere mv.",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Postbud, arkiv- og personalkontormedarbeidere",
+    "sub_code": "44"
+  },
+  "4415": {
+    "code": "4415",
+    "name": "Arkivassistenter",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Postbud, arkiv- og personalkontormedarbeidere",
+    "sub_code": "44"
+  },
+  "4416": {
+    "code": "4416",
+    "name": "Personalkontormedarbeidere",
+    "major_group": "Kontoryrker",
+    "major_code": "4",
+    "sub_group": "Postbud, arkiv- og personalkontormedarbeidere",
+    "sub_code": "44"
+  },
+  "5": {
+    "code": "5",
+    "name": "Salgs- og serviceyrker",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5"
+  },
+  "51": {
+    "code": "51",
+    "name": "Yrker innen personlig tjenesteyting",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "511": {
+    "code": "511",
+    "name": "Persontransportpersonell",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5111": {
+    "code": "5111",
+    "name": "Flyverter, båtverter mv.",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5112": {
+    "code": "5112",
+    "name": "Konduktører",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5113": {
+    "code": "5113",
+    "name": "Reiseledere og guider",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "512": {
+    "code": "512",
+    "name": "Kokker",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5120": {
+    "code": "5120",
+    "name": "Kokker",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "513": {
+    "code": "513",
+    "name": "Servitører og bartendere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5131": {
+    "code": "5131",
+    "name": "Servitører",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5132": {
+    "code": "5132",
+    "name": "Bartendere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "514": {
+    "code": "514",
+    "name": "Frisører, kosmetologer mv.",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5141": {
+    "code": "5141",
+    "name": "Frisører",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5142": {
+    "code": "5142",
+    "name": "Kosmetologer mv.",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "515": {
+    "code": "515",
+    "name": "Renholdsledere og vaktmestre",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5151": {
+    "code": "5151",
+    "name": "Renholdsledere i bedrifter",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5152": {
+    "code": "5152",
+    "name": "Husholdere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5153": {
+    "code": "5153",
+    "name": "Vaktmestre",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "516": {
+    "code": "516",
+    "name": "Andre yrker innen personlig tjenesteyting",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5161": {
+    "code": "5161",
+    "name": "Astrologer mv.",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5163": {
+    "code": "5163",
+    "name": "Begravelsesbyrå- og krematoriearbeidere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5164": {
+    "code": "5164",
+    "name": "Dyrepassere og - trenere mv.",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5165": {
+    "code": "5165",
+    "name": "Kjøreskolelærere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "5169": {
+    "code": "5169",
+    "name": "Andre personlige tjenesteytere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Yrker innen personlig tjenesteyting",
+    "sub_code": "51"
+  },
+  "52": {
+    "code": "52",
+    "name": "Salgsyrker",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "521": {
+    "code": "521",
+    "name": "Torg og markedsselgere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5211": {
+    "code": "5211",
+    "name": "Torghandlere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5212": {
+    "code": "5212",
+    "name": "Gateselgere, mat",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "522": {
+    "code": "522",
+    "name": "Butikkselgere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5221": {
+    "code": "5221",
+    "name": "Innehavere av kiosk/liten butikk",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5222": {
+    "code": "5222",
+    "name": "Butikkavdelingssjefer",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5223": {
+    "code": "5223",
+    "name": "Butikkmedarbeidere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "523": {
+    "code": "523",
+    "name": "Billettselgere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5230": {
+    "code": "5230",
+    "name": "Billettselgere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "524": {
+    "code": "524",
+    "name": "Andre salgsyrker",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5241": {
+    "code": "5241",
+    "name": "Mannekenger og modeller",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5242": {
+    "code": "5242",
+    "name": "Demonstrasjonsselgere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5243": {
+    "code": "5243",
+    "name": "Dørselgere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5244": {
+    "code": "5244",
+    "name": "Telefon- og nettselgere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5245": {
+    "code": "5245",
+    "name": "Servicemedarbeidere (bensinstasjon)",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5246": {
+    "code": "5246",
+    "name": "Gatekjøkken- og kafémedarbeidere mv.",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "5249": {
+    "code": "5249",
+    "name": "Andre salgsmedarbeidere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Salgsyrker",
+    "sub_code": "52"
+  },
+  "53": {
+    "code": "53",
+    "name": "Pleie- og omsorgsarbeidere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Pleie- og omsorgsarbeidere",
+    "sub_code": "53"
+  },
+  "531": {
+    "code": "531",
+    "name": "Barnehage- og skoleassistenter mv.",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Pleie- og omsorgsarbeidere",
+    "sub_code": "53"
+  },
+  "5311": {
+    "code": "5311",
+    "name": "Barnehage- og skolefritidsassistenter mv.",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Pleie- og omsorgsarbeidere",
+    "sub_code": "53"
+  },
+  "5312": {
+    "code": "5312",
+    "name": "Skoleassistenter",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Pleie- og omsorgsarbeidere",
+    "sub_code": "53"
+  },
+  "532": {
+    "code": "532",
+    "name": "Pleiemedarbeidere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Pleie- og omsorgsarbeidere",
+    "sub_code": "53"
+  },
+  "5321": {
+    "code": "5321",
+    "name": "Helsefagarbeidere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Pleie- og omsorgsarbeidere",
+    "sub_code": "53"
+  },
+  "5322": {
+    "code": "5322",
+    "name": "Hjemmehjelper",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Pleie- og omsorgsarbeidere",
+    "sub_code": "53"
+  },
+  "5329": {
+    "code": "5329",
+    "name": "Andre pleiemedarbeidere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Pleie- og omsorgsarbeidere",
+    "sub_code": "53"
+  },
+  "54": {
+    "code": "54",
+    "name": "Sikkerhetsarbeidere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Sikkerhetsarbeidere",
+    "sub_code": "54"
+  },
+  "541": {
+    "code": "541",
+    "name": "Sikkerhetsarbeidere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Sikkerhetsarbeidere",
+    "sub_code": "54"
+  },
+  "5411": {
+    "code": "5411",
+    "name": "Brannkonstabler",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Sikkerhetsarbeidere",
+    "sub_code": "54"
+  },
+  "5413": {
+    "code": "5413",
+    "name": "Fengselsbetjenter",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Sikkerhetsarbeidere",
+    "sub_code": "54"
+  },
+  "5414": {
+    "code": "5414",
+    "name": "Vektere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Sikkerhetsarbeidere",
+    "sub_code": "54"
+  },
+  "5419": {
+    "code": "5419",
+    "name": "Andre sikkerhetsarbeidere",
+    "major_group": "Salgs- og serviceyrker",
+    "major_code": "5",
+    "sub_group": "Sikkerhetsarbeidere",
+    "sub_code": "54"
+  },
+  "6": {
+    "code": "6",
+    "name": "Bønder, fiskere mv.",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6"
+  },
+  "61": {
+    "code": "61",
+    "name": "Jordbrukere",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "611": {
+    "code": "611",
+    "name": "Korn-, grønnsaks-, frukt- og bærprodusenter, gartnere",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "6111": {
+    "code": "6111",
+    "name": "Korn- og grønnsaksprodusenter",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "6112": {
+    "code": "6112",
+    "name": "Frukt- og bærprodusenter",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "6113": {
+    "code": "6113",
+    "name": "Gartnere",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "6114": {
+    "code": "6114",
+    "name": "Kombinasjonsbrukere, nyttevekster",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "612": {
+    "code": "612",
+    "name": "Husdyr-, egg- og melkeprodusenter",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "6121": {
+    "code": "6121",
+    "name": "Melke- og husdyrprodusenter",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "6122": {
+    "code": "6122",
+    "name": "Egg- og fjærfeprodusenter",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "6123": {
+    "code": "6123",
+    "name": "Birøktere mv.",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "6129": {
+    "code": "6129",
+    "name": "Andre dyreoppdrettere og røktere",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "613": {
+    "code": "613",
+    "name": "Plante- og husdyrprodusenter (kombinasjonsbruk)",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "6130": {
+    "code": "6130",
+    "name": "Plante- og husdyrprodusenter (kombinasjonsbruk)",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Jordbrukere",
+    "sub_code": "61"
+  },
+  "62": {
+    "code": "62",
+    "name": "Skogbrukere, fiskere mv.",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Skogbrukere, fiskere mv.",
+    "sub_code": "62"
+  },
+  "621": {
+    "code": "621",
+    "name": "Skogbrukere",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Skogbrukere, fiskere mv.",
+    "sub_code": "62"
+  },
+  "6210": {
+    "code": "6210",
+    "name": "Skogbrukere",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Skogbrukere, fiskere mv.",
+    "sub_code": "62"
+  },
+  "622": {
+    "code": "622",
+    "name": "Havbruksarbeidere og fiskere",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Skogbrukere, fiskere mv.",
+    "sub_code": "62"
+  },
+  "6221": {
+    "code": "6221",
+    "name": "Havbruksarbeidere",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Skogbrukere, fiskere mv.",
+    "sub_code": "62"
+  },
+  "6222": {
+    "code": "6222",
+    "name": "Fiskere",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Skogbrukere, fiskere mv.",
+    "sub_code": "62"
+  },
+  "6224": {
+    "code": "6224",
+    "name": "Fangstfolk",
+    "major_group": "Bønder, fiskere mv.",
+    "major_code": "6",
+    "sub_group": "Skogbrukere, fiskere mv.",
+    "sub_code": "62"
+  },
+  "7": {
+    "code": "7",
+    "name": "Håndverkere",
+    "major_group": "Håndverkere",
+    "major_code": "7"
+  },
+  "71": {
+    "code": "71",
+    "name": "Byggearbeidere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "711": {
+    "code": "711",
+    "name": "Bygningsarbeidere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7112": {
+    "code": "7112",
+    "name": "Murere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7113": {
+    "code": "7113",
+    "name": "Steinhoggere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7114": {
+    "code": "7114",
+    "name": "Betongarbeidere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7115": {
+    "code": "7115",
+    "name": "Tømrere og snekkere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7119": {
+    "code": "7119",
+    "name": "Andre bygningsarbeidere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "712": {
+    "code": "712",
+    "name": "Bygningstekniske arbeidere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7121": {
+    "code": "7121",
+    "name": "Taktekkere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7122": {
+    "code": "7122",
+    "name": "Gulv- og flisleggere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7123": {
+    "code": "7123",
+    "name": "Gips- og sparklingsarbeidere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7124": {
+    "code": "7124",
+    "name": "Isolatører mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7125": {
+    "code": "7125",
+    "name": "Glassarbeidere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7126": {
+    "code": "7126",
+    "name": "Rørleggere og VVS-montører",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7127": {
+    "code": "7127",
+    "name": "Kuldemontører mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "713": {
+    "code": "713",
+    "name": "Malere, overflatebehandlere, feiere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7131": {
+    "code": "7131",
+    "name": "Malere og byggtapetserere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7132": {
+    "code": "7132",
+    "name": "Overflatebehandlere og lakkerere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "7133": {
+    "code": "7133",
+    "name": "Feiere, fasaderenholdere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Byggearbeidere",
+    "sub_code": "71"
+  },
+  "72": {
+    "code": "72",
+    "name": "Metall- og maskinarbeidere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "721": {
+    "code": "721",
+    "name": "Støpere, sveisere, platearbeidere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7211": {
+    "code": "7211",
+    "name": "Støpere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7212": {
+    "code": "7212",
+    "name": "Sveisere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7213": {
+    "code": "7213",
+    "name": "Kopper- og blikkenslagere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7214": {
+    "code": "7214",
+    "name": "Platearbeidere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7215": {
+    "code": "7215",
+    "name": "Riggere og spleisere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "722": {
+    "code": "722",
+    "name": "Smeder, verktøymakere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7221": {
+    "code": "7221",
+    "name": "Smeder",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7222": {
+    "code": "7222",
+    "name": "Verktøymaker, låsesmeder mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7223": {
+    "code": "7223",
+    "name": "Metalldreiere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7224": {
+    "code": "7224",
+    "name": "Metallslipere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "723": {
+    "code": "723",
+    "name": "Mekanikere og reparatører",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7231": {
+    "code": "7231",
+    "name": "Bilmekanikere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7232": {
+    "code": "7232",
+    "name": "Mekanikere innen flytekniske fag",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7233": {
+    "code": "7233",
+    "name": "Anleggsmaskin- og industrimekanikere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "7234": {
+    "code": "7234",
+    "name": "Sykkelreparatører mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Metall- og maskinarbeidere",
+    "sub_code": "72"
+  },
+  "73": {
+    "code": "73",
+    "name": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "731": {
+    "code": "731",
+    "name": "Presisjonsarbeidere og kunsthåndverkere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7311": {
+    "code": "7311",
+    "name": "Presisjonsinstrumentmakere og -reparatører",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7312": {
+    "code": "7312",
+    "name": "Musikkinstrumentmakere og -stemmere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7313": {
+    "code": "7313",
+    "name": "Gull- og sølvsmeder, gravører mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7314": {
+    "code": "7314",
+    "name": "Keramikere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7315": {
+    "code": "7315",
+    "name": "Glasshåndverkere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7316": {
+    "code": "7316",
+    "name": "Dekormalere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7317": {
+    "code": "7317",
+    "name": "Kunsthåndverkere i tre mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7318": {
+    "code": "7318",
+    "name": "Vevere, strikkere mv. (innen husflidsproduksjon)",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7319": {
+    "code": "7319",
+    "name": "Andre kunsthåndverkere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "732": {
+    "code": "732",
+    "name": "Grafiske arbeidere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7321": {
+    "code": "7321",
+    "name": "Førtrykkere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7322": {
+    "code": "7322",
+    "name": "Trykkere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "7323": {
+    "code": "7323",
+    "name": "Innbindere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Presisjonsarbeidere, kunsthåndverkere, grafiske arbeidere mv.",
+    "sub_code": "73"
+  },
+  "74": {
+    "code": "74",
+    "name": "Elektrikere, elektronikere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Elektrikere, elektronikere mv.",
+    "sub_code": "74"
+  },
+  "741": {
+    "code": "741",
+    "name": "Elektrikere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Elektrikere, elektronikere mv.",
+    "sub_code": "74"
+  },
+  "7411": {
+    "code": "7411",
+    "name": "Elektrikere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Elektrikere, elektronikere mv.",
+    "sub_code": "74"
+  },
+  "7412": {
+    "code": "7412",
+    "name": "Automatikere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Elektrikere, elektronikere mv.",
+    "sub_code": "74"
+  },
+  "7413": {
+    "code": "7413",
+    "name": "Energimontører",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Elektrikere, elektronikere mv.",
+    "sub_code": "74"
+  },
+  "742": {
+    "code": "742",
+    "name": "Serviceelektronikere og tele- og IKT-installatører mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Elektrikere, elektronikere mv.",
+    "sub_code": "74"
+  },
+  "7421": {
+    "code": "7421",
+    "name": "Serviceelektronikere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Elektrikere, elektronikere mv.",
+    "sub_code": "74"
+  },
+  "7422": {
+    "code": "7422",
+    "name": "Tele- og IKT-installatører",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Elektrikere, elektronikere mv.",
+    "sub_code": "74"
+  },
+  "75": {
+    "code": "75",
+    "name": "Andre håndverkspregede yrker",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "751": {
+    "code": "751",
+    "name": "Slaktere, fiskehandlere, konditorer mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7511": {
+    "code": "7511",
+    "name": "Slaktere, fiskehandlere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7512": {
+    "code": "7512",
+    "name": "Bakere, konditorer mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7513": {
+    "code": "7513",
+    "name": "Ystere mv. (gårdsproduksjon)",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7514": {
+    "code": "7514",
+    "name": "Saftere, syltere mv. (gårdsproduksjon)",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7515": {
+    "code": "7515",
+    "name": "Prøvesmakere og kvalitetsbedømmere av mat og drikke",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "752": {
+    "code": "752",
+    "name": "Møbelsnekkere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7522": {
+    "code": "7522",
+    "name": "Møbelsnekkere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "753": {
+    "code": "753",
+    "name": "Skreddere, møbeltapetserere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7531": {
+    "code": "7531",
+    "name": "Skreddere, buntmakere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7532": {
+    "code": "7532",
+    "name": "Gradører",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7534": {
+    "code": "7534",
+    "name": "Møbeltapetserere mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7535": {
+    "code": "7535",
+    "name": "Skinnberedere og garvere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7536": {
+    "code": "7536",
+    "name": "Skomakere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "754": {
+    "code": "754",
+    "name": "Yrkesdykkere, skytebaser mv.",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7541": {
+    "code": "7541",
+    "name": "Yrkesdykkere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7542": {
+    "code": "7542",
+    "name": "Skytebaser og sprengningsarbeidere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7543": {
+    "code": "7543",
+    "name": "Produkttestere (ikke matprodukter)",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7544": {
+    "code": "7544",
+    "name": "Desinfeksjonsarbeidere og skadedyrbekjempere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "7549": {
+    "code": "7549",
+    "name": "Andre håndverkere",
+    "major_group": "Håndverkere",
+    "major_code": "7",
+    "sub_group": "Andre håndverkspregede yrker",
+    "sub_code": "75"
+  },
+  "8": {
+    "code": "8",
+    "name": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8"
+  },
+  "81": {
+    "code": "81",
+    "name": "Prosess- og maskinoperatører",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "811": {
+    "code": "811",
+    "name": "Operatører innen borefag mv.",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8111": {
+    "code": "8111",
+    "name": "Bergfagarbeidere",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8112": {
+    "code": "8112",
+    "name": "Prosessoperatører (oppredning)",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8113": {
+    "code": "8113",
+    "name": "Operatører innen boring mv.",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8114": {
+    "code": "8114",
+    "name": "Operatører innen produksjon av betong mv.",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "812": {
+    "code": "812",
+    "name": "Operatører metallproduksjon",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8121": {
+    "code": "8121",
+    "name": "Operatører innen metallurgiske prosessfag",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8122": {
+    "code": "8122",
+    "name": "Operatører innen metallflatebehandling",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "813": {
+    "code": "813",
+    "name": "Operatører innen produksjon av kjemiske produkter",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8131": {
+    "code": "8131",
+    "name": "Operatører innen kjemisk industri",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8132": {
+    "code": "8132",
+    "name": "Operatører innen produksjon av fotofilm og -papir mv.",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "814": {
+    "code": "814",
+    "name": "Operatører innen gummi, plast og papirproduksjon",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8141": {
+    "code": "8141",
+    "name": "Operatører innen produksjon av gummiprodukter",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8142": {
+    "code": "8142",
+    "name": "Operatører innen plastprodukter",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8143": {
+    "code": "8143",
+    "name": "Operatører innen papirprodukter",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "815": {
+    "code": "815",
+    "name": "Operatører innen bearbeiding og produksjon av tekstiler, pels, skinn og lær",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8151": {
+    "code": "8151",
+    "name": "Spinne- og nøstemaskinoperatører",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8152": {
+    "code": "8152",
+    "name": "Operatører innen tekstilproduksjon mv.",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8153": {
+    "code": "8153",
+    "name": "Industrisyere",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8154": {
+    "code": "8154",
+    "name": "Operatører innen tekstilbearbeiding",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8155": {
+    "code": "8155",
+    "name": "Operatører innen pels, skinn- og lærbearbeiding",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8156": {
+    "code": "8156",
+    "name": "Operatører innen skinn og lærprodukter",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8157": {
+    "code": "8157",
+    "name": "Renseri- og vaskerimaskinoperatører",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8159": {
+    "code": "8159",
+    "name": "Andre operatører innen produksjon av tekstiler, pels, skinn og lær",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "816": {
+    "code": "816",
+    "name": "Operatører innen næringsmiddelproduksjon",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8160": {
+    "code": "8160",
+    "name": "Operatører innen næringsmiddelproduksjon",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "817": {
+    "code": "817",
+    "name": "Operatører innen treforedling og trelast",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8171": {
+    "code": "8171",
+    "name": "Operatører innen treforedling",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8172": {
+    "code": "8172",
+    "name": "Operatører innen trelastproduksjon",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "818": {
+    "code": "818",
+    "name": "Operatører av andre stasjonære maskiner",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8181": {
+    "code": "8181",
+    "name": "Operatører innen glass- og keramisk produksjon",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8182": {
+    "code": "8182",
+    "name": "Fyrkjele- og turbinoperatører",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8183": {
+    "code": "8183",
+    "name": "Pakke-, tappe- og etikettmaskinoperatører",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "8189": {
+    "code": "8189",
+    "name": "Andre stasjonære maskinoperatører",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Prosess- og maskinoperatører",
+    "sub_code": "81"
+  },
+  "82": {
+    "code": "82",
+    "name": "Montører",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Montører",
+    "sub_code": "82"
+  },
+  "821": {
+    "code": "821",
+    "name": "Montører",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Montører",
+    "sub_code": "82"
+  },
+  "8211": {
+    "code": "8211",
+    "name": "Montører av mekaniske produkter",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Montører",
+    "sub_code": "82"
+  },
+  "8212": {
+    "code": "8212",
+    "name": "Montører av elektriske og elektroniske produkter",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Montører",
+    "sub_code": "82"
+  },
+  "8219": {
+    "code": "8219",
+    "name": "Andre montører",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Montører",
+    "sub_code": "82"
+  },
+  "83": {
+    "code": "83",
+    "name": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "831": {
+    "code": "831",
+    "name": "Lokomotiv og T-baneførere mv.",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "8311": {
+    "code": "8311",
+    "name": "Lokomotiv og T-baneførere",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "8312": {
+    "code": "8312",
+    "name": "Skiftekonduktører mv",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "832": {
+    "code": "832",
+    "name": "Bil-, drosje- og varebilførere",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "8322": {
+    "code": "8322",
+    "name": "Bil-, drosje- og varebilførere",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "833": {
+    "code": "833",
+    "name": "Lastebil-, buss- og trikkeførere",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "8331": {
+    "code": "8331",
+    "name": "Bussjåfører og trikkeførere",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "8332": {
+    "code": "8332",
+    "name": "Lastebil- og trailersjåfører",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "834": {
+    "code": "834",
+    "name": "Operatører av mobile maskiner mv.",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "8341": {
+    "code": "8341",
+    "name": "Jordbruks- og skogbruksmaskinførere",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "8342": {
+    "code": "8342",
+    "name": "Anleggsmaskinførere",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "8343": {
+    "code": "8343",
+    "name": "Kran- og heisførere mv.",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "8344": {
+    "code": "8344",
+    "name": "Truckførere",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "835": {
+    "code": "835",
+    "name": "Dekks- og maskinmannskap (skip)",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "8350": {
+    "code": "8350",
+    "name": "Dekks- og maskinmannskap (skip)",
+    "major_group": "Prosess- og maskinoperatører, transportarbeidere mv.",
+    "major_code": "8",
+    "sub_group": "Transportarbeidere og operatører av mobile maskiner mv.",
+    "sub_code": "83"
+  },
+  "9": {
+    "code": "9",
+    "name": "Renholdere, hjelpearbeidere mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9"
+  },
+  "91": {
+    "code": "91",
+    "name": "Renholdere mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renholdere mv.",
+    "sub_code": "91"
+  },
+  "911": {
+    "code": "911",
+    "name": "Renholdere",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renholdere mv.",
+    "sub_code": "91"
+  },
+  "9111": {
+    "code": "9111",
+    "name": "Renholdere i private hjem",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renholdere mv.",
+    "sub_code": "91"
+  },
+  "9112": {
+    "code": "9112",
+    "name": "Renholdere i bedrifter",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renholdere mv.",
+    "sub_code": "91"
+  },
+  "912": {
+    "code": "912",
+    "name": "Bilvaskere, vinduspussere mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renholdere mv.",
+    "sub_code": "91"
+  },
+  "9122": {
+    "code": "9122",
+    "name": "Bilvaskere",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renholdere mv.",
+    "sub_code": "91"
+  },
+  "9123": {
+    "code": "9123",
+    "name": "Vinduspussere",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renholdere mv.",
+    "sub_code": "91"
+  },
+  "9129": {
+    "code": "9129",
+    "name": "Andre rengjørere",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renholdere mv.",
+    "sub_code": "91"
+  },
+  "92": {
+    "code": "92",
+    "name": "Hjelpearbeidere i jordbruk, skogbruk og fiske",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i jordbruk, skogbruk og fiske",
+    "sub_code": "92"
+  },
+  "921": {
+    "code": "921",
+    "name": "Hjelpearbeidere i jordbruk, skogbruk og fiske",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i jordbruk, skogbruk og fiske",
+    "sub_code": "92"
+  },
+  "9211": {
+    "code": "9211",
+    "name": "Hjelpearbeidere i nyttevekstproduksjon",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i jordbruk, skogbruk og fiske",
+    "sub_code": "92"
+  },
+  "9212": {
+    "code": "9212",
+    "name": "Hjelpearbeidere i husdyrproduksjon",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i jordbruk, skogbruk og fiske",
+    "sub_code": "92"
+  },
+  "9213": {
+    "code": "9213",
+    "name": "Hjelpearbeidere i kombinasjonsbruk",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i jordbruk, skogbruk og fiske",
+    "sub_code": "92"
+  },
+  "9214": {
+    "code": "9214",
+    "name": "Hjelpearbeidere i gartneri mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i jordbruk, skogbruk og fiske",
+    "sub_code": "92"
+  },
+  "9215": {
+    "code": "9215",
+    "name": "Hjelpearbeidere i skogbruk",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i jordbruk, skogbruk og fiske",
+    "sub_code": "92"
+  },
+  "9216": {
+    "code": "9216",
+    "name": "Hjelpearbeidere innen havbruk",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i jordbruk, skogbruk og fiske",
+    "sub_code": "92"
+  },
+  "93": {
+    "code": "93",
+    "name": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "931": {
+    "code": "931",
+    "name": "Hjelpearbeidere i bergverk, bygg og anlegg",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "9311": {
+    "code": "9311",
+    "name": "Hjelpearbeidere i bergverk",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "9312": {
+    "code": "9312",
+    "name": "Hjelpearbeidere i anlegg",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "9313": {
+    "code": "9313",
+    "name": "Hjelpearbeidere i bygg",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "932": {
+    "code": "932",
+    "name": "Hjelpearbeidere i industri",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "9321": {
+    "code": "9321",
+    "name": "Håndpakkere mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "9329": {
+    "code": "9329",
+    "name": "Andre hjelpearbeidere i industri",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "933": {
+    "code": "933",
+    "name": "Hjelpearbeidere innen transport og lager",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "9331": {
+    "code": "9331",
+    "name": "Førere av ikke-motorisert kjøretøy",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "9333": {
+    "code": "9333",
+    "name": "Laste- og lossearbeidere",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "9334": {
+    "code": "9334",
+    "name": "Varepåfyllere",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Hjelpearbeidere i bergverk, industri, bygg og anlegg og transport",
+    "sub_code": "93"
+  },
+  "94": {
+    "code": "94",
+    "name": "Kjøkkenassistenter",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Kjøkkenassistenter",
+    "sub_code": "94"
+  },
+  "941": {
+    "code": "941",
+    "name": "Kjøkkenassistenter",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Kjøkkenassistenter",
+    "sub_code": "94"
+  },
+  "9412": {
+    "code": "9412",
+    "name": "Kjøkkenassistenter",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Kjøkkenassistenter",
+    "sub_code": "94"
+  },
+  "95": {
+    "code": "95",
+    "name": "Reklamedistributører mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Reklamedistributører mv.",
+    "sub_code": "95"
+  },
+  "951": {
+    "code": "951",
+    "name": "Reklamedistributører mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Reklamedistributører mv.",
+    "sub_code": "95"
+  },
+  "9510": {
+    "code": "9510",
+    "name": "Reklamedistributører mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Reklamedistributører mv.",
+    "sub_code": "95"
+  },
+  "96": {
+    "code": "96",
+    "name": "Renovasjons- og gjenvinningsarbeidere mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renovasjons- og gjenvinningsarbeidere mv.",
+    "sub_code": "96"
+  },
+  "961": {
+    "code": "961",
+    "name": "Renovasjons- og gjenvinningsarbeidere",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renovasjons- og gjenvinningsarbeidere mv.",
+    "sub_code": "96"
+  },
+  "9611": {
+    "code": "9611",
+    "name": "Renovasjonsarbeidere",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renovasjons- og gjenvinningsarbeidere mv.",
+    "sub_code": "96"
+  },
+  "9612": {
+    "code": "9612",
+    "name": "Gjenvinningsarbeidere",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renovasjons- og gjenvinningsarbeidere mv.",
+    "sub_code": "96"
+  },
+  "9613": {
+    "code": "9613",
+    "name": "Gatefeiere mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renovasjons- og gjenvinningsarbeidere mv.",
+    "sub_code": "96"
+  },
+  "962": {
+    "code": "962",
+    "name": "Andre hjelpearbeidere",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renovasjons- og gjenvinningsarbeidere mv.",
+    "sub_code": "96"
+  },
+  "9621": {
+    "code": "9621",
+    "name": "Bud mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renovasjons- og gjenvinningsarbeidere mv.",
+    "sub_code": "96"
+  },
+  "9622": {
+    "code": "9622",
+    "name": "Altmuligmann",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renovasjons- og gjenvinningsarbeidere mv.",
+    "sub_code": "96"
+  },
+  "9623": {
+    "code": "9623",
+    "name": "Måleravlesere mv.",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renovasjons- og gjenvinningsarbeidere mv.",
+    "sub_code": "96"
+  },
+  "9629": {
+    "code": "9629",
+    "name": "Andre hjelpearbeidere",
+    "major_group": "Renholdere, hjelpearbeidere mv.",
+    "major_code": "9",
+    "sub_group": "Renovasjons- og gjenvinningsarbeidere mv.",
+    "sub_code": "96"
+  }
+}
