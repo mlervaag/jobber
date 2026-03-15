@@ -28,6 +28,43 @@ def slugify(title):
     return s.strip("-")
 
 
+# Manual overrides for occupations whose utdanning.no URL doesn't match the title
+URL_OVERRIDES = {
+    "Snekker": "trevaresnekker",
+    "Fagoperatør i akvakultur (fiskeoppdretter)": "fiskeoppdretter",
+    "Brønnoperatør for elektriske kabeloperasjoner": "bronnoperator_elektriske_kabeloperasjoner",
+    "Brønnoperatør for mekaniske kabeloperasjoner": "bronnoperator_mekaniske_kabeloperasjoner",
+}
+
+
+def url_slug(title, api_id):
+    """Build correct utdanning.no URL slug from title.
+
+    Utdanning.no URLs use a title-based slug: lowercase, spaces→underscores,
+    keep hyphens, æ→ae, ø→o, å→a, parenthesized content kept with
+    surrounding parens removed. Uses manual overrides for known edge cases.
+    """
+    if title in URL_OVERRIDES:
+        return URL_OVERRIDES[title]
+
+    s = title.lower()
+    s = s.replace("æ", "ae").replace("ø", "o").replace("å", "a")
+    # Special chars: ü→u, á→a, ô→o, é→e
+    s = s.replace("ü", "u").replace("á", "a").replace("ô", "o").replace("é", "e")
+    # Remove parens but keep content: "Bilmekaniker (lette kjøretøy)" → "bilmekaniker lette kjoretoy"
+    s = s.replace("(", "").replace(")", "")
+    # Replace / with space
+    s = s.replace("/", " ")
+    # Replace spaces with underscores, keep hyphens
+    s = s.replace(" ", "_")
+    # Collapse multiple underscores
+    s = re.sub(r"_+", "_", s)
+    # Remove any remaining non-alphanumeric except hyphens and underscores
+    s = re.sub(r"[^a-z0-9_-]", "", s)
+    s = s.strip("_")
+    return s
+
+
 def strip_html(html):
     """Remove HTML tags and clean up whitespace."""
     if not html:
@@ -129,7 +166,7 @@ def main():
             "education_html": education_html,
             "traits": strip_html(traits),
             "where_work": strip_html(where_work),
-            "url": f"https://utdanning.no/yrker/beskrivelse/{slugify(title)}" if title else "",
+            "url": f"https://utdanning.no/yrker/beskrivelse/{url_slug(title, occ_id)}" if occ_id else "",
         })
 
     # Sort by title
