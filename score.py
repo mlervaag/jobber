@@ -18,10 +18,12 @@ import time
 import httpx
 from dotenv import load_dotenv
 
-load_dotenv('.env')
-load_dotenv('.env.local', override=True)
+env_path = os.path.join(os.path.dirname(__file__), '.env')
+env_local_path = os.path.join(os.path.dirname(__file__), '.env.local')
+load_dotenv(env_path)
+load_dotenv(env_local_path, override=True)
 
-DEFAULT_MODEL = "gpt-4o-mini"
+DEFAULT_MODEL = "gpt-5.4"
 OUTPUT_FILE = "scores.json"
 API_URL = "https://api.openai.com/v1/chat/completions"
 
@@ -87,10 +89,14 @@ Respond with ONLY a JSON object in this exact format, no other text:
 
 def score_occupation(client, text, model):
     """Send one occupation to the LLM and parse the structured response."""
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise ValueError("OPENAI_API_KEY is not set. Check your .env.local file.")
+        
     response = client.post(
         API_URL,
         headers={
-            "Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}",
+            "Authorization": f"Bearer {api_key}",
         },
         json={
             "model": model,
