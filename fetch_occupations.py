@@ -53,12 +53,30 @@ def main():
         print(f"Already have {len(existing)} occupations in {OUTPUT_FILE}. Use --force to re-download.")
         return
 
-    print(f"Fetching occupations from {API_URL}...")
+    print(f"Fetching occupation list from {API_URL}...")
     response = httpx.get(API_URL, timeout=60)
     response.raise_for_status()
-    raw = response.json()
+    url_list = response.json()
 
-    print(f"Got {len(raw)} raw entries from API")
+    print(f"Got {len(url_list)} entries from API")
+
+    # The API now returns a list of URLs — fetch each one individually
+    raw = []
+    with httpx.Client(timeout=30) as client:
+        for i, item in enumerate(url_list):
+            url = item if isinstance(item, str) else item.get("url", "")
+            if not url:
+                continue
+            try:
+                r = client.get(url)
+                r.raise_for_status()
+                raw.append(r.json())
+            except Exception as e:
+                print(f"  Warning: failed to fetch {url}: {e}")
+            if (i + 1) % 50 == 0:
+                print(f"  Fetched {i + 1}/{len(url_list)}...")
+
+    print(f"Successfully fetched {len(raw)} occupation details")
 
     occupations = []
     for entry in raw:
@@ -69,11 +87,12 @@ def main():
         # Extract STYRK-08 codes
         styrk_codes = []
         for s in entry.get("styrk08", []):
-            code = s.get("kode") or s.get("code") or s.get("tid") or ""
             if isinstance(s, str):
                 code = s
             elif isinstance(s, dict):
-                code = s.get("kode", s.get("code", s.get("id", "")))
+                code = s.get("styrk08_kode", s.get("kode", s.get("code", s.get("id", ""))))
+            else:
+                code = ""
             code = str(code).strip()
             if code and code != "0":
                 styrk_codes.append(code)
