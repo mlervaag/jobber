@@ -953,7 +953,6 @@ canvas#canvas {
   <div class="stat-section" id="filterChipsSection">
     <div class="filter-group-label">Hurtigfiltre</div>
     <div class="filter-chips" id="quickFilters">
-      <button class="filter-chip" data-filter="highpay">800k+</button>
       <button class="filter-chip" data-filter="highai">H&oslash;y AI &ge;8</button>
       <button class="filter-chip" data-filter="lowai">Lav AI &le;2</button>
       <button class="filter-chip" data-filter="vulnerable">S&aring;rbare yrker</button>
@@ -1637,12 +1636,28 @@ function computeStats() {
     }
     const avg = wCount > 0 ? wSum / wCount : 0;
     const pct = avg / 10 * 100;
-    return `<div class="hbar-row">
+    const payKey = `${band.min},${band.max}`;
+    return `<div class="hbar-row" data-pay="${payKey}">
       <span class="hbar-label">${band.label}</span>
       <div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${exposureColorCSS(avg, 0.85)}"></div></div>
       <span class="hbar-val">${avg.toFixed(1).replace(".", ",")}</span>
     </div>`;
   }).join("");
+
+  payChartEl.addEventListener("click", (e) => {
+    const row = e.target.closest(".hbar-row[data-pay]");
+    if (!row) return;
+    if (activePayFilter === row.dataset.pay) {
+      clearFilter();
+    } else {
+      activePayFilter = row.dataset.pay;
+      filterRange = null;
+      activeChipFilter = null;
+      activeEducationFilter = null;
+      updateFilterUI();
+      draw();
+    }
+  });
 
   // Exposure by education
   const eduGroups = [
@@ -1682,6 +1697,7 @@ function computeStats() {
       activeEducationFilter = vals.join(",");
       filterRange = null;
       activeChipFilter = null;
+      activePayFilter = null;
       updateFilterUI();
       draw();
     }
@@ -1711,6 +1727,7 @@ let filterRange = null;
 let highlightSlug = null;
 let activeChipFilter = null;   // "highpay" | "highai" | "lowai" | "vulnerable" | "transform" | null
 let activeEducationFilter = null; // education string or null
+let activePayFilter = null; // "min,max" string or null
 
 const vulnerableEducations = new Set(["Videregående", "Grunnskole", "Ingen formelle krav", ""]);
 
@@ -1738,6 +1755,12 @@ function matchesEducationFilter(d) {
   return activeEducationFilter.split(",").includes(d.education || "");
 }
 
+function matchesPayFilter(d) {
+  if (!activePayFilter) return true;
+  const [min, max] = activePayFilter.split(",").map(Number);
+  return d.pay != null && d.pay >= min && d.pay < max;
+}
+
 function matchesFilter(d) {
   if (filterRange && d.exposure != null) {
     if (d.exposure < filterRange[0] || d.exposure > filterRange[1]) return false;
@@ -1745,6 +1768,7 @@ function matchesFilter(d) {
   if (filterRange && d.exposure == null) return false;
   if (!matchesChipFilter(d)) return false;
   if (!matchesEducationFilter(d)) return false;
+  if (!matchesPayFilter(d)) return false;
   return true;
 }
 
@@ -1756,12 +1780,12 @@ function matchesSearch(d) {
 function isHighlighted(r) {
   if (highlightSlug) return r.slug === highlightSlug;
   if (searchQuery) return matchesSearch(r);
-  if (filterRange || activeChipFilter  || activeEducationFilter) return matchesFilter(r);
+  if (filterRange || activeChipFilter || activeEducationFilter || activePayFilter) return matchesFilter(r);
   return true;
 }
 
 function hasAnyFilter() {
-  return searchQuery || filterRange || highlightSlug || activeChipFilter  || activeEducationFilter;
+  return searchQuery || filterRange || highlightSlug || activeChipFilter || activeEducationFilter || activePayFilter;
 }
 
 const searchBox = document.getElementById("searchBox");
@@ -1839,8 +1863,8 @@ function setTierFilter(lo, hi) {
   }
   filterRange = [lo, hi];
   activeChipFilter = null;
-
   activeEducationFilter = null;
+  activePayFilter = null;
   updateFilterUI();
   draw();
 }
@@ -1852,8 +1876,8 @@ function setChipFilter(filterName) {
   }
   activeChipFilter = filterName;
   filterRange = null;
-
   activeEducationFilter = null;
+  activePayFilter = null;
   updateFilterUI();
   draw();
 }
@@ -1861,14 +1885,14 @@ function setChipFilter(filterName) {
 function clearFilter() {
   filterRange = null;
   activeChipFilter = null;
-
   activeEducationFilter = null;
+  activePayFilter = null;
   updateFilterUI();
   draw();
 }
 
 function updateFilterUI() {
-  const anyActive = filterRange || activeChipFilter  || activeEducationFilter;
+  const anyActive = filterRange || activeChipFilter || activeEducationFilter || activePayFilter;
   document.getElementById("filterClear").style.display = anyActive ? "block" : "none";
 
   // Tier rows
@@ -1882,11 +1906,15 @@ function updateFilterUI() {
     el.classList.toggle("active", el.dataset.filter === activeChipFilter);
   });
 
+  // Pay chart rows
+  document.querySelectorAll("#payChart .hbar-row[data-pay]").forEach(el => {
+    el.classList.toggle("active", el.dataset.pay === activePayFilter);
+  });
+
   // Education chart rows
   document.querySelectorAll("#eduChart .hbar-row[data-education]").forEach(el => {
     el.classList.toggle("active", el.dataset.education === activeEducationFilter);
   });
-
 }
 
 // ── Events ─────────────────────────────────────────────────────────────
