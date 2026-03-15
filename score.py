@@ -1,5 +1,5 @@
 """
-Score each occupation's AI exposure using an LLM via OpenRouter.
+Score each occupation's AI exposure using an LLM via OpenAI API.
 
 Reads occupation descriptions from yrker.json, sends each to an LLM with a
 scoring rubric, and collects structured scores. Results are cached incrementally
@@ -7,7 +7,7 @@ to scores.json so the script can be resumed if interrupted.
 
 Usage:
     uv run python score.py
-    uv run python score.py --model google/gemini-3-flash-preview
+    uv run python score.py --model gpt-4o-mini
     uv run python score.py --start 0 --end 10   # test on first 10
 """
 
