@@ -377,7 +377,8 @@ body {
 .gradient-legend canvas {
   border-radius: 4px;
   flex: 1;
-  height: 6px;
+  height: 8px;
+  display: block;
 }
 
 /* ── Footer ───────────────────────────────────────────── */
@@ -560,6 +561,16 @@ canvas#canvas {
   transition: width 0.2s ease;
 }
 
+/* ── Tooltip backdrop (mobile) ───────────────────────── */
+
+#tooltipBackdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 19; /* above canvas, below tooltip (20) */
+}
+#tooltipBackdrop.active { display: block; }
+
 /* ── Mobile top bar ──────────────────────────────────── */
 
 #mobileBar {
@@ -695,6 +706,7 @@ canvas#canvas {
   </div>
 </div>
 <div id="mobileSearchResults"></div>
+<div id="tooltipBackdrop" onclick="unpinTooltip()"></div>
 <div id="sidebarOverlay" onclick="closeSidebar()"></div>
 
 <div id="sidebar">
@@ -749,10 +761,13 @@ canvas#canvas {
     <div class="stat-label" id="statWagesLabel">h&oslash;yt eksponerte yrker (score 7+)</div>
   </div>
 
-  <div class="gradient-legend">
-    <span>Trygg</span>
-    <canvas id="gradientLegend" height="6"></canvas>
-    <span>Eksponert</span>
+  <div class="stat-section">
+    <h3>Fargeskala</h3>
+    <div class="gradient-legend">
+      <span>Trygg</span>
+      <canvas id="gradientLegend" height="8"></canvas>
+      <span>Eksponert</span>
+    </div>
   </div>
 
   <div class="sidebar-footer">
@@ -1189,11 +1204,17 @@ function hideTooltip() {
   const tt = document.getElementById("tooltip");
   tt.classList.remove("visible", "pinned");
   pinnedTooltip = null;
+  setTooltipBackdrop(false);
 }
 
 function unpinTooltip() {
   hideTooltip();
   draw();
+}
+
+function setTooltipBackdrop(active) {
+  if (!isMobile()) return;
+  document.getElementById("tooltipBackdrop").classList.toggle("active", active);
 }
 
 // ── Animated counter ───────────────────────────────────────────────────
@@ -1517,6 +1538,7 @@ canvas.addEventListener("click", (e) => {
     pinnedTooltip = hit;
     showTooltip(hit, e.clientX, e.clientY);
     tt.classList.add("pinned");
+    setTooltipBackdrop(true);
   }
 });
 
@@ -1634,18 +1656,21 @@ mobileSearchBox.addEventListener("keydown", (e) => {
 // ── Legend gradient ────────────────────────────────────────────────────
 
 function drawGradientLegend() {
-  const c = document.getElementById("gradientLegend");
-  const w = c.clientWidth || 120;
-  c.width = w * 2;
-  c.height = 12;
-  c.style.height = "6px";
-  const gctx = c.getContext("2d");
-  gctx.scale(2, 2);
-  for (let x = 0; x < w; x++) {
-    const score = (x / (w - 1)) * 10;
-    gctx.fillStyle = exposureColorCSS(score, 1);
-    gctx.fillRect(x, 0, 1, 6);
-  }
+  requestAnimationFrame(() => {
+    const c = document.getElementById("gradientLegend");
+    const w = c.clientWidth || c.parentElement?.clientWidth - 80 || 160;
+    const h = 8;
+    c.width = w * 2;
+    c.height = h * 2;
+    c.style.height = h + "px";
+    const gctx = c.getContext("2d");
+    gctx.scale(2, 2);
+    for (let x = 0; x < w; x++) {
+      const score = (x / (w - 1)) * 10;
+      gctx.fillStyle = exposureColorCSS(score, 1);
+      gctx.fillRect(x, 0, 1, h);
+    }
+  });
 }
 
 // ── Load with streaming progress ───────────────────────────────────────
