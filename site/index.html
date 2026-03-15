@@ -561,6 +561,16 @@ canvas#canvas {
   transition: width 0.2s ease;
 }
 
+/* ── Tooltip backdrop (mobile) ───────────────────────── */
+
+#tooltipBackdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 19; /* above canvas, below tooltip (20) */
+}
+#tooltipBackdrop.active { display: block; }
+
 /* ── Mobile top bar ──────────────────────────────────── */
 
 #mobileBar {
@@ -696,6 +706,7 @@ canvas#canvas {
   </div>
 </div>
 <div id="mobileSearchResults"></div>
+<div id="tooltipBackdrop" onclick="unpinTooltip()"></div>
 <div id="sidebarOverlay" onclick="closeSidebar()"></div>
 
 <div id="sidebar">
@@ -1193,11 +1204,17 @@ function hideTooltip() {
   const tt = document.getElementById("tooltip");
   tt.classList.remove("visible", "pinned");
   pinnedTooltip = null;
+  setTooltipBackdrop(false);
 }
 
 function unpinTooltip() {
   hideTooltip();
   draw();
+}
+
+function setTooltipBackdrop(active) {
+  if (!isMobile()) return;
+  document.getElementById("tooltipBackdrop").classList.toggle("active", active);
 }
 
 // ── Animated counter ───────────────────────────────────────────────────
@@ -1521,6 +1538,7 @@ canvas.addEventListener("click", (e) => {
     pinnedTooltip = hit;
     showTooltip(hit, e.clientX, e.clientY);
     tt.classList.add("pinned");
+    setTooltipBackdrop(true);
   }
 });
 
