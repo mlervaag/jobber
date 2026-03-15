@@ -76,8 +76,8 @@ def fetch_wages():
     query = {
         "query": [
             {
-                "code": "Statistikkvariabel",
-                "selection": {"filter": "item", "values": ["Median"]}
+                "code": "MaaleMetode",
+                "selection": {"filter": "item", "values": ["01"]}
             },
             {
                 "code": "Yrke",
@@ -90,6 +90,14 @@ def fetch_wages():
             {
                 "code": "Kjonn",
                 "selection": {"filter": "item", "values": ["0"]}
+            },
+            {
+                "code": "AvtaltVanlig",
+                "selection": {"filter": "item", "values": ["0"]}
+            },
+            {
+                "code": "ContentsCode",
+                "selection": {"filter": "item", "values": ["Manedslonn"]}
             },
             {
                 "code": "Tid",
@@ -118,10 +126,6 @@ def fetch_employment():
     query = {
         "query": [
             {
-                "code": "Statistikkvariabel",
-                "selection": {"filter": "item", "values": ["Sysselsatte"]}
-            },
-            {
                 "code": "Yrke",
                 "selection": {"filter": "all", "values": ["*"]}
             },
@@ -130,8 +134,12 @@ def fetch_employment():
                 "selection": {"filter": "item", "values": ["0"]}
             },
             {
-                "code": "Arbeidstid",
-                "selection": {"filter": "item", "values": ["0"]}
+                "code": "ArbeidsTidRen",
+                "selection": {"filter": "item", "values": ["P000-100"]}
+            },
+            {
+                "code": "ContentsCode",
+                "selection": {"filter": "item", "values": ["Lonnstakere"]}
             },
             {
                 "code": "Tid",
