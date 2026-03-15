@@ -583,6 +583,36 @@ canvas#canvas {
 }
 .about-cta button:hover { background: var(--accent2); }
 
+.about-cta .about-more {
+  padding: 10px 28px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  background: none;
+  color: var(--fg2);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+.about-cta .about-more:hover { color: var(--fg); border-color: rgba(255,255,255,0.16); }
+
+.about-method {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 10px;
+  font-size: 11px;
+  color: var(--fg3);
+  line-height: 1.6;
+}
+.about-method strong {
+  color: var(--fg2);
+  font-weight: 600;
+}
+
 /* ── About link in sidebar ───────────────────────────── */
 
 .about-link {
@@ -687,64 +717,46 @@ canvas#canvas {
   <div id="aboutModal">
     <button class="about-close" onclick="hideAbout()" aria-label="Lukk">&#x2715;</button>
     <div class="about-title">Hva viser denne siden?</div>
-    <div class="about-subtitle">En datadrevet analyse av hvor eksponert norske yrker er for kunstig intelligens.</div>
+    <div class="about-subtitle">En datadrevet analyse av hvor eksponert norske yrker er for kunstig intelligens &mdash; og hva det kan bety.</div>
     <div class="about-body">
-      <h3>Datagrunnlaget</h3>
+      <h3>Det store bildet</h3>
       <p>
-        Datasettet dekker <span class="stat-highlight">599 yrker</span>, hvorav 553 har b&aring;de sysselsettings- og l&oslash;nnsdata.
-        Til sammen representerer de over <span class="stat-highlight">2,2 millioner jobber</span>.
-        Sysselsettingsvektet gjennomsnittlig KI-eksponering ligger p&aring; omtrent <span class="stat-highlight">4,8 av 10</span>,
-        mens det uvektede snittet er rundt 4,6. Det betyr at de store yrkesgruppene samlet sett er litt mer eksponert
-        enn et rent gjennomsnitt av alle yrkestitlene skulle tilsi &mdash; eksponeringen er tyngre der volumet faktisk er st&oslash;rst.
+        Datasettet dekker <span class="stat-highlight" id="aboutNumOcc"></span> norske yrker
+        som til sammen representerer <span class="stat-highlight" id="aboutNumJobs"></span> jobber.
+        Sysselsettingsvektet KI-eksponering ligger p&aring; <span class="stat-highlight" id="aboutWeightedAvg"></span> av 10 &mdash;
+        h&oslash;yere enn det uvektede snittet p&aring; <span class="stat-highlight" id="aboutUnweightedAvg"></span>.
+        Eksponeringen er alts&aring; tyngre der volumet er st&oslash;rst.
       </p>
 
-      <h3>Fordelingen</h3>
+      <h3>Ikke bare &laquo;enkle jobber&raquo;</h3>
       <p>
-        Omtrent 31&nbsp;% av jobbene ligger i score 2&ndash;3, 31&nbsp;% i 4&ndash;5, 24&nbsp;% i 6&ndash;7, og 13&nbsp;% i 8&ndash;10.
-        Over terskelen <span class="key-figure">6+</span> finner vi rundt <span class="stat-highlight">820&nbsp;000 jobber</span> (37&nbsp;%),
-        og bare p&aring; <span class="key-figure">8+</span> er det fortsatt <span class="stat-highlight">289&nbsp;000 jobber</span> (13&nbsp;%).
-        Dette er ikke et marginalt fenomen i utkanten av &oslash;konomien, men en reell omforming av en stor del av arbeidsmarkedet.
+        <span class="stat-highlight" id="aboutHighPct"></span> av jobbene
+        og <span class="stat-highlight" id="aboutWagePct"></span> av samlet l&oslash;nnssum
+        ligger i yrker med eksponering 6 eller h&oslash;yere.
+        Det som overrasker mange er at eksponering korrelerer <em>positivt</em> med utdanningsniv&aring; og l&oslash;nn.
+        Yrker som krever master og bachelor er klart mer eksponert enn fagbrev og videreg&aring;ende &mdash;
+        KI treffer hardest der arbeidet er kognitivt, analytisk og digitalt.
       </p>
 
-      <h3>L&oslash;nnsmassen</h3>
+      <h3>Transformasjon, ikke apokalypse</h3>
       <p>
-        Omtrent <span class="stat-highlight">42,5&nbsp;%</span> av samlet l&oslash;nnssum i datasettet ligger i yrker med score 6 eller h&oslash;yere.
-        Yrker med score 8+ st&aring;r alene for rundt 14,8&nbsp;%. KI trenger ikke &laquo;ta&raquo; hele jobber for &aring; f&aring; stor
-        &oslash;konomisk effekt &mdash; hvis teknologien bare reduserer tidsbruk eller &oslash;ker output i h&oslash;ytl&oslash;nnede,
-        skjermtunge yrker, kan det f&aring; stor effekt p&aring; kostnadsstruktur, marginer, bemanningsplaner og
-        ettersp&oslash;rsel etter nyansettelser.
+        Tallene peker mot gradvis effektivisering av store l&oslash;nnsmasser, ikke mot plutselig massearbeidsledighet.
+        Men h&oslash;y eksponering betyr ogs&aring; h&oslash;yt potensial: de mest eksponerte yrkene kan ogs&aring; v&aelig;re de som
+        f&aring;r st&oslash;rst produktivitetsgevinst. Sp&oslash;rsm&aring;let er kanskje ikke <em>om</em> jobber forsvinner, men
+        hvor raskt l&oslash;nnskostnad per levert enhet faller &mdash; og hvem som fanger verdien.
       </p>
 
-      <h3>Hvem er mest eksponert?</h3>
-      <p>
-        De mest eksponerte hovedgruppene er kontoryrker, akademiske yrker, ledere og h&oslash;yskoleyrker.
-        De laveste ligger i h&aring;ndverk, renhold, b&oslash;nder/fiskere og maskin-/transportn&aelig;re yrker.
-        Jo mer arbeidet skjer som digital informasjonsbehandling, tekst, analyse, koordinering og skjermarbeid,
-        desto h&oslash;yere eksponering.
-      </p>
-      <p>
-        Utdanningsm&oslash;nsteret forsterker bildet: yrker som krever master, doktorgrad og bachelor ligger klart
-        h&oslash;yere i eksponering enn fagbrev og videreg&aring;ende. KI treffer ofte hardest der arbeidet er kognitivt,
-        spr&aring;klig, analytisk og digitalt &mdash; noe av presset vil komme i hvitsnippsegmentet,
-        ikke bare i bunnen av arbeidsmarkedet.
-      </p>
-
-      <h3>Hva betyr dette?</h3>
-      <p>
-        Tallene peker ikke mest mot plutselig massearbeidsledighet, men mot gradvis effektivisering av store l&oslash;nnsmasser
-        i h&oslash;ytl&oslash;nnede funksjoner. F&oslash;rste effekt blir sannsynligvis ikke at stillinger forsvinner over natten,
-        men at virksomheter kan levere mer med samme bemanning, holde igjen p&aring; nyansettelser,
-        endre junior/senior-miks, og presse st&oslash;ttefunksjoner og mellomlag i organisasjonen.
-      </p>
-      <p>
-        N&aring;r <span class="stat-highlight">37&nbsp;%</span> av jobbene og over <span class="stat-highlight">42&nbsp;%</span>
-        av l&oslash;nnsmassen ligger i yrker med relativt h&oslash;y eksponering, er det nok til at KI kan p&aring;virke
-        hele kostnadsbasen i &oslash;konomien &mdash; uten at man trenger en dramatisk &laquo;jobbapokalypse&raquo; for &aring;
-        f&aring; store utslag. KI ser ut til &aring; v&aelig;re mer en l&oslash;nns- og produktivitetsrevolusjon enn en ren
-        automatiseringshistorie.
-      </p>
+      <div class="about-method">
+        <strong>Metode:</strong> Hvert yrke er scoret 0&ndash;10 av en KI-modell basert p&aring; yrkesbeskrivelser fra
+        <a href="https://utdanning.no" style="color:var(--accent2)">utdanning.no</a>.
+        L&oslash;nn og sysselsetting er hentet fra
+        <a href="https://www.ssb.no" style="color:var(--accent2)">SSB</a>.
+        Scoringen er et estimat, ikke en fasit &mdash; den m&aring;ler hvor mye av arbeidet som <em>kan</em>
+        ber&oslash;res av KI, ikke hvor mye som <em>vil</em> automatiseres.
+      </div>
     </div>
     <div class="about-cta">
+      <a href="about.html" class="about-more">Les hele analysen</a>
       <button onclick="hideAbout()">Utforsk dataen</button>
     </div>
   </div>
@@ -1410,6 +1422,54 @@ function hideAbout() {
   try { localStorage.setItem("kitrusselen-about-seen", "1"); } catch(e) {}
 }
 
+function populateAboutModal() {
+  const withJobs = data.filter(d => d.jobs);
+  const totalJobs = withJobs.reduce((s, d) => s + d.jobs, 0);
+  const totalOcc = data.length;
+
+  // Weighted average
+  let wSum = 0, wCount = 0;
+  for (const d of withJobs) {
+    if (d.exposure != null) { wSum += d.exposure * d.jobs; wCount += d.jobs; }
+  }
+  const weightedAvg = wCount > 0 ? wSum / wCount : 0;
+
+  // Unweighted average
+  const scored = data.filter(d => d.exposure != null);
+  const unweightedAvg = scored.length > 0
+    ? scored.reduce((s, d) => s + d.exposure, 0) / scored.length : 0;
+
+  // Jobs with exposure >= 6
+  let highJobs = 0;
+  for (const d of withJobs) {
+    if (d.exposure != null && d.exposure >= 6) highJobs += d.jobs;
+  }
+  const highPct = totalJobs > 0 ? (highJobs / totalJobs * 100) : 0;
+
+  // Wage mass with exposure >= 6
+  let totalWageMass = 0, highWageMass = 0;
+  for (const d of withJobs) {
+    if (d.pay && d.exposure != null) {
+      const mass = d.pay * d.jobs;
+      totalWageMass += mass;
+      if (d.exposure >= 6) highWageMass += mass;
+    }
+  }
+  const wagePct = totalWageMass > 0 ? (highWageMass / totalWageMass * 100) : 0;
+
+  const fmt = n => n.toLocaleString("nb-NO");
+  const fmtM = n => (n / 1e6).toFixed(1).replace(".", ",") + "\u00a0mill.";
+  const fmtD = n => n.toFixed(1).replace(".", ",");
+
+  const el = id => document.getElementById(id);
+  el("aboutNumOcc").textContent = fmt(totalOcc);
+  el("aboutNumJobs").textContent = totalJobs >= 1e6 ? fmtM(totalJobs) : fmt(totalJobs);
+  el("aboutWeightedAvg").textContent = fmtD(weightedAvg);
+  el("aboutUnweightedAvg").textContent = fmtD(unweightedAvg);
+  el("aboutHighPct").textContent = Math.round(highPct) + "\u00a0%";
+  el("aboutWagePct").textContent = Math.round(wagePct) + "\u00a0%";
+}
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && document.getElementById("aboutOverlay").classList.contains("visible")) {
     hideAbout();
@@ -1423,6 +1483,7 @@ fetch("data.json")
   .then(d => {
     data = d;
     computeStats();
+    populateAboutModal();
     drawGradientLegend();
     resize();
     // Hide loading screen
