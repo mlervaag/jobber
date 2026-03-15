@@ -1,7 +1,7 @@
 """
 Build a compact JSON for the website by merging CSV stats with AI exposure scores.
 
-Reads occupations.csv (for stats) and scores.json (for AI exposure).
+Reads yrker.csv (for stats) and scores.json (for AI exposure).
 Writes site/data.json.
 
 Usage:
@@ -10,16 +10,17 @@ Usage:
 
 import csv
 import json
+import os
 
 
 def main():
     # Load AI exposure scores
-    with open("scores.json") as f:
+    with open("scores.json", encoding="utf-8") as f:
         scores_list = json.load(f)
     scores = {s["slug"]: s for s in scores_list}
 
     # Load CSV stats
-    with open("occupations.csv") as f:
+    with open("yrker.csv", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         rows = list(reader)
 
@@ -33,19 +34,16 @@ def main():
             "slug": slug,
             "category": row["category"],
             "pay": int(row["median_pay_annual"]) if row["median_pay_annual"] else None,
-            "jobs": int(row["num_jobs_2024"]) if row["num_jobs_2024"] else None,
-            "outlook": int(row["outlook_pct"]) if row["outlook_pct"] else None,
-            "outlook_desc": row["outlook_desc"],
-            "education": row["entry_education"],
+            "jobs": int(row["num_employed"]) if row["num_employed"] else None,
+            "education": row["education"],
             "exposure": score.get("exposure"),
             "exposure_rationale": score.get("rationale"),
             "url": row.get("url", ""),
         })
 
-    import os
     os.makedirs("site", exist_ok=True)
-    with open("site/data.json", "w") as f:
-        json.dump(data, f)
+    with open("site/data.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False)
 
     print(f"Wrote {len(data)} occupations to site/data.json")
     total_jobs = sum(d["jobs"] for d in data if d["jobs"])

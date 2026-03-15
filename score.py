@@ -1,9 +1,9 @@
 """
 Score each occupation's AI exposure using an LLM via OpenRouter.
 
-Reads Markdown descriptions from pages/, sends each to an LLM with a scoring
-rubric, and collects structured scores. Results are cached incrementally to
-scores.json so the script can be resumed if interrupted.
+Reads occupation descriptions from yrker.json, sends each to an LLM with a
+scoring rubric, and collects structured scores. Results are cached incrementally
+to scores.json so the script can be resumed if interrupted.
 
 Usage:
     uv run python score.py
@@ -26,8 +26,7 @@ API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 SYSTEM_PROMPT = """\
 You are an expert analyst evaluating how exposed different occupations are to \
-AI. You will be given a detailed description of an occupation from the Bureau \
-of Labor Statistics.
+AI. You will be given a description of a Norwegian occupation.
 
 Rate the occupation's overall **AI Exposure** on a scale from 0 to 10.
 
@@ -49,38 +48,38 @@ Use these anchors to calibrate your score:
 - **0–1: Minimal exposure.** The work is almost entirely physical, hands-on, \
 or requires real-time human presence in unpredictable environments. AI has \
 essentially no impact on daily work. \
-Examples: roofer, landscaper, commercial diver.
+Examples: taktekker, gartner, dykker.
 
 - **2–3: Low exposure.** Mostly physical or interpersonal work. AI might help \
 with minor peripheral tasks (scheduling, paperwork) but doesn't touch the \
 core job. \
-Examples: electrician, plumber, firefighter, dental hygienist.
+Examples: elektriker, rørlegger, brannkonstabel, tannpleier.
 
 - **4–5: Moderate exposure.** A mix of physical/interpersonal work and \
 knowledge work. AI can meaningfully assist with the information-processing \
 parts but a substantial share of the job still requires human presence. \
-Examples: registered nurse, police officer, veterinarian.
+Examples: sykepleier, politibetjent, veterinær.
 
 - **6–7: High exposure.** Predominantly knowledge work with some need for \
 human judgment, relationships, or physical presence. AI tools are already \
 useful and workers using AI may be substantially more productive. \
-Examples: teacher, manager, accountant, journalist.
+Examples: lærer, leder, regnskapsfører, journalist.
 
 - **8–9: Very high exposure.** The job is almost entirely done on a computer. \
 All core tasks — writing, coding, analyzing, designing, communicating — are \
 in domains where AI is rapidly improving. The occupation faces major \
 restructuring. \
-Examples: software developer, graphic designer, translator, data analyst, \
-paralegal, copywriter.
+Examples: programvareutvikler, grafisk designer, oversetter, dataanalytiker, \
+advokatfullmektig, tekstforfatter.
 
 - **10: Maximum exposure.** Routine information processing, fully digital, \
 with no physical component. AI can already do most of it today. \
-Examples: data entry clerk, telemarketer.
+Examples: dataregistrerer, telefonselger.
 
 Respond with ONLY a JSON object in this exact format, no other text:
 {
   "exposure": <0-10>,
-  "rationale": "<2-3 sentences explaining the key factors>"
+  "rationale": "<2-3 sentences in Norwegian explaining the key factors>"
 }\
 """
 
@@ -116,6 +115,20 @@ def score_occupation(client, text, model):
     return json.loads(content)
 
 
+def build_prompt(occ):
+    """Build a prompt from the occupation data."""
+    parts = [f"# {occ['title']}"]
+    if occ.get("description"):
+        parts.append(f"\n## Beskrivelse\n{occ['description']}")
+    if occ.get("education"):
+        parts.append(f"\n## Utdanning\n{occ['education']}")
+    if occ.get("traits"):
+        parts.append(f"\n## Personlige egenskaper\n{occ['traits']}")
+    if occ.get("where_work"):
+        parts.append(f"\n## Hvor jobber de\n{occ['where_work']}")
+    return "\n".join(parts)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", default=DEFAULT_MODEL)
@@ -126,7 +139,7 @@ def main():
                         help="Re-score even if already cached")
     args = parser.parse_args()
 
-    with open("occupations.json") as f:
+    with open("yrker.json", encoding="utf-8") as f:
         occupations = json.load(f)
 
     subset = occupations[args.start:args.end]
@@ -150,18 +163,15 @@ def main():
         if slug in scores:
             continue
 
-        md_path = f"pages/{slug}.md"
-        if not os.path.exists(md_path):
-            print(f"  [{i+1}] SKIP {slug} (no markdown)")
+        prompt = build_prompt(occ)
+        if len(prompt.strip()) < 50:
+            print(f"  [{i+1}] SKIP {slug} (too short description)")
             continue
-
-        with open(md_path) as f:
-            text = f.read()
 
         print(f"  [{i+1}/{len(subset)}] {occ['title']}...", end=" ", flush=True)
 
         try:
-            result = score_occupation(client, text, args.model)
+            result = score_occupation(client, prompt, args.model)
             scores[slug] = {
                 "slug": slug,
                 "title": occ["title"],
@@ -173,8 +183,8 @@ def main():
             errors.append(slug)
 
         # Save after each one (incremental checkpoint)
-        with open(OUTPUT_FILE, "w") as f:
-            json.dump(list(scores.values()), f, indent=2)
+        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+            json.dump(list(scores.values()), f, ensure_ascii=False, indent=2)
 
         if i < len(subset) - 1:
             time.sleep(args.delay)

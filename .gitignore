@@ -12,10 +12,11 @@ wheels/
 # Secrets
 .env
 
-# Parsed markdown (reproducible via process.py)
+# Cached data (reproducible via fetch scripts)
+html/
 pages/
 
-# Embeddings (unused in final visualization)
+# Embeddings (unused)
 embed.py
 embeddings.json
 
