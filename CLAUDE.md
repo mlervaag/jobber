@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-KItrusselen — data pipeline that fetches Norwegian occupation data from utdanning.no and SSB, scores each occupation's AI exposure using an LLM, and renders an interactive treemap visualization. ~800 lines of Python across 7 scripts.
+KItrusselen — data pipeline that fetches Norwegian occupation data from utdanning.no and SSB, scores each occupation's AI exposure using an LLM, and renders an interactive treemap visualization. ~1,200 lines of Python across 7 scripts. All UI and LLM rationales are in Norwegian.
 
 ## Setup & Commands
 
@@ -24,7 +24,7 @@ uv run python build_site_data.py        # Merge data → site/data.json
 uv run python make_prompt.py            # Generate prompt.md for LLM analysis
 ```
 
-Scripts support `--force` to reprocess cached results. `score.py` also accepts `--start N --end M` for partial runs and `--model` to change the LLM.
+Scripts support `--force` to reprocess cached results. `score.py` also accepts `--start N --end M` for partial runs, `--model` to change the LLM, and `--delay` to adjust request spacing.
 
 ### Local Dev Server
 
@@ -45,7 +45,7 @@ SSB StatBank     → fetch_ssb.py         → ssb_data.json (wages + employment)
                                           ↓
                    build_data.py        → yrker.csv (combined via STYRK-08 codes)
                                           ↓
-                   score.py             → scores.json (AI exposure 0-10, via OpenAI)
+                   score.py             → scores.json (AI exposure 0-10, via LLM)
                                           ↓
                    build_site_data.py   → site/data.json
                                           ↓
@@ -57,8 +57,8 @@ SSB StatBank     → fetch_ssb.py         → ssb_data.json (wages + employment)
 - **All data via APIs**: No scraping needed. utdanning.no and SSB have public JSON APIs.
 - **STYRK-08 as join key**: The 4-digit Norwegian occupation code links utdanning.no descriptions to SSB wage/employment data.
 - **Incremental processing**: score.py saves after each entry (resume-safe). All fetch scripts cache results.
-- **LLM scoring**: Uses OpenAI API (requires `OPENAI_API_KEY` in `.env`). Default model is `gpt-4o-mini` with temperature 0.2.
-- **Frontend**: Single-file `site/index.html` with inline JS/CSS. All text in Norwegian. Currency in NOK.
+- **Dual LLM support**: score.py supports both OpenAI and Anthropic APIs. Models starting with `claude-` use Anthropic; all others use OpenAI. Default model is `gpt-4o`. Requires `OPENAI_API_KEY` or `ANTHROPIC_API_KEY` in `.env`/`.env.local`.
+- **Frontend**: Single-file `site/index.html` with inline JS/CSS. Treemap tile size = employment count, color = AI exposure (teal→red). All text in Norwegian, currency in NOK.
 
 ### Key Data Files
 
