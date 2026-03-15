@@ -840,10 +840,11 @@ function layout() {
   rects = [];
   for (const cr of catRects) {
     const innerGap = GAP;
+    cr.headerH = (cr.rh > 40 && cr.rw > 60) ? 16 : 0;
     const items = cr.items.map(d => ({ ...d, value: d.jobs || 1 }));
     const innerRects = squarify(items,
-      cr.rx + innerGap, cr.ry + innerGap,
-      cr.rw - innerGap * 2, cr.rh - innerGap * 2
+      cr.rx + innerGap, cr.ry + innerGap + cr.headerH,
+      cr.rw - innerGap * 2, cr.rh - innerGap * 2 - cr.headerH
     );
     for (const ir of innerRects) {
       rects.push(ir);
@@ -937,7 +938,7 @@ function draw() {
     }
   }
 
-  // ── Category borders and labels ──────────────────────────────────────
+  // ── Category borders and header labels ───────────────────────────────
   for (const cr of catRectsGlobal) {
     const g = GAP / 2;
     const rx = cr.rx + g;
@@ -947,7 +948,7 @@ function draw() {
 
     if (rw < 20 || rh < 20) continue;
 
-    // Subtle border around the whole category area
+    // Outer border around the whole category area
     ctx.strokeStyle = "rgba(255,255,255,0.07)";
     ctx.lineWidth = 1;
     const br = Math.min(4, rw / 8, rh / 8);
@@ -959,26 +960,36 @@ function draw() {
       ctx.strokeRect(rx, ry, rw, rh);
     }
 
-    // Category label badge — only if enough room
-    if (rw >= 70 && rh >= 22) {
-      const fontSize = Math.min(11, Math.max(8, rw / 22));
-      ctx.font = `600 ${fontSize}px 'Inter', -apple-system, system-ui, sans-serif`;
-      const label = cr.cat.toUpperCase();
-      const textW = ctx.measureText(label).width;
-
-      if (textW < rw - 16) {
-        ctx.save();
-        // Pill background
-        ctx.fillStyle = "rgba(8,8,13,0.72)";
+    // Header strip — only drawn when layout reserved space for it
+    if (cr.headerH) {
+      // Dark background for the strip
+      ctx.fillStyle = "rgba(0,0,0,0.35)";
+      if (br > 0.5) {
         ctx.beginPath();
-        ctx.roundRect(rx + 5, ry + 5, textW + 10, fontSize + 7, 3);
+        ctx.roundRect(rx, ry, rw, cr.headerH, [br, br, 0, 0]);
         ctx.fill();
-
-        ctx.fillStyle = "rgba(255,255,255,0.38)";
-        ctx.textBaseline = "top";
-        ctx.fillText(label, rx + 10, ry + 8);
-        ctx.restore();
+      } else {
+        ctx.fillRect(rx, ry, rw, cr.headerH);
       }
+
+      // Separator line below strip
+      ctx.strokeStyle = "rgba(255,255,255,0.06)";
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(rx, ry + cr.headerH);
+      ctx.lineTo(rx + rw, ry + cr.headerH);
+      ctx.stroke();
+
+      // Label text, clipped to strip width
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(rx + 6, ry, rw - 12, cr.headerH);
+      ctx.clip();
+      ctx.font = `600 9px 'Inter', -apple-system, system-ui, sans-serif`;
+      ctx.fillStyle = "rgba(255,255,255,0.45)";
+      ctx.textBaseline = "middle";
+      ctx.fillText(cr.cat.toUpperCase(), rx + 6, ry + cr.headerH / 2);
+      ctx.restore();
     }
   }
 }
