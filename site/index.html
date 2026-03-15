@@ -164,6 +164,55 @@ body {
   text-align: right;
 }
 
+#searchBox {
+  width: 100%;
+  padding: 7px 10px;
+  font-size: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  color: var(--fg);
+  outline: none;
+  font-family: inherit;
+}
+#searchBox::placeholder { color: var(--fg2); }
+#searchBox:focus { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.07); }
+
+#searchResults {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 4px;
+}
+#searchResults .sr-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  font-size: 11px;
+  border-radius: 4px;
+  cursor: pointer;
+  gap: 8px;
+}
+#searchResults .sr-item:hover { background: rgba(255,255,255,0.08); }
+#searchResults .sr-item .sr-title { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#searchResults .sr-item .sr-score { flex-shrink: 0; font-size: 10px; font-weight: 600; }
+
+.tier-row { cursor: pointer; border-radius: 4px; padding: 2px 4px; margin: -2px -4px; }
+.tier-row:hover { background: rgba(255,255,255,0.06); }
+.tier-row.active { background: rgba(255,255,255,0.1); }
+
+#filterClear {
+  display: none;
+  font-size: 10px;
+  color: var(--fg2);
+  cursor: pointer;
+  margin-top: 2px;
+}
+#filterClear:hover { color: var(--fg); }
+
 .gradient-legend {
   display: flex;
   align-items: center;
@@ -236,6 +285,11 @@ canvas#canvas {
   </div>
 
   <div class="stat-section">
+    <input type="text" id="searchBox" placeholder="S&oslash;k etter yrke...">
+    <div id="searchResults"></div>
+  </div>
+
+  <div class="stat-section">
     <h3>Totalt sysselsatte</h3>
     <div class="stat-big" id="statTotalJobs">&mdash;</div>
   </div>
@@ -255,6 +309,7 @@ canvas#canvas {
   <div class="stat-section">
     <h3>Fordeling</h3>
     <div class="tier-bar" id="tierBar"></div>
+    <div id="filterClear" onclick="clearFilter()">&#x2715; Vis alle yrker</div>
   </div>
 
   <div class="stat-section">
@@ -457,8 +512,11 @@ function draw() {
   ctx.fillStyle = "#0a0a0f";
   ctx.fillRect(0, 0, w / dpr, h / dpr);
 
+  const hasFilter = searchQuery || filterRange || highlightSlug;
+
   for (const r of rects) {
     const isHovered = r === hovered;
+    const lit = !hasFilter || isHighlighted(r);
 
     const g = GAP / 2;
     const rx = r.rx + g;
@@ -468,19 +526,27 @@ function draw() {
 
     if (rw <= 0 || rh <= 0) continue;
 
-    const fillAlpha = isHovered ? 0.8 : 0.5;
-    ctx.fillStyle = exposureColorCSS(r.exposure, fillAlpha);
+    if (lit) {
+      const fillAlpha = isHovered ? 0.85 : 0.6;
+      ctx.fillStyle = exposureColorCSS(r.exposure, fillAlpha);
+    } else {
+      ctx.fillStyle = "rgba(40,40,50,0.5)";
+    }
     ctx.fillRect(rx, ry, rw, rh);
 
-    if (isHovered) {
+    if (isHovered && lit) {
       ctx.strokeStyle = "#fff";
       ctx.lineWidth = 2;
+      ctx.strokeRect(rx, ry, rw, rh);
+    } else if (lit && hasFilter) {
+      ctx.strokeStyle = exposureColorCSS(r.exposure, 0.6);
+      ctx.lineWidth = 1;
       ctx.strokeRect(rx, ry, rw, rh);
     }
 
     const minW = 50;
     const minH = 18;
-    if (rw > minW && rh > minH) {
+    if (rw > minW && rh > minH && lit) {
       ctx.save();
       ctx.beginPath();
       ctx.rect(rx + 4, ry + 2, rw - 8, rh - 4);
@@ -488,7 +554,7 @@ function draw() {
 
       const fontSize = Math.min(13, Math.max(9, Math.min(rw / 10, rh / 3)));
       ctx.font = `500 ${fontSize}px -apple-system, system-ui, sans-serif`;
-      ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.85)";
+      ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.9)";
       ctx.textBaseline = "top";
       ctx.fillText(r.title, rx + 5, ry + 4);
 
@@ -651,7 +717,7 @@ function computeStats() {
   // Tier breakdown
   const tierEl = document.getElementById("tierBar");
   tierEl.innerHTML = tiers.map(t =>
-    `<div class="tier-row">
+    `<div class="tier-row" data-lo="${t.range[0]}" data-hi="${t.range[1]}" onclick="setTierFilter(${t.range[0]},${t.range[1]})">
       <div class="tier-color" style="background:${t.color}"></div>
       <span class="tier-name">${t.name} (${t.range[0]}\u2013${t.range[1]})</span>
       <span class="tier-jobs">${formatNumber(t.jobs)}</span>
@@ -721,6 +787,118 @@ function computeStats() {
     document.getElementById("statWages").textContent =
       Math.round(mrdKr) + " mrd. kr";
   }
+}
+
+// ── Search & filter ────────────────────────────────────────────────────
+
+let searchQuery = "";
+let filterRange = null; // [lo, hi] or null
+let highlightSlug = null;
+
+function matchesFilter(d) {
+  if (filterRange && d.exposure != null) {
+    return d.exposure >= filterRange[0] && d.exposure <= filterRange[1];
+  }
+  if (filterRange && d.exposure == null) return false;
+  return true;
+}
+
+function matchesSearch(d) {
+  if (!searchQuery) return true;
+  return d.title.toLowerCase().includes(searchQuery);
+}
+
+function isHighlighted(r) {
+  if (highlightSlug) return r.slug === highlightSlug;
+  if (searchQuery) return matchesSearch(r);
+  if (filterRange) return matchesFilter(r);
+  return true;
+}
+
+const searchBox = document.getElementById("searchBox");
+const searchResults = document.getElementById("searchResults");
+
+searchBox.addEventListener("input", () => {
+  searchQuery = searchBox.value.toLowerCase().trim();
+  highlightSlug = null;
+
+  if (searchQuery.length >= 1) {
+    const matches = data
+      .filter(d => d.title.toLowerCase().includes(searchQuery))
+      .sort((a, b) => {
+        // Exact start match first, then by jobs
+        const aStart = a.title.toLowerCase().startsWith(searchQuery) ? 0 : 1;
+        const bStart = b.title.toLowerCase().startsWith(searchQuery) ? 0 : 1;
+        if (aStart !== bStart) return aStart - bStart;
+        return (b.jobs || 0) - (a.jobs || 0);
+      })
+      .slice(0, 12);
+
+    if (matches.length > 0) {
+      searchResults.style.display = "flex";
+      searchResults.innerHTML = matches.map(d => {
+        const color = exposureColorCSS(d.exposure, 1);
+        const scoreText = d.exposure != null ? d.exposure + "/10" : "\u2014";
+        return `<div class="sr-item" data-slug="${d.slug}">
+          <span class="sr-title">${d.title}</span>
+          <span class="sr-score" style="color:${color}">${scoreText}</span>
+        </div>`;
+      }).join("");
+
+      searchResults.querySelectorAll(".sr-item").forEach(el => {
+        el.addEventListener("click", () => {
+          highlightSlug = el.dataset.slug;
+          searchQuery = "";
+          searchBox.value = data.find(d => d.slug === highlightSlug)?.title || "";
+          searchResults.style.display = "none";
+          draw();
+          // Show tooltip for the highlighted item
+          const r = rects.find(r => r.slug === highlightSlug);
+          if (r) {
+            const sidebarW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w'));
+            showTooltip(r, sidebarW + r.rx + r.rw / 2, r.ry + r.rh / 2);
+          }
+        });
+      });
+    } else {
+      searchResults.style.display = "flex";
+      searchResults.innerHTML = `<div style="font-size:11px;color:var(--fg2);padding:4px 8px;">Ingen treff</div>`;
+    }
+  } else {
+    searchResults.style.display = "none";
+  }
+  draw();
+});
+
+searchBox.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    searchBox.value = "";
+    searchQuery = "";
+    highlightSlug = null;
+    searchResults.style.display = "none";
+    searchBox.blur();
+    draw();
+  }
+});
+
+function setTierFilter(lo, hi) {
+  if (filterRange && filterRange[0] === lo && filterRange[1] === hi) {
+    clearFilter();
+    return;
+  }
+  filterRange = [lo, hi];
+  document.getElementById("filterClear").style.display = "block";
+  document.querySelectorAll(".tier-row").forEach(el => {
+    el.classList.toggle("active", el.dataset.lo == lo && el.dataset.hi == hi);
+  });
+  draw();
+}
+
+function clearFilter() {
+  filterRange = null;
+  document.getElementById("filterClear").style.display = "none";
+  document.querySelectorAll(".tier-row").forEach(el => el.classList.remove("active"));
+  draw();
 }
 
 // ── Events ─────────────────────────────────────────────────────────────
