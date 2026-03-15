@@ -1,97 +1,73 @@
-# AI Exposure of the US Job Market
+# KItrusselen – Hvordan KI påvirker norske jobber
 
-Analyzing how susceptible every occupation in the US economy is to AI and automation, using data from the Bureau of Labor Statistics [Occupational Outlook Handbook](https://www.bls.gov/ooh/) (OOH).
-
-**Live demo: [karpathy.ai/jobs](https://karpathy.ai/jobs/)**
+Analyse av hvor eksponert hvert yrke i det norske arbeidsmarkedet er for kunstig intelligens og automatisering, basert på data fra [utdanning.no](https://utdanning.no) og [SSB](https://www.ssb.no).
 
 ![AI Exposure Treemap](jobs.png)
 
-## What's here
+## Hva er dette
 
-The BLS OOH covers **342 occupations** spanning every sector of the US economy, with detailed data on job duties, work environment, education requirements, pay, and employment projections. We scraped all of it, scored each occupation's AI exposure using an LLM, and built an interactive treemap visualization.
+En interaktiv treemap-visualisering som viser over 500 norske yrker, scoret for KI-eksponering på en 0-10 skala av en KI-modell. Størrelsen på hvert rektangel gjenspeiler antall sysselsatte, og fargen viser graden av KI-eksponering (grønn = trygg, rød = eksponert).
 
-## Data pipeline
+## Datakilder
 
-1. **Scrape** (`scrape.py`) — Playwright (non-headless, BLS blocks bots) downloads raw HTML for all 342 occupation pages into `html/`.
-2. **Parse** (`parse_detail.py`, `process.py`) — BeautifulSoup converts raw HTML into clean Markdown files in `pages/`.
-3. **Tabulate** (`make_csv.py`) — Extracts structured fields (pay, education, job count, growth outlook, SOC code) into `occupations.csv`.
-4. **Score** (`score.py`) — Sends each occupation's Markdown description to an LLM (Gemini Flash via OpenRouter) with a scoring rubric. Each occupation gets an AI Exposure score from 0-10 with a rationale. Results saved to `scores.json`.
-5. **Build site data** (`build_site_data.py`) — Merges CSV stats and AI exposure scores into a compact `site/data.json` for the frontend.
-6. **Website** (`site/index.html`) — Interactive treemap visualization where area = employment and color = AI exposure (green to red).
+| Kilde | Data |
+|-------|------|
+| [utdanning.no API](https://utdanning.no) | Yrkesbeskrivelser, utdanningskrav, STYRK-08-koder |
+| [SSB Tabell 11418](https://www.ssb.no/statbank/table/11418/) | Median månedslønn per yrke |
+| [SSB Tabell 12542](https://www.ssb.no/statbank/table/12542/) | Antall sysselsatte per yrke |
+| [SSB Klass API](https://data.ssb.no/api/klass/v1/) | STYRK-08 yrkesklassifisering |
 
-## Key files
+## Datapipeline
 
-| File | Description |
-|------|-------------|
-| `occupations.json` | Master list of 342 occupations with title, URL, category, slug |
-| `occupations.csv` | Summary stats: pay, education, job count, growth projections |
-| `scores.json` | AI exposure scores (0-10) with rationales for all 342 occupations |
-| `prompt.md` | All data in a single file, designed to be pasted into an LLM for analysis |
-| `html/` | Raw HTML pages from BLS (source of truth, ~40MB) |
-| `pages/` | Clean Markdown versions of each occupation page |
-| `site/` | Static website (treemap visualization) |
+1. **Hent yrker** (`fetch_occupations.py`) — Laster ned yrkesbeskrivelser fra utdanning.no API → `yrker.json`
+2. **Hent STYRK** (`fetch_styrk.py`) — Laster ned STYRK-08 kategori-hierarki fra SSB → `styrk_categories.json`
+3. **Hent SSB-data** (`fetch_ssb.py`) — Laster ned lønn og sysselsetting fra SSB StatBank → `ssb_data.json`
+4. **Koble data** (`build_data.py`) — Kobler alle kilder via STYRK-08-koder → `yrker.csv`
+5. **Score** (`score.py`) — Sender yrkesbeskrivelser til en KI-modell for eksponerings-scoring → `scores.json`
+6. **Bygg nettside-data** (`build_site_data.py`) — Fletter CSV og scores → `site/data.json`
+7. **Nettside** (`site/index.html`) — Interaktiv treemap der areal = sysselsetting og farge = KI-eksponering
 
-## AI exposure scoring
+## KI-eksponerings-scoring
 
-Each occupation is scored on a single **AI Exposure** axis from 0 to 10, measuring how much AI will reshape that occupation. The score considers both direct automation (AI doing the work) and indirect effects (AI making workers so productive that fewer are needed).
+Hvert yrke scores på en **KI-eksponerings**-akse fra 0 til 10, som måler hvor mye KI vil omforme yrket.
 
-A key signal is whether the job's work product is fundamentally digital — if the job can be done entirely from a home office on a computer, AI exposure is inherently high. Conversely, jobs requiring physical presence, manual skill, or real-time human interaction have a natural barrier.
+| Score | Nivå | Eksempler |
+|-------|------|-----------|
+| 0-1 | Minimal | Taktekker, rengjøring, anleggsarbeidere |
+| 2-3 | Lav | Elektriker, rørlegger, brannkonstabel, tannpleier |
+| 4-5 | Moderat | Sykepleier, politibetjent, veterinær |
+| 6-7 | Høy | Lærer, leder, regnskapsfører, journalist |
+| 8-9 | Svært høy | Programvareutvikler, grafisk designer, oversetter |
+| 10 | Maksimal | Dataregistrerer, telefonselger |
 
-**Calibration examples from the dataset:**
-
-| Score | Meaning | Examples |
-|-------|---------|---------|
-| 0-1 | Minimal | Roofers, janitors, construction laborers |
-| 2-3 | Low | Electricians, plumbers, nurses aides, firefighters |
-| 4-5 | Moderate | Registered nurses, retail workers, physicians |
-| 6-7 | High | Teachers, managers, accountants, engineers |
-| 8-9 | Very high | Software developers, paralegals, data analysts, editors |
-| 10 | Maximum | Medical transcriptionists |
-
-Average exposure across all 342 occupations: **5.3/10**.
-
-## Visualization
-
-The main visualization is an interactive **treemap** where:
-- **Area** of each rectangle is proportional to employment (number of jobs)
-- **Color** indicates AI exposure on a green (safe) to red (exposed) scale
-- **Layout** groups occupations by BLS category
-- **Hover** shows detailed tooltip with pay, jobs, outlook, education, exposure score, and LLM rationale
-
-## LLM prompt
-
-[`prompt.md`](prompt.md) packages all the data — aggregate statistics, tier breakdowns, exposure by pay/education, BLS growth projections, and all 342 occupations with their scores and rationales — into a single file (~45K tokens) designed to be pasted into an LLM. This lets you have a data-grounded conversation about AI's impact on the job market without needing to run any code. Regenerate it with `uv run python make_prompt.py`.
-
-## Setup
-
-```
-uv sync
-uv run playwright install chromium
-```
-
-Requires an OpenRouter API key in `.env`:
-```
-OPENROUTER_API_KEY=your_key_here
-```
-
-## Usage
+## Oppsett
 
 ```bash
-# Scrape BLS pages (only needed once, results are cached in html/)
-uv run python scrape.py
+uv sync
+```
 
-# Generate Markdown from HTML
-uv run python process.py
+Krever en OpenRouter API-nøkkel i `.env`:
+```
+OPENROUTER_API_KEY=din_nøkkel_her
+```
 
-# Generate CSV summary
-uv run python make_csv.py
+## Bruk
 
-# Score AI exposure (uses OpenRouter API)
+```bash
+# Hent data (kun nødvendig første gang, resultater caches)
+uv run python fetch_occupations.py
+uv run python fetch_styrk.py
+uv run python fetch_ssb.py
+
+# Koble data
+uv run python build_data.py
+
+# Score KI-eksponering (bruker OpenRouter API)
 uv run python score.py
 
-# Build website data
+# Bygg nettside-data
 uv run python build_site_data.py
 
-# Serve the site locally
+# Start lokal server
 cd site && python -m http.server 8000
 ```

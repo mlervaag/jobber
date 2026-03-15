@@ -4,27 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Data pipeline that scrapes US Bureau of Labor Statistics occupational data, scores each occupation's AI exposure using an LLM, and renders an interactive treemap visualization. ~1,000 lines of Python across 8 scripts.
+KItrusselen — data pipeline that fetches Norwegian occupation data from utdanning.no and SSB, scores each occupation's AI exposure using an LLM, and renders an interactive treemap visualization. ~800 lines of Python across 7 scripts.
 
 ## Setup & Commands
 
 ```bash
 uv sync                                # Install dependencies
-uv run playwright install chromium      # Install browser for scraping
 ```
 
 ### Data Pipeline (run in order)
 
 ```bash
-uv run python scrape.py                 # Scrape BLS HTML pages → html/
-uv run python process.py                # Convert HTML → Markdown in pages/
-uv run python make_csv.py               # Extract structured data → occupations.csv
+uv run python fetch_occupations.py      # Fetch occupations from utdanning.no → yrker.json
+uv run python fetch_styrk.py            # Fetch STYRK-08 categories from SSB → styrk_categories.json
+uv run python fetch_ssb.py              # Fetch wages & employment from SSB → ssb_data.json
+uv run python build_data.py             # Combine all sources → yrker.csv
 uv run python score.py                  # Score AI exposure via LLM → scores.json
-uv run python build_site_data.py        # Merge all data → site/data.json
+uv run python build_site_data.py        # Merge data → site/data.json
 uv run python make_prompt.py            # Generate prompt.md for LLM analysis
 ```
 
-Scripts support `--start N --end M` for partial runs and `--force` to reprocess cached results. `score.py` also accepts `--model` to change the LLM.
+Scripts support `--force` to reprocess cached results. `score.py` also accepts `--start N --end M` for partial runs and `--model` to change the LLM.
 
 ### Local Dev Server
 
@@ -39,28 +39,32 @@ There are no tests, linting, or CI configured.
 ### Pipeline Flow
 
 ```
-BLS Website → scrape.py → html/ (raw cached HTML)
-                          ↓
-              process.py + parse_detail.py → pages/ (Markdown)
-                          ↓
-              make_csv.py → occupations.csv (structured stats)
-                          ↓
-              score.py → scores.json (AI exposure 0-10, via OpenRouter API)
-                          ↓
-              build_site_data.py → site/data.json
-                          ↓
-              site/index.html (standalone treemap visualization)
+utdanning.no API → fetch_occupations.py → yrker.json (~550 occupations)
+SSB Klass API    → fetch_styrk.py       → styrk_categories.json
+SSB StatBank     → fetch_ssb.py         → ssb_data.json (wages + employment)
+                                          ↓
+                   build_data.py        → yrker.csv (combined via STYRK-08 codes)
+                                          ↓
+                   score.py             → scores.json (AI exposure 0-10, via OpenRouter)
+                                          ↓
+                   build_site_data.py   → site/data.json
+                                          ↓
+                   site/index.html        (standalone treemap visualization)
 ```
 
 ### Key Design Patterns
 
-- **Incremental processing**: All scripts skip already-processed items and save results after each entry (resume-safe). Use `--force` to reprocess.
+- **All data via APIs**: No scraping needed. utdanning.no and SSB have public JSON APIs.
+- **STYRK-08 as join key**: The 4-digit Norwegian occupation code links utdanning.no descriptions to SSB wage/employment data.
+- **Incremental processing**: score.py saves after each entry (resume-safe). All fetch scripts cache results.
 - **LLM scoring**: Uses OpenRouter API (requires `OPENROUTER_API_KEY` in `.env`). Default model is `google/gemini-3-flash-preview` with temperature 0.2.
-- **Frontend**: Single-file `site/index.html` with inline JS/CSS. Reads `site/data.json` at runtime.
+- **Frontend**: Single-file `site/index.html` with inline JS/CSS. All text in Norwegian. Currency in NOK.
 
 ### Key Data Files
 
-- `occupations.json` — master list of 342 occupations with title, URL, category, slug
-- `occupations.csv` — extracted stats (pay, education, jobs, outlook)
-- `scores.json` — AI exposure scores (0-10) with rationale per occupation
+- `yrker.json` — occupation list from utdanning.no with descriptions, education, STYRK codes
+- `styrk_categories.json` — STYRK-08 hierarchy (major groups, sub-groups)
+- `ssb_data.json` — SSB wage and employment data keyed by STYRK code
+- `yrker.csv` — combined dataset with pay, employment, education, category
+- `scores.json` — AI exposure scores (0-10) with Norwegian rationale
 - `site/data.json` — merged compact dataset for the frontend
