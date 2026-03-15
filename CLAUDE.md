@@ -45,7 +45,7 @@ SSB StatBank     → fetch_ssb.py         → ssb_data.json (wages + employment)
                                           ↓
                    build_data.py        → yrker.csv (combined via STYRK-08 codes)
                                           ↓
-                   score.py             → scores.json (AI exposure 0-10, via OpenRouter)
+                   score.py             → scores.json (AI exposure 0-10, via OpenAI)
                                           ↓
                    build_site_data.py   → site/data.json
                                           ↓
@@ -57,7 +57,7 @@ SSB StatBank     → fetch_ssb.py         → ssb_data.json (wages + employment)
 - **All data via APIs**: No scraping needed. utdanning.no and SSB have public JSON APIs.
 - **STYRK-08 as join key**: The 4-digit Norwegian occupation code links utdanning.no descriptions to SSB wage/employment data.
 - **Incremental processing**: score.py saves after each entry (resume-safe). All fetch scripts cache results.
-- **LLM scoring**: Uses OpenRouter API (requires `OPENROUTER_API_KEY` in `.env`). Default model is `google/gemini-3-flash-preview` with temperature 0.2.
+- **LLM scoring**: Uses OpenAI API (requires `OPENAI_API_KEY` in `.env`). Default model is `gpt-4o-mini` with temperature 0.2.
 - **Frontend**: Single-file `site/index.html` with inline JS/CSS. All text in Norwegian. Currency in NOK.
 
 ### Key Data Files
