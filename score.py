@@ -1,15 +1,14 @@
 """
-Score each occupation's AI exposure using an LLM.
+Score each occupation's AI exposure using an LLM via OpenAI API.
 
-Supports both Anthropic (Claude) and OpenAI APIs. Reads occupation descriptions
-from yrker.json, sends each to an LLM with a scoring rubric, and collects
-structured scores. Results are cached incrementally to scores.json so the
-script can be resumed if interrupted.
+Reads occupation descriptions from yrker.json, sends each to an LLM with a
+scoring rubric, and collects structured scores. Results are cached incrementally
+to scores.json so the script can be resumed if interrupted.
 
 Usage:
-    uv run python score.py                          # default: claude-sonnet-4-6
-    uv run python score.py --model gpt-4o-mini      # use OpenAI
-    uv run python score.py --start 0 --end 10       # test on first 10
+    uv run python score.py
+    uv run python score.py --model gpt-4o-mini
+    uv run python score.py --start 0 --end 10   # test on first 10
 """
 
 import argparse
@@ -26,6 +25,7 @@ load_dotenv(env_local_path, override=True)
 
 DEFAULT_MODEL = "gpt-5.4"
 OUTPUT_FILE = "scores.json"
+API_URL = "https://api.openai.com/v1/chat/completions"
 
 SYSTEM_PROMPT = """\
 You are an expert analyst evaluating how exposed different occupations are to \
@@ -87,41 +87,14 @@ Respond with ONLY a JSON object in this exact format, no other text:
 """
 
 
-def is_anthropic_model(model):
-    """Check if the model string refers to an Anthropic/Claude model."""
-    return model.startswith("claude-")
-
-
-def score_occupation_anthropic(client, text, model):
-    """Send one occupation to the Anthropic API and parse the response."""
-    response = client.post(
-        "https://api.anthropic.com/v1/messages",
-        headers={
-            "x-api-key": os.environ["ANTHROPIC_API_KEY"],
-            "anthropic-version": "2023-06-01",
-            "content-type": "application/json",
-        },
-        json={
-            "model": model,
-            "max_tokens": 300,
-            "temperature": 0.2,
-            "system": SYSTEM_PROMPT,
-            "messages": [
-                {"role": "user", "content": text},
-            ],
-        },
-        timeout=60,
-    )
-    response.raise_for_status()
-    content = response.json()["content"][0]["text"]
-    return _parse_json_response(content)
-
-
-def score_occupation_openai(client, text, model):
-    """Send one occupation to the OpenAI API and parse the response."""
+def score_occupation(client, text, model):
+    """Send one occupation to the LLM and parse the structured response."""
     api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise ValueError("OPENAI_API_KEY is not set. Check your .env.local file.")
+        
     response = client.post(
-        "https://api.openai.com/v1/chat/completions",
+        API_URL,
         headers={
             "Authorization": f"Bearer {api_key}",
         },
@@ -137,17 +110,15 @@ def score_occupation_openai(client, text, model):
     )
     response.raise_for_status()
     content = response.json()["choices"][0]["message"]["content"]
-    return _parse_json_response(content)
 
-
-def _parse_json_response(content):
-    """Strip markdown code fences if present and parse JSON."""
+    # Strip markdown code fences if present
     content = content.strip()
     if content.startswith("```"):
-        content = content.split("\n", 1)[1]
+        content = content.split("\n", 1)[1]  # remove first line
         if content.endswith("```"):
             content = content[:-3]
         content = content.strip()
+
     return json.loads(content)
 
 
@@ -175,16 +146,6 @@ def main():
                         help="Re-score even if already cached")
     args = parser.parse_args()
 
-    use_anthropic = is_anthropic_model(args.model)
-    if use_anthropic:
-        if "ANTHROPIC_API_KEY" not in os.environ:
-            print("Error: ANTHROPIC_API_KEY not set in .env or .env.local")
-            return
-    else:
-        if "OPENAI_API_KEY" not in os.environ:
-            print("Error: OPENAI_API_KEY not set in .env or .env.local")
-            return
-
     with open("yrker.json", encoding="utf-8") as f:
         occupations = json.load(f)
 
@@ -200,7 +161,6 @@ def main():
     print(f"Scoring {len(subset)} occupations with {args.model}")
     print(f"Already cached: {len(scores)}")
 
-    score_fn = score_occupation_anthropic if use_anthropic else score_occupation_openai
     errors = []
     client = httpx.Client()
 
@@ -218,7 +178,7 @@ def main():
         print(f"  [{i+1}/{len(subset)}] {occ['title']}...", end=" ", flush=True)
 
         try:
-            result = score_fn(client, prompt, args.model)
+            result = score_occupation(client, prompt, args.model)
             scores[slug] = {
                 "slug": slug,
                 "title": occ["title"],
