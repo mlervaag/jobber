@@ -7,8 +7,8 @@ structured scores. Results are cached incrementally to scores.json so the
 script can be resumed if interrupted.
 
 Usage:
-    uv run python score.py                          # default: claude-sonnet-4-6
-    uv run python score.py --model gpt-4o-mini      # use OpenAI
+    uv run python score.py                          # default: gpt-5.4
+    uv run python score.py --model gpt-4o           # use older OpenAI model
     uv run python score.py --start 0 --end 10       # test on first 10
 """
 
@@ -19,12 +19,10 @@ import time
 import httpx
 from dotenv import load_dotenv
 
-env_path = os.path.join(os.path.dirname(__file__), '.env')
-env_local_path = os.path.join(os.path.dirname(__file__), '.env.local')
-load_dotenv(env_path)
-load_dotenv(env_local_path, override=True)
+load_dotenv('.env')
+load_dotenv('.env.local', override=True)
 
-DEFAULT_MODEL = "gpt-5.4"
+DEFAULT_MODEL = "gpt-4o"
 OUTPUT_FILE = "scores.json"
 
 SYSTEM_PROMPT = """\
@@ -119,11 +117,10 @@ def score_occupation_anthropic(client, text, model):
 
 def score_occupation_openai(client, text, model):
     """Send one occupation to the OpenAI API and parse the response."""
-    api_key = os.getenv("OPENAI_API_KEY")
     response = client.post(
         "https://api.openai.com/v1/chat/completions",
         headers={
-            "Authorization": f"Bearer {api_key}",
+            "Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}",
         },
         json={
             "model": model,
