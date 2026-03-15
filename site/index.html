@@ -322,6 +322,47 @@ body {
   color: var(--fg);
 }
 
+/* ── Filter chips ────────────────────────────────────── */
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 4px;
+}
+.filter-chip {
+  font-size: 11px;
+  font-family: inherit;
+  padding: 4px 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  color: var(--fg2);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+  user-select: none;
+  white-space: nowrap;
+}
+.filter-chip:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.14);
+  color: var(--fg);
+}
+.filter-chip.active {
+  background: rgba(99,102,241,0.12);
+  border-color: rgba(99,102,241,0.4);
+  color: var(--accent2);
+}
+
+.filter-group-label {
+  font-size: 10px;
+  color: var(--fg3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 8px 0 4px;
+}
+.filter-group-label:first-child { margin-top: 0; }
+
 /* ── Horizontal bar charts ────────────────────────────── */
 
 .hbar-chart {
@@ -900,6 +941,23 @@ canvas#canvas {
     <div id="searchResults"></div>
   </div>
 
+  <div class="stat-section" id="filterChipsSection">
+    <div class="filter-group-label">Hurtigfiltre</div>
+    <div class="filter-chips" id="quickFilters">
+      <button class="filter-chip" data-filter="highpay">800k+</button>
+      <button class="filter-chip" data-filter="highai">H&oslash;y AI &ge;8</button>
+      <button class="filter-chip" data-filter="lowai">Lav AI &le;2</button>
+      <button class="filter-chip" data-filter="vulnerable">S&aring;rbare yrker</button>
+      <button class="filter-chip" data-filter="transform">Transformasjon</button>
+      <button class="filter-chip" data-filter="popular_edu">Popul&aelig;r utdanning</button>
+      <button class="filter-chip" data-filter="mismatch">Mismatch</button>
+    </div>
+    <div class="filter-group-label">Utdanningsniv&aring;</div>
+    <div class="filter-chips" id="educationFilters"></div>
+    <div class="filter-group-label">Yrkeskategori</div>
+    <div class="filter-chips" id="categoryFilters"></div>
+  </div>
+
   <div class="stat-row">
     <div class="stat-section">
       <h3>Sysselsatte</h3>
@@ -1216,7 +1274,7 @@ function draw() {
   ctx.fillStyle = "#08080d";
   ctx.fillRect(0, 0, w / dpr, h / dpr);
 
-  const hasFilter = searchQuery || filterRange || highlightSlug;
+  const hasFilter = hasAnyFilter();
 
   for (const r of rects) {
     const isHovered = r === hovered;
@@ -1397,10 +1455,15 @@ function showTooltip(d, mx, my) {
     tt.querySelector(".tt-exposure").innerHTML = "";
   }
 
+  const trendHtml = d.student_trend != null
+    ? `<span class="label">Studenttrend (5 år)</span><span class="value" style="color:${d.student_trend > 5 ? '#22c55e' : d.student_trend < -5 ? '#f43f5e' : 'var(--fg)'}">${d.student_trend > 0 ? '+' : ''}${d.student_trend.toFixed(1).replace('.', ',')}%</span>`
+    : '';
+
   tt.querySelector(".tt-stats").innerHTML = `
     <span class="label">Median årslønn</span><span class="value">${formatPay(d.pay)}</span>
     <span class="label">Sysselsatte</span><span class="value">${formatNumber(d.jobs)}</span>
     <span class="label">Utdanning</span><span class="value">${d.education || '\u2014'}</span>
+    ${trendHtml}
   `;
 
   tt.querySelector(".tt-rationale").textContent =
@@ -1624,12 +1687,49 @@ function computeStats() {
 let searchQuery = "";
 let filterRange = null;
 let highlightSlug = null;
+let activeChipFilter = null;   // "highpay" | "highai" | "lowai" | "vulnerable" | "transform" | null
+let activeCategoryFilter = null; // category string or null
+let activeEducationFilter = null; // education string or null
+
+const vulnerableEducations = new Set(["Videregående", "Grunnskole", "Ingen formelle krav", ""]);
+
+function matchesChipFilter(d) {
+  if (activeChipFilter === "highpay") return d.pay != null && d.pay >= 800000;
+  if (activeChipFilter === "highai") return d.exposure != null && d.exposure >= 8;
+  if (activeChipFilter === "lowai") return d.exposure != null && d.exposure <= 2;
+  if (activeChipFilter === "vulnerable") {
+    return d.exposure != null && d.exposure >= 6 && vulnerableEducations.has(d.education || "");
+  }
+  if (activeChipFilter === "transform") {
+    return d.exposure != null && d.exposure >= 7 && d.pay != null && d.pay >= 700000;
+  }
+  if (activeChipFilter === "popular_edu") {
+    return d.student_trend != null && d.student_trend > 10;
+  }
+  if (activeChipFilter === "mismatch") {
+    return d.exposure != null && d.exposure >= 6 && d.student_trend != null && d.student_trend > 5;
+  }
+  return true;
+}
+
+function matchesCategoryFilter(d) {
+  if (!activeCategoryFilter) return true;
+  return d.category === activeCategoryFilter;
+}
+
+function matchesEducationFilter(d) {
+  if (!activeEducationFilter) return true;
+  return d.education === activeEducationFilter;
+}
 
 function matchesFilter(d) {
   if (filterRange && d.exposure != null) {
-    return d.exposure >= filterRange[0] && d.exposure <= filterRange[1];
+    if (d.exposure < filterRange[0] || d.exposure > filterRange[1]) return false;
   }
   if (filterRange && d.exposure == null) return false;
+  if (!matchesChipFilter(d)) return false;
+  if (!matchesCategoryFilter(d)) return false;
+  if (!matchesEducationFilter(d)) return false;
   return true;
 }
 
@@ -1641,8 +1741,12 @@ function matchesSearch(d) {
 function isHighlighted(r) {
   if (highlightSlug) return r.slug === highlightSlug;
   if (searchQuery) return matchesSearch(r);
-  if (filterRange) return matchesFilter(r);
+  if (filterRange || activeChipFilter || activeCategoryFilter || activeEducationFilter) return matchesFilter(r);
   return true;
+}
+
+function hasAnyFilter() {
+  return searchQuery || filterRange || highlightSlug || activeChipFilter || activeCategoryFilter || activeEducationFilter;
 }
 
 const searchBox = document.getElementById("searchBox");
@@ -1719,18 +1823,85 @@ function setTierFilter(lo, hi) {
     return;
   }
   filterRange = [lo, hi];
-  document.getElementById("filterClear").style.display = "block";
-  document.querySelectorAll(".tier-row").forEach(el => {
-    el.classList.toggle("active", el.dataset.lo == lo && el.dataset.hi == hi);
-  });
+  activeChipFilter = null;
+  activeCategoryFilter = null;
+  activeEducationFilter = null;
+  updateFilterUI();
+  draw();
+}
+
+function setChipFilter(filterName) {
+  if (activeChipFilter === filterName) {
+    clearFilter();
+    return;
+  }
+  activeChipFilter = filterName;
+  filterRange = null;
+  activeCategoryFilter = null;
+  activeEducationFilter = null;
+  updateFilterUI();
+  draw();
+}
+
+function setCategoryFilter(category) {
+  if (activeCategoryFilter === category) {
+    clearFilter();
+    return;
+  }
+  activeCategoryFilter = category;
+  filterRange = null;
+  activeChipFilter = null;
+  // Keep education filter — they're complementary dimensions
+  updateFilterUI();
+  draw();
+}
+
+function setEducationFilter(education) {
+  if (activeEducationFilter === education) {
+    clearFilter();
+    return;
+  }
+  activeEducationFilter = education;
+  filterRange = null;
+  activeChipFilter = null;
+  // Keep category filter — they're complementary dimensions
+  updateFilterUI();
   draw();
 }
 
 function clearFilter() {
   filterRange = null;
-  document.getElementById("filterClear").style.display = "none";
-  document.querySelectorAll(".tier-row").forEach(el => el.classList.remove("active"));
+  activeChipFilter = null;
+  activeCategoryFilter = null;
+  activeEducationFilter = null;
+  updateFilterUI();
   draw();
+}
+
+function updateFilterUI() {
+  const anyActive = filterRange || activeChipFilter || activeCategoryFilter || activeEducationFilter;
+  document.getElementById("filterClear").style.display = anyActive ? "block" : "none";
+
+  // Tier rows
+  document.querySelectorAll(".tier-row").forEach(el => {
+    el.classList.toggle("active",
+      filterRange && el.dataset.lo == filterRange[0] && el.dataset.hi == filterRange[1]);
+  });
+
+  // Quick filter chips
+  document.querySelectorAll("#quickFilters .filter-chip").forEach(el => {
+    el.classList.toggle("active", el.dataset.filter === activeChipFilter);
+  });
+
+  // Education chips
+  document.querySelectorAll("#educationFilters .filter-chip").forEach(el => {
+    el.classList.toggle("active", el.dataset.education === activeEducationFilter);
+  });
+
+  // Category chips
+  document.querySelectorAll("#categoryFilters .filter-chip").forEach(el => {
+    el.classList.toggle("active", el.dataset.category === activeCategoryFilter);
+  });
 }
 
 // ── Events ─────────────────────────────────────────────────────────────
@@ -1950,6 +2121,77 @@ mobileSearchBox.addEventListener("keydown", (e) => {
 });
 
 
+// ── Filter chips ───────────────────────────────────────────────────────
+
+const categoryShortNames = {
+  "Akademiske yrker": "Akademisk",
+  "Håndverkere": "Håndverk",
+  "Høyskoleyrker": "Høyskole",
+  "Salgs- og serviceyrker": "Salg/service",
+  "Prosess- og maskinoperatører, transportarbeidere mv.": "Industri/transport",
+  "Ledere": "Ledere",
+  "Bønder, fiskere mv.": "Primærnæring",
+  "Kontoryrker": "Kontor",
+  "Renholdere, hjelpearbeidere mv.": "Renhold/hjelp",
+  "Militære yrker og uoppgitt": "Militær/annet"
+};
+
+function buildCategoryChips() {
+  const counts = {};
+  for (const d of data) {
+    if (d.category) counts[d.category] = (counts[d.category] || 0) + (d.jobs || 0);
+  }
+  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  const container = document.getElementById("categoryFilters");
+  container.innerHTML = sorted.map(([cat]) => {
+    const label = categoryShortNames[cat] || cat;
+    return `<button class="filter-chip" data-category="${cat}">${label}</button>`;
+  }).join("");
+}
+
+const educationOrder = [
+  "Ingen formelle krav",
+  "Grunnskole",
+  "Videregående",
+  "Fagbrev/fagskole",
+  "Bachelor",
+  "Master",
+  "Doktorgrad"
+];
+
+const educationShortNames = {
+  "Ingen formelle krav": "Ingen krav",
+  "Fagbrev/fagskole": "Fagbrev",
+  "Videregående": "VGS"
+};
+
+function buildEducationChips() {
+  const counts = {};
+  for (const d of data) {
+    if (d.education) counts[d.education] = (counts[d.education] || 0) + 1;
+  }
+  const sorted = educationOrder.filter(e => counts[e]);
+  const container = document.getElementById("educationFilters");
+  container.innerHTML = sorted.map(edu => {
+    const label = educationShortNames[edu] || edu;
+    return `<button class="filter-chip" data-education="${edu}">${label}</button>`;
+  }).join("");
+}
+
+function initFilterChips() {
+  document.querySelectorAll("#quickFilters .filter-chip").forEach(el => {
+    el.addEventListener("click", () => setChipFilter(el.dataset.filter));
+  });
+  document.getElementById("educationFilters").addEventListener("click", (e) => {
+    const chip = e.target.closest(".filter-chip");
+    if (chip) setEducationFilter(chip.dataset.education);
+  });
+  document.getElementById("categoryFilters").addEventListener("click", (e) => {
+    const chip = e.target.closest(".filter-chip");
+    if (chip) setCategoryFilter(chip.dataset.category);
+  });
+}
+
 // ── Load with streaming progress ───────────────────────────────────────
 
 async function loadData() {
@@ -1995,6 +2237,9 @@ loadData().then(d => {
   data = d;
   computeStats();
   populateAboutModal();
+  buildEducationChips();
+  buildCategoryChips();
+  initFilterChips();
 
   resize();
   setTimeout(() => {
