@@ -954,8 +954,6 @@ canvas#canvas {
     </div>
     <div class="filter-group-label">Utdanningsniv&aring;</div>
     <div class="filter-chips" id="educationFilters"></div>
-    <div class="filter-group-label">Yrkeskategori</div>
-    <div class="filter-chips" id="categoryFilters"></div>
   </div>
 
   <div class="stat-row">
@@ -1688,7 +1686,6 @@ let searchQuery = "";
 let filterRange = null;
 let highlightSlug = null;
 let activeChipFilter = null;   // "highpay" | "highai" | "lowai" | "vulnerable" | "transform" | null
-let activeCategoryFilter = null; // category string or null
 let activeEducationFilter = null; // education string or null
 
 const vulnerableEducations = new Set(["Videregående", "Grunnskole", "Ingen formelle krav", ""]);
@@ -1712,11 +1709,6 @@ function matchesChipFilter(d) {
   return true;
 }
 
-function matchesCategoryFilter(d) {
-  if (!activeCategoryFilter) return true;
-  return d.category === activeCategoryFilter;
-}
-
 function matchesEducationFilter(d) {
   if (!activeEducationFilter) return true;
   return d.education === activeEducationFilter;
@@ -1728,7 +1720,6 @@ function matchesFilter(d) {
   }
   if (filterRange && d.exposure == null) return false;
   if (!matchesChipFilter(d)) return false;
-  if (!matchesCategoryFilter(d)) return false;
   if (!matchesEducationFilter(d)) return false;
   return true;
 }
@@ -1741,12 +1732,12 @@ function matchesSearch(d) {
 function isHighlighted(r) {
   if (highlightSlug) return r.slug === highlightSlug;
   if (searchQuery) return matchesSearch(r);
-  if (filterRange || activeChipFilter || activeCategoryFilter || activeEducationFilter) return matchesFilter(r);
+  if (filterRange || activeChipFilter  || activeEducationFilter) return matchesFilter(r);
   return true;
 }
 
 function hasAnyFilter() {
-  return searchQuery || filterRange || highlightSlug || activeChipFilter || activeCategoryFilter || activeEducationFilter;
+  return searchQuery || filterRange || highlightSlug || activeChipFilter  || activeEducationFilter;
 }
 
 const searchBox = document.getElementById("searchBox");
@@ -1824,7 +1815,7 @@ function setTierFilter(lo, hi) {
   }
   filterRange = [lo, hi];
   activeChipFilter = null;
-  activeCategoryFilter = null;
+
   activeEducationFilter = null;
   updateFilterUI();
   draw();
@@ -1837,21 +1828,8 @@ function setChipFilter(filterName) {
   }
   activeChipFilter = filterName;
   filterRange = null;
-  activeCategoryFilter = null;
-  activeEducationFilter = null;
-  updateFilterUI();
-  draw();
-}
 
-function setCategoryFilter(category) {
-  if (activeCategoryFilter === category) {
-    clearFilter();
-    return;
-  }
-  activeCategoryFilter = category;
-  filterRange = null;
-  activeChipFilter = null;
-  // Keep education filter — they're complementary dimensions
+  activeEducationFilter = null;
   updateFilterUI();
   draw();
 }
@@ -1872,14 +1850,14 @@ function setEducationFilter(education) {
 function clearFilter() {
   filterRange = null;
   activeChipFilter = null;
-  activeCategoryFilter = null;
+
   activeEducationFilter = null;
   updateFilterUI();
   draw();
 }
 
 function updateFilterUI() {
-  const anyActive = filterRange || activeChipFilter || activeCategoryFilter || activeEducationFilter;
+  const anyActive = filterRange || activeChipFilter  || activeEducationFilter;
   document.getElementById("filterClear").style.display = anyActive ? "block" : "none";
 
   // Tier rows
@@ -1898,10 +1876,6 @@ function updateFilterUI() {
     el.classList.toggle("active", el.dataset.education === activeEducationFilter);
   });
 
-  // Category chips
-  document.querySelectorAll("#categoryFilters .filter-chip").forEach(el => {
-    el.classList.toggle("active", el.dataset.category === activeCategoryFilter);
-  });
 }
 
 // ── Events ─────────────────────────────────────────────────────────────
@@ -2123,32 +2097,6 @@ mobileSearchBox.addEventListener("keydown", (e) => {
 
 // ── Filter chips ───────────────────────────────────────────────────────
 
-const categoryShortNames = {
-  "Akademiske yrker": "Akademisk",
-  "Håndverkere": "Håndverk",
-  "Høyskoleyrker": "Høyskole",
-  "Salgs- og serviceyrker": "Salg/service",
-  "Prosess- og maskinoperatører, transportarbeidere mv.": "Industri/transport",
-  "Ledere": "Ledere",
-  "Bønder, fiskere mv.": "Primærnæring",
-  "Kontoryrker": "Kontor",
-  "Renholdere, hjelpearbeidere mv.": "Renhold/hjelp",
-  "Militære yrker og uoppgitt": "Militær/annet"
-};
-
-function buildCategoryChips() {
-  const counts = {};
-  for (const d of data) {
-    if (d.category) counts[d.category] = (counts[d.category] || 0) + (d.jobs || 0);
-  }
-  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-  const container = document.getElementById("categoryFilters");
-  container.innerHTML = sorted.map(([cat]) => {
-    const label = categoryShortNames[cat] || cat;
-    return `<button class="filter-chip" data-category="${cat}">${label}</button>`;
-  }).join("");
-}
-
 const educationOrder = [
   "Ingen formelle krav",
   "Grunnskole",
@@ -2185,10 +2133,6 @@ function initFilterChips() {
   document.getElementById("educationFilters").addEventListener("click", (e) => {
     const chip = e.target.closest(".filter-chip");
     if (chip) setEducationFilter(chip.dataset.education);
-  });
-  document.getElementById("categoryFilters").addEventListener("click", (e) => {
-    const chip = e.target.closest(".filter-chip");
-    if (chip) setCategoryFilter(chip.dataset.category);
   });
 }
 
@@ -2238,7 +2182,6 @@ loadData().then(d => {
   computeStats();
   populateAboutModal();
   buildEducationChips();
-  buildCategoryChips();
   initFilterChips();
 
   resize();
