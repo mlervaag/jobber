@@ -1,12 +1,12 @@
-# KItrusselen – Hvordan KI påvirker norske jobber
+# KI Trusselen – Hvordan KI påvirker norske jobber
 
 Analyse av hvor eksponert hvert yrke i det norske arbeidsmarkedet er for kunstig intelligens og automatisering, basert på data fra [utdanning.no](https://utdanning.no) og [SSB](https://www.ssb.no).
 
-![AI Exposure Treemap](jobs.png)
+**[kitrusselen.vercel.app](https://kitrusselen.vercel.app)**
 
 ## Hva er dette
 
-En interaktiv treemap-visualisering som viser over 500 norske yrker, scoret for KI-eksponering på en 0-10 skala av en KI-modell. Størrelsen på hvert rektangel gjenspeiler antall sysselsatte, og fargen viser graden av KI-eksponering (grønn = trygg, rød = eksponert).
+En interaktiv treemap-visualisering som viser over 500 norske yrker, scoret for KI-eksponering på en 0-10 skala av en KI-modell. Størrelsen på hvert rektangel gjenspeiler antall sysselsatte, og fargen viser graden av KI-eksponering (blågrønn = trygg, rød = eksponert).
 
 ## Datakilder
 
@@ -23,7 +23,7 @@ En interaktiv treemap-visualisering som viser over 500 norske yrker, scoret for 
 2. **Hent STYRK** (`fetch_styrk.py`) — Laster ned STYRK-08 kategori-hierarki fra SSB → `styrk_categories.json`
 3. **Hent SSB-data** (`fetch_ssb.py`) — Laster ned lønn og sysselsetting fra SSB StatBank → `ssb_data.json`
 4. **Koble data** (`build_data.py`) — Kobler alle kilder via STYRK-08-koder → `yrker.csv`
-5. **Score** (`score.py`) — Sender yrkesbeskrivelser til en KI-modell for eksponerings-scoring → `scores.json`
+5. **Score** (`score.py`) — Sender yrkesbeskrivelser til OpenAI API (gpt-4o-mini) for eksponerings-scoring → `scores.json`
 6. **Bygg nettside-data** (`build_site_data.py`) — Fletter CSV og scores → `site/data.json`
 7. **Nettside** (`site/index.html`) — Interaktiv treemap der areal = sysselsetting og farge = KI-eksponering
 
@@ -46,9 +46,9 @@ Hvert yrke scores på en **KI-eksponerings**-akse fra 0 til 10, som måler hvor 
 uv sync
 ```
 
-Krever en OpenRouter API-nøkkel i `.env`:
+Krever en OpenAI API-nøkkel i `.env`:
 ```
-OPENROUTER_API_KEY=din_nøkkel_her
+OPENAI_API_KEY=din_nøkkel_her
 ```
 
 ## Bruk
@@ -62,7 +62,7 @@ uv run python fetch_ssb.py
 # Koble data
 uv run python build_data.py
 
-# Score KI-eksponering (bruker OpenRouter API)
+# Score KI-eksponering (bruker OpenAI API, gpt-4o-mini)
 uv run python score.py
 
 # Bygg nettside-data

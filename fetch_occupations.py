@@ -129,7 +129,7 @@ def main():
             "education_html": education_html,
             "traits": strip_html(traits),
             "where_work": strip_html(where_work),
-            "url": f"https://utdanning.no/yrker/{occ_id}" if occ_id else "",
+            "url": f"https://utdanning.no/yrker/beskrivelse/{slugify(title)}" if title else "",
         })
 
     # Sort by title
