@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Om analysen – KI Trusselen</title>
+<meta name="description" content="Fullstendig analyse av KI-eksponering i norsk arbeidsliv. Datagrunnlag, metode, fordeling, lønnsmasse og tolkninger.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #08080d;
+  --bg2: #0e0e16;
+  --bg3: #16161f;
+  --fg: #e2e4ea;
+  --fg2: #6b6d7a;
+  --fg3: #464856;
+  --accent: #6366f1;
+  --accent2: #818cf8;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2') format('woff2');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 64px 24px 80px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--fg3);
+  text-decoration: none;
+  margin-bottom: 40px;
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--fg2); }
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--fg2);
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 40px 0 12px;
+  padding-top: 8px;
+}
+h2:first-of-type { margin-top: 0; }
+
+p {
+  font-size: 14px;
+  color: var(--fg2);
+  margin: 0 0 16px;
+}
+
+strong { color: var(--fg); font-weight: 600; }
+em { font-style: italic; }
+
+a { color: var(--accent2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.kf {
+  display: inline-block;
+  padding: 1px 7px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 4px;
+  font-weight: 600;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  margin: 40px 0;
+}
+
+.method-box {
+  padding: 20px 24px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  margin: 32px 0;
+}
+.method-box h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.method-box p {
+  font-size: 13px;
+  margin: 0 0 10px;
+}
+.method-box p:last-child { margin: 0; }
+
+.footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-size: 12px;
+  color: var(--fg3);
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<a href="index.html" class="back-link">&larr; Tilbake til visualiseringen</a>
+
+<h1>Om analysen</h1>
+<p class="subtitle">
+  En datadrevet analyse av hvor eksponert norske yrker er for kunstig intelligens,
+  hva tallene faktisk viser, og hva de kan bety for norsk arbeidsliv.
+</p>
+
+<h2>Datagrunnlaget</h2>
+<p>
+  Datasettet dekker <strong id="aNumOcc">599</strong> yrker, hvorav <strong id="aNumWithData">553</strong> har
+  b&aring;de sysselsettings- og l&oslash;nnsdata. Til sammen representerer de
+  <strong id="aNumJobs">2,2&nbsp;mill.</strong> jobber.
+</p>
+<p>
+  Sysselsettingsvektet gjennomsnittlig KI-eksponering ligger p&aring;
+  <strong id="aWeightedAvg">4,8</strong> av 10, mens det uvektede snittet er
+  <strong id="aUnweightedAvg">4,6</strong>. Det betyr at de store yrkesgruppene samlet sett
+  er litt mer eksponert enn et rent gjennomsnitt av alle yrkestitlene
+  skulle tilsi &mdash; eksponeringen er tyngre der volumet faktisk er st&oslash;rst.
+</p>
+
+<h2>Fordelingen</h2>
+<p>
+  Omtrent <strong id="aTier23">31</strong>&nbsp;% av jobbene i datasettet ligger i score 2&ndash;3,
+  <strong id="aTier45">31</strong>&nbsp;% i 4&ndash;5,
+  <strong id="aTier67">24</strong>&nbsp;% i 6&ndash;7,
+  og <strong id="aTier810">13</strong>&nbsp;% i 8&ndash;10.
+</p>
+<p>
+  Over terskelen <span class="kf">6+</span> finner vi
+  <strong id="aHigh6Jobs"></strong> jobber (<strong id="aHigh6Pct"></strong>),
+  og bare p&aring; <span class="kf">8+</span> er det fortsatt
+  <strong id="aHigh8Jobs"></strong> jobber (<strong id="aHigh8Pct"></strong>).
+  Dette er ikke et marginalt fenomen i utkanten av &oslash;konomien, men en reell
+  omforming av en stor del av arbeidsmarkedet.
+</p>
+
+<h2>L&oslash;nnsmassen</h2>
+<p>
+  Omtrent <strong id="aWagePct6"></strong> av samlet l&oslash;nnssum i datasettet ligger
+  i yrker med score 6 eller h&oslash;yere. Yrker med score 8+ st&aring;r alene for
+  <strong id="aWagePct8"></strong>.
+</p>
+<p>
+  KI trenger ikke &laquo;ta&raquo; hele jobber for &aring; f&aring; stor &oslash;konomisk effekt.
+  Hvis teknologien bare reduserer tidsbruk eller &oslash;ker output i h&oslash;ytl&oslash;nnede,
+  skjermtunge yrker, kan det f&aring; stor effekt p&aring; kostnadsstruktur, marginer,
+  bemanningsplaner og ettersp&oslash;rsel etter nyansettelser.
+</p>
+
+<h2>Hvem er mest eksponert?</h2>
+<p>
+  De mest eksponerte hovedgruppene er kontoryrker, akademiske yrker, ledere og
+  h&oslash;yskoleyrker. De laveste ligger i h&aring;ndverk, renhold/hjelpearbeid,
+  b&oslash;nder/fiskere og maskin-/transportn&aelig;re yrker.
+  Jo mer arbeidet skjer som digital informasjonsbehandling, tekst, analyse,
+  koordinering og skjermarbeid, desto h&oslash;yere eksponering.
+</p>
+<p>
+  Noen av de st&oslash;rste h&oslash;yt eksponerte yrkene er service- og
+  administrasjonsmedarbeidere, &oslash;konomikonsulenter, revisorer, advokater
+  og systemutviklere. I den andre enden finner vi renholdsoperat&oslash;rer,
+  barnehageassistenter, elektrikere og hjelpepleiere.
+</p>
+
+<h2>Utdanningsparadokset</h2>
+<p>
+  Utdanningsm&oslash;nsteret bryter med den vanlige automatiseringsnarrativen:
+  yrker som krever master, doktorgrad og bachelor ligger <em>klart h&oslash;yere</em>
+  i eksponering enn fagbrev og videreg&aring;ende.
+</p>
+<p>
+  KI treffer ofte hardest der arbeidet er kognitivt, spr&aring;klig, analytisk og
+  digitalt. Noe av presset vil komme i hvitsnippsegmentet &mdash; ikke bare i
+  bunnen av arbeidsmarkedet. Det er kanskje den viktigste innsikten mange
+  undervurderer i KI-debatten.
+</p>
+
+<hr class="divider">
+
+<h2>Hva betyr dette?</h2>
+<p>
+  Tallene peker ikke mest mot plutselig massearbeidsledighet, men mot gradvis
+  effektivisering av store l&oslash;nnsmasser i h&oslash;ytl&oslash;nnede funksjoner.
+  F&oslash;rste effekt blir sannsynligvis ikke at stillinger forsvinner over natten, men
+  at virksomheter kan levere mer med samme bemanning, holde igjen p&aring; nyansettelser,
+  endre junior/senior-miks, og presse st&oslash;ttefunksjoner og mellomlag i organisasjonen.
+</p>
+<p>
+  &Oslash;konomisk betyr det at total l&oslash;nnsvekst kan bli svakere i enkelte
+  hvitsnippomr&aring;der, selv om BNP og produktivitet kan fortsette opp.
+  Noe av gevinsten kan g&aring; til bedre marginer, noe til lavere priser,
+  og noe til nye investeringer.
+</p>
+
+<h2>Ogs&aring; en mulighet</h2>
+<p>
+  H&oslash;y eksponering er ikke ensbetydende med trussel. De mest eksponerte yrkene
+  kan ogs&aring; v&aelig;re de som f&aring;r st&oslash;rst produktivitetsgevinst. En advokat
+  som kan h&aring;ndtere dobbelt s&aring; mange saker, en utvikler som leverer raskere,
+  eller en analytiker som finner m&oslash;nstre i data som f&oslash;r var utilgjengelige &mdash;
+  det er ogs&aring; KI-eksponering.
+</p>
+<p>
+  Sp&oslash;rsm&aring;let er derfor ikke bare om jobber forsvinner, men hvem som fanger
+  verdien av &oslash;kt produktivitet: arbeidstakere, bedrifter eller forbrukere?
+  Og hvordan vi som samfunn tilrettelegger for at transformasjonen skaper
+  mer enn den tar.
+</p>
+
+<div class="method-box">
+  <h3>Metode og forbehold</h3>
+  <p>
+    Hvert yrke er scoret p&aring; en skala fra 0 (minimal eksponering) til 10 (maksimal)
+    av en KI-modell (GPT), basert p&aring; yrkesbeskrivelser fra
+    <a href="https://utdanning.no">utdanning.no</a>.
+    Scoringen vurderer hvor stor andel av arbeidet som kan ber&oslash;res av
+    spr&aring;kmodeller og KI-verkt&oslash;y.
+  </p>
+  <p>
+    L&oslash;nns- og sysselsettingsdata er hentet fra
+    <a href="https://www.ssb.no">SSB</a> (tabell 11418 og 12542),
+    koblet via STYRK-08 yrkeskoder.
+  </p>
+  <p>
+    <strong>Viktige forbehold:</strong> Scorene er estimater basert p&aring; en modells
+    vurdering, ikke empiriske m&aring;linger. De fanger hvor mye av arbeidet som
+    <em>kan</em> ber&oslash;res av KI, ikke hvor mye som <em>vil</em> automatiseres.
+    Faktisk effekt avhenger av regulering, adopsjonshastighet, organisasjonskultur
+    og den menneskelige dimensjonen ved hvert yrke.
+  </p>
+</div>
+
+<div class="footer">
+  Data fra <a href="https://utdanning.no">utdanning.no</a> og <a href="https://www.ssb.no">SSB</a>.
+  Scoring av <a href="https://openai.com">OpenAI</a>.
+  Inspirert av <a href="https://github.com/karpathy/2025-ai-job-exposure">karpathy/2025-ai-job-exposure</a>.
+  Kildekode p&aring; <a href="https://github.com/mlervaag/jobber">GitHub</a>.
+</div>
+
+</div>
+
+<script>
+fetch("data.json")
+  .then(r => r.json())
+  .then(data => {
+    const withJobs = data.filter(d => d.jobs);
+    const totalJobs = withJobs.reduce((s, d) => s + d.jobs, 0);
+    const withBoth = data.filter(d => d.jobs && d.pay);
+
+    // Weighted / unweighted avg
+    let wSum = 0, wCount = 0;
+    for (const d of withJobs) {
+      if (d.exposure != null) { wSum += d.exposure * d.jobs; wCount += d.jobs; }
+    }
+    const scored = data.filter(d => d.exposure != null);
+    const unweighted = scored.reduce((s, d) => s + d.exposure, 0) / scored.length;
+
+    // Tier percentages
+    function tierPct(lo, hi) {
+      let n = 0;
+      for (const d of withJobs) {
+        if (d.exposure != null && d.exposure >= lo && d.exposure <= hi) n += d.jobs;
+      }
+      return totalJobs > 0 ? Math.round(n / totalJobs * 100) : 0;
+    }
+
+    // Jobs above threshold
+    function jobsAbove(threshold) {
+      let n = 0;
+      for (const d of withJobs) {
+        if (d.exposure != null && d.exposure >= threshold) n += d.jobs;
+      }
+      return n;
+    }
+
+    // Wage mass pct above threshold
+    function wagePctAbove(threshold) {
+      let total = 0, above = 0;
+      for (const d of withJobs) {
+        if (d.pay && d.exposure != null) {
+          const m = d.pay * d.jobs;
+          total += m;
+          if (d.exposure >= threshold) above += m;
+        }
+      }
+      return total > 0 ? (above / total * 100) : 0;
+    }
+
+    const fmt = n => n.toLocaleString("nb-NO");
+    const fmtM = n => {
+      if (n >= 1e6) return (n / 1e6).toFixed(1).replace(".", ",") + "\u00a0mill.";
+      return fmt(n);
+    };
+    const fmtD = n => n.toFixed(1).replace(".", ",");
+    const el = id => document.getElementById(id);
+
+    el("aNumOcc").textContent = fmt(data.length);
+    el("aNumWithData").textContent = fmt(withBoth.length);
+    el("aNumJobs").textContent = fmtM(totalJobs);
+    el("aWeightedAvg").textContent = fmtD(wCount > 0 ? wSum / wCount : 0);
+    el("aUnweightedAvg").textContent = fmtD(unweighted);
+
+    el("aTier23").textContent = tierPct(2, 3);
+    el("aTier45").textContent = tierPct(4, 5);
+    el("aTier67").textContent = tierPct(6, 7);
+    el("aTier810").textContent = tierPct(8, 10);
+
+    const high6 = jobsAbove(6);
+    const high8 = jobsAbove(8);
+    el("aHigh6Jobs").textContent = fmtM(high6);
+    el("aHigh6Pct").textContent = Math.round(high6 / totalJobs * 100) + "\u00a0%";
+    el("aHigh8Jobs").textContent = fmtM(high8);
+    el("aHigh8Pct").textContent = Math.round(high8 / totalJobs * 100) + "\u00a0%";
+
+    el("aWagePct6").textContent = fmtD(wagePctAbove(6)) + "\u00a0%";
+    el("aWagePct8").textContent = fmtD(wagePctAbove(8)) + "\u00a0%";
+  });
+</script>
+</body>
+</html>
