@@ -553,6 +553,178 @@ canvas#canvas {
   color: var(--fg2);
 }
 
+/* ── About modal ─────────────────────────────────────── */
+
+#aboutOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+#aboutOverlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#aboutModal {
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  width: min(680px, calc(100vw - 48px));
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  padding: 40px 44px 36px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  position: relative;
+}
+#aboutModal::-webkit-scrollbar { width: 5px; }
+#aboutModal::-webkit-scrollbar-track { background: transparent; }
+#aboutModal::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+.about-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255,255,255,0.04);
+  color: var(--fg2);
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+.about-close:hover {
+  background: rgba(255,255,255,0.08);
+  color: var(--fg);
+}
+
+.about-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.about-subtitle {
+  font-size: 13px;
+  color: var(--fg2);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+.about-body h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 24px 0 8px;
+  letter-spacing: -0.01em;
+}
+.about-body h3:first-child { margin-top: 0; }
+
+.about-body p {
+  font-size: 13px;
+  color: var(--fg2);
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+
+.about-body .stat-highlight {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.about-body .key-figure {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 2px 8px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.about-cta {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.about-cta button {
+  padding: 10px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.about-cta button:hover { background: var(--accent2); }
+
+.about-cta .about-more {
+  padding: 10px 28px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  background: none;
+  color: var(--fg2);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+.about-cta .about-more:hover { color: var(--fg); border-color: rgba(255,255,255,0.16); }
+
+.about-method {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 10px;
+  font-size: 11px;
+  color: var(--fg3);
+  line-height: 1.6;
+}
+.about-method strong {
+  color: var(--fg2);
+  font-weight: 600;
+}
+
+/* ── About link in sidebar ───────────────────────────── */
+
+.about-link {
+  font-size: 11px;
+  color: var(--fg3);
+  cursor: pointer;
+  transition: color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.about-link:hover { color: var(--fg2); }
+
 .progress-track {
   width: 160px;
   height: 3px;
@@ -778,6 +950,7 @@ canvas#canvas {
   </div>
 
   <div class="sidebar-footer">
+    <span class="about-link" onclick="showAbout()">&#9432; Om analysen</span>
     <div class="credits">
       Data fra <a href="https://utdanning.no">utdanning.no</a> og <a href="https://www.ssb.no">SSB</a><br>
       KI-scoring via <a href="https://openai.com">OpenAI</a> / <a href="https://anthropic.com">Anthropic</a><br>
@@ -807,6 +980,55 @@ canvas#canvas {
   <div class="tt-stats"></div>
   <div class="tt-rationale"></div>
   <div class="tt-link"></div>
+</div>
+
+<div id="aboutOverlay" onclick="if(event.target===this)hideAbout()">
+  <div id="aboutModal">
+    <button class="about-close" onclick="hideAbout()" aria-label="Lukk">&#x2715;</button>
+    <div class="about-title">Hva viser denne siden?</div>
+    <div class="about-subtitle">En datadrevet analyse av hvor eksponert norske yrker er for kunstig intelligens &mdash; og hva det kan bety.</div>
+    <div class="about-body">
+      <h3>Det store bildet</h3>
+      <p>
+        Datasettet dekker <span class="stat-highlight" id="aboutNumOcc"></span> norske yrker
+        som til sammen representerer <span class="stat-highlight" id="aboutNumJobs"></span> jobber.
+        Sysselsettingsvektet KI-eksponering ligger p&aring; <span class="stat-highlight" id="aboutWeightedAvg"></span> av 10 &mdash;
+        h&oslash;yere enn det uvektede snittet p&aring; <span class="stat-highlight" id="aboutUnweightedAvg"></span>.
+        Eksponeringen er alts&aring; tyngre der volumet er st&oslash;rst.
+      </p>
+
+      <h3>Ikke bare &laquo;enkle jobber&raquo;</h3>
+      <p>
+        <span class="stat-highlight" id="aboutHighPct"></span> av jobbene
+        og <span class="stat-highlight" id="aboutWagePct"></span> av samlet l&oslash;nnssum
+        ligger i yrker med eksponering 6 eller h&oslash;yere.
+        Det som overrasker mange er at eksponering korrelerer <em>positivt</em> med utdanningsniv&aring; og l&oslash;nn.
+        Yrker som krever master og bachelor er klart mer eksponert enn fagbrev og videreg&aring;ende &mdash;
+        KI treffer hardest der arbeidet er kognitivt, analytisk og digitalt.
+      </p>
+
+      <h3>Transformasjon, ikke apokalypse</h3>
+      <p>
+        Tallene peker mot gradvis effektivisering av store l&oslash;nnsmasser, ikke mot plutselig massearbeidsledighet.
+        Men h&oslash;y eksponering betyr ogs&aring; h&oslash;yt potensial: de mest eksponerte yrkene kan ogs&aring; v&aelig;re de som
+        f&aring;r st&oslash;rst produktivitetsgevinst. Sp&oslash;rsm&aring;let er kanskje ikke <em>om</em> jobber forsvinner, men
+        hvor raskt l&oslash;nnskostnad per levert enhet faller &mdash; og hvem som fanger verdien.
+      </p>
+
+      <div class="about-method">
+        <strong>Metode:</strong> Hvert yrke er scoret 0&ndash;10 av en KI-modell basert p&aring; yrkesbeskrivelser fra
+        <a href="https://utdanning.no" style="color:var(--accent2)">utdanning.no</a>.
+        L&oslash;nn og sysselsetting er hentet fra
+        <a href="https://www.ssb.no" style="color:var(--accent2)">SSB</a>.
+        Scoringen er et estimat, ikke en fasit &mdash; den m&aring;ler hvor mye av arbeidet som <em>kan</em>
+        ber&oslash;res av KI, ikke hvor mye som <em>vil</em> automatiseres.
+      </div>
+    </div>
+    <div class="about-cta">
+      <a href="about.html" class="about-more">Les hele analysen</a>
+      <button onclick="hideAbout()">Utforsk dataen</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1573,6 +1795,71 @@ function resize() {
   }
 }
 
+// ── About modal ────────────────────────────────────────────────────────
+
+function showAbout() {
+  document.getElementById("aboutOverlay").classList.add("visible");
+}
+
+function hideAbout() {
+  document.getElementById("aboutOverlay").classList.remove("visible");
+  try { localStorage.setItem("kitrusselen-about-seen", "1"); } catch(e) {}
+}
+
+function populateAboutModal() {
+  const withJobs = data.filter(d => d.jobs);
+  const totalJobs = withJobs.reduce((s, d) => s + d.jobs, 0);
+  const totalOcc = data.length;
+
+  // Weighted average
+  let wSum = 0, wCount = 0;
+  for (const d of withJobs) {
+    if (d.exposure != null) { wSum += d.exposure * d.jobs; wCount += d.jobs; }
+  }
+  const weightedAvg = wCount > 0 ? wSum / wCount : 0;
+
+  // Unweighted average
+  const scored = data.filter(d => d.exposure != null);
+  const unweightedAvg = scored.length > 0
+    ? scored.reduce((s, d) => s + d.exposure, 0) / scored.length : 0;
+
+  // Jobs with exposure >= 6
+  let highJobs = 0;
+  for (const d of withJobs) {
+    if (d.exposure != null && d.exposure >= 6) highJobs += d.jobs;
+  }
+  const highPct = totalJobs > 0 ? (highJobs / totalJobs * 100) : 0;
+
+  // Wage mass with exposure >= 6
+  let totalWageMass = 0, highWageMass = 0;
+  for (const d of withJobs) {
+    if (d.pay && d.exposure != null) {
+      const mass = d.pay * d.jobs;
+      totalWageMass += mass;
+      if (d.exposure >= 6) highWageMass += mass;
+    }
+  }
+  const wagePct = totalWageMass > 0 ? (highWageMass / totalWageMass * 100) : 0;
+
+  const fmt = n => n.toLocaleString("nb-NO");
+  const fmtM = n => (n / 1e6).toFixed(1).replace(".", ",") + "\u00a0mill.";
+  const fmtD = n => n.toFixed(1).replace(".", ",");
+
+  const el = id => document.getElementById(id);
+  el("aboutNumOcc").textContent = fmt(totalOcc);
+  el("aboutNumJobs").textContent = totalJobs >= 1e6 ? fmtM(totalJobs) : fmt(totalJobs);
+  el("aboutWeightedAvg").textContent = fmtD(weightedAvg);
+  el("aboutUnweightedAvg").textContent = fmtD(unweightedAvg);
+  el("aboutHighPct").textContent = Math.round(highPct) + "\u00a0%";
+  el("aboutWagePct").textContent = Math.round(wagePct) + "\u00a0%";
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && document.getElementById("aboutOverlay").classList.contains("visible")) {
+    hideAbout();
+  }
+});
+
 // ── Mobile sidebar ─────────────────────────────────────────────────────
 
 function toggleSidebar() {
@@ -1707,10 +1994,15 @@ async function loadData() {
 loadData().then(d => {
   data = d;
   computeStats();
+  populateAboutModal();
 
   resize();
   setTimeout(() => {
     document.getElementById("loading").classList.add("hidden");
+    // Show about modal on first visit
+    try {
+      if (!localStorage.getItem("kitrusselen-about-seen")) showAbout();
+    } catch(e) { showAbout(); }
   }, 300);
 });
 
