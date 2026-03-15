@@ -631,9 +631,9 @@ canvas#canvas {
   </div>
 
   <div class="stat-section">
-    <h3>L&oslash;nn eksponert</h3>
+    <h3>Total l&oslash;nnssum eksponert</h3>
     <div class="stat-big" id="statWages">&mdash;</div>
-    <div class="stat-label">&aring;rsl&oslash;nn i h&oslash;yt eksponerte yrker (7+)</div>
+    <div class="stat-label" id="statWagesLabel">h&oslash;yt eksponerte yrker (score 7+)</div>
   </div>
 
   <div class="gradient-legend">
@@ -1137,11 +1137,15 @@ function computeStats() {
     tier.pct = totalJobs > 0 ? (tier.jobs / totalJobs * 100) : 0;
   }
 
-  // Wages exposed
+  // Wages exposed (score >= 7) vs. total
   let wagesExposed = 0;
+  let wagesTotal = 0;
   for (const d of data) {
-    if (d.exposure != null && d.exposure >= 7 && d.jobs && d.pay) {
-      wagesExposed += d.jobs * d.pay;
+    if (d.jobs && d.pay) {
+      wagesTotal += d.jobs * d.pay;
+      if (d.exposure != null && d.exposure >= 7) {
+        wagesExposed += d.jobs * d.pay;
+      }
     }
   }
 
@@ -1230,14 +1234,21 @@ function computeStats() {
     </div>`;
   }).join("");
 
-  // Wages stat
+  // Wages stat — animated, with percentage of total
   const mrdKr = wagesExposed / 1e9;
   const wagesEl = document.getElementById("statWages");
+  const wagesPct = wagesTotal > 0 ? wagesExposed / wagesTotal * 100 : 0;
+
   if (mrdKr >= 1000) {
-    wagesEl.textContent = (mrdKr / 1000).toFixed(1).replace(".", ",") + " bill. kr";
+    animateValue(wagesEl, Math.round(mrdKr / 1000 * 10), 1200,
+      n => (n / 10).toFixed(1).replace(".", ",") + " bill. kr");
   } else {
-    wagesEl.textContent = Math.round(mrdKr) + " mrd. kr";
+    animateValue(wagesEl, Math.round(mrdKr), 1200,
+      n => n + " mrd. kr");
   }
+
+  document.getElementById("statWagesLabel").textContent =
+    `${wagesPct.toFixed(0)}% av total lønnssum (score 7+)`;
 }
 
 // ── Search & filter ────────────────────────────────────────────────────
