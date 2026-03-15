@@ -949,6 +949,8 @@ canvas#canvas {
       <button class="filter-chip" data-filter="lowai">Lav AI &le;2</button>
       <button class="filter-chip" data-filter="vulnerable">S&aring;rbare yrker</button>
       <button class="filter-chip" data-filter="transform">Transformasjon</button>
+      <button class="filter-chip" data-filter="popular_edu">Popul&aelig;r utdanning</button>
+      <button class="filter-chip" data-filter="mismatch">Mismatch</button>
     </div>
     <div class="filter-group-label">Utdanningsniv&aring;</div>
     <div class="filter-chips" id="educationFilters"></div>
@@ -1453,10 +1455,15 @@ function showTooltip(d, mx, my) {
     tt.querySelector(".tt-exposure").innerHTML = "";
   }
 
+  const trendHtml = d.student_trend != null
+    ? `<span class="label">Studenttrend (5 år)</span><span class="value" style="color:${d.student_trend > 5 ? '#22c55e' : d.student_trend < -5 ? '#f43f5e' : 'var(--fg)'}">${d.student_trend > 0 ? '+' : ''}${d.student_trend.toFixed(1).replace('.', ',')}%</span>`
+    : '';
+
   tt.querySelector(".tt-stats").innerHTML = `
     <span class="label">Median årslønn</span><span class="value">${formatPay(d.pay)}</span>
     <span class="label">Sysselsatte</span><span class="value">${formatNumber(d.jobs)}</span>
     <span class="label">Utdanning</span><span class="value">${d.education || '\u2014'}</span>
+    ${trendHtml}
   `;
 
   tt.querySelector(".tt-rationale").textContent =
@@ -1695,6 +1702,12 @@ function matchesChipFilter(d) {
   }
   if (activeChipFilter === "transform") {
     return d.exposure != null && d.exposure >= 7 && d.pay != null && d.pay >= 700000;
+  }
+  if (activeChipFilter === "popular_edu") {
+    return d.student_trend != null && d.student_trend > 10;
+  }
+  if (activeChipFilter === "mismatch") {
+    return d.exposure != null && d.exposure >= 6 && d.student_trend != null && d.student_trend > 5;
   }
   return true;
 }
