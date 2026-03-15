@@ -374,11 +374,18 @@ body {
   font-size: 10px;
   color: var(--fg3);
 }
-.gradient-legend canvas {
-  border-radius: 4px;
+.gradient-bar {
   flex: 1;
+  min-width: 0;
   height: 8px;
-  display: block;
+  border-radius: 4px;
+  /* Matches exposureColor() stops: teal→amber→orange→rose */
+  background: linear-gradient(to right,
+    rgb(34, 197, 94)  0%,
+    rgb(204, 157, 44) 40%,
+    rgb(244, 77, 34)  70%,
+    rgb(244, 63, 94)  100%
+  );
 }
 
 /* ── Footer ───────────────────────────────────────────── */
@@ -765,7 +772,7 @@ canvas#canvas {
     <h3>Fargeskala</h3>
     <div class="gradient-legend">
       <span>Trygg</span>
-      <canvas id="gradientLegend" height="8"></canvas>
+      <div class="gradient-bar"></div>
       <span>Eksponert</span>
     </div>
   </div>
@@ -1655,26 +1662,6 @@ mobileSearchBox.addEventListener("keydown", (e) => {
   }
 });
 
-// ── Legend gradient ────────────────────────────────────────────────────
-
-function drawGradientLegend() {
-  requestAnimationFrame(() => {
-    const c = document.getElementById("gradientLegend");
-    const w = c.clientWidth || c.parentElement?.clientWidth - 80 || 160;
-    const h = 8;
-    c.width = w * 2;
-    c.height = h * 2;
-    c.style.width = w + "px";
-    c.style.height = h + "px";
-    const gctx = c.getContext("2d");
-    gctx.scale(2, 2);
-    for (let x = 0; x < w; x++) {
-      const score = (x / (w - 1)) * 10;
-      gctx.fillStyle = exposureColorCSS(score, 1);
-      gctx.fillRect(x, 0, 1, h);
-    }
-  });
-}
 
 // ── Load with streaming progress ───────────────────────────────────────
 
@@ -1720,7 +1707,7 @@ async function loadData() {
 loadData().then(d => {
   data = d;
   computeStats();
-  drawGradientLegend();
+
   resize();
   setTimeout(() => {
     document.getElementById("loading").classList.add("hidden");
@@ -1729,7 +1716,6 @@ loadData().then(d => {
 
 window.addEventListener("resize", () => {
   resize();
-  drawGradientLegend();
 });
 </script>
 </body>
