@@ -454,6 +454,147 @@ canvas#canvas {
   font-size: 13px;
   color: var(--fg2);
 }
+
+/* ── About modal ─────────────────────────────────────── */
+
+#aboutOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+#aboutOverlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#aboutModal {
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  width: min(680px, calc(100vw - 48px));
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  padding: 40px 44px 36px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  position: relative;
+}
+#aboutModal::-webkit-scrollbar { width: 5px; }
+#aboutModal::-webkit-scrollbar-track { background: transparent; }
+#aboutModal::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+
+.about-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255,255,255,0.04);
+  color: var(--fg2);
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+.about-close:hover {
+  background: rgba(255,255,255,0.08);
+  color: var(--fg);
+}
+
+.about-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.about-subtitle {
+  font-size: 13px;
+  color: var(--fg2);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+.about-body h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 24px 0 8px;
+  letter-spacing: -0.01em;
+}
+.about-body h3:first-child { margin-top: 0; }
+
+.about-body p {
+  font-size: 13px;
+  color: var(--fg2);
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+
+.about-body .stat-highlight {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.about-body .key-figure {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 2px 8px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.about-cta {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: flex-end;
+}
+.about-cta button {
+  padding: 10px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.about-cta button:hover { background: var(--accent2); }
+
+/* ── About link in sidebar ───────────────────────────── */
+
+.about-link {
+  font-size: 11px;
+  color: var(--fg3);
+  cursor: pointer;
+  transition: color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.about-link:hover { color: var(--fg2); }
 </style>
 </head>
 <body>
@@ -517,6 +658,7 @@ canvas#canvas {
   </div>
 
   <div class="sidebar-footer">
+    <span class="about-link" onclick="showAbout()">&#9432; Om analysen</span>
     <div class="credits">
       Data fra <a href="https://utdanning.no">utdanning.no</a> og <a href="https://www.ssb.no">SSB</a><br>
       Scoring av <a href="https://openai.com">OpenAI</a> GPT-5.4<br>
@@ -539,6 +681,73 @@ canvas#canvas {
   <div class="tt-stats"></div>
   <div class="tt-rationale"></div>
   <div class="tt-link"></div>
+</div>
+
+<div id="aboutOverlay" onclick="if(event.target===this)hideAbout()">
+  <div id="aboutModal">
+    <button class="about-close" onclick="hideAbout()" aria-label="Lukk">&#x2715;</button>
+    <div class="about-title">Hva viser denne siden?</div>
+    <div class="about-subtitle">En datadrevet analyse av hvor eksponert norske yrker er for kunstig intelligens.</div>
+    <div class="about-body">
+      <h3>Datagrunnlaget</h3>
+      <p>
+        Datasettet dekker <span class="stat-highlight">599 yrker</span>, hvorav 553 har b&aring;de sysselsettings- og l&oslash;nnsdata.
+        Til sammen representerer de over <span class="stat-highlight">2,2 millioner jobber</span>.
+        Sysselsettingsvektet gjennomsnittlig KI-eksponering ligger p&aring; omtrent <span class="stat-highlight">4,8 av 10</span>,
+        mens det uvektede snittet er rundt 4,6. Det betyr at de store yrkesgruppene samlet sett er litt mer eksponert
+        enn et rent gjennomsnitt av alle yrkestitlene skulle tilsi &mdash; eksponeringen er tyngre der volumet faktisk er st&oslash;rst.
+      </p>
+
+      <h3>Fordelingen</h3>
+      <p>
+        Omtrent 31&nbsp;% av jobbene ligger i score 2&ndash;3, 31&nbsp;% i 4&ndash;5, 24&nbsp;% i 6&ndash;7, og 13&nbsp;% i 8&ndash;10.
+        Over terskelen <span class="key-figure">6+</span> finner vi rundt <span class="stat-highlight">820&nbsp;000 jobber</span> (37&nbsp;%),
+        og bare p&aring; <span class="key-figure">8+</span> er det fortsatt <span class="stat-highlight">289&nbsp;000 jobber</span> (13&nbsp;%).
+        Dette er ikke et marginalt fenomen i utkanten av &oslash;konomien, men en reell omforming av en stor del av arbeidsmarkedet.
+      </p>
+
+      <h3>L&oslash;nnsmassen</h3>
+      <p>
+        Omtrent <span class="stat-highlight">42,5&nbsp;%</span> av samlet l&oslash;nnssum i datasettet ligger i yrker med score 6 eller h&oslash;yere.
+        Yrker med score 8+ st&aring;r alene for rundt 14,8&nbsp;%. KI trenger ikke &laquo;ta&raquo; hele jobber for &aring; f&aring; stor
+        &oslash;konomisk effekt &mdash; hvis teknologien bare reduserer tidsbruk eller &oslash;ker output i h&oslash;ytl&oslash;nnede,
+        skjermtunge yrker, kan det f&aring; stor effekt p&aring; kostnadsstruktur, marginer, bemanningsplaner og
+        ettersp&oslash;rsel etter nyansettelser.
+      </p>
+
+      <h3>Hvem er mest eksponert?</h3>
+      <p>
+        De mest eksponerte hovedgruppene er kontoryrker, akademiske yrker, ledere og h&oslash;yskoleyrker.
+        De laveste ligger i h&aring;ndverk, renhold, b&oslash;nder/fiskere og maskin-/transportn&aelig;re yrker.
+        Jo mer arbeidet skjer som digital informasjonsbehandling, tekst, analyse, koordinering og skjermarbeid,
+        desto h&oslash;yere eksponering.
+      </p>
+      <p>
+        Utdanningsm&oslash;nsteret forsterker bildet: yrker som krever master, doktorgrad og bachelor ligger klart
+        h&oslash;yere i eksponering enn fagbrev og videreg&aring;ende. KI treffer ofte hardest der arbeidet er kognitivt,
+        spr&aring;klig, analytisk og digitalt &mdash; noe av presset vil komme i hvitsnippsegmentet,
+        ikke bare i bunnen av arbeidsmarkedet.
+      </p>
+
+      <h3>Hva betyr dette?</h3>
+      <p>
+        Tallene peker ikke mest mot plutselig massearbeidsledighet, men mot gradvis effektivisering av store l&oslash;nnsmasser
+        i h&oslash;ytl&oslash;nnede funksjoner. F&oslash;rste effekt blir sannsynligvis ikke at stillinger forsvinner over natten,
+        men at virksomheter kan levere mer med samme bemanning, holde igjen p&aring; nyansettelser,
+        endre junior/senior-miks, og presse st&oslash;ttefunksjoner og mellomlag i organisasjonen.
+      </p>
+      <p>
+        N&aring;r <span class="stat-highlight">37&nbsp;%</span> av jobbene og over <span class="stat-highlight">42&nbsp;%</span>
+        av l&oslash;nnsmassen ligger i yrker med relativt h&oslash;y eksponering, er det nok til at KI kan p&aring;virke
+        hele kostnadsbasen i &oslash;konomien &mdash; uten at man trenger en dramatisk &laquo;jobbapokalypse&raquo; for &aring;
+        f&aring; store utslag. KI ser ut til &aring; v&aelig;re mer en l&oslash;nns- og produktivitetsrevolusjon enn en ren
+        automatiseringshistorie.
+      </p>
+    </div>
+    <div class="about-cta">
+      <button onclick="hideAbout()">Utforsk dataen</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1190,6 +1399,23 @@ function drawGradientLegend() {
   }
 }
 
+// ── About modal ────────────────────────────────────────────────────────
+
+function showAbout() {
+  document.getElementById("aboutOverlay").classList.add("visible");
+}
+
+function hideAbout() {
+  document.getElementById("aboutOverlay").classList.remove("visible");
+  try { localStorage.setItem("kitrusselen-about-seen", "1"); } catch(e) {}
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && document.getElementById("aboutOverlay").classList.contains("visible")) {
+    hideAbout();
+  }
+});
+
 // ── Load ───────────────────────────────────────────────────────────────
 
 fetch("data.json")
@@ -1202,6 +1428,10 @@ fetch("data.json")
     // Hide loading screen
     setTimeout(() => {
       document.getElementById("loading").classList.add("hidden");
+      // Show about modal on first visit
+      try {
+        if (!localStorage.getItem("kitrusselen-about-seen")) showAbout();
+      } catch(e) { showAbout(); }
     }, 300);
   });
 
