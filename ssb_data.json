@@ -1,0 +1,3376 @@
+{
+  "0-9": {
+    "code": "0-9",
+    "median_monthly": 55800,
+    "median_annual": 669600,
+    "employed": 2872856
+  },
+  "00": {
+    "code": "00",
+    "median_monthly": 42820,
+    "median_annual": 513840,
+    "employed": 158695
+  },
+  "000": {
+    "code": "000",
+    "median_monthly": 42820,
+    "median_annual": 513840,
+    "employed": 158695
+  },
+  "0000": {
+    "code": "0000",
+    "median_monthly": 42820,
+    "median_annual": 513840,
+    "employed": 158695
+  },
+  "01": {
+    "code": "01",
+    "median_monthly": 88010,
+    "median_annual": 1056120,
+    "employed": 4953
+  },
+  "011": {
+    "code": "011",
+    "median_monthly": 88010,
+    "median_annual": 1056120,
+    "employed": 4953
+  },
+  "0110": {
+    "code": "0110",
+    "median_monthly": 88010,
+    "median_annual": 1056120,
+    "employed": 4953
+  },
+  "02": {
+    "code": "02",
+    "median_monthly": 80760,
+    "median_annual": 969120,
+    "employed": 5021
+  },
+  "021": {
+    "code": "021",
+    "median_monthly": 80760,
+    "median_annual": 969120,
+    "employed": 5021
+  },
+  "0210": {
+    "code": "0210",
+    "median_monthly": 80760,
+    "median_annual": 969120,
+    "employed": 5021
+  },
+  "03": {
+    "code": "03",
+    "median_monthly": 55680,
+    "median_annual": 668160,
+    "employed": 15466
+  },
+  "031": {
+    "code": "031",
+    "median_monthly": 55680,
+    "median_annual": 668160,
+    "employed": 15466
+  },
+  "0310": {
+    "code": "0310",
+    "median_monthly": 55680,
+    "median_annual": 668160,
+    "employed": 15466
+  },
+  "0b": {
+    "code": "0b",
+    "employed": 158695
+  },
+  "1": {
+    "code": "1",
+    "median_monthly": 78020,
+    "median_annual": 936240,
+    "employed": 240483
+  },
+  "11": {
+    "code": "11",
+    "median_monthly": 84370,
+    "median_annual": 1012440,
+    "employed": 41310
+  },
+  "111": {
+    "code": "111",
+    "median_monthly": 86060,
+    "median_annual": 1032720,
+    "employed": 4498
+  },
+  "1111": {
+    "code": "1111",
+    "median_monthly": 88680,
+    "median_annual": 1064160,
+    "employed": 1197
+  },
+  "1112": {
+    "code": "1112",
+    "median_monthly": 119520,
+    "median_annual": 1434240,
+    "employed": 984
+  },
+  "1114": {
+    "code": "1114",
+    "median_monthly": 75250,
+    "median_annual": 903000,
+    "employed": 2317
+  },
+  "112": {
+    "code": "112",
+    "median_monthly": 84000,
+    "median_annual": 1008000,
+    "employed": 36812
+  },
+  "1120": {
+    "code": "1120",
+    "median_monthly": 84000,
+    "median_annual": 1008000,
+    "employed": 36812
+  },
+  "12": {
+    "code": "12",
+    "median_monthly": 86720,
+    "median_annual": 1040640,
+    "employed": 62363
+  },
+  "121": {
+    "code": "121",
+    "median_monthly": 85200,
+    "median_annual": 1022400,
+    "employed": 41468
+  },
+  "1211": {
+    "code": "1211",
+    "median_monthly": 101670,
+    "median_annual": 1220040,
+    "employed": 8708
+  },
+  "1212": {
+    "code": "1212",
+    "median_monthly": 96670,
+    "median_annual": 1160040,
+    "employed": 2328
+  },
+  "1213": {
+    "code": "1213",
+    "median_monthly": 85560,
+    "median_annual": 1026720,
+    "employed": 4885
+  },
+  "1219": {
+    "code": "1219",
+    "median_monthly": 79170,
+    "median_annual": 950040,
+    "employed": 25547
+  },
+  "122": {
+    "code": "122",
+    "median_monthly": 89850,
+    "median_annual": 1078200,
+    "employed": 20895
+  },
+  "1221": {
+    "code": "1221",
+    "median_monthly": 89170,
+    "median_annual": 1070040,
+    "employed": 15949
+  },
+  "1222": {
+    "code": "1222",
+    "median_monthly": 83130,
+    "median_annual": 997560,
+    "employed": 1861
+  },
+  "1223": {
+    "code": "1223",
+    "median_monthly": 96010,
+    "median_annual": 1152120,
+    "employed": 3085
+  },
+  "13": {
+    "code": "13",
+    "median_monthly": 79130,
+    "median_annual": 949560,
+    "employed": 94332
+  },
+  "131": {
+    "code": "131",
+    "median_monthly": 74530,
+    "median_annual": 894360,
+    "employed": 1040
+  },
+  "1311": {
+    "code": "1311",
+    "median_monthly": 67940,
+    "median_annual": 815280,
+    "employed": 652
+  },
+  "1312": {
+    "code": "1312",
+    "median_monthly": 88000,
+    "median_annual": 1056000,
+    "employed": 388
+  },
+  "132": {
+    "code": "132",
+    "median_monthly": 83330,
+    "median_annual": 999960,
+    "employed": 44976
+  },
+  "1321": {
+    "code": "1321",
+    "median_monthly": 83330,
+    "median_annual": 999960,
+    "employed": 12518
+  },
+  "1322": {
+    "code": "1322",
+    "median_monthly": 120670,
+    "median_annual": 1448040,
+    "employed": 7857
+  },
+  "1323": {
+    "code": "1323",
+    "median_monthly": 73140,
+    "median_annual": 877680,
+    "employed": 15779
+  },
+  "1324": {
+    "code": "1324",
+    "median_monthly": 79220,
+    "median_annual": 950640,
+    "employed": 8822
+  },
+  "133": {
+    "code": "133",
+    "median_monthly": 98510,
+    "median_annual": 1182120,
+    "employed": 6046
+  },
+  "1330": {
+    "code": "1330",
+    "median_monthly": 98510,
+    "median_annual": 1182120,
+    "employed": 6046
+  },
+  "134": {
+    "code": "134",
+    "median_monthly": 75000,
+    "median_annual": 900000,
+    "employed": 42270
+  },
+  "1341": {
+    "code": "1341",
+    "median_monthly": 68600,
+    "median_annual": 823200,
+    "employed": 4004
+  },
+  "1342": {
+    "code": "1342",
+    "median_monthly": 71330,
+    "median_annual": 855960,
+    "employed": 12411
+  },
+  "1343": {
+    "code": "1343",
+    "median_monthly": 74530,
+    "median_annual": 894360,
+    "employed": 2113
+  },
+  "1344": {
+    "code": "1344",
+    "median_monthly": 67070,
+    "median_annual": 804840,
+    "employed": 1700
+  },
+  "1345": {
+    "code": "1345",
+    "median_monthly": 75610,
+    "median_annual": 907320,
+    "employed": 11303
+  },
+  "1346": {
+    "code": "1346",
+    "median_monthly": 108190,
+    "median_annual": 1298280,
+    "employed": 5012
+  },
+  "1349": {
+    "code": "1349",
+    "median_monthly": 85320,
+    "median_annual": 1023840,
+    "employed": 5727
+  },
+  "14": {
+    "code": "14",
+    "median_monthly": 55360,
+    "median_annual": 664320,
+    "employed": 42478
+  },
+  "141": {
+    "code": "141",
+    "median_monthly": 51160,
+    "median_annual": 613920,
+    "employed": 4487
+  },
+  "1411": {
+    "code": "1411",
+    "median_monthly": 52610,
+    "median_annual": 631320,
+    "employed": 748
+  },
+  "1412": {
+    "code": "1412",
+    "median_monthly": 50770,
+    "median_annual": 609240,
+    "employed": 3739
+  },
+  "142": {
+    "code": "142",
+    "median_monthly": 55390,
+    "median_annual": 664680,
+    "employed": 33959
+  },
+  "1420": {
+    "code": "1420",
+    "median_monthly": 55390,
+    "median_annual": 664680,
+    "employed": 33959
+  },
+  "143": {
+    "code": "143",
+    "median_monthly": 60680,
+    "median_annual": 728160,
+    "employed": 4032
+  },
+  "1431": {
+    "code": "1431",
+    "median_monthly": 62500,
+    "median_annual": 750000,
+    "employed": 2868
+  },
+  "1439": {
+    "code": "1439",
+    "median_monthly": 55000,
+    "median_annual": 660000,
+    "employed": 1164
+  },
+  "2": {
+    "code": "2",
+    "median_monthly": 62920,
+    "median_annual": 755040,
+    "employed": 743115
+  },
+  "21": {
+    "code": "21",
+    "median_monthly": 77940,
+    "median_annual": 935280,
+    "employed": 87939
+  },
+  "211": {
+    "code": "211",
+    "median_monthly": 83620,
+    "median_annual": 1003440,
+    "employed": 4509
+  },
+  "2111": {
+    "code": "2111",
+    "median_monthly": 75790,
+    "median_annual": 909480,
+    "employed": 523
+  },
+  "2112": {
+    "code": "2112",
+    "median_monthly": 66690,
+    "median_annual": 800280,
+    "employed": 298
+  },
+  "2113": {
+    "code": "2113",
+    "median_monthly": 78390,
+    "median_annual": 940680,
+    "employed": 923
+  },
+  "2114": {
+    "code": "2114",
+    "median_monthly": 93990,
+    "median_annual": 1127880,
+    "employed": 2765
+  },
+  "212": {
+    "code": "212",
+    "median_monthly": 66400,
+    "median_annual": 796800,
+    "employed": 1759
+  },
+  "2120": {
+    "code": "2120",
+    "median_monthly": 66400,
+    "median_annual": 796800,
+    "employed": 1759
+  },
+  "213": {
+    "code": "213",
+    "median_monthly": 66710,
+    "median_annual": 800520,
+    "employed": 3543
+  },
+  "2131": {
+    "code": "2131",
+    "median_monthly": 68640,
+    "median_annual": 823680,
+    "employed": 1819
+  },
+  "2132": {
+    "code": "2132",
+    "median_monthly": 61830,
+    "median_annual": 741960,
+    "employed": 593
+  },
+  "2133": {
+    "code": "2133",
+    "median_monthly": 66430,
+    "median_annual": 797160,
+    "employed": 1131
+  },
+  "214": {
+    "code": "214",
+    "median_monthly": 80860,
+    "median_annual": 970320,
+    "employed": 53170
+  },
+  "2141": {
+    "code": "2141",
+    "median_monthly": 68690,
+    "median_annual": 824280,
+    "employed": 1137
+  },
+  "2142": {
+    "code": "2142",
+    "median_monthly": 75990,
+    "median_annual": 911880,
+    "employed": 26601
+  },
+  "2143": {
+    "code": "2143",
+    "median_monthly": 78690,
+    "median_annual": 944280,
+    "employed": 541
+  },
+  "2144": {
+    "code": "2144",
+    "median_monthly": 87200,
+    "median_annual": 1046400,
+    "employed": 4903
+  },
+  "2145": {
+    "code": "2145",
+    "median_monthly": 72440,
+    "median_annual": 869280,
+    "employed": 842
+  },
+  "2146": {
+    "code": "2146",
+    "median_monthly": 98500,
+    "median_annual": 1182000,
+    "employed": 11576
+  },
+  "2149": {
+    "code": "2149",
+    "median_monthly": 77770,
+    "median_annual": 933240,
+    "employed": 7570
+  },
+  "215": {
+    "code": "215",
+    "median_monthly": 83690,
+    "median_annual": 1004280,
+    "employed": 9826
+  },
+  "2151": {
+    "code": "2151",
+    "median_monthly": 84580,
+    "median_annual": 1014960,
+    "employed": 4573
+  },
+  "2152": {
+    "code": "2152",
+    "median_monthly": 83330,
+    "median_annual": 999960,
+    "employed": 4569
+  },
+  "2153": {
+    "code": "2153",
+    "median_monthly": 81100,
+    "median_annual": 973200,
+    "employed": 684
+  },
+  "216": {
+    "code": "216",
+    "median_monthly": 68260,
+    "median_annual": 819120,
+    "employed": 15132
+  },
+  "2161": {
+    "code": "2161",
+    "median_monthly": 75010,
+    "median_annual": 900120,
+    "employed": 6269
+  },
+  "2162": {
+    "code": "2162",
+    "median_monthly": 72500,
+    "median_annual": 870000,
+    "employed": 933
+  },
+  "2163": {
+    "code": "2163",
+    "median_monthly": 62670,
+    "median_annual": 752040,
+    "employed": 876
+  },
+  "2164": {
+    "code": "2164",
+    "median_monthly": 68140,
+    "median_annual": 817680,
+    "employed": 1442
+  },
+  "2165": {
+    "code": "2165",
+    "median_monthly": 63810,
+    "median_annual": 765720,
+    "employed": 858
+  },
+  "2166": {
+    "code": "2166",
+    "median_monthly": 60520,
+    "median_annual": 726240,
+    "employed": 4754
+  },
+  "22": {
+    "code": "22",
+    "median_monthly": 60930,
+    "median_annual": 731160,
+    "employed": 158030
+  },
+  "221": {
+    "code": "221",
+    "median_monthly": 101170,
+    "median_annual": 1214040,
+    "employed": 24911
+  },
+  "2211": {
+    "code": "2211",
+    "median_monthly": 83080,
+    "median_annual": 996960,
+    "employed": 7468
+  },
+  "2212": {
+    "code": "2212",
+    "median_monthly": 107160,
+    "median_annual": 1285920,
+    "employed": 17443
+  },
+  "222": {
+    "code": "222",
+    "median_monthly": 59270,
+    "median_annual": 711240,
+    "employed": 114956
+  },
+  "2221": {
+    "code": "2221",
+    "median_monthly": 63810,
+    "median_annual": 765720,
+    "employed": 29478
+  },
+  "2222": {
+    "code": "2222",
+    "median_monthly": 69660,
+    "median_annual": 835920,
+    "employed": 2813
+  },
+  "2223": {
+    "code": "2223",
+    "median_monthly": 57830,
+    "median_annual": 693960,
+    "employed": 60208
+  },
+  "2224": {
+    "code": "2224",
+    "median_monthly": 57190,
+    "median_annual": 686280,
+    "employed": 22457
+  },
+  "225": {
+    "code": "225",
+    "median_monthly": 66270,
+    "median_annual": 795240,
+    "employed": 1821
+  },
+  "2250": {
+    "code": "2250",
+    "median_monthly": 66270,
+    "median_annual": 795240,
+    "employed": 1821
+  },
+  "226": {
+    "code": "226",
+    "median_monthly": 57830,
+    "median_annual": 693960,
+    "employed": 16342
+  },
+  "2261": {
+    "code": "2261",
+    "median_monthly": 75000,
+    "median_annual": 900000,
+    "employed": 3024
+  },
+  "2262": {
+    "code": "2262",
+    "median_monthly": 62840,
+    "median_annual": 754080,
+    "employed": 1865
+  },
+  "2263": {
+    "code": "2263",
+    "median_monthly": 66740,
+    "median_annual": 800880,
+    "employed": 130
+  },
+  "2264": {
+    "code": "2264",
+    "median_monthly": 54350,
+    "median_annual": 652200,
+    "employed": 6109
+  },
+  "2265": {
+    "code": "2265",
+    "median_monthly": 59380,
+    "median_annual": 712560,
+    "employed": 991
+  },
+  "2266": {
+    "code": "2266",
+    "median_monthly": 54410,
+    "median_annual": 652920,
+    "employed": 732
+  },
+  "2267": {
+    "code": "2267",
+    "median_monthly": 52780,
+    "median_annual": 633360,
+    "employed": 3117
+  },
+  "2269": {
+    "code": "2269",
+    "median_monthly": 65900,
+    "median_annual": 790800,
+    "employed": 374
+  },
+  "23": {
+    "code": "23",
+    "median_monthly": 57860,
+    "median_annual": 694320,
+    "employed": 184541
+  },
+  "231": {
+    "code": "231",
+    "median_monthly": 62740,
+    "median_annual": 752880,
+    "employed": 30479
+  },
+  "2310": {
+    "code": "2310",
+    "median_monthly": 62740,
+    "median_annual": 752880,
+    "employed": 30479
+  },
+  "232": {
+    "code": "232",
+    "median_monthly": 56300,
+    "median_annual": 675600,
+    "employed": 882
+  },
+  "2320": {
+    "code": "2320",
+    "median_monthly": 56300,
+    "median_annual": 675600,
+    "employed": 882
+  },
+  "233": {
+    "code": "233",
+    "median_monthly": 61930,
+    "median_annual": 743160,
+    "employed": 26944
+  },
+  "2330": {
+    "code": "2330",
+    "median_monthly": 61930,
+    "median_annual": 743160,
+    "employed": 26944
+  },
+  "234": {
+    "code": "234",
+    "median_monthly": 56570,
+    "median_annual": 678840,
+    "employed": 114716
+  },
+  "2341": {
+    "code": "2341",
+    "median_monthly": 58750,
+    "median_annual": 705000,
+    "employed": 80404
+  },
+  "2342": {
+    "code": "2342",
+    "median_monthly": 53550,
+    "median_annual": 642600,
+    "employed": 34312
+  },
+  "235": {
+    "code": "235",
+    "median_monthly": 57600,
+    "median_annual": 691200,
+    "employed": 11520
+  },
+  "2351": {
+    "code": "2351",
+    "median_monthly": 65980,
+    "median_annual": 791760,
+    "employed": 2034
+  },
+  "2352": {
+    "code": "2352",
+    "median_monthly": 56610,
+    "median_annual": 679320,
+    "employed": 2923
+  },
+  "2353": {
+    "code": "2353",
+    "median_monthly": 46670,
+    "median_annual": 560040,
+    "employed": 260
+  },
+  "2354": {
+    "code": "2354",
+    "median_monthly": 56680,
+    "median_annual": 680160,
+    "employed": 3100
+  },
+  "2355": {
+    "code": "2355",
+    "median_monthly": 50970,
+    "median_annual": 611640,
+    "employed": 324
+  },
+  "2356": {
+    "code": "2356",
+    "employed": 55
+  },
+  "2359": {
+    "code": "2359",
+    "median_monthly": 57220,
+    "median_annual": 686640,
+    "employed": 2824
+  },
+  "24": {
+    "code": "24",
+    "median_monthly": 65000,
+    "median_annual": 780000,
+    "employed": 180927
+  },
+  "241": {
+    "code": "241",
+    "median_monthly": 74170,
+    "median_annual": 890040,
+    "employed": 41742
+  },
+  "2411": {
+    "code": "2411",
+    "median_monthly": 72300,
+    "median_annual": 867600,
+    "employed": 14913
+  },
+  "2412": {
+    "code": "2412",
+    "median_monthly": 74680,
+    "median_annual": 896160,
+    "employed": 9752
+  },
+  "2413": {
+    "code": "2413",
+    "median_monthly": 75360,
+    "median_annual": 904320,
+    "employed": 17077
+  },
+  "242": {
+    "code": "242",
+    "median_monthly": 62840,
+    "median_annual": 754080,
+    "employed": 121805
+  },
+  "2421": {
+    "code": "2421",
+    "median_monthly": 70310,
+    "median_annual": 843720,
+    "employed": 14366
+  },
+  "2422": {
+    "code": "2422",
+    "median_monthly": 61630,
+    "median_annual": 739560,
+    "employed": 90317
+  },
+  "2423": {
+    "code": "2423",
+    "median_monthly": 66480,
+    "median_annual": 797760,
+    "employed": 16012
+  },
+  "2424": {
+    "code": "2424",
+    "median_monthly": 65280,
+    "median_annual": 783360,
+    "employed": 1110
+  },
+  "243": {
+    "code": "243",
+    "median_monthly": 64860,
+    "median_annual": 778320,
+    "employed": 17380
+  },
+  "2431": {
+    "code": "2431",
+    "median_monthly": 60800,
+    "median_annual": 729600,
+    "employed": 9185
+  },
+  "2432": {
+    "code": "2432",
+    "median_monthly": 64330,
+    "median_annual": 771960,
+    "employed": 4509
+  },
+  "2433": {
+    "code": "2433",
+    "median_monthly": 76120,
+    "median_annual": 913440,
+    "employed": 2997
+  },
+  "2434": {
+    "code": "2434",
+    "median_monthly": 73790,
+    "median_annual": 885480,
+    "employed": 689
+  },
+  "25": {
+    "code": "25",
+    "median_monthly": 75410,
+    "median_annual": 904920,
+    "employed": 68294
+  },
+  "251": {
+    "code": "251",
+    "median_monthly": 75550,
+    "median_annual": 906600,
+    "employed": 64424
+  },
+  "2511": {
+    "code": "2511",
+    "median_monthly": 76330,
+    "median_annual": 915960,
+    "employed": 33243
+  },
+  "2512": {
+    "code": "2512",
+    "median_monthly": 77420,
+    "median_annual": 929040,
+    "employed": 8156
+  },
+  "2513": {
+    "code": "2513",
+    "median_monthly": 62500,
+    "median_annual": 750000,
+    "employed": 755
+  },
+  "2514": {
+    "code": "2514",
+    "median_monthly": 70700,
+    "median_annual": 848400,
+    "employed": 343
+  },
+  "2519": {
+    "code": "2519",
+    "median_monthly": 74170,
+    "median_annual": 890040,
+    "employed": 21927
+  },
+  "252": {
+    "code": "252",
+    "median_monthly": 73150,
+    "median_annual": 877800,
+    "employed": 3870
+  },
+  "2521": {
+    "code": "2521",
+    "median_monthly": 75150,
+    "median_annual": 901800,
+    "employed": 517
+  },
+  "2522": {
+    "code": "2522",
+    "median_monthly": 66240,
+    "median_annual": 794880,
+    "employed": 1580
+  },
+  "2523": {
+    "code": "2523",
+    "employed": 11
+  },
+  "2529": {
+    "code": "2529",
+    "median_monthly": 78010,
+    "median_annual": 936120,
+    "employed": 1762
+  },
+  "26": {
+    "code": "26",
+    "median_monthly": 62290,
+    "median_annual": 747480,
+    "employed": 63384
+  },
+  "261": {
+    "code": "261",
+    "median_monthly": 81630,
+    "median_annual": 979560,
+    "employed": 13569
+  },
+  "2611": {
+    "code": "2611",
+    "median_monthly": 80830,
+    "median_annual": 969960,
+    "employed": 11520
+  },
+  "2612": {
+    "code": "2612",
+    "median_monthly": 118470,
+    "median_annual": 1421640,
+    "employed": 857
+  },
+  "2619": {
+    "code": "2619",
+    "median_monthly": 72920,
+    "median_annual": 875040,
+    "employed": 1192
+  },
+  "262": {
+    "code": "262",
+    "median_monthly": 54050,
+    "median_annual": 648600,
+    "employed": 4077
+  },
+  "2621": {
+    "code": "2621",
+    "median_monthly": 56080,
+    "median_annual": 672960,
+    "employed": 1607
+  },
+  "2622": {
+    "code": "2622",
+    "median_monthly": 53360,
+    "median_annual": 640320,
+    "employed": 2470
+  },
+  "263": {
+    "code": "263",
+    "median_monthly": 59750,
+    "median_annual": 717000,
+    "employed": 29601
+  },
+  "2631": {
+    "code": "2631",
+    "median_monthly": 71120,
+    "median_annual": 853440,
+    "employed": 1168
+  },
+  "2632": {
+    "code": "2632",
+    "median_monthly": 68360,
+    "median_annual": 820320,
+    "employed": 1161
+  },
+  "2633": {
+    "code": "2633",
+    "median_monthly": 58380,
+    "median_annual": 700560,
+    "employed": 259
+  },
+  "2634": {
+    "code": "2634",
+    "median_monthly": 66270,
+    "median_annual": 795240,
+    "employed": 9490
+  },
+  "2635": {
+    "code": "2635",
+    "median_monthly": 56000,
+    "median_annual": 672000,
+    "employed": 15329
+  },
+  "2636": {
+    "code": "2636",
+    "median_monthly": 64500,
+    "median_annual": 774000,
+    "employed": 2194
+  },
+  "264": {
+    "code": "264",
+    "median_monthly": 63800,
+    "median_annual": 765600,
+    "employed": 10822
+  },
+  "2641": {
+    "code": "2641",
+    "median_monthly": 66300,
+    "median_annual": 795600,
+    "employed": 1165
+  },
+  "2642": {
+    "code": "2642",
+    "median_monthly": 64630,
+    "median_annual": 775560,
+    "employed": 7503
+  },
+  "2643": {
+    "code": "2643",
+    "median_monthly": 53990,
+    "median_annual": 647880,
+    "employed": 2154
+  },
+  "265": {
+    "code": "265",
+    "median_monthly": 59640,
+    "median_annual": 715680,
+    "employed": 5315
+  },
+  "2651": {
+    "code": "2651",
+    "median_monthly": 50510,
+    "median_annual": 606120,
+    "employed": 356
+  },
+  "2652": {
+    "code": "2652",
+    "median_monthly": 61710,
+    "median_annual": 740520,
+    "employed": 2283
+  },
+  "2653": {
+    "code": "2653",
+    "median_monthly": 54670,
+    "median_annual": 656040,
+    "employed": 273
+  },
+  "2654": {
+    "code": "2654",
+    "median_monthly": 62500,
+    "median_annual": 750000,
+    "employed": 1284
+  },
+  "2655": {
+    "code": "2655",
+    "median_monthly": 53840,
+    "median_annual": 646080,
+    "employed": 576
+  },
+  "2656": {
+    "code": "2656",
+    "median_monthly": 72900,
+    "median_annual": 874800,
+    "employed": 294
+  },
+  "2659": {
+    "code": "2659",
+    "median_monthly": 57730,
+    "median_annual": 692760,
+    "employed": 249
+  },
+  "31": {
+    "code": "31",
+    "median_monthly": 70380,
+    "median_annual": 844560,
+    "employed": 130965
+  },
+  "311": {
+    "code": "311",
+    "median_monthly": 70170,
+    "median_annual": 842040,
+    "employed": 95174
+  },
+  "3112": {
+    "code": "3112",
+    "median_monthly": 66720,
+    "median_annual": 800640,
+    "employed": 17092
+  },
+  "3113": {
+    "code": "3113",
+    "median_monthly": 72390,
+    "median_annual": 868680,
+    "employed": 5852
+  },
+  "3114": {
+    "code": "3114",
+    "median_monthly": 70830,
+    "median_annual": 849960,
+    "employed": 15127
+  },
+  "3115": {
+    "code": "3115",
+    "median_monthly": 65440,
+    "median_annual": 785280,
+    "employed": 8733
+  },
+  "3116": {
+    "code": "3116",
+    "median_monthly": 66310,
+    "median_annual": 795720,
+    "employed": 2772
+  },
+  "3117": {
+    "code": "3117",
+    "median_monthly": 85470,
+    "median_annual": 1025640,
+    "employed": 14171
+  },
+  "3118": {
+    "code": "3118",
+    "median_monthly": 62500,
+    "median_annual": 750000,
+    "employed": 2132
+  },
+  "3119": {
+    "code": "3119",
+    "median_monthly": 68780,
+    "median_annual": 825360,
+    "employed": 29295
+  },
+  "312": {
+    "code": "312",
+    "median_monthly": 64970,
+    "median_annual": 779640,
+    "employed": 16232
+  },
+  "3121": {
+    "code": "3121",
+    "median_monthly": 72610,
+    "median_annual": 871320,
+    "employed": 161
+  },
+  "3122": {
+    "code": "3122",
+    "median_monthly": 60350,
+    "median_annual": 724200,
+    "employed": 4173
+  },
+  "3123": {
+    "code": "3123",
+    "median_monthly": 66550,
+    "median_annual": 798600,
+    "employed": 11898
+  },
+  "313": {
+    "code": "313",
+    "median_monthly": 74210,
+    "median_annual": 890520,
+    "employed": 3959
+  },
+  "3131": {
+    "code": "3131",
+    "median_monthly": 72360,
+    "median_annual": 868320,
+    "employed": 1657
+  },
+  "3132": {
+    "code": "3132",
+    "employed": 13
+  },
+  "3133": {
+    "code": "3133",
+    "median_monthly": 67060,
+    "median_annual": 804720,
+    "employed": 304
+  },
+  "3134": {
+    "code": "3134",
+    "median_monthly": 78930,
+    "median_annual": 947160,
+    "employed": 1722
+  },
+  "3135": {
+    "code": "3135",
+    "median_monthly": 58420,
+    "median_annual": 701040,
+    "employed": 184
+  },
+  "3139": {
+    "code": "3139",
+    "employed": 79
+  },
+  "314": {
+    "code": "314",
+    "median_monthly": 55400,
+    "median_annual": 664800,
+    "employed": 2611
+  },
+  "3141": {
+    "code": "3141",
+    "median_monthly": 51790,
+    "median_annual": 621480,
+    "employed": 1373
+  },
+  "3142": {
+    "code": "3142",
+    "median_monthly": 58690,
+    "median_annual": 704280,
+    "employed": 591
+  },
+  "3143": {
+    "code": "3143",
+    "median_monthly": 60230,
+    "median_annual": 722760,
+    "employed": 647
+  },
+  "315": {
+    "code": "315",
+    "median_monthly": 83000,
+    "median_annual": 996000,
+    "employed": 12989
+  },
+  "3151": {
+    "code": "3151",
+    "median_monthly": 81310,
+    "median_annual": 975720,
+    "employed": 3105
+  },
+  "3152": {
+    "code": "3152",
+    "median_monthly": 80000,
+    "median_annual": 960000,
+    "employed": 6965
+  },
+  "3153": {
+    "code": "3153",
+    "median_monthly": 118440,
+    "median_annual": 1421280,
+    "employed": 1813
+  },
+  "3154": {
+    "code": "3154",
+    "median_monthly": 121910,
+    "median_annual": 1462920,
+    "employed": 520
+  },
+  "3155": {
+    "code": "3155",
+    "median_monthly": 87240,
+    "median_annual": 1046880,
+    "employed": 586
+  },
+  "32": {
+    "code": "32",
+    "median_monthly": 54170,
+    "median_annual": 650040,
+    "employed": 39421
+  },
+  "321": {
+    "code": "321",
+    "median_monthly": 56250,
+    "median_annual": 675000,
+    "employed": 13559
+  },
+  "3211": {
+    "code": "3211",
+    "median_monthly": 58080,
+    "median_annual": 696960,
+    "employed": 3149
+  },
+  "3212": {
+    "code": "3212",
+    "median_monthly": 56270,
+    "median_annual": 675240,
+    "employed": 7190
+  },
+  "3213": {
+    "code": "3213",
+    "median_monthly": 53260,
+    "median_annual": 639120,
+    "employed": 2197
+  },
+  "3214": {
+    "code": "3214",
+    "median_monthly": 57630,
+    "median_annual": 691560,
+    "employed": 1023
+  },
+  "323": {
+    "code": "323",
+    "median_monthly": 55000,
+    "median_annual": 660000,
+    "employed": 206
+  },
+  "3230": {
+    "code": "3230",
+    "median_monthly": 55000,
+    "median_annual": 660000,
+    "employed": 206
+  },
+  "324": {
+    "code": "324",
+    "median_monthly": 42290,
+    "median_annual": 507480,
+    "employed": 1106
+  },
+  "3240": {
+    "code": "3240",
+    "median_monthly": 42290,
+    "median_annual": 507480,
+    "employed": 1106
+  },
+  "325": {
+    "code": "325",
+    "median_monthly": 52630,
+    "median_annual": 631560,
+    "employed": 24550
+  },
+  "3251": {
+    "code": "3251",
+    "median_monthly": 51460,
+    "median_annual": 617520,
+    "employed": 1065
+  },
+  "3254": {
+    "code": "3254",
+    "median_monthly": 55940,
+    "median_annual": 671280,
+    "employed": 1428
+  },
+  "3256": {
+    "code": "3256",
+    "median_monthly": 45710,
+    "median_annual": 548520,
+    "employed": 9231
+  },
+  "3257": {
+    "code": "3257",
+    "median_monthly": 69150,
+    "median_annual": 829800,
+    "employed": 5524
+  },
+  "3258": {
+    "code": "3258",
+    "median_monthly": 59260,
+    "median_annual": 711120,
+    "employed": 5604
+  },
+  "3259": {
+    "code": "3259",
+    "median_monthly": 51850,
+    "median_annual": 622200,
+    "employed": 1698
+  },
+  "33": {
+    "code": "33",
+    "median_monthly": 62080,
+    "median_annual": 744960,
+    "employed": 164653
+  },
+  "331": {
+    "code": "331",
+    "median_monthly": 63550,
+    "median_annual": 762600,
+    "employed": 41706
+  },
+  "3311": {
+    "code": "3311",
+    "median_monthly": 88680,
+    "median_annual": 1064160,
+    "employed": 5211
+  },
+  "3312": {
+    "code": "3312",
+    "median_monthly": 63130,
+    "median_annual": 757560,
+    "employed": 14742
+  },
+  "3313": {
+    "code": "3313",
+    "median_monthly": 61500,
+    "median_annual": 738000,
+    "employed": 19515
+  },
+  "3315": {
+    "code": "3315",
+    "median_monthly": 59330,
+    "median_annual": 711960,
+    "employed": 2238
+  },
+  "332": {
+    "code": "332",
+    "median_monthly": 65250,
+    "median_annual": 783000,
+    "employed": 62360
+  },
+  "3321": {
+    "code": "3321",
+    "median_monthly": 66100,
+    "median_annual": 793200,
+    "employed": 9788
+  },
+  "3322": {
+    "code": "3322",
+    "median_monthly": 64890,
+    "median_annual": 778680,
+    "employed": 44090
+  },
+  "3323": {
+    "code": "3323",
+    "median_monthly": 65540,
+    "median_annual": 786480,
+    "employed": 7732
+  },
+  "3324": {
+    "code": "3324",
+    "median_monthly": 105000,
+    "median_annual": 1260000,
+    "employed": 750
+  },
+  "333": {
+    "code": "333",
+    "median_monthly": 60000,
+    "median_annual": 720000,
+    "employed": 15317
+  },
+  "3331": {
+    "code": "3331",
+    "median_monthly": 56320,
+    "median_annual": 675840,
+    "employed": 4639
+  },
+  "3332": {
+    "code": "3332",
+    "median_monthly": 55940,
+    "median_annual": 671280,
+    "employed": 1223
+  },
+  "3333": {
+    "code": "3333",
+    "median_monthly": 51440,
+    "median_annual": 617280,
+    "employed": 2303
+  },
+  "3334": {
+    "code": "3334",
+    "median_monthly": 72090,
+    "median_annual": 865080,
+    "employed": 6983
+  },
+  "3339": {
+    "code": "3339",
+    "median_monthly": 68940,
+    "median_annual": 827280,
+    "employed": 169
+  },
+  "334": {
+    "code": "334",
+    "median_monthly": 60620,
+    "median_annual": 727440,
+    "employed": 18561
+  },
+  "3341": {
+    "code": "3341",
+    "median_monthly": 68330,
+    "median_annual": 819960,
+    "employed": 7072
+  },
+  "3342": {
+    "code": "3342",
+    "median_monthly": 54930,
+    "median_annual": 659160,
+    "employed": 751
+  },
+  "3343": {
+    "code": "3343",
+    "median_monthly": 56200,
+    "median_annual": 674400,
+    "employed": 10738
+  },
+  "335": {
+    "code": "335",
+    "median_monthly": 55210,
+    "median_annual": 662520,
+    "employed": 26709
+  },
+  "3351": {
+    "code": "3351",
+    "median_monthly": 53680,
+    "median_annual": 644160,
+    "employed": 1131
+  },
+  "3352": {
+    "code": "3352",
+    "median_monthly": 51640,
+    "median_annual": 619680,
+    "employed": 2599
+  },
+  "3353": {
+    "code": "3353",
+    "median_monthly": 50060,
+    "median_annual": 600720,
+    "employed": 4486
+  },
+  "3354": {
+    "code": "3354",
+    "employed": 11
+  },
+  "3355": {
+    "code": "3355",
+    "median_monthly": 63920,
+    "median_annual": 767040,
+    "employed": 12137
+  },
+  "3359": {
+    "code": "3359",
+    "median_monthly": 52540,
+    "median_annual": 630480,
+    "employed": 6345
+  },
+  "34": {
+    "code": "34",
+    "median_monthly": 51540,
+    "median_annual": 618480,
+    "employed": 40899
+  },
+  "341": {
+    "code": "341",
+    "median_monthly": 52530,
+    "median_annual": 630360,
+    "employed": 19302
+  },
+  "3411": {
+    "code": "3411",
+    "employed": 8
+  },
+  "3412": {
+    "code": "3412",
+    "median_monthly": 52680,
+    "median_annual": 632160,
+    "employed": 16464
+  },
+  "3413": {
+    "code": "3413",
+    "median_monthly": 51110,
+    "median_annual": 613320,
+    "employed": 2830
+  },
+  "342": {
+    "code": "342",
+    "median_monthly": 45450,
+    "median_annual": 545400,
+    "employed": 13619
+  },
+  "3421": {
+    "code": "3421",
+    "median_monthly": 42030,
+    "median_annual": 504360,
+    "employed": 2169
+  },
+  "3422": {
+    "code": "3422",
+    "median_monthly": 47000,
+    "median_annual": 564000,
+    "employed": 7033
+  },
+  "3423": {
+    "code": "3423",
+    "median_monthly": 44170,
+    "median_annual": 530040,
+    "employed": 4417
+  },
+  "343": {
+    "code": "343",
+    "median_monthly": 50280,
+    "median_annual": 603360,
+    "employed": 7978
+  },
+  "3431": {
+    "code": "3431",
+    "median_monthly": 55220,
+    "median_annual": 662640,
+    "employed": 1215
+  },
+  "3432": {
+    "code": "3432",
+    "median_monthly": 47900,
+    "median_annual": 574800,
+    "employed": 1602
+  },
+  "3433": {
+    "code": "3433",
+    "median_monthly": 53800,
+    "median_annual": 645600,
+    "employed": 212
+  },
+  "3434": {
+    "code": "3434",
+    "median_monthly": 47850,
+    "median_annual": 574200,
+    "employed": 3133
+  },
+  "3439": {
+    "code": "3439",
+    "median_monthly": 53750,
+    "median_annual": 645000,
+    "employed": 1816
+  },
+  "35": {
+    "code": "35",
+    "median_monthly": 62260,
+    "median_annual": 747120,
+    "employed": 24839
+  },
+  "351": {
+    "code": "351",
+    "median_monthly": 63260,
+    "median_annual": 759120,
+    "employed": 22117
+  },
+  "3511": {
+    "code": "3511",
+    "median_monthly": 64680,
+    "median_annual": 776160,
+    "employed": 16135
+  },
+  "3512": {
+    "code": "3512",
+    "median_monthly": 57800,
+    "median_annual": 693600,
+    "employed": 4971
+  },
+  "3513": {
+    "code": "3513",
+    "median_monthly": 71490,
+    "median_annual": 857880,
+    "employed": 791
+  },
+  "3514": {
+    "code": "3514",
+    "median_monthly": 62500,
+    "median_annual": 750000,
+    "employed": 220
+  },
+  "352": {
+    "code": "352",
+    "median_monthly": 53560,
+    "median_annual": 642720,
+    "employed": 2722
+  },
+  "3521": {
+    "code": "3521",
+    "median_monthly": 57920,
+    "median_annual": 695040,
+    "employed": 1444
+  },
+  "3522": {
+    "code": "3522",
+    "median_monthly": 47170,
+    "median_annual": 566040,
+    "employed": 1278
+  },
+  "3_01-03": {
+    "code": "3_01-03",
+    "median_monthly": 62920,
+    "median_annual": 755040,
+    "employed": 426217
+  },
+  "4": {
+    "code": "4",
+    "median_monthly": 49560,
+    "median_annual": 594720,
+    "employed": 163485
+  },
+  "41": {
+    "code": "41",
+    "median_monthly": 49530,
+    "median_annual": 594360,
+    "employed": 53960
+  },
+  "411": {
+    "code": "411",
+    "median_monthly": 49430,
+    "median_annual": 593160,
+    "employed": 53335
+  },
+  "4110": {
+    "code": "4110",
+    "median_monthly": 49430,
+    "median_annual": 593160,
+    "employed": 53335
+  },
+  "413": {
+    "code": "413",
+    "median_monthly": 59180,
+    "median_annual": 710160,
+    "employed": 625
+  },
+  "4131": {
+    "code": "4131",
+    "employed": 18
+  },
+  "4132": {
+    "code": "4132",
+    "median_monthly": 59280,
+    "median_annual": 711360,
+    "employed": 607
+  },
+  "42": {
+    "code": "42",
+    "median_monthly": 45000,
+    "median_annual": 540000,
+    "employed": 31256
+  },
+  "421": {
+    "code": "421",
+    "median_monthly": 47270,
+    "median_annual": 567240,
+    "employed": 2598
+  },
+  "4211": {
+    "code": "4211",
+    "median_monthly": 47300,
+    "median_annual": 567600,
+    "employed": 775
+  },
+  "4212": {
+    "code": "4212",
+    "median_monthly": 37020,
+    "median_annual": 444240,
+    "employed": 469
+  },
+  "4214": {
+    "code": "4214",
+    "median_monthly": 48630,
+    "median_annual": 583560,
+    "employed": 1354
+  },
+  "422": {
+    "code": "422",
+    "median_monthly": 44650,
+    "median_annual": 535800,
+    "employed": 28658
+  },
+  "4221": {
+    "code": "4221",
+    "median_monthly": 47120,
+    "median_annual": 565440,
+    "employed": 4400
+  },
+  "4222": {
+    "code": "4222",
+    "median_monthly": 47130,
+    "median_annual": 565560,
+    "employed": 5391
+  },
+  "4223": {
+    "code": "4223",
+    "median_monthly": 46600,
+    "median_annual": 559200,
+    "employed": 710
+  },
+  "4224": {
+    "code": "4224",
+    "median_monthly": 39630,
+    "median_annual": 475560,
+    "employed": 8300
+  },
+  "4225": {
+    "code": "4225",
+    "median_monthly": 50340,
+    "median_annual": 604080,
+    "employed": 446
+  },
+  "4226": {
+    "code": "4226",
+    "median_monthly": 47500,
+    "median_annual": 570000,
+    "employed": 7942
+  },
+  "4227": {
+    "code": "4227",
+    "median_monthly": 32540,
+    "median_annual": 390480,
+    "employed": 622
+  },
+  "4229": {
+    "code": "4229",
+    "median_monthly": 44570,
+    "median_annual": 534840,
+    "employed": 847
+  },
+  "43": {
+    "code": "43",
+    "median_monthly": 51700,
+    "median_annual": 620400,
+    "employed": 72957
+  },
+  "431": {
+    "code": "431",
+    "median_monthly": 55680,
+    "median_annual": 668160,
+    "employed": 17855
+  },
+  "4311": {
+    "code": "4311",
+    "median_monthly": 55290,
+    "median_annual": 663480,
+    "employed": 15385
+  },
+  "4312": {
+    "code": "4312",
+    "median_monthly": 58560,
+    "median_annual": 702720,
+    "employed": 341
+  },
+  "4313": {
+    "code": "4313",
+    "median_monthly": 56920,
+    "median_annual": 683040,
+    "employed": 2129
+  },
+  "432": {
+    "code": "432",
+    "median_monthly": 50160,
+    "median_annual": 601920,
+    "employed": 55102
+  },
+  "4321": {
+    "code": "4321",
+    "median_monthly": 48310,
+    "median_annual": 579720,
+    "employed": 36825
+  },
+  "4322": {
+    "code": "4322",
+    "median_monthly": 56200,
+    "median_annual": 674400,
+    "employed": 11190
+  },
+  "4323": {
+    "code": "4323",
+    "median_monthly": 55230,
+    "median_annual": 662760,
+    "employed": 7087
+  },
+  "44": {
+    "code": "44",
+    "median_monthly": 45340,
+    "median_annual": 544080,
+    "employed": 5312
+  },
+  "441": {
+    "code": "441",
+    "median_monthly": 45340,
+    "median_annual": 544080,
+    "employed": 5312
+  },
+  "4411": {
+    "code": "4411",
+    "median_monthly": 45670,
+    "median_annual": 548040,
+    "employed": 314
+  },
+  "4412": {
+    "code": "4412",
+    "median_monthly": 45060,
+    "median_annual": 540720,
+    "employed": 3198
+  },
+  "4413": {
+    "code": "4413",
+    "employed": 3
+  },
+  "4415": {
+    "code": "4415",
+    "median_monthly": 51800,
+    "median_annual": 621600,
+    "employed": 954
+  },
+  "4416": {
+    "code": "4416",
+    "median_monthly": 58730,
+    "median_annual": 704760,
+    "employed": 843
+  },
+  "5": {
+    "code": "5",
+    "median_monthly": 43840,
+    "median_annual": 526080,
+    "employed": 595079
+  },
+  "51": {
+    "code": "51",
+    "median_monthly": 42640,
+    "median_annual": 511680,
+    "employed": 96877
+  },
+  "511": {
+    "code": "511",
+    "median_monthly": 46980,
+    "median_annual": 563760,
+    "employed": 5432
+  },
+  "5111": {
+    "code": "5111",
+    "median_monthly": 41510,
+    "median_annual": 498120,
+    "employed": 2394
+  },
+  "5112": {
+    "code": "5112",
+    "median_monthly": 66330,
+    "median_annual": 795960,
+    "employed": 1381
+  },
+  "5113": {
+    "code": "5113",
+    "median_monthly": 42220,
+    "median_annual": 506640,
+    "employed": 1657
+  },
+  "512": {
+    "code": "512",
+    "median_monthly": 41610,
+    "median_annual": 499320,
+    "employed": 22003
+  },
+  "5120": {
+    "code": "5120",
+    "median_monthly": 41610,
+    "median_annual": 499320,
+    "employed": 22003
+  },
+  "513": {
+    "code": "513",
+    "median_monthly": 37350,
+    "median_annual": 448200,
+    "employed": 29444
+  },
+  "5131": {
+    "code": "5131",
+    "median_monthly": 37350,
+    "median_annual": 448200,
+    "employed": 22815
+  },
+  "5132": {
+    "code": "5132",
+    "median_monthly": 37480,
+    "median_annual": 449760,
+    "employed": 6629
+  },
+  "514": {
+    "code": "514",
+    "median_monthly": 39620,
+    "median_annual": 475440,
+    "employed": 11678
+  },
+  "5141": {
+    "code": "5141",
+    "median_monthly": 39670,
+    "median_annual": 476040,
+    "employed": 8767
+  },
+  "5142": {
+    "code": "5142",
+    "median_monthly": 39330,
+    "median_annual": 471960,
+    "employed": 2911
+  },
+  "515": {
+    "code": "515",
+    "median_monthly": 48140,
+    "median_annual": 577680,
+    "employed": 23895
+  },
+  "5151": {
+    "code": "5151",
+    "median_monthly": 47600,
+    "median_annual": 571200,
+    "employed": 2297
+  },
+  "5152": {
+    "code": "5152",
+    "median_monthly": 52120,
+    "median_annual": 625440,
+    "employed": 212
+  },
+  "5153": {
+    "code": "5153",
+    "median_monthly": 48190,
+    "median_annual": 578280,
+    "employed": 21386
+  },
+  "516": {
+    "code": "516",
+    "median_monthly": 52770,
+    "median_annual": 633240,
+    "employed": 4425
+  },
+  "5163": {
+    "code": "5163",
+    "median_monthly": 52790,
+    "median_annual": 633480,
+    "employed": 974
+  },
+  "5164": {
+    "code": "5164",
+    "median_monthly": 36670,
+    "median_annual": 440040,
+    "employed": 1062
+  },
+  "5165": {
+    "code": "5165",
+    "median_monthly": 58310,
+    "median_annual": 699720,
+    "employed": 2005
+  },
+  "5169": {
+    "code": "5169",
+    "median_monthly": 41800,
+    "median_annual": 501600,
+    "employed": 384
+  },
+  "52": {
+    "code": "52",
+    "median_monthly": 42050,
+    "median_annual": 504600,
+    "employed": 193028
+  },
+  "521": {
+    "code": "521",
+    "median_monthly": 61670,
+    "median_annual": 740040,
+    "employed": 352
+  },
+  "5211": {
+    "code": "5211",
+    "median_monthly": 62500,
+    "median_annual": 750000,
+    "employed": 336
+  },
+  "5212": {
+    "code": "5212",
+    "employed": 16
+  },
+  "522": {
+    "code": "522",
+    "median_monthly": 42250,
+    "median_annual": 507000,
+    "employed": 168171
+  },
+  "5221": {
+    "code": "5221",
+    "median_monthly": 50000,
+    "median_annual": 600000,
+    "employed": 139
+  },
+  "5222": {
+    "code": "5222",
+    "median_monthly": 47680,
+    "median_annual": 572160,
+    "employed": 5444
+  },
+  "5223": {
+    "code": "5223",
+    "median_monthly": 42020,
+    "median_annual": 504240,
+    "employed": 162588
+  },
+  "523": {
+    "code": "523",
+    "median_monthly": 43230,
+    "median_annual": 518760,
+    "employed": 390
+  },
+  "5230": {
+    "code": "5230",
+    "median_monthly": 43230,
+    "median_annual": 518760,
+    "employed": 390
+  },
+  "524": {
+    "code": "524",
+    "median_monthly": 38700,
+    "median_annual": 464400,
+    "employed": 24115
+  },
+  "5241": {
+    "code": "5241",
+    "median_monthly": 35600,
+    "median_annual": 427200,
+    "employed": 42
+  },
+  "5242": {
+    "code": "5242",
+    "employed": 71
+  },
+  "5243": {
+    "code": "5243",
+    "median_monthly": 48230,
+    "median_annual": 578760,
+    "employed": 306
+  },
+  "5244": {
+    "code": "5244",
+    "median_monthly": 47440,
+    "median_annual": 569280,
+    "employed": 3812
+  },
+  "5245": {
+    "code": "5245",
+    "median_monthly": 39670,
+    "median_annual": 476040,
+    "employed": 623
+  },
+  "5246": {
+    "code": "5246",
+    "median_monthly": 36360,
+    "median_annual": 436320,
+    "employed": 15719
+  },
+  "5249": {
+    "code": "5249",
+    "median_monthly": 44970,
+    "median_annual": 539640,
+    "employed": 3542
+  },
+  "53": {
+    "code": "53",
+    "median_monthly": 44860,
+    "median_annual": 538320,
+    "employed": 284186
+  },
+  "531": {
+    "code": "531",
+    "median_monthly": 41500,
+    "median_annual": 498000,
+    "employed": 105748
+  },
+  "5311": {
+    "code": "5311",
+    "median_monthly": 41610,
+    "median_annual": 499320,
+    "employed": 92810
+  },
+  "5312": {
+    "code": "5312",
+    "median_monthly": 39510,
+    "median_annual": 474120,
+    "employed": 12938
+  },
+  "532": {
+    "code": "532",
+    "median_monthly": 49060,
+    "median_annual": 588720,
+    "employed": 178438
+  },
+  "5321": {
+    "code": "5321",
+    "median_monthly": 51430,
+    "median_annual": 617160,
+    "employed": 94246
+  },
+  "5322": {
+    "code": "5322",
+    "median_monthly": 42370,
+    "median_annual": 508440,
+    "employed": 14321
+  },
+  "5329": {
+    "code": "5329",
+    "median_monthly": 45070,
+    "median_annual": 540840,
+    "employed": 69871
+  },
+  "54": {
+    "code": "54",
+    "median_monthly": 47450,
+    "median_annual": 569400,
+    "employed": 20988
+  },
+  "541": {
+    "code": "541",
+    "median_monthly": 47450,
+    "median_annual": 569400,
+    "employed": 20988
+  },
+  "5411": {
+    "code": "5411",
+    "median_monthly": 60510,
+    "median_annual": 726120,
+    "employed": 3876
+  },
+  "5413": {
+    "code": "5413",
+    "median_monthly": 55900,
+    "median_annual": 670800,
+    "employed": 3666
+  },
+  "5414": {
+    "code": "5414",
+    "median_monthly": 43450,
+    "median_annual": 521400,
+    "employed": 10286
+  },
+  "5419": {
+    "code": "5419",
+    "median_monthly": 42340,
+    "median_annual": 508080,
+    "employed": 3160
+  },
+  "6": {
+    "code": "6",
+    "median_monthly": 46170,
+    "median_annual": 554040,
+    "employed": 23120
+  },
+  "61": {
+    "code": "61",
+    "median_monthly": 40590,
+    "median_annual": 487080,
+    "employed": 13995
+  },
+  "611": {
+    "code": "611",
+    "median_monthly": 43780,
+    "median_annual": 525360,
+    "employed": 5200
+  },
+  "6111": {
+    "code": "6111",
+    "median_monthly": 40270,
+    "median_annual": 483240,
+    "employed": 116
+  },
+  "6112": {
+    "code": "6112",
+    "employed": 11
+  },
+  "6113": {
+    "code": "6113",
+    "median_monthly": 43860,
+    "median_annual": 526320,
+    "employed": 5073
+  },
+  "612": {
+    "code": "612",
+    "median_monthly": 38580,
+    "median_annual": 462960,
+    "employed": 3542
+  },
+  "6121": {
+    "code": "6121",
+    "median_monthly": 38160,
+    "median_annual": 457920,
+    "employed": 3187
+  },
+  "6122": {
+    "code": "6122",
+    "median_monthly": 43520,
+    "median_annual": 522240,
+    "employed": 340
+  },
+  "6123": {
+    "code": "6123",
+    "employed": 15
+  },
+  "613": {
+    "code": "613",
+    "median_monthly": 38100,
+    "median_annual": 457200,
+    "employed": 5253
+  },
+  "6130": {
+    "code": "6130",
+    "median_monthly": 38100,
+    "median_annual": 457200,
+    "employed": 5253
+  },
+  "62": {
+    "code": "62",
+    "median_monthly": 57410,
+    "median_annual": 688920,
+    "employed": 9125
+  },
+  "621": {
+    "code": "621",
+    "median_monthly": 43090,
+    "median_annual": 517080,
+    "employed": 833
+  },
+  "6210": {
+    "code": "6210",
+    "median_monthly": 43090,
+    "median_annual": 517080,
+    "employed": 833
+  },
+  "622": {
+    "code": "622",
+    "median_monthly": 58940,
+    "median_annual": 707280,
+    "employed": 8292
+  },
+  "6221": {
+    "code": "6221",
+    "median_monthly": 59270,
+    "median_annual": 711240,
+    "employed": 7846
+  },
+  "6222": {
+    "code": "6222",
+    "median_monthly": 48500,
+    "median_annual": 582000,
+    "employed": 429
+  },
+  "6224": {
+    "code": "6224",
+    "employed": 17
+  },
+  "7": {
+    "code": "7",
+    "median_monthly": 50530,
+    "median_annual": 606360,
+    "employed": 218450
+  },
+  "71": {
+    "code": "71",
+    "median_monthly": 49040,
+    "median_annual": 588480,
+    "employed": 91497
+  },
+  "711": {
+    "code": "711",
+    "median_monthly": 48670,
+    "median_annual": 584040,
+    "employed": 56847
+  },
+  "7112": {
+    "code": "7112",
+    "median_monthly": 48710,
+    "median_annual": 584520,
+    "employed": 3770
+  },
+  "7113": {
+    "code": "7113",
+    "median_monthly": 50000,
+    "median_annual": 600000,
+    "employed": 676
+  },
+  "7114": {
+    "code": "7114",
+    "median_monthly": 53420,
+    "median_annual": 641040,
+    "employed": 8486
+  },
+  "7115": {
+    "code": "7115",
+    "median_monthly": 47900,
+    "median_annual": 574800,
+    "employed": 40269
+  },
+  "7119": {
+    "code": "7119",
+    "median_monthly": 46470,
+    "median_annual": 557640,
+    "employed": 3646
+  },
+  "712": {
+    "code": "712",
+    "median_monthly": 52260,
+    "median_annual": 627120,
+    "employed": 24457
+  },
+  "7121": {
+    "code": "7121",
+    "median_monthly": 49560,
+    "median_annual": 594720,
+    "employed": 1343
+  },
+  "7122": {
+    "code": "7122",
+    "median_monthly": 48710,
+    "median_annual": 584520,
+    "employed": 1949
+  },
+  "7123": {
+    "code": "7123",
+    "employed": 14
+  },
+  "7124": {
+    "code": "7124",
+    "median_monthly": 47740,
+    "median_annual": 572880,
+    "employed": 886
+  },
+  "7125": {
+    "code": "7125",
+    "median_monthly": 47120,
+    "median_annual": 565440,
+    "employed": 1170
+  },
+  "7126": {
+    "code": "7126",
+    "median_monthly": 53750,
+    "median_annual": 645000,
+    "employed": 17683
+  },
+  "7127": {
+    "code": "7127",
+    "median_monthly": 56830,
+    "median_annual": 681960,
+    "employed": 1412
+  },
+  "713": {
+    "code": "713",
+    "median_monthly": 47090,
+    "median_annual": 565080,
+    "employed": 10193
+  },
+  "7131": {
+    "code": "7131",
+    "median_monthly": 45900,
+    "median_annual": 550800,
+    "employed": 6545
+  },
+  "7132": {
+    "code": "7132",
+    "median_monthly": 48690,
+    "median_annual": 584280,
+    "employed": 2858
+  },
+  "7133": {
+    "code": "7133",
+    "median_monthly": 47800,
+    "median_annual": 573600,
+    "employed": 790
+  },
+  "72": {
+    "code": "72",
+    "median_monthly": 50750,
+    "median_annual": 609000,
+    "employed": 65603
+  },
+  "721": {
+    "code": "721",
+    "median_monthly": 50270,
+    "median_annual": 603240,
+    "employed": 15347
+  },
+  "7211": {
+    "code": "7211",
+    "median_monthly": 46570,
+    "median_annual": 558840,
+    "employed": 268
+  },
+  "7212": {
+    "code": "7212",
+    "median_monthly": 50500,
+    "median_annual": 606000,
+    "employed": 5243
+  },
+  "7213": {
+    "code": "7213",
+    "median_monthly": 50330,
+    "median_annual": 603960,
+    "employed": 4556
+  },
+  "7214": {
+    "code": "7214",
+    "median_monthly": 48950,
+    "median_annual": 587400,
+    "employed": 3746
+  },
+  "7215": {
+    "code": "7215",
+    "median_monthly": 56450,
+    "median_annual": 677400,
+    "employed": 1534
+  },
+  "722": {
+    "code": "722",
+    "median_monthly": 50930,
+    "median_annual": 611160,
+    "employed": 5333
+  },
+  "7221": {
+    "code": "7221",
+    "median_monthly": 49010,
+    "median_annual": 588120,
+    "employed": 275
+  },
+  "7222": {
+    "code": "7222",
+    "median_monthly": 52460,
+    "median_annual": 629520,
+    "employed": 2583
+  },
+  "7223": {
+    "code": "7223",
+    "median_monthly": 50140,
+    "median_annual": 601680,
+    "employed": 2403
+  },
+  "7224": {
+    "code": "7224",
+    "employed": 72
+  },
+  "723": {
+    "code": "723",
+    "median_monthly": 51020,
+    "median_annual": 612240,
+    "employed": 44923
+  },
+  "7231": {
+    "code": "7231",
+    "median_monthly": 48500,
+    "median_annual": 582000,
+    "employed": 21708
+  },
+  "7232": {
+    "code": "7232",
+    "median_monthly": 65810,
+    "median_annual": 789720,
+    "employed": 1159
+  },
+  "7233": {
+    "code": "7233",
+    "median_monthly": 53540,
+    "median_annual": 642480,
+    "employed": 21695
+  },
+  "7234": {
+    "code": "7234",
+    "median_monthly": 35640,
+    "median_annual": 427680,
+    "employed": 361
+  },
+  "73": {
+    "code": "73",
+    "median_monthly": 46930,
+    "median_annual": 563160,
+    "employed": 3667
+  },
+  "731": {
+    "code": "731",
+    "median_monthly": 47930,
+    "median_annual": 575160,
+    "employed": 1642
+  },
+  "7311": {
+    "code": "7311",
+    "median_monthly": 55430,
+    "median_annual": 665160,
+    "employed": 534
+  },
+  "7312": {
+    "code": "7312",
+    "employed": 64
+  },
+  "7313": {
+    "code": "7313",
+    "median_monthly": 48000,
+    "median_annual": 576000,
+    "employed": 353
+  },
+  "7314": {
+    "code": "7314",
+    "employed": 28
+  },
+  "7315": {
+    "code": "7315",
+    "employed": 68
+  },
+  "7316": {
+    "code": "7316",
+    "employed": 14
+  },
+  "7317": {
+    "code": "7317",
+    "employed": 11
+  },
+  "7318": {
+    "code": "7318",
+    "median_monthly": 41310,
+    "median_annual": 495720,
+    "employed": 406
+  },
+  "7319": {
+    "code": "7319",
+    "median_monthly": 45750,
+    "median_annual": 549000,
+    "employed": 164
+  },
+  "732": {
+    "code": "732",
+    "median_monthly": 46230,
+    "median_annual": 554760,
+    "employed": 2025
+  },
+  "7321": {
+    "code": "7321",
+    "median_monthly": 47350,
+    "median_annual": 568200,
+    "employed": 794
+  },
+  "7322": {
+    "code": "7322",
+    "median_monthly": 46730,
+    "median_annual": 560760,
+    "employed": 1024
+  },
+  "7323": {
+    "code": "7323",
+    "median_monthly": 43110,
+    "median_annual": 517320,
+    "employed": 207
+  },
+  "74": {
+    "code": "74",
+    "median_monthly": 55060,
+    "median_annual": 660720,
+    "employed": 47707
+  },
+  "741": {
+    "code": "741",
+    "median_monthly": 55590,
+    "median_annual": 667080,
+    "employed": 42507
+  },
+  "7411": {
+    "code": "7411",
+    "median_monthly": 54930,
+    "median_annual": 659160,
+    "employed": 32126
+  },
+  "7412": {
+    "code": "7412",
+    "median_monthly": 60080,
+    "median_annual": 720960,
+    "employed": 6189
+  },
+  "7413": {
+    "code": "7413",
+    "median_monthly": 58140,
+    "median_annual": 697680,
+    "employed": 4192
+  },
+  "742": {
+    "code": "742",
+    "median_monthly": 50000,
+    "median_annual": 600000,
+    "employed": 5200
+  },
+  "7421": {
+    "code": "7421",
+    "median_monthly": 53570,
+    "median_annual": 642840,
+    "employed": 1313
+  },
+  "7422": {
+    "code": "7422",
+    "median_monthly": 48590,
+    "median_annual": 583080,
+    "employed": 3887
+  },
+  "75": {
+    "code": "75",
+    "median_monthly": 47740,
+    "median_annual": 572880,
+    "employed": 9976
+  },
+  "751": {
+    "code": "751",
+    "median_monthly": 43830,
+    "median_annual": 525960,
+    "employed": 3538
+  },
+  "7511": {
+    "code": "7511",
+    "median_monthly": 44650,
+    "median_annual": 535800,
+    "employed": 1904
+  },
+  "7512": {
+    "code": "7512",
+    "median_monthly": 42490,
+    "median_annual": 509880,
+    "employed": 1531
+  },
+  "7513": {
+    "code": "7513",
+    "employed": 3
+  },
+  "7514": {
+    "code": "7514",
+    "employed": 6
+  },
+  "7515": {
+    "code": "7515",
+    "employed": 94
+  },
+  "752": {
+    "code": "752",
+    "median_monthly": 45300,
+    "median_annual": 543600,
+    "employed": 1865
+  },
+  "7522": {
+    "code": "7522",
+    "median_monthly": 45300,
+    "median_annual": 543600,
+    "employed": 1865
+  },
+  "753": {
+    "code": "753",
+    "median_monthly": 47720,
+    "median_annual": 572640,
+    "employed": 1018
+  },
+  "7531": {
+    "code": "7531",
+    "median_monthly": 49250,
+    "median_annual": 591000,
+    "employed": 547
+  },
+  "7532": {
+    "code": "7532",
+    "employed": 46
+  },
+  "7534": {
+    "code": "7534",
+    "median_monthly": 46520,
+    "median_annual": 558240,
+    "employed": 297
+  },
+  "7535": {
+    "code": "7535",
+    "employed": 84
+  },
+  "7536": {
+    "code": "7536",
+    "employed": 44
+  },
+  "754": {
+    "code": "754",
+    "median_monthly": 58520,
+    "median_annual": 702240,
+    "employed": 3555
+  },
+  "7541": {
+    "code": "7541",
+    "median_monthly": 58250,
+    "median_annual": 699000,
+    "employed": 541
+  },
+  "7542": {
+    "code": "7542",
+    "median_monthly": 67160,
+    "median_annual": 805920,
+    "employed": 1723
+  },
+  "7543": {
+    "code": "7543",
+    "employed": 35
+  },
+  "7544": {
+    "code": "7544",
+    "median_monthly": 46300,
+    "median_annual": 555600,
+    "employed": 435
+  },
+  "7549": {
+    "code": "7549",
+    "median_monthly": 41520,
+    "median_annual": 498240,
+    "employed": 821
+  },
+  "8": {
+    "code": "8",
+    "median_monthly": 48480,
+    "median_annual": 581760,
+    "employed": 170739
+  },
+  "81": {
+    "code": "81",
+    "median_monthly": 48910,
+    "median_annual": 586920,
+    "employed": 77371
+  },
+  "811": {
+    "code": "811",
+    "median_monthly": 76730,
+    "median_annual": 920760,
+    "employed": 16607
+  },
+  "8111": {
+    "code": "8111",
+    "median_monthly": 55570,
+    "median_annual": 666840,
+    "employed": 649
+  },
+  "8112": {
+    "code": "8112",
+    "median_monthly": 66190,
+    "median_annual": 794280,
+    "employed": 204
+  },
+  "8113": {
+    "code": "8113",
+    "median_monthly": 80180,
+    "median_annual": 962160,
+    "employed": 13699
+  },
+  "8114": {
+    "code": "8114",
+    "median_monthly": 48070,
+    "median_annual": 576840,
+    "employed": 2055
+  },
+  "812": {
+    "code": "812",
+    "median_monthly": 48440,
+    "median_annual": 581280,
+    "employed": 8009
+  },
+  "8121": {
+    "code": "8121",
+    "median_monthly": 48440,
+    "median_annual": 581280,
+    "employed": 8009
+  },
+  "813": {
+    "code": "813",
+    "median_monthly": 58770,
+    "median_annual": 705240,
+    "employed": 10110
+  },
+  "8131": {
+    "code": "8131",
+    "median_monthly": 58810,
+    "median_annual": 705720,
+    "employed": 10068
+  },
+  "8132": {
+    "code": "8132",
+    "employed": 42
+  },
+  "814": {
+    "code": "814",
+    "median_monthly": 45900,
+    "median_annual": 550800,
+    "employed": 3156
+  },
+  "8141": {
+    "code": "8141",
+    "median_monthly": 46460,
+    "median_annual": 557520,
+    "employed": 273
+  },
+  "8142": {
+    "code": "8142",
+    "median_monthly": 46510,
+    "median_annual": 558120,
+    "employed": 2284
+  },
+  "8143": {
+    "code": "8143",
+    "median_monthly": 43830,
+    "median_annual": 525960,
+    "employed": 599
+  },
+  "815": {
+    "code": "815",
+    "median_monthly": 41990,
+    "median_annual": 503880,
+    "employed": 4505
+  },
+  "8151": {
+    "code": "8151",
+    "median_monthly": 45210,
+    "median_annual": 542520,
+    "employed": 150
+  },
+  "8152": {
+    "code": "8152",
+    "median_monthly": 43840,
+    "median_annual": 526080,
+    "employed": 908
+  },
+  "8153": {
+    "code": "8153",
+    "median_monthly": 43310,
+    "median_annual": 519720,
+    "employed": 738
+  },
+  "8154": {
+    "code": "8154",
+    "employed": 70
+  },
+  "8156": {
+    "code": "8156",
+    "employed": 37
+  },
+  "8157": {
+    "code": "8157",
+    "median_monthly": 41420,
+    "median_annual": 497040,
+    "employed": 2602
+  },
+  "816": {
+    "code": "816",
+    "median_monthly": 43480,
+    "median_annual": 521760,
+    "employed": 25455
+  },
+  "8160": {
+    "code": "8160",
+    "median_monthly": 43480,
+    "median_annual": 521760,
+    "employed": 25455
+  },
+  "817": {
+    "code": "817",
+    "median_monthly": 44650,
+    "median_annual": 535800,
+    "employed": 6217
+  },
+  "8171": {
+    "code": "8171",
+    "median_monthly": 46210,
+    "median_annual": 554520,
+    "employed": 2788
+  },
+  "8172": {
+    "code": "8172",
+    "median_monthly": 43630,
+    "median_annual": 523560,
+    "employed": 3429
+  },
+  "818": {
+    "code": "818",
+    "median_monthly": 49790,
+    "median_annual": 597480,
+    "employed": 3312
+  },
+  "8181": {
+    "code": "8181",
+    "median_monthly": 44540,
+    "median_annual": 534480,
+    "employed": 1107
+  },
+  "8182": {
+    "code": "8182",
+    "median_monthly": 54930,
+    "median_annual": 659160,
+    "employed": 1295
+  },
+  "8183": {
+    "code": "8183",
+    "median_monthly": 47980,
+    "median_annual": 575760,
+    "employed": 910
+  },
+  "82": {
+    "code": "82",
+    "median_monthly": 48950,
+    "median_annual": 587400,
+    "employed": 6680
+  },
+  "821": {
+    "code": "821",
+    "median_monthly": 48950,
+    "median_annual": 587400,
+    "employed": 6680
+  },
+  "8211": {
+    "code": "8211",
+    "median_monthly": 48230,
+    "median_annual": 578760,
+    "employed": 1818
+  },
+  "8212": {
+    "code": "8212",
+    "median_monthly": 49830,
+    "median_annual": 597960,
+    "employed": 4791
+  },
+  "8219": {
+    "code": "8219",
+    "employed": 71
+  },
+  "83": {
+    "code": "83",
+    "median_monthly": 48220,
+    "median_annual": 578640,
+    "employed": 86688
+  },
+  "831": {
+    "code": "831",
+    "median_monthly": 74610,
+    "median_annual": 895320,
+    "employed": 2174
+  },
+  "8311": {
+    "code": "8311",
+    "median_monthly": 74940,
+    "median_annual": 899280,
+    "employed": 2099
+  },
+  "8312": {
+    "code": "8312",
+    "employed": 75
+  },
+  "832": {
+    "code": "832",
+    "median_monthly": 41570,
+    "median_annual": 498840,
+    "employed": 14995
+  },
+  "8322": {
+    "code": "8322",
+    "median_monthly": 41570,
+    "median_annual": 498840,
+    "employed": 14995
+  },
+  "833": {
+    "code": "833",
+    "median_monthly": 47260,
+    "median_annual": 567120,
+    "employed": 40639
+  },
+  "8331": {
+    "code": "8331",
+    "median_monthly": 47270,
+    "median_annual": 567240,
+    "employed": 16553
+  },
+  "8332": {
+    "code": "8332",
+    "median_monthly": 47260,
+    "median_annual": 567120,
+    "employed": 24086
+  },
+  "834": {
+    "code": "834",
+    "median_monthly": 51360,
+    "median_annual": 616320,
+    "employed": 22929
+  },
+  "8341": {
+    "code": "8341",
+    "median_monthly": 46250,
+    "median_annual": 555000,
+    "employed": 825
+  },
+  "8342": {
+    "code": "8342",
+    "median_monthly": 51510,
+    "median_annual": 618120,
+    "employed": 19581
+  },
+  "8343": {
+    "code": "8343",
+    "median_monthly": 54560,
+    "median_annual": 654720,
+    "employed": 1813
+  },
+  "8344": {
+    "code": "8344",
+    "median_monthly": 46520,
+    "median_annual": 558240,
+    "employed": 710
+  },
+  "835": {
+    "code": "835",
+    "median_monthly": 58940,
+    "median_annual": 707280,
+    "employed": 5951
+  },
+  "8350": {
+    "code": "8350",
+    "median_monthly": 58940,
+    "median_annual": 707280,
+    "employed": 5951
+  },
+  "9": {
+    "code": "9",
+    "median_monthly": 42000,
+    "median_annual": 504000,
+    "employed": 133473
+  },
+  "91": {
+    "code": "91",
+    "median_monthly": 41150,
+    "median_annual": 493800,
+    "employed": 60651
+  },
+  "911": {
+    "code": "911",
+    "median_monthly": 41180,
+    "median_annual": 494160,
+    "employed": 57360
+  },
+  "9111": {
+    "code": "9111",
+    "median_monthly": 38970,
+    "median_annual": 467640,
+    "employed": 393
+  },
+  "9112": {
+    "code": "9112",
+    "median_monthly": 41180,
+    "median_annual": 494160,
+    "employed": 56967
+  },
+  "912": {
+    "code": "912",
+    "median_monthly": 40000,
+    "median_annual": 480000,
+    "employed": 3291
+  },
+  "9122": {
+    "code": "9122",
+    "median_monthly": 39960,
+    "median_annual": 479520,
+    "employed": 3154
+  },
+  "9123": {
+    "code": "9123",
+    "employed": 126
+  },
+  "9129": {
+    "code": "9129",
+    "employed": 11
+  },
+  "92": {
+    "code": "92",
+    "median_monthly": 39280,
+    "median_annual": 471360,
+    "employed": 2854
+  },
+  "921": {
+    "code": "921",
+    "median_monthly": 39280,
+    "median_annual": 471360,
+    "employed": 2854
+  },
+  "9211": {
+    "code": "9211",
+    "median_monthly": 31390,
+    "median_annual": 376680,
+    "employed": 101
+  },
+  "9212": {
+    "code": "9212",
+    "median_monthly": 32470,
+    "median_annual": 389640,
+    "employed": 717
+  },
+  "9213": {
+    "code": "9213",
+    "median_monthly": 36530,
+    "median_annual": 438360,
+    "employed": 583
+  },
+  "9214": {
+    "code": "9214",
+    "median_monthly": 43130,
+    "median_annual": 517560,
+    "employed": 1269
+  },
+  "9215": {
+    "code": "9215",
+    "median_monthly": 34910,
+    "median_annual": 418920,
+    "employed": 73
+  },
+  "9216": {
+    "code": "9216",
+    "median_monthly": 39300,
+    "median_annual": 471600,
+    "employed": 111
+  },
+  "93": {
+    "code": "93",
+    "median_monthly": 46580,
+    "median_annual": 558960,
+    "employed": 33998
+  },
+  "931": {
+    "code": "931",
+    "median_monthly": 46750,
+    "median_annual": 561000,
+    "employed": 19176
+  },
+  "9311": {
+    "code": "9311",
+    "employed": 34
+  },
+  "9312": {
+    "code": "9312",
+    "median_monthly": 48520,
+    "median_annual": 582240,
+    "employed": 13636
+  },
+  "9313": {
+    "code": "9313",
+    "median_monthly": 43690,
+    "median_annual": 524280,
+    "employed": 5506
+  },
+  "932": {
+    "code": "932",
+    "median_monthly": 46800,
+    "median_annual": 561600,
+    "employed": 8567
+  },
+  "9321": {
+    "code": "9321",
+    "median_monthly": 43880,
+    "median_annual": 526560,
+    "employed": 984
+  },
+  "9329": {
+    "code": "9329",
+    "median_monthly": 47090,
+    "median_annual": 565080,
+    "employed": 7583
+  },
+  "933": {
+    "code": "933",
+    "median_monthly": 45470,
+    "median_annual": 545640,
+    "employed": 6255
+  },
+  "9331": {
+    "code": "9331",
+    "employed": 3
+  },
+  "9333": {
+    "code": "9333",
+    "median_monthly": 46780,
+    "median_annual": 561360,
+    "employed": 4760
+  },
+  "9334": {
+    "code": "9334",
+    "median_monthly": 40590,
+    "median_annual": 487080,
+    "employed": 1492
+  },
+  "94": {
+    "code": "94",
+    "median_monthly": 38140,
+    "median_annual": 457680,
+    "employed": 19360
+  },
+  "941": {
+    "code": "941",
+    "median_monthly": 38140,
+    "median_annual": 457680,
+    "employed": 19360
+  },
+  "9412": {
+    "code": "9412",
+    "median_monthly": 38140,
+    "median_annual": 457680,
+    "employed": 19360
+  },
+  "95": {
+    "code": "95",
+    "median_monthly": 44040,
+    "median_annual": 528480,
+    "employed": 289
+  },
+  "951": {
+    "code": "951",
+    "median_monthly": 44040,
+    "median_annual": 528480,
+    "employed": 289
+  },
+  "9510": {
+    "code": "9510",
+    "median_monthly": 44040,
+    "median_annual": 528480,
+    "employed": 289
+  },
+  "96": {
+    "code": "96",
+    "median_monthly": 44100,
+    "median_annual": 529200,
+    "employed": 16321
+  },
+  "961": {
+    "code": "961",
+    "median_monthly": 46070,
+    "median_annual": 552840,
+    "employed": 6509
+  },
+  "9611": {
+    "code": "9611",
+    "median_monthly": 46420,
+    "median_annual": 557040,
+    "employed": 5337
+  },
+  "9612": {
+    "code": "9612",
+    "median_monthly": 44200,
+    "median_annual": 530400,
+    "employed": 1140
+  },
+  "9613": {
+    "code": "9613",
+    "employed": 32
+  },
+  "962": {
+    "code": "962",
+    "median_monthly": 41000,
+    "median_annual": 492000,
+    "employed": 9812
+  },
+  "9621": {
+    "code": "9621",
+    "median_monthly": 39260,
+    "median_annual": 471120,
+    "employed": 3217
+  },
+  "9622": {
+    "code": "9622",
+    "median_monthly": 43540,
+    "median_annual": 522480,
+    "employed": 3397
+  },
+  "9623": {
+    "code": "9623",
+    "median_monthly": 42140,
+    "median_annual": 505680,
+    "employed": 83
+  },
+  "9629": {
+    "code": "9629",
+    "median_monthly": 40230,
+    "median_annual": 482760,
+    "employed": 3115
+  }
+}
