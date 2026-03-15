@@ -46,6 +46,37 @@ body {
   height: 100vh;
 }
 
+/* ── Sidebar toggle (mobile) ──────────────────────────────── */
+
+#sidebarToggle {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 30;
+  width: 36px;
+  height: 36px;
+  background: var(--bg2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: var(--fg);
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+}
+
+#sidebarOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 9;
+  backdrop-filter: blur(2px);
+}
+#sidebarOverlay.open { display: block; }
+
 /* ── Sidebar ─────────────────────────────────────────── */
 
 #sidebar {
@@ -60,6 +91,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 22px;
+  transition: transform 0.25s ease;
 }
 
 #sidebar::-webkit-scrollbar { width: 4px; }
@@ -267,15 +299,28 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* ── Filter clear button ──────────────────────────────── */
+
 #filterClear {
   display: none;
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 500;
   color: var(--accent2);
   cursor: pointer;
-  margin-top: 2px;
-  transition: color 0.15s;
+  margin-top: 6px;
+  padding: 6px 12px;
+  border: 1px solid rgba(99,102,241,0.3);
+  border-radius: 6px;
+  background: rgba(99,102,241,0.08);
+  text-align: center;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  user-select: none;
 }
-#filterClear:hover { color: var(--fg); }
+#filterClear:hover {
+  background: rgba(99,102,241,0.18);
+  border-color: rgba(99,102,241,0.5);
+  color: var(--fg);
+}
 
 /* ── Horizontal bar charts ────────────────────────────── */
 
@@ -388,13 +433,51 @@ canvas#canvas {
   box-shadow: 0 12px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
 }
 #tooltip.visible { opacity: 1; }
+#tooltip.pinned {
+  pointer-events: auto;
+  border-color: rgba(99,102,241,0.35);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(99,102,241,0.15);
+}
+#tooltip .tt-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
 #tooltip .tt-title {
+  flex: 1;
   font-weight: 600;
   font-size: 15px;
-  margin-bottom: 8px;
   color: #fff;
   letter-spacing: -0.01em;
 }
+#tooltip .tt-close {
+  display: none;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.08);
+  color: var(--fg2);
+  font-size: 12px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  line-height: 1;
+  border: none;
+  font-family: inherit;
+}
+#tooltip .tt-close:hover { background: rgba(255,255,255,0.14); color: var(--fg); }
+#tooltip.pinned .tt-close { display: flex; }
+#tooltip .tt-pin-hint {
+  font-size: 10px;
+  color: var(--fg3);
+  margin-bottom: 10px;
+  display: none;
+}
+#tooltip:not(.pinned) .tt-pin-hint { display: block; }
+#tooltip.pinned .tt-pin-hint { display: none; }
 #tooltip .tt-exposure {
   font-size: 12px;
   margin-bottom: 10px;
@@ -416,10 +499,17 @@ canvas#canvas {
   padding-top: 10px;
 }
 #tooltip .tt-link {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--accent2);
-  margin-top: 6px;
+  margin-top: 8px;
 }
+#tooltip .tt-link a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(129,140,248,0.35);
+  transition: color 0.12s, border-color 0.12s;
+}
+#tooltip .tt-link a:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
 
 /* ── Loading state ────────────────────────────────────── */
 
@@ -454,9 +544,45 @@ canvas#canvas {
   font-size: 13px;
   color: var(--fg2);
 }
+
+.progress-track {
+  width: 160px;
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.2s ease;
+}
+
+/* ── Mobile ───────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  :root { --sidebar-w: 0px; }
+
+  #sidebarToggle { display: flex; }
+
+  #sidebar {
+    transform: translateX(-280px);
+    width: 280px;
+    z-index: 15;
+  }
+  #sidebar.open { transform: translateX(0); }
+
+  canvas#canvas { left: 0; }
+  #loading { left: 0; }
+}
 </style>
 </head>
 <body>
+
+<button id="sidebarToggle" onclick="toggleSidebar()" aria-label="Åpne meny">&#9776;</button>
+<div id="sidebarOverlay" onclick="closeSidebar()"></div>
 
 <div id="sidebar">
   <div class="logo-wrap">
@@ -491,7 +617,7 @@ canvas#canvas {
   <div class="stat-section">
     <h3>Fordeling</h3>
     <div class="tier-bar" id="tierBar"></div>
-    <div id="filterClear" onclick="clearFilter()">&#x2715; Vis alle yrker</div>
+    <div id="filterClear" onclick="clearFilter()">&#x2715;&ensp;Vis alle yrker</div>
   </div>
 
   <div class="stat-section">
@@ -519,7 +645,7 @@ canvas#canvas {
   <div class="sidebar-footer">
     <div class="credits">
       Data fra <a href="https://utdanning.no">utdanning.no</a> og <a href="https://www.ssb.no">SSB</a><br>
-      Scoring av <a href="https://openai.com">OpenAI</a> GPT-5.4<br>
+      KI-scoring via <a href="https://openai.com">OpenAI</a> / <a href="https://anthropic.com">Anthropic</a><br>
       Basert på <a href="https://github.com/karpathy/2025-ai-job-exposure">karpathy/2025-ai-job-exposure</a>
     </div>
     <a href="https://github.com/mlervaag/jobber">&#9734; GitHub</a>
@@ -528,13 +654,20 @@ canvas#canvas {
 
 <div id="loading">
   <div class="spinner"></div>
-  <div class="loading-text">Laster 599 yrker...</div>
+  <div class="loading-text" id="loadingText">Laster yrker&hellip;</div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
 </div>
 
 <canvas id="canvas"></canvas>
 
 <div id="tooltip">
-  <div class="tt-title"></div>
+  <div class="tt-header">
+    <div class="tt-title"></div>
+    <button class="tt-close" onclick="unpinTooltip()" aria-label="Lukk">&#x2715;</button>
+  </div>
+  <div class="tt-pin-hint">Klikk for å feste</div>
   <div class="tt-exposure"></div>
   <div class="tt-stats"></div>
   <div class="tt-rationale"></div>
@@ -657,6 +790,7 @@ function worstAspect(row, rowSum, side, totalArea, availableExtent) {
 
 let data = [];
 let rects = [];
+let catRectsGlobal = [];
 let hovered = null;
 
 const canvas = document.getElementById("canvas");
@@ -666,8 +800,14 @@ let dpr = window.devicePixelRatio || 1;
 const MARGIN = 8;
 const GAP = 1.5;
 
+function getSidebarW() {
+  // On mobile when sidebar is closed, use 0; otherwise use CSS var
+  const isMobile = window.innerWidth <= 700;
+  return isMobile ? 0 : 280;
+}
+
 function layout() {
-  const sidebarW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w'));
+  const sidebarW = getSidebarW();
   const w = (window.innerWidth - sidebarW);
   const h = window.innerHeight;
 
@@ -695,6 +835,7 @@ function layout() {
   })).sort((a, b) => b.value - a.value);
 
   const catRects = squarify(categories, tx, ty, tw, th);
+  catRectsGlobal = catRects;
 
   rects = [];
   for (const cr of catRects) {
@@ -795,10 +936,55 @@ function draw() {
       ctx.restore();
     }
   }
+
+  // ── Category borders and labels ──────────────────────────────────────
+  for (const cr of catRectsGlobal) {
+    const g = GAP / 2;
+    const rx = cr.rx + g;
+    const ry = cr.ry + g;
+    const rw = cr.rw - g * 2;
+    const rh = cr.rh - g * 2;
+
+    if (rw < 20 || rh < 20) continue;
+
+    // Subtle border around the whole category area
+    ctx.strokeStyle = "rgba(255,255,255,0.07)";
+    ctx.lineWidth = 1;
+    const br = Math.min(4, rw / 8, rh / 8);
+    if (br > 0.5) {
+      ctx.beginPath();
+      ctx.roundRect(rx, ry, rw, rh, br);
+      ctx.stroke();
+    } else {
+      ctx.strokeRect(rx, ry, rw, rh);
+    }
+
+    // Category label badge — only if enough room
+    if (rw >= 70 && rh >= 22) {
+      const fontSize = Math.min(11, Math.max(8, rw / 22));
+      ctx.font = `600 ${fontSize}px 'Inter', -apple-system, system-ui, sans-serif`;
+      const label = cr.cat.toUpperCase();
+      const textW = ctx.measureText(label).width;
+
+      if (textW < rw - 16) {
+        ctx.save();
+        // Pill background
+        ctx.fillStyle = "rgba(8,8,13,0.72)";
+        ctx.beginPath();
+        ctx.roundRect(rx + 5, ry + 5, textW + 10, fontSize + 7, 3);
+        ctx.fill();
+
+        ctx.fillStyle = "rgba(255,255,255,0.38)";
+        ctx.textBaseline = "top";
+        ctx.fillText(label, rx + 10, ry + 8);
+        ctx.restore();
+      }
+    }
+  }
 }
 
 function hitTest(mx, my) {
-  const sidebarW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w'));
+  const sidebarW = getSidebarW();
   const cx = mx - sidebarW;
   const cy = my;
   for (let i = rects.length - 1; i >= 0; i--) {
@@ -821,6 +1007,10 @@ function formatPay(n) {
   if (n == null) return "\u2014";
   return n.toLocaleString("nb-NO") + "\u00a0kr";
 }
+
+// ── Tooltip ─────────────────────────────────────────────────────────────
+
+let pinnedTooltip = null;
 
 function showTooltip(d, mx, my) {
   const tt = document.getElementById("tooltip");
@@ -849,22 +1039,34 @@ function showTooltip(d, mx, my) {
     d.exposure_rationale || "";
 
   tt.querySelector(".tt-link").innerHTML =
-    d.url ? `<a href="${d.url}" target="_blank" style="color:inherit;">Les mer på utdanning.no →</a>` : "";
+    d.url ? `<a href="${d.url}" target="_blank" rel="noopener">Les mer på utdanning.no →</a>` : "";
 
-  const pad = 16;
-  let tx = mx + pad;
-  let ty = my - pad;
-  if (tx + 380 > window.innerWidth) tx = mx - 380 - pad;
-  if (ty < 10) ty = my + pad;
-  if (ty + 200 > window.innerHeight) ty = my - 200;
-
-  tt.style.left = tx + "px";
-  tt.style.top = ty + "px";
+  positionTooltip(tt, mx, my);
   tt.classList.add("visible");
 }
 
+function positionTooltip(tt, mx, my) {
+  const pad = 16;
+  const ttW = 380;
+  const ttH = tt.offsetHeight || 220;
+  let tx = mx + pad;
+  let ty = my - pad;
+  if (tx + ttW > window.innerWidth) tx = mx - ttW - pad;
+  if (ty < 10) ty = my + pad;
+  if (ty + ttH > window.innerHeight) ty = my - ttH;
+  tt.style.left = tx + "px";
+  tt.style.top = ty + "px";
+}
+
 function hideTooltip() {
-  document.getElementById("tooltip").classList.remove("visible");
+  const tt = document.getElementById("tooltip");
+  tt.classList.remove("visible", "pinned");
+  pinnedTooltip = null;
+}
+
+function unpinTooltip() {
+  hideTooltip();
+  draw();
 }
 
 // ── Animated counter ───────────────────────────────────────────────────
@@ -1091,8 +1293,12 @@ searchBox.addEventListener("input", () => {
           draw();
           const r = rects.find(r => r.slug === highlightSlug);
           if (r) {
-            const sidebarW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-w'));
-            showTooltip(r, sidebarW + r.rx + r.rw / 2, r.ry + r.rh / 2);
+            const sidebarW = getSidebarW();
+            const mx = sidebarW + r.rx + r.rw / 2;
+            const my = r.ry + r.rh / 2;
+            pinnedTooltip = r;
+            showTooltip(r, mx, my);
+            document.getElementById("tooltip").classList.add("pinned");
           }
         });
       });
@@ -1145,6 +1351,10 @@ canvas.addEventListener("mousemove", (e) => {
     hovered = hit;
     draw();
   }
+  if (pinnedTooltip) {
+    canvas.style.cursor = hit ? "pointer" : "default";
+    return;
+  }
   if (hovered) {
     showTooltip(hovered, e.clientX, e.clientY);
     canvas.style.cursor = "pointer";
@@ -1156,14 +1366,29 @@ canvas.addEventListener("mousemove", (e) => {
 
 canvas.addEventListener("click", (e) => {
   const hit = hitTest(e.clientX, e.clientY);
-  if (hit && hit.url) {
-    window.open(hit.url, "_blank");
+  if (!hit) {
+    if (pinnedTooltip) {
+      unpinTooltip();
+    }
+    return;
+  }
+  const tt = document.getElementById("tooltip");
+  if (pinnedTooltip === hit) {
+    // Click same cell → unpin
+    unpinTooltip();
+  } else {
+    // Pin this cell
+    pinnedTooltip = hit;
+    showTooltip(hit, e.clientX, e.clientY);
+    tt.classList.add("pinned");
   }
 });
 
 canvas.addEventListener("mouseleave", () => {
   hovered = null;
-  hideTooltip();
+  if (!pinnedTooltip) {
+    hideTooltip();
+  }
   draw();
 });
 
@@ -1171,6 +1396,33 @@ function resize() {
   dpr = window.devicePixelRatio || 1;
   layout();
   draw();
+  // Reposition pinned tooltip if open
+  if (pinnedTooltip) {
+    const tt = document.getElementById("tooltip");
+    const sidebarW = getSidebarW();
+    const mx = sidebarW + pinnedTooltip.rx + pinnedTooltip.rw / 2;
+    const my = pinnedTooltip.ry + pinnedTooltip.rh / 2;
+    positionTooltip(tt, mx, my);
+  }
+}
+
+// ── Mobile sidebar ─────────────────────────────────────────────────────
+
+function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("sidebarOverlay");
+  const isOpen = sidebar.classList.contains("open");
+  if (isOpen) {
+    closeSidebar();
+  } else {
+    sidebar.classList.add("open");
+    overlay.classList.add("open");
+  }
+}
+
+function closeSidebar() {
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("sidebarOverlay").classList.remove("open");
 }
 
 // ── Legend gradient ────────────────────────────────────────────────────
@@ -1190,20 +1442,56 @@ function drawGradientLegend() {
   }
 }
 
-// ── Load ───────────────────────────────────────────────────────────────
+// ── Load with streaming progress ───────────────────────────────────────
 
-fetch("data.json")
-  .then(r => r.json())
-  .then(d => {
-    data = d;
-    computeStats();
-    drawGradientLegend();
-    resize();
-    // Hide loading screen
-    setTimeout(() => {
-      document.getElementById("loading").classList.add("hidden");
-    }, 300);
-  });
+async function loadData() {
+  const loadingText = document.getElementById("loadingText");
+  const progressFill = document.getElementById("progressFill");
+
+  const response = await fetch("data.json");
+  const contentLength = response.headers.get("Content-Length");
+
+  if (contentLength) {
+    const total = parseInt(contentLength);
+    const reader = response.body.getReader();
+    const chunks = [];
+    let received = 0;
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      chunks.push(value);
+      received += value.length;
+      const pct = Math.round(received / total * 100);
+      progressFill.style.width = pct + "%";
+      loadingText.textContent = `Laster yrker… ${pct}%`;
+    }
+
+    const all = new Uint8Array(received);
+    let pos = 0;
+    for (const chunk of chunks) { all.set(chunk, pos); pos += chunk.length; }
+    return JSON.parse(new TextDecoder().decode(all));
+  } else {
+    // No content-length header — animate indeterminate bar
+    progressFill.style.transition = "width 1.5s ease";
+    progressFill.style.width = "70%";
+    loadingText.textContent = "Laster yrker…";
+    const d = await response.json();
+    progressFill.style.transition = "width 0.2s ease";
+    progressFill.style.width = "100%";
+    return d;
+  }
+}
+
+loadData().then(d => {
+  data = d;
+  computeStats();
+  drawGradientLegend();
+  resize();
+  setTimeout(() => {
+    document.getElementById("loading").classList.add("hidden");
+  }, 300);
+});
 
 window.addEventListener("resize", () => {
   resize();
