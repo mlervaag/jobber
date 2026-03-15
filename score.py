@@ -7,8 +7,8 @@ structured scores. Results are cached incrementally to scores.json so the
 script can be resumed if interrupted.
 
 Usage:
-    uv run python score.py                          # default: claude-sonnet-4-6
-    uv run python score.py --model gpt-4o-mini      # use OpenAI
+    uv run python score.py                          # default: gpt-5.4
+    uv run python score.py --model gpt-4o           # use older OpenAI model
     uv run python score.py --start 0 --end 10       # test on first 10
 """
 
