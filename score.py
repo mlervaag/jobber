@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 load_dotenv('.env')
 load_dotenv('.env.local', override=True)
 
-DEFAULT_MODEL = "claude-sonnet-4-6"
+DEFAULT_MODEL = "gpt-4o"
 OUTPUT_FILE = "scores.json"
 
 SYSTEM_PROMPT = """\
