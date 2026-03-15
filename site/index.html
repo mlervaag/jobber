@@ -1215,6 +1215,8 @@ function unpinTooltip() {
 function setTooltipBackdrop(active) {
   if (!isMobile()) return;
   document.getElementById("tooltipBackdrop").classList.toggle("active", active);
+  // Canvas elements on mobile capture touch events even under z-index overlays
+  canvas.style.pointerEvents = active ? "none" : "auto";
 }
 
 // ── Animated counter ───────────────────────────────────────────────────
@@ -1662,6 +1664,7 @@ function drawGradientLegend() {
     const h = 8;
     c.width = w * 2;
     c.height = h * 2;
+    c.style.width = w + "px";
     c.style.height = h + "px";
     const gctx = c.getContext("2d");
     gctx.scale(2, 2);
