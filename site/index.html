@@ -947,7 +947,11 @@ canvas#canvas {
       <button class="filter-chip" data-filter="highpay">800k+</button>
       <button class="filter-chip" data-filter="highai">H&oslash;y AI &ge;8</button>
       <button class="filter-chip" data-filter="lowai">Lav AI &le;2</button>
+      <button class="filter-chip" data-filter="vulnerable">S&aring;rbare yrker</button>
+      <button class="filter-chip" data-filter="transform">Transformasjon</button>
     </div>
+    <div class="filter-group-label">Utdanningsniv&aring;</div>
+    <div class="filter-chips" id="educationFilters"></div>
     <div class="filter-group-label">Yrkeskategori</div>
     <div class="filter-chips" id="categoryFilters"></div>
   </div>
@@ -1676,19 +1680,33 @@ function computeStats() {
 let searchQuery = "";
 let filterRange = null;
 let highlightSlug = null;
-let activeChipFilter = null;   // "highpay" | "highai" | "lowai" | null
+let activeChipFilter = null;   // "highpay" | "highai" | "lowai" | "vulnerable" | "transform" | null
 let activeCategoryFilter = null; // category string or null
+let activeEducationFilter = null; // education string or null
+
+const vulnerableEducations = new Set(["Videregående", "Grunnskole", "Ingen formelle krav", ""]);
 
 function matchesChipFilter(d) {
   if (activeChipFilter === "highpay") return d.pay != null && d.pay >= 800000;
   if (activeChipFilter === "highai") return d.exposure != null && d.exposure >= 8;
   if (activeChipFilter === "lowai") return d.exposure != null && d.exposure <= 2;
+  if (activeChipFilter === "vulnerable") {
+    return d.exposure != null && d.exposure >= 6 && vulnerableEducations.has(d.education || "");
+  }
+  if (activeChipFilter === "transform") {
+    return d.exposure != null && d.exposure >= 7 && d.pay != null && d.pay >= 700000;
+  }
   return true;
 }
 
 function matchesCategoryFilter(d) {
   if (!activeCategoryFilter) return true;
   return d.category === activeCategoryFilter;
+}
+
+function matchesEducationFilter(d) {
+  if (!activeEducationFilter) return true;
+  return d.education === activeEducationFilter;
 }
 
 function matchesFilter(d) {
@@ -1698,6 +1716,7 @@ function matchesFilter(d) {
   if (filterRange && d.exposure == null) return false;
   if (!matchesChipFilter(d)) return false;
   if (!matchesCategoryFilter(d)) return false;
+  if (!matchesEducationFilter(d)) return false;
   return true;
 }
 
@@ -1709,12 +1728,12 @@ function matchesSearch(d) {
 function isHighlighted(r) {
   if (highlightSlug) return r.slug === highlightSlug;
   if (searchQuery) return matchesSearch(r);
-  if (filterRange || activeChipFilter || activeCategoryFilter) return matchesFilter(r);
+  if (filterRange || activeChipFilter || activeCategoryFilter || activeEducationFilter) return matchesFilter(r);
   return true;
 }
 
 function hasAnyFilter() {
-  return searchQuery || filterRange || highlightSlug || activeChipFilter || activeCategoryFilter;
+  return searchQuery || filterRange || highlightSlug || activeChipFilter || activeCategoryFilter || activeEducationFilter;
 }
 
 const searchBox = document.getElementById("searchBox");
@@ -1793,6 +1812,7 @@ function setTierFilter(lo, hi) {
   filterRange = [lo, hi];
   activeChipFilter = null;
   activeCategoryFilter = null;
+  activeEducationFilter = null;
   updateFilterUI();
   draw();
 }
@@ -1805,6 +1825,7 @@ function setChipFilter(filterName) {
   activeChipFilter = filterName;
   filterRange = null;
   activeCategoryFilter = null;
+  activeEducationFilter = null;
   updateFilterUI();
   draw();
 }
@@ -1817,6 +1838,20 @@ function setCategoryFilter(category) {
   activeCategoryFilter = category;
   filterRange = null;
   activeChipFilter = null;
+  // Keep education filter — they're complementary dimensions
+  updateFilterUI();
+  draw();
+}
+
+function setEducationFilter(education) {
+  if (activeEducationFilter === education) {
+    clearFilter();
+    return;
+  }
+  activeEducationFilter = education;
+  filterRange = null;
+  activeChipFilter = null;
+  // Keep category filter — they're complementary dimensions
   updateFilterUI();
   draw();
 }
@@ -1825,12 +1860,13 @@ function clearFilter() {
   filterRange = null;
   activeChipFilter = null;
   activeCategoryFilter = null;
+  activeEducationFilter = null;
   updateFilterUI();
   draw();
 }
 
 function updateFilterUI() {
-  const anyActive = filterRange || activeChipFilter || activeCategoryFilter;
+  const anyActive = filterRange || activeChipFilter || activeCategoryFilter || activeEducationFilter;
   document.getElementById("filterClear").style.display = anyActive ? "block" : "none";
 
   // Tier rows
@@ -1842,6 +1878,11 @@ function updateFilterUI() {
   // Quick filter chips
   document.querySelectorAll("#quickFilters .filter-chip").forEach(el => {
     el.classList.toggle("active", el.dataset.filter === activeChipFilter);
+  });
+
+  // Education chips
+  document.querySelectorAll("#educationFilters .filter-chip").forEach(el => {
+    el.classList.toggle("active", el.dataset.education === activeEducationFilter);
   });
 
   // Category chips
@@ -2095,9 +2136,42 @@ function buildCategoryChips() {
   }).join("");
 }
 
+const educationOrder = [
+  "Ingen formelle krav",
+  "Grunnskole",
+  "Videregående",
+  "Fagbrev/fagskole",
+  "Bachelor",
+  "Master",
+  "Doktorgrad"
+];
+
+const educationShortNames = {
+  "Ingen formelle krav": "Ingen krav",
+  "Fagbrev/fagskole": "Fagbrev",
+  "Videregående": "VGS"
+};
+
+function buildEducationChips() {
+  const counts = {};
+  for (const d of data) {
+    if (d.education) counts[d.education] = (counts[d.education] || 0) + 1;
+  }
+  const sorted = educationOrder.filter(e => counts[e]);
+  const container = document.getElementById("educationFilters");
+  container.innerHTML = sorted.map(edu => {
+    const label = educationShortNames[edu] || edu;
+    return `<button class="filter-chip" data-education="${edu}">${label}</button>`;
+  }).join("");
+}
+
 function initFilterChips() {
   document.querySelectorAll("#quickFilters .filter-chip").forEach(el => {
     el.addEventListener("click", () => setChipFilter(el.dataset.filter));
+  });
+  document.getElementById("educationFilters").addEventListener("click", (e) => {
+    const chip = e.target.closest(".filter-chip");
+    if (chip) setEducationFilter(chip.dataset.education);
   });
   document.getElementById("categoryFilters").addEventListener("click", (e) => {
     const chip = e.target.closest(".filter-chip");
@@ -2150,6 +2224,7 @@ loadData().then(d => {
   data = d;
   computeStats();
   populateAboutModal();
+  buildEducationChips();
   buildCategoryChips();
   initFilterChips();
 
