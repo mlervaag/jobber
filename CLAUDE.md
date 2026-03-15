@@ -18,6 +18,8 @@ uv sync                                # Install dependencies
 uv run python fetch_occupations.py      # Fetch occupations from utdanning.no → yrker.json
 uv run python fetch_styrk.py            # Fetch STYRK-08 categories from SSB → styrk_categories.json
 uv run python fetch_ssb.py              # Fetch wages & employment from SSB → ssb_data.json
+uv run python fetch_students.py         # Fetch student enrollment trends from SSB → students_data.json
+uv run python fetch_nav.py              # Fetch job vacancies from NAV → nav_data.json (optional)
 uv run python build_data.py             # Combine all sources → yrker.csv
 uv run python score.py                  # Score AI exposure via LLM → scores.json
 uv run python build_site_data.py        # Merge data → site/data.json
@@ -42,12 +44,14 @@ There are no tests, linting, or CI configured.
 utdanning.no API → fetch_occupations.py → yrker.json (~550 occupations)
 SSB Klass API    → fetch_styrk.py       → styrk_categories.json
 SSB StatBank     → fetch_ssb.py         → ssb_data.json (wages + employment)
+SSB StatBank     → fetch_students.py    → students_data.json (student enrollment trends)
+NAV Feed API     → fetch_nav.py         → nav_data.json (job vacancies, optional)
                                           ↓
                    build_data.py        → yrker.csv (combined via STYRK-08 codes)
                                           ↓
                    score.py             → scores.json (AI exposure 0-10, via LLM)
                                           ↓
-                   build_site_data.py   → site/data.json
+                   build_site_data.py   → site/data.json (merges all sources)
                                           ↓
                    site/index.html        (standalone treemap visualization)
 ```
@@ -65,6 +69,8 @@ SSB StatBank     → fetch_ssb.py         → ssb_data.json (wages + employment)
 - `yrker.json` — occupation list from utdanning.no with descriptions, education, STYRK codes
 - `styrk_categories.json` — STYRK-08 hierarchy (major groups, sub-groups)
 - `ssb_data.json` — SSB wage and employment data keyed by STYRK code
+- `students_data.json` — SSB student enrollment by field of study (2001–2024) with growth rates
+- `nav_data.json` — NAV job vacancy counts per STYRK code (optional, requires API token)
 - `yrker.csv` — combined dataset with pay, employment, education, category
 - `scores.json` — AI exposure scores (0-10) with Norwegian rationale
 - `site/data.json` — merged compact dataset for the frontend
