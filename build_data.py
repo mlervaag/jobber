@@ -62,22 +62,17 @@ def main():
     print(f"SSB data entries: {len(ssb_data)}")
     print(f"STYRK categories: {len(styrk_cats)}")
 
-    # Build rows
-    rows = []
-    matched_wages = 0
-    matched_employment = 0
-
+    # First pass: find best STYRK code for each occupation
+    occ_matches = []
     for occ in occupations:
         styrk_codes = occ.get("styrk08", [])
 
-        # Find best SSB match: try each STYRK code, prefer 4-digit
         best_wage = None
         best_employed = None
         best_code = ""
         category = ""
 
         for code in sorted(styrk_codes, key=len, reverse=True):
-            # Try exact match first
             if code in ssb_data:
                 entry = ssb_data[code]
                 if best_wage is None and "median_annual" in entry:
@@ -88,12 +83,10 @@ def main():
                     if not best_code:
                         best_code = code
 
-            # Get category from STYRK hierarchy
             if not category and code in styrk_cats:
                 cat_entry = styrk_cats[code]
                 category = cat_entry.get("major_group", cat_entry.get("name", ""))
 
-            # Try parent codes (3-digit, 2-digit) if no match
             for length in [4, 3, 2]:
                 parent = code[:length]
                 if parent in ssb_data:
@@ -108,22 +101,49 @@ def main():
                     cat_entry = styrk_cats[parent]
                     category = cat_entry.get("major_group", cat_entry.get("name", ""))
 
-        if best_wage is not None:
+        education = classify_education(occ.get("education", ""))
+
+        occ_matches.append({
+            "occ": occ,
+            "best_code": best_code,
+            "best_wage": best_wage,
+            "best_employed": best_employed,
+            "category": category,
+            "education": education,
+        })
+
+    # Count how many occupations share each STYRK code (for splitting employment)
+    from collections import Counter
+    styrk_usage = Counter(m["best_code"] for m in occ_matches if m["best_code"])
+
+    # Second pass: build rows, splitting employment evenly among shared codes
+    rows = []
+    matched_wages = 0
+    matched_employment = 0
+
+    for m in occ_matches:
+        best_employed = m["best_employed"]
+        best_code = m["best_code"]
+
+        # Split employment evenly among occupations sharing the same STYRK code
+        if best_employed is not None and best_code:
+            share_count = styrk_usage[best_code]
+            best_employed = round(best_employed / share_count)
+
+        if m["best_wage"] is not None:
             matched_wages += 1
         if best_employed is not None:
             matched_employment += 1
 
-        # Classify education level
-        education = classify_education(occ.get("education", ""))
-
+        occ = m["occ"]
         rows.append({
             "title": occ["title"],
             "slug": occ["slug"],
-            "category": category,
+            "category": m["category"],
             "styrk_code": best_code,
-            "median_pay_annual": best_wage if best_wage else "",
+            "median_pay_annual": m["best_wage"] if m["best_wage"] else "",
             "num_employed": best_employed if best_employed else "",
-            "education": education,
+            "education": m["education"],
             "url": occ.get("url", ""),
         })
 
