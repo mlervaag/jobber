@@ -797,6 +797,8 @@ canvas#canvas {
   position: fixed;
   inset: 0;
   z-index: 19; /* above canvas, below tooltip (20) */
+  background: rgba(0,0,0,0.35);
+  -webkit-tap-highlight-color: transparent;
 }
 #tooltipBackdrop.active { display: block; }
 
@@ -921,7 +923,18 @@ canvas#canvas {
   }
   /* On mobile every tap is a pin — always show close, hide hint */
   #tooltip .tt-pin-hint { display: none !important; }
-  #tooltip .tt-close { display: flex !important; }
+  #tooltip .tt-close {
+    display: flex !important;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+  /* Ensure visible tooltip captures all touches on mobile */
+  #tooltip.visible {
+    pointer-events: auto;
+    touch-action: pan-y;
+  }
 }
 </style>
 </head>
@@ -935,7 +948,7 @@ canvas#canvas {
   </div>
 </div>
 <div id="mobileSearchResults"></div>
-<div id="tooltipBackdrop" onclick="unpinTooltip()"></div>
+<div id="tooltipBackdrop"></div>
 <div id="sidebarOverlay" onclick="closeSidebar()"></div>
 
 <div id="sidebar">
@@ -1033,7 +1046,7 @@ canvas#canvas {
 <div id="tooltip">
   <div class="tt-header">
     <div class="tt-title"></div>
-    <button class="tt-close" onclick="unpinTooltip()" aria-label="Lukk">&#x2715;</button>
+    <button class="tt-close" id="ttClose" aria-label="Lukk">&#x2715;</button>
   </div>
   <div class="tt-pin-hint">Klikk for å feste</div>
   <div class="tt-exposure"></div>
@@ -1509,9 +1522,37 @@ function unpinTooltip() {
 function setTooltipBackdrop(active) {
   if (!isMobile()) return;
   document.getElementById("tooltipBackdrop").classList.toggle("active", active);
-  // Canvas elements on mobile capture touch events even under z-index overlays
   canvas.style.pointerEvents = active ? "none" : "auto";
 }
+
+// Backdrop close — use both touchend and click for reliable mobile dismissal
+(function() {
+  const bd = document.getElementById("tooltipBackdrop");
+  function handleBackdropClose(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    unpinTooltip();
+  }
+  bd.addEventListener("touchend", handleBackdropClose, { passive: false });
+  bd.addEventListener("click", handleBackdropClose);
+})();
+
+// Prevent tooltip touches from propagating through to canvas
+document.getElementById("tooltip").addEventListener("touchstart", (e) => {
+  e.stopPropagation();
+}, { passive: true });
+
+// Close button — touchend + click for reliable mobile dismissal
+(function() {
+  const closeBtn = document.getElementById("ttClose");
+  function handleClose(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    unpinTooltip();
+  }
+  closeBtn.addEventListener("touchend", handleClose, { passive: false });
+  closeBtn.addEventListener("click", handleClose);
+})();
 
 // ── Animated counter ───────────────────────────────────────────────────
 
@@ -1824,6 +1865,7 @@ searchBox.addEventListener("input", () => {
             pinnedTooltip = r;
             showTooltip(r, mx, my);
             document.getElementById("tooltip").classList.add("pinned");
+            setTooltipBackdrop(true);
           }
         });
       });
@@ -2106,6 +2148,7 @@ mobileSearchBox.addEventListener("input", () => {
       pinnedTooltip = r;
       showTooltip(r, 0, 0);
       document.getElementById("tooltip").classList.add("pinned");
+      setTooltipBackdrop(true);
     }
   });
   draw();
