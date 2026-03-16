@@ -469,6 +469,34 @@ canvas#canvas {
   top: 0;
   left: var(--sidebar-w);
   cursor: default;
+  touch-action: none; /* we handle all touch gestures */
+}
+
+#resetZoom {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 10;
+  background: rgba(14,14,22,0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--fg2);
+  font: 600 12px 'Inter', system-ui, sans-serif;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, background 0.15s;
+}
+#resetZoom.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+#resetZoom:hover {
+  background: rgba(30,30,45,0.9);
+  color: var(--fg);
 }
 
 /* ── Tooltip ──────────────────────────────────────────── */
@@ -935,6 +963,12 @@ canvas#canvas {
     pointer-events: auto;
     touch-action: pan-y;
   }
+  #resetZoom {
+    bottom: 12px;
+    right: 12px;
+    padding: 10px 16px;
+    font-size: 13px;
+  }
 }
 </style>
 </head>
@@ -1042,6 +1076,7 @@ canvas#canvas {
 </div>
 
 <canvas id="canvas"></canvas>
+<button id="resetZoom" onclick="resetZoom()" aria-label="Tilbakestill zoom">&#x2196; 1:1</button>
 
 <div id="tooltip">
   <div class="tt-header">
@@ -1230,6 +1265,47 @@ let dpr = window.devicePixelRatio || 1;
 const MARGIN = 8;
 const GAP = 1.5;
 
+// ── Zoom / pan state ──────────────────────────────────────────────────
+let viewScale = 1;
+let viewX = 0;   // world-space offset (top-left corner in world coords)
+let viewY = 0;
+const MIN_ZOOM = 1;
+const MAX_ZOOM = 8;
+
+function screenToWorld(sx, sy) {
+  const sidebarW = getSidebarW();
+  return [(sx - sidebarW) / viewScale + viewX, sy / viewScale + viewY];
+}
+
+function worldToScreen(wx, wy) {
+  const sidebarW = getSidebarW();
+  return [(wx - viewX) * viewScale + sidebarW, (wy - viewY) * viewScale];
+}
+
+function clampView() {
+  const sidebarW = getSidebarW();
+  const vw = (window.innerWidth - sidebarW) / viewScale;
+  const vh = window.innerHeight / viewScale;
+  const cw = (window.innerWidth - sidebarW);
+  const ch = window.innerHeight;
+  // Don't let the user pan beyond the treemap bounds
+  viewX = Math.max(0, Math.min(viewX, cw - vw));
+  viewY = Math.max(0, Math.min(viewY, ch - vh));
+}
+
+function resetZoom() {
+  viewScale = 1;
+  viewX = 0;
+  viewY = 0;
+  draw();
+  updateResetBtn();
+}
+
+function updateResetBtn() {
+  const btn = document.getElementById("resetZoom");
+  if (btn) btn.classList.toggle("visible", viewScale > 1.05);
+}
+
 function getSidebarW() {
   // On mobile when sidebar is closed, use 0; otherwise use CSS var
   const isMobile = window.innerWidth <= 700;
@@ -1289,7 +1365,12 @@ function draw() {
   ctx.fillStyle = "#08080d";
   ctx.fillRect(0, 0, w / dpr, h / dpr);
 
+  // Apply zoom/pan transform
+  ctx.setTransform(dpr * viewScale, 0, 0, dpr * viewScale, -viewX * dpr * viewScale, -viewY * dpr * viewScale);
+
   const hasFilter = hasAnyFilter();
+  // Effective screen size of a world pixel — used for visibility thresholds
+  const s = viewScale;
 
   for (const r of rects) {
     const isHovered = r === hovered;
@@ -1322,7 +1403,7 @@ function draw() {
 
     if (isHovered && lit) {
       ctx.strokeStyle = "#fff";
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 2 / s;
       if (radius > 0.5) {
         ctx.beginPath();
         ctx.roundRect(rx, ry, rw, rh, radius);
@@ -1332,7 +1413,7 @@ function draw() {
       }
     } else if (lit && hasFilter) {
       ctx.strokeStyle = exposureColorCSS(r.exposure, 0.5);
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 1 / s;
       if (radius > 0.5) {
         ctx.beginPath();
         ctx.roundRect(rx, ry, rw, rh, radius);
@@ -1342,26 +1423,27 @@ function draw() {
       }
     }
 
-    const minW = 48;
-    const minH = 18;
+    // Text visibility: use effective screen size (world size * zoom)
+    const minW = 48 / s;
+    const minH = 18 / s;
     if (rw > minW && rh > minH && lit) {
       ctx.save();
       ctx.beginPath();
-      ctx.rect(rx + 4, ry + 2, rw - 8, rh - 4);
+      ctx.rect(rx + 4 / s, ry + 2 / s, rw - 8 / s, rh - 4 / s);
       ctx.clip();
 
-      const fontSize = Math.min(14, Math.max(9, Math.min(rw / 10, rh / 3)));
+      const fontSize = Math.min(14 / s, Math.max(9 / s, Math.min(rw / 10, rh / 3)));
       ctx.font = `600 ${fontSize}px 'Inter', -apple-system, system-ui, sans-serif`;
       ctx.fillStyle = isHovered ? "#fff" : "rgba(255,255,255,0.88)";
       ctx.textBaseline = "top";
-      ctx.fillText(r.title, rx + 6, ry + 5);
+      ctx.fillText(r.title, rx + 6 / s, ry + 5 / s);
 
-      if (rh > 34 && rw > 60) {
+      if (rh > 34 / s && rw > 60 / s) {
         const info = (r.exposure != null ? r.exposure + "/10" : "") +
                      (r.jobs ? "  ·  " + formatNumber(r.jobs) : "");
-        ctx.font = `400 ${Math.max(8, fontSize - 2)}px 'Inter', -apple-system, system-ui, sans-serif`;
+        ctx.font = `400 ${Math.max(8 / s, fontSize - 2 / s)}px 'Inter', -apple-system, system-ui, sans-serif`;
         ctx.fillStyle = "rgba(255,255,255,0.4)";
-        ctx.fillText(info, rx + 6, ry + 6 + fontSize + 2);
+        ctx.fillText(info, rx + 6 / s, ry + 6 / s + fontSize + 2 / s);
       }
 
       ctx.restore();
@@ -1380,7 +1462,7 @@ function draw() {
 
     // Outer border around the whole category area
     ctx.strokeStyle = "rgba(255,255,255,0.07)";
-    ctx.lineWidth = 1;
+    ctx.lineWidth = 1 / s;
     const br = Math.min(4, rw / 8, rh / 8);
     if (br > 0.5) {
       ctx.beginPath();
@@ -1404,7 +1486,7 @@ function draw() {
 
       // Separator line below strip
       ctx.strokeStyle = "rgba(255,255,255,0.06)";
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 1 / s;
       ctx.beginPath();
       ctx.moveTo(rx, ry + cr.headerH);
       ctx.lineTo(rx + rw, ry + cr.headerH);
@@ -1413,21 +1495,19 @@ function draw() {
       // Label text, clipped to strip width
       ctx.save();
       ctx.beginPath();
-      ctx.rect(rx + 6, ry, rw - 12, cr.headerH);
+      ctx.rect(rx + 6 / s, ry, rw - 12 / s, cr.headerH);
       ctx.clip();
-      ctx.font = `600 9px 'Inter', -apple-system, system-ui, sans-serif`;
+      ctx.font = `600 ${9 / s}px 'Inter', -apple-system, system-ui, sans-serif`;
       ctx.fillStyle = "rgba(255,255,255,0.45)";
       ctx.textBaseline = "middle";
-      ctx.fillText(cr.cat.toUpperCase(), rx + 6, ry + cr.headerH / 2);
+      ctx.fillText(cr.cat.toUpperCase(), rx + 6 / s, ry + cr.headerH / 2);
       ctx.restore();
     }
   }
 }
 
 function hitTest(mx, my) {
-  const sidebarW = getSidebarW();
-  const cx = mx - sidebarW;
-  const cy = my;
+  const [cx, cy] = screenToWorld(mx, my);
   for (let i = rects.length - 1; i >= 0; i--) {
     const r = rects[i];
     if (cx >= r.rx && cx < r.rx + r.rw && cy >= r.ry && cy < r.ry + r.rh) {
@@ -1519,16 +1599,20 @@ function unpinTooltip() {
   draw();
 }
 
+let backdropOpenedAt = 0;
 function setTooltipBackdrop(active) {
   if (!isMobile()) return;
+  if (active) backdropOpenedAt = Date.now();
   document.getElementById("tooltipBackdrop").classList.toggle("active", active);
   canvas.style.pointerEvents = active ? "none" : "auto";
 }
 
 // Backdrop close — use both touchend and click for reliable mobile dismissal
+// Grace period prevents the tap that opened the tooltip from immediately closing it
 (function() {
   const bd = document.getElementById("tooltipBackdrop");
   function handleBackdropClose(e) {
+    if (Date.now() - backdropOpenedAt < 300) return; // ignore if just opened
     e.preventDefault();
     e.stopPropagation();
     unpinTooltip();
@@ -1950,14 +2034,44 @@ function updateFilterUI() {
 
 // ── Events ─────────────────────────────────────────────────────────────
 
-canvas.addEventListener("mousemove", (e) => {
+// ── Desktop mouse: hover, click, drag-to-pan ─────────────────────────
+let isDragging = false;
+let dragStartX = 0, dragStartY = 0;
+let dragViewX = 0, dragViewY = 0;
+let dragMoved = false;
+
+canvas.addEventListener("mousedown", (e) => {
+  if (e.button !== 0) return;
+  isDragging = true;
+  dragMoved = false;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  dragViewX = viewX;
+  dragViewY = viewY;
+});
+
+window.addEventListener("mousemove", (e) => {
+  if (isDragging) {
+    const dx = e.clientX - dragStartX;
+    const dy = e.clientY - dragStartY;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) dragMoved = true;
+    if (dragMoved && viewScale > 1) {
+      viewX = dragViewX - dx / viewScale;
+      viewY = dragViewY - dy / viewScale;
+      clampView();
+      draw();
+      canvas.style.cursor = "grabbing";
+      return;
+    }
+  }
+  // Normal hover behavior
   const hit = hitTest(e.clientX, e.clientY);
   if (hit !== hovered) {
     hovered = hit;
     draw();
   }
   if (pinnedTooltip) {
-    canvas.style.cursor = hit ? "pointer" : "default";
+    canvas.style.cursor = hit ? "pointer" : (viewScale > 1 ? "grab" : "default");
     return;
   }
   if (hovered) {
@@ -1965,48 +2079,162 @@ canvas.addEventListener("mousemove", (e) => {
     canvas.style.cursor = "pointer";
   } else {
     hideTooltip();
-    canvas.style.cursor = "default";
+    canvas.style.cursor = viewScale > 1 ? "grab" : "default";
   }
 });
 
-canvas.addEventListener("click", (e) => {
-  const hit = hitTest(e.clientX, e.clientY);
-  if (!hit) {
-    if (pinnedTooltip) unpinTooltip();
-    return;
+window.addEventListener("mouseup", (e) => {
+  if (!isDragging) return;
+  isDragging = false;
+  if (!dragMoved) {
+    // It was a click, not a drag
+    const hit = hitTest(e.clientX, e.clientY);
+    if (!hit) {
+      if (pinnedTooltip) unpinTooltip();
+    } else {
+      const tt = document.getElementById("tooltip");
+      if (!isMobile() && pinnedTooltip === hit) {
+        unpinTooltip();
+      } else {
+        pinnedTooltip = hit;
+        showTooltip(hit, e.clientX, e.clientY);
+        tt.classList.add("pinned");
+        setTooltipBackdrop(true);
+      }
+    }
   }
-  const tt = document.getElementById("tooltip");
-  if (!isMobile() && pinnedTooltip === hit) {
-    // Desktop: click same cell again → unpin
-    unpinTooltip();
-  } else {
-    // Pin this cell (on mobile: always pin on tap)
-    pinnedTooltip = hit;
-    showTooltip(hit, e.clientX, e.clientY);
-    tt.classList.add("pinned");
-    setTooltipBackdrop(true);
-  }
+  canvas.style.cursor = viewScale > 1 ? "grab" : "default";
 });
 
 canvas.addEventListener("mouseleave", () => {
-  hovered = null;
-  if (!pinnedTooltip) {
-    hideTooltip();
+  if (!isDragging) {
+    hovered = null;
+    if (!pinnedTooltip) hideTooltip();
+    draw();
   }
+});
+
+// ── Desktop wheel zoom ────────────────────────────────────────────────
+canvas.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const [wx, wy] = screenToWorld(e.clientX, e.clientY);
+  const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15;
+  const newScale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, viewScale * factor));
+  // Zoom toward cursor: keep world point under cursor fixed
+  viewX = wx - (e.clientX - getSidebarW()) / newScale;
+  viewY = wy - e.clientY / newScale;
+  viewScale = newScale;
+  clampView();
   draw();
+  updateResetBtn();
+}, { passive: false });
+
+// ── Mobile touch: tap, pinch-zoom, two-finger pan ─────────────────────
+let touches = [];
+let lastPinchDist = 0;
+let lastPinchCx = 0, lastPinchCy = 0;
+let touchStartTime = 0;
+let touchStartX = 0, touchStartY = 0;
+let touchMoved = false;
+
+canvas.addEventListener("touchstart", (e) => {
+  touches = Array.from(e.touches);
+  if (touches.length === 1) {
+    touchStartTime = Date.now();
+    touchStartX = touches[0].clientX;
+    touchStartY = touches[0].clientY;
+    touchMoved = false;
+  }
+  if (touches.length === 2) {
+    e.preventDefault();
+    const dx = touches[1].clientX - touches[0].clientX;
+    const dy = touches[1].clientY - touches[0].clientY;
+    lastPinchDist = Math.hypot(dx, dy);
+    lastPinchCx = (touches[0].clientX + touches[1].clientX) / 2;
+    lastPinchCy = (touches[0].clientY + touches[1].clientY) / 2;
+  }
+}, { passive: false });
+
+canvas.addEventListener("touchmove", (e) => {
+  const cur = Array.from(e.touches);
+  if (cur.length === 2) {
+    e.preventDefault();
+    const dx = cur[1].clientX - cur[0].clientX;
+    const dy = cur[1].clientY - cur[0].clientY;
+    const dist = Math.hypot(dx, dy);
+    const cx = (cur[0].clientX + cur[1].clientX) / 2;
+    const cy = (cur[0].clientY + cur[1].clientY) / 2;
+
+    if (lastPinchDist > 0) {
+      // Pinch zoom
+      const factor = dist / lastPinchDist;
+      const [wx, wy] = screenToWorld(cx, cy);
+      const newScale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, viewScale * factor));
+      viewX = wx - (cx - getSidebarW()) / newScale;
+      viewY = wy - cy / newScale;
+      viewScale = newScale;
+
+      // Two-finger pan
+      const panDx = cx - lastPinchCx;
+      const panDy = cy - lastPinchCy;
+      viewX -= panDx / viewScale;
+      viewY -= panDy / viewScale;
+
+      clampView();
+      draw();
+      updateResetBtn();
+    }
+    lastPinchDist = dist;
+    lastPinchCx = cx;
+    lastPinchCy = cy;
+  } else if (cur.length === 1 && viewScale > 1) {
+    // Single-finger pan when zoomed
+    const dx = cur[0].clientX - touchStartX;
+    const dy = cur[0].clientY - touchStartY;
+    if (Math.abs(dx) > 5 || Math.abs(dy) > 5) touchMoved = true;
+    if (touchMoved) {
+      e.preventDefault();
+      viewX -= (cur[0].clientX - touchStartX) / viewScale;
+      viewY -= (cur[0].clientY - touchStartY) / viewScale;
+      touchStartX = cur[0].clientX;
+      touchStartY = cur[0].clientY;
+      clampView();
+      draw();
+    }
+  }
+}, { passive: false });
+
+canvas.addEventListener("touchend", (e) => {
+  const remaining = e.touches.length;
+  if (remaining === 0 && !touchMoved && touches.length === 1) {
+    // Single tap — select occupation
+    const hit = hitTest(touchStartX, touchStartY);
+    if (!hit) {
+      if (pinnedTooltip) unpinTooltip();
+    } else {
+      pinnedTooltip = hit;
+      showTooltip(hit, touchStartX, touchStartY);
+      document.getElementById("tooltip").classList.add("pinned");
+      setTooltipBackdrop(true);
+    }
+  }
+  if (remaining < 2) {
+    lastPinchDist = 0;
+  }
+  touches = Array.from(e.touches);
 });
 
 function resize() {
   dpr = window.devicePixelRatio || 1;
   layout();
+  clampView();
   draw();
+  updateResetBtn();
   // Reposition pinned tooltip if open
   if (pinnedTooltip) {
     const tt = document.getElementById("tooltip");
-    const sidebarW = getSidebarW();
-    const mx = sidebarW + pinnedTooltip.rx + pinnedTooltip.rw / 2;
-    const my = pinnedTooltip.ry + pinnedTooltip.rh / 2;
-    positionTooltip(tt, mx, my);
+    const [sx, sy] = worldToScreen(pinnedTooltip.rx + pinnedTooltip.rw / 2, pinnedTooltip.ry + pinnedTooltip.rh / 2);
+    positionTooltip(tt, sx, sy);
   }
 }
 
