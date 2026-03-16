@@ -272,8 +272,8 @@ body {
   margin: 0 -8px;
   transition: background 0.12s;
 }
-.tier-row:hover { background: rgba(255,255,255,0.04); }
-.tier-row.active { background: rgba(99,102,241,0.1); }
+.tier-row:hover { background: rgba(255,255,255,0.06); }
+.tier-row.active { background: rgba(99,102,241,0.18); outline: 1px solid rgba(99,102,241,0.35); }
 .tier-color {
   width: 10px;
   height: 10px;
@@ -376,15 +376,15 @@ body {
   gap: 8px;
   font-size: 11px;
 }
-.hbar-row[data-education] {
+.hbar-row[data-education], .hbar-row[data-pay] {
   cursor: pointer;
   border-radius: 5px;
   padding: 3px 6px;
   margin: 0 -6px;
   transition: background 0.12s;
 }
-.hbar-row[data-education]:hover { background: rgba(255,255,255,0.04); }
-.hbar-row[data-education].active { background: rgba(99,102,241,0.1); }
+.hbar-row[data-education]:hover, .hbar-row[data-pay]:hover { background: rgba(255,255,255,0.06); }
+.hbar-row[data-education].active, .hbar-row[data-pay].active { background: rgba(99,102,241,0.18); outline: 1px solid rgba(99,102,241,0.35); }
 .hbar-label {
   width: 88px;
   flex-shrink: 0;
