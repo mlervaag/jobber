@@ -950,7 +950,7 @@ canvas#canvas {
     <div id="searchResults"></div>
   </div>
 
-  <div class="stat-section" id="filterChipsSection">
+  <div class="stat-section" id="filterChipsSection" style="display:none">
     <div class="filter-group-label">Hurtigfiltre</div>
     <div class="filter-chips" id="quickFilters">
       <button class="filter-chip" data-filter="vulnerable" title="AI-eksponering &ge;6 og kun grunnskole, VGS eller ingen formelle krav">S&aring;rbare yrker</button>
@@ -1646,15 +1646,12 @@ function computeStats() {
     const row = e.target.closest(".hbar-row[data-pay]");
     if (!row) return;
     if (activePayFilter === row.dataset.pay) {
-      clearFilter();
+      activePayFilter = null;
     } else {
       activePayFilter = row.dataset.pay;
-      filterRange = null;
-      activeChipFilter = null;
-      activeEducationFilter = null;
-      updateFilterUI();
-      draw();
     }
+    updateFilterUI();
+    draw();
   });
 
   // Exposure by education
@@ -1690,15 +1687,12 @@ function computeStats() {
     const vals = row.dataset.education.split(",");
     // Toggle: if already filtering these exact values, clear
     if (activeEducationFilter && vals.join(",") === activeEducationFilter) {
-      clearFilter();
+      activeEducationFilter = null;
     } else {
       activeEducationFilter = vals.join(",");
-      filterRange = null;
-      activeChipFilter = null;
-      activePayFilter = null;
-      updateFilterUI();
-      draw();
     }
+    updateFilterUI();
+    draw();
   });
 
   // Wages stat — animated, with percentage of total
@@ -1856,13 +1850,10 @@ searchBox.addEventListener("keydown", (e) => {
 
 function setTierFilter(lo, hi) {
   if (filterRange && filterRange[0] === lo && filterRange[1] === hi) {
-    clearFilter();
-    return;
+    filterRange = null;
+  } else {
+    filterRange = [lo, hi];
   }
-  filterRange = [lo, hi];
-  activeChipFilter = null;
-  activeEducationFilter = null;
-  activePayFilter = null;
   updateFilterUI();
   draw();
 }
