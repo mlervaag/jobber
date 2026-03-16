@@ -1273,24 +1273,22 @@ const MIN_ZOOM = 1;
 const MAX_ZOOM = 8;
 
 function screenToWorld(sx, sy) {
-  const sidebarW = getSidebarW();
-  return [(sx - sidebarW) / viewScale + viewX, sy / viewScale + viewY];
+  const r = canvas.getBoundingClientRect();
+  return [(sx - r.left) / viewScale + viewX, (sy - r.top) / viewScale + viewY];
 }
 
 function worldToScreen(wx, wy) {
-  const sidebarW = getSidebarW();
-  return [(wx - viewX) * viewScale + sidebarW, (wy - viewY) * viewScale];
+  const r = canvas.getBoundingClientRect();
+  return [(wx - viewX) * viewScale + r.left, (wy - viewY) * viewScale + r.top];
 }
 
 function clampView() {
-  const sidebarW = getSidebarW();
-  const vw = (window.innerWidth - sidebarW) / viewScale;
-  const vh = window.innerHeight / viewScale;
-  const cw = (window.innerWidth - sidebarW);
-  const ch = window.innerHeight;
+  const r = canvas.getBoundingClientRect();
+  const vw = r.width / viewScale;
+  const vh = r.height / viewScale;
   // Don't let the user pan beyond the treemap bounds
-  viewX = Math.max(0, Math.min(viewX, cw - vw));
-  viewY = Math.max(0, Math.min(viewY, ch - vh));
+  viewX = Math.max(0, Math.min(viewX, r.width - vw));
+  viewY = Math.max(0, Math.min(viewY, r.height - vh));
 }
 
 function resetZoom() {
@@ -2121,8 +2119,9 @@ canvas.addEventListener("wheel", (e) => {
   const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15;
   const newScale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, viewScale * factor));
   // Zoom toward cursor: keep world point under cursor fixed
-  viewX = wx - (e.clientX - getSidebarW()) / newScale;
-  viewY = wy - e.clientY / newScale;
+  const cr = canvas.getBoundingClientRect();
+  viewX = wx - (e.clientX - cr.left) / newScale;
+  viewY = wy - (e.clientY - cr.top) / newScale;
   viewScale = newScale;
   clampView();
   draw();
@@ -2170,8 +2169,9 @@ canvas.addEventListener("touchmove", (e) => {
       const factor = dist / lastPinchDist;
       const [wx, wy] = screenToWorld(cx, cy);
       const newScale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, viewScale * factor));
-      viewX = wx - (cx - getSidebarW()) / newScale;
-      viewY = wy - cy / newScale;
+      const cr = canvas.getBoundingClientRect();
+      viewX = wx - (cx - cr.left) / newScale;
+      viewY = wy - (cy - cr.top) / newScale;
       viewScale = newScale;
 
       // Two-finger pan
