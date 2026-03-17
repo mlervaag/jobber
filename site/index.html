@@ -1042,6 +1042,11 @@ canvas#canvas {
   </div>
 
   <div class="stat-section">
+    <h3>Yrkeskategori</h3>
+    <div class="filter-chips" id="categoryFilters"></div>
+  </div>
+
+  <div class="stat-section">
     <h3>Total l&oslash;nnssum eksponert</h3>
     <div class="stat-big" id="statWages">&mdash;</div>
     <div class="stat-label" id="statWagesLabel">h&oslash;yt eksponerte yrker (score 7+)</div>
@@ -1325,8 +1330,12 @@ function layout() {
   const tw = w - MARGIN * 2;
   const th = h - MARGIN * 2;
 
+  const layoutData = activeCategoryFilter
+    ? data.filter(d => (d.category || "Annet") === activeCategoryFilter)
+    : data;
+
   const byCategory = {};
-  for (const d of data) {
+  for (const d of layoutData) {
     const cat = d.category || "Annet";
     if (!byCategory[cat]) byCategory[cat] = [];
     byCategory[cat].push(d);
@@ -1843,6 +1852,7 @@ let highlightSlug = null;
 let activeChipFilter = null;   // "highpay" | "highai" | "lowai" | "vulnerable" | "transform" | null
 let activeEducationFilter = null; // education string or null
 let activePayFilter = null; // "min,max" string or null
+let activeCategoryFilter = null; // category name string or null
 
 const vulnerableEducations = new Set(["Videregående", "Grunnskole", "Ingen formelle krav", ""]);
 
@@ -2000,12 +2010,17 @@ function clearFilter() {
   activeChipFilter = null;
   activeEducationFilter = null;
   activePayFilter = null;
+  if (activeCategoryFilter) {
+    activeCategoryFilter = null;
+    resetZoom();
+    layout();
+  }
   updateFilterUI();
   draw();
 }
 
 function updateFilterUI() {
-  const anyActive = filterRange || activeChipFilter || activeEducationFilter || activePayFilter;
+  const anyActive = filterRange || activeChipFilter || activeEducationFilter || activePayFilter || activeCategoryFilter;
   document.getElementById("filterClear").style.display = anyActive ? "block" : "none";
 
   // Tier rows
@@ -2027,6 +2042,11 @@ function updateFilterUI() {
   // Education chart rows
   document.querySelectorAll("#eduChart .hbar-row[data-education]").forEach(el => {
     el.classList.toggle("active", el.dataset.education === activeEducationFilter);
+  });
+
+  // Category chips
+  document.querySelectorAll("#categoryFilters .filter-chip").forEach(el => {
+    el.classList.toggle("active", el.dataset.category === activeCategoryFilter);
   });
 }
 
@@ -2402,6 +2422,32 @@ function initFilterChips() {
   });
 }
 
+function initCategoryChips() {
+  const cats = {};
+  for (const d of data) {
+    const cat = d.category || "Annet";
+    cats[cat] = (cats[cat] || 0) + (d.jobs || 1);
+  }
+  const container = document.getElementById("categoryFilters");
+  Object.keys(cats).sort((a, b) => cats[b] - cats[a]).forEach(cat => {
+    if (!cat) return;
+    const btn = document.createElement("button");
+    btn.className = "filter-chip";
+    btn.dataset.category = cat;
+    btn.textContent = cat;
+    btn.addEventListener("click", () => setCategoryFilter(cat));
+    container.appendChild(btn);
+  });
+}
+
+function setCategoryFilter(cat) {
+  activeCategoryFilter = activeCategoryFilter === cat ? null : cat;
+  resetZoom();
+  layout();
+  updateFilterUI();
+  draw();
+}
+
 // ── Load with streaming progress ───────────────────────────────────────
 
 async function loadData() {
@@ -2448,6 +2494,7 @@ loadData().then(d => {
   computeStats();
   populateAboutModal();
   initFilterChips();
+  initCategoryChips();
 
   resize();
   setTimeout(() => {
