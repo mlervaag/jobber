@@ -1662,12 +1662,13 @@ function animateValue(el, end, duration, formatter) {
 
 // ── Sidebar stats ──────────────────────────────────────────────────────
 
-function computeStats() {
-  const totalJobs = data.reduce((s, d) => s + (d.jobs || 0), 0);
+function computeStats(subset, animate) {
+  const src = subset || data;
+  const totalJobs = src.reduce((s, d) => s + (d.jobs || 0), 0);
 
   // Job-weighted average exposure
   let weightedSum = 0, weightedCount = 0;
-  for (const d of data) {
+  for (const d of src) {
     if (d.exposure != null && d.jobs) {
       weightedSum += d.exposure * d.jobs;
       weightedCount += d.jobs;
@@ -1677,7 +1678,7 @@ function computeStats() {
 
   // Histogram: jobs per exposure score 0-10
   const histogram = new Array(11).fill(0);
-  for (const d of data) {
+  for (const d of src) {
     if (d.exposure != null && d.jobs) {
       histogram[d.exposure] += d.jobs;
     }
@@ -1693,7 +1694,7 @@ function computeStats() {
   ];
   for (const tier of tiers) {
     tier.jobs = 0;
-    for (const d of data) {
+    for (const d of src) {
       if (d.exposure != null && d.jobs &&
           d.exposure >= tier.range[0] && d.exposure <= tier.range[1]) {
         tier.jobs += d.jobs;
@@ -1705,7 +1706,7 @@ function computeStats() {
   // Wages exposed (score >= 7) vs. total
   let wagesExposed = 0;
   let wagesTotal = 0;
-  for (const d of data) {
+  for (const d of src) {
     if (d.jobs && d.pay) {
       wagesTotal += d.jobs * d.pay;
       if (d.exposure != null && d.exposure >= 7) {
@@ -1714,13 +1715,19 @@ function computeStats() {
     }
   }
 
-  // Render with animations
+  // Render stats
   const totalEl = document.getElementById("statTotalJobs");
-  if (totalJobs >= 1000000) {
-    animateValue(totalEl, totalJobs, 1200, n =>
-      (n / 1e6).toFixed(1).replace(".", ",") + " mill.");
+  if (animate) {
+    if (totalJobs >= 1000000) {
+      animateValue(totalEl, totalJobs, 1200, n =>
+        (n / 1e6).toFixed(1).replace(".", ",") + " mill.");
+    } else {
+      animateValue(totalEl, totalJobs, 1200, n => n.toLocaleString("nb-NO"));
+    }
   } else {
-    animateValue(totalEl, totalJobs, 1200, n => n.toLocaleString("nb-NO"));
+    totalEl.textContent = totalJobs >= 1000000
+      ? (totalJobs / 1e6).toFixed(1).replace(".", ",") + " mill."
+      : totalJobs.toLocaleString("nb-NO");
   }
 
   const avgEl = document.getElementById("statAvgExposure");
@@ -1757,7 +1764,7 @@ function computeStats() {
   const payChartEl = document.getElementById("payChart");
   payChartEl.innerHTML = payBands.map(band => {
     let wSum = 0, wCount = 0;
-    for (const d of data) {
+    for (const d of src) {
       if (d.exposure != null && d.jobs && d.pay != null &&
           d.pay >= band.min && d.pay < band.max) {
         wSum += d.exposure * d.jobs;
@@ -1774,18 +1781,6 @@ function computeStats() {
     </div>`;
   }).join("");
 
-  payChartEl.addEventListener("click", (e) => {
-    const row = e.target.closest(".hbar-row[data-pay]");
-    if (!row) return;
-    if (activePayFilter === row.dataset.pay) {
-      activePayFilter = null;
-    } else {
-      activePayFilter = row.dataset.pay;
-    }
-    updateFilterUI();
-    draw();
-  });
-
   // Exposure by education
   const eduGroups = [
     { label: "Grunnskole/VGS", match: ["Grunnskole", "Videregående", "Ingen formelle krav"] },
@@ -1797,7 +1792,7 @@ function computeStats() {
   const eduChartEl = document.getElementById("eduChart");
   eduChartEl.innerHTML = eduGroups.map(grp => {
     let wSum = 0, wCount = 0;
-    for (const d of data) {
+    for (const d of src) {
       if (d.exposure != null && d.jobs && grp.match.includes(d.education)) {
         wSum += d.exposure * d.jobs;
         wCount += d.jobs;
@@ -1813,11 +1808,42 @@ function computeStats() {
     </div>`;
   }).join("");
 
-  eduChartEl.addEventListener("click", (e) => {
+  // Wages stat
+  const mrdKr = wagesExposed / 1e9;
+  const wagesEl = document.getElementById("statWages");
+  const wagesPct = wagesTotal > 0 ? wagesExposed / wagesTotal * 100 : 0;
+
+  if (animate) {
+    if (mrdKr >= 1000) {
+      animateValue(wagesEl, Math.round(mrdKr / 1000 * 10), 1200,
+        n => (n / 10).toFixed(1).replace(".", ",") + " bill. kr");
+    } else {
+      animateValue(wagesEl, Math.round(mrdKr), 1200,
+        n => n + " mrd. kr");
+    }
+  } else {
+    wagesEl.textContent = mrdKr >= 1000
+      ? (mrdKr / 1000).toFixed(1).replace(".", ",") + " bill. kr"
+      : Math.round(mrdKr) + " mrd. kr";
+  }
+
+  document.getElementById("statWagesLabel").textContent =
+    `${wagesPct.toFixed(0)}% av total lønnssum (score 7+)`;
+}
+
+function initChartHandlers() {
+  document.getElementById("payChart").addEventListener("click", (e) => {
+    const row = e.target.closest(".hbar-row[data-pay]");
+    if (!row) return;
+    activePayFilter = activePayFilter === row.dataset.pay ? null : row.dataset.pay;
+    updateFilterUI();
+    draw();
+  });
+
+  document.getElementById("eduChart").addEventListener("click", (e) => {
     const row = e.target.closest(".hbar-row[data-education]");
     if (!row) return;
     const vals = row.dataset.education.split(",");
-    // Toggle: if already filtering these exact values, clear
     if (activeEducationFilter && vals.join(",") === activeEducationFilter) {
       activeEducationFilter = null;
     } else {
@@ -1826,22 +1852,16 @@ function computeStats() {
     updateFilterUI();
     draw();
   });
+}
 
-  // Wages stat — animated, with percentage of total
-  const mrdKr = wagesExposed / 1e9;
-  const wagesEl = document.getElementById("statWages");
-  const wagesPct = wagesTotal > 0 ? wagesExposed / wagesTotal * 100 : 0;
+function getActiveSubset() {
+  if (!rects || !rects.length) return data;
+  if (!hasAnyFilter() && !activeCategoryFilter) return data;
+  return rects.filter(r => isHighlighted(r));
+}
 
-  if (mrdKr >= 1000) {
-    animateValue(wagesEl, Math.round(mrdKr / 1000 * 10), 1200,
-      n => (n / 10).toFixed(1).replace(".", ",") + " bill. kr");
-  } else {
-    animateValue(wagesEl, Math.round(mrdKr), 1200,
-      n => n + " mrd. kr");
-  }
-
-  document.getElementById("statWagesLabel").textContent =
-    `${wagesPct.toFixed(0)}% av total lønnssum (score 7+)`;
+function updateStats() {
+  computeStats(getActiveSubset(), false);
 }
 
 // ── Search & filter ────────────────────────────────────────────────────
@@ -1949,6 +1969,7 @@ searchBox.addEventListener("input", () => {
           searchBox.value = data.find(d => d.slug === highlightSlug)?.title || "";
           searchResults.style.display = "none";
           draw();
+          updateStats();
           const r = rects.find(r => r.slug === highlightSlug);
           if (r) {
             const sidebarW = getSidebarW();
@@ -1968,6 +1989,7 @@ searchBox.addEventListener("input", () => {
   } else {
     searchResults.style.display = "none";
   }
+  updateStats();
   draw();
 });
 
@@ -2048,6 +2070,8 @@ function updateFilterUI() {
   document.querySelectorAll("#categoryFilters .filter-chip").forEach(el => {
     el.classList.toggle("active", el.dataset.category === activeCategoryFilter);
   });
+
+  updateStats();
 }
 
 // ── Events ─────────────────────────────────────────────────────────────
@@ -2391,6 +2415,7 @@ mobileSearchBox.addEventListener("input", () => {
     mobileSearchResults.style.display = "none";
     closeSidebar();
     draw();
+    updateStats();
     const r = rects.find(r => r.slug === slug);
     if (r) {
       pinnedTooltip = r;
@@ -2399,6 +2424,7 @@ mobileSearchBox.addEventListener("input", () => {
       setTooltipBackdrop(true);
     }
   });
+  updateStats();
   draw();
 });
 
@@ -2409,6 +2435,7 @@ mobileSearchBox.addEventListener("keydown", (e) => {
     highlightSlug = null;
     mobileSearchResults.style.display = "none";
     mobileSearchBox.blur();
+    updateStats();
     draw();
   }
 });
@@ -2491,7 +2518,8 @@ async function loadData() {
 
 loadData().then(d => {
   data = d;
-  computeStats();
+  computeStats(data, true);
+  initChartHandlers();
   populateAboutModal();
   initFilterChips();
   initCategoryChips();
