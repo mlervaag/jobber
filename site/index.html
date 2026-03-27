@@ -1271,7 +1271,7 @@ canvas#canvas {
   <div class="stat-section">
     <div class="section-header">
       <span class="section-header-icon">&#x1F3E2;</span>
-      Hva betyr dette for bedriftene?
+      Fra jobb til bedrift: KI-risiko i n&aelig;ringslivet
     </div>
   </div>
 
@@ -2099,29 +2099,41 @@ function renderIndustrySection(indData) {
     ? (hrRevenue / 1000000).toFixed(1).replace(".", ",") + " bill. kr"
     : Math.round(hrRevenue / 1000) + " mrd. kr";
 
-  // Business insights
+  // Business insights — broader framing about knowledge work disruption
   const bizSection = document.getElementById("bizInsightsSection");
   const bizList = document.getElementById("bizInsightsList");
   const bizInsights = [];
 
+  // Insight 1: Knowledge workers as "middleware" — across all business sizes
+  const knowledgeIndustries = industries.filter(i => (i.exposure_weighted || 0) >= 5);
+  const knowledgeEmpl = knowledgeIndustries.reduce((s, i) => s + (i.employed_thousands || 0), 0);
+  if (knowledgeEmpl > 0) {
+    bizInsights.push(
+      `KI treffer hardest der arbeidet er digitalt og kognitivt \u2014 <strong>${Math.round(knowledgeEmpl)}\u00a0000</strong> sysselsatte i kunnskapsintensive n\u00e6ringer`
+    );
+  }
+
+  // Insight 2: Small enterprises are particularly vulnerable
   if (totals.small_enterprises_pct) {
     bizInsights.push(
-      `<strong>${totals.small_enterprises_pct}%</strong> av norske bedrifter har 0\u20134 ansatte \u2014 disse \u00abmellomvare-bedriftene\u00bb er mest s\u00e5rbare`
+      `<strong>${totals.small_enterprises_pct}%</strong> av bedriftene har 0\u20134 ansatte. N\u00e5r KI kan gj\u00f8re \u00e9n person like produktiv som fem, endres hele konkurransedynamikken`
     );
   }
 
-  if (highRisk.length > 0) {
-    const topRisk = highRisk[0];
-    bizInsights.push(
-      `<strong>${topRisk.name}</strong> har h\u00f8yest eksponering (${(topRisk.disruption_risk || 0).toFixed(1).replace(".", ",")}/10) med ${topRisk.enterprises ? topRisk.enterprises.toLocaleString("nb-NO") : "?"} foretak`
-    );
-  }
-
+  // Insight 3: Revenue at risk or total industry exposure
   const totalRev = industries.reduce((s, i) => s + (i.revenue_mnok || 0), 0);
   if (totalRev > 0 && hrRevenue > 0) {
     const pct = Math.round(hrRevenue / totalRev * 100);
     bizInsights.push(
-      `<strong>${pct}%</strong> av n\u00e6ringslivets omsetning er i bransjer med h\u00f8y KI-eksponering`
+      `<strong>${pct}%</strong> av n\u00e6ringslivets omsetning er i bransjer der KI kan endre hele verdikjeden \u2014 fra kundekontakt til leveranse`
+    );
+  }
+
+  // Insight 4: Top exposed industry
+  if (highRisk.length > 0) {
+    const topRisk = highRisk[0];
+    bizInsights.push(
+      `<strong>${topRisk.name}</strong> er mest eksponert (${(topRisk.disruption_risk || 0).toFixed(1).replace(".", ",")}/10) \u2014 ${topRisk.enterprises ? topRisk.enterprises.toLocaleString("nb-NO") + " foretak" : "tusenvis av bedrifter"} ber\u00f8rt`
     );
   }
 
