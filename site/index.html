@@ -299,6 +299,184 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* ── Impact KPI cards ────────────────────────────────── */
+
+.impact-row {
+  display: flex;
+  gap: 10px;
+}
+.impact-card {
+  flex: 1;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 12px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.impact-value {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.impact-label {
+  font-size: 10px;
+  color: var(--fg2);
+  line-height: 1.3;
+}
+
+/* ── Insight cards ───────────────────────────────────── */
+
+.insights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.insight-card {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--fg2);
+  padding: 8px 10px;
+  border-left: 3px solid var(--accent);
+  background: rgba(255,255,255,0.02);
+  border-radius: 0 6px 6px 0;
+}
+.insight-card strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+/* ── Category ranking ────────────────────────────────── */
+
+.cat-ranking {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cat-rank-row {
+  display: grid;
+  grid-template-columns: 1fr 60px auto;
+  gap: 6px;
+  align-items: center;
+  font-size: 11px;
+  padding: 5px 8px;
+  margin: 0 -8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.cat-rank-row:hover { background: rgba(255,255,255,0.06); }
+.cat-rank-row.active { background: rgba(99,102,241,0.18); outline: 1px solid rgba(99,102,241,0.35); }
+.cat-rank-name {
+  color: var(--fg2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 10px;
+}
+.cat-rank-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cat-rank-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.cat-rank-stats {
+  font-size: 9px;
+  color: var(--fg3);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  min-width: 50px;
+}
+
+/* ── Business risk section ───────────────────────────── */
+
+.section-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin: 4px 0;
+}
+.section-header {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fg);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.section-header-icon {
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.industry-ranking {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.industry-row {
+  display: grid;
+  grid-template-columns: 1fr 50px auto;
+  gap: 6px;
+  align-items: center;
+  font-size: 11px;
+  padding: 5px 8px;
+  margin: 0 -8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.industry-row:hover { background: rgba(255,255,255,0.06); }
+.industry-name {
+  color: var(--fg2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 10px;
+}
+.industry-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.industry-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+.industry-stats {
+  font-size: 9px;
+  color: var(--fg3);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  min-width: 50px;
+}
+.industry-detail {
+  display: none;
+  font-size: 10px;
+  color: var(--fg2);
+  padding: 6px 8px;
+  margin: 0 -8px 2px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 0 0 6px 6px;
+  line-height: 1.5;
+}
+.industry-detail.open { display: block; }
+
+/* disruption color scale: orange to red */
+.disruption-color {
+  background: linear-gradient(90deg, #f59e0b, #ef4444, #dc2626);
+}
+
 /* ── Filter clear button ──────────────────────────────── */
 
 #filterClear {
@@ -930,6 +1108,13 @@ canvas#canvas {
   /* Sidebar toggle repositioned inside mobile bar */
   #sidebarToggle { position: static; }
 
+  /* Impact cards stack nicely on mobile */
+  .impact-value { font-size: 18px; }
+  .cat-rank-row { grid-template-columns: 1fr auto; }
+  .cat-rank-bar { display: none; }
+  .industry-row { grid-template-columns: 1fr auto; }
+  .industry-bar { display: none; }
+
   /* Hide search from sidebar on mobile — it lives in the top bar */
   #sidebar .search-wrap { display: none; }
 
@@ -1007,6 +1192,23 @@ canvas#canvas {
     </div>
   </div>
 
+  <!-- Impact KPI cards -->
+  <div class="impact-row" id="impactKPIs">
+    <div class="impact-card">
+      <div class="impact-value" id="kpiExposedJobs">&mdash;</div>
+      <div class="impact-label">sysselsatte ber&oslash;rt av KI</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-value" id="kpiExposedWages">&mdash;</div>
+      <div class="impact-label">i l&oslash;nnssum eksponert</div>
+    </div>
+  </div>
+
+  <!-- Insights -->
+  <div class="stat-section" id="insightsSection" style="display:none">
+    <div class="insights-list" id="insightsList"></div>
+  </div>
+
   <div class="stat-row">
     <div class="stat-section">
       <h3>Sysselsatte</h3>
@@ -1042,8 +1244,10 @@ canvas#canvas {
   </div>
 
   <div class="stat-section">
-    <h3>Yrkeskategori</h3>
-    <div class="filter-chips" id="categoryFilters"></div>
+    <h3>Sektorranking</h3>
+    <div class="cat-ranking" id="categoryRanking"></div>
+    <!-- Hidden container for filter compatibility -->
+    <div id="categoryFilters" style="display:none"></div>
   </div>
 
   <div class="stat-section">
@@ -1061,11 +1265,42 @@ canvas#canvas {
     </div>
   </div>
 
+  <!-- Business Risk Section -->
+  <hr class="section-divider">
+
+  <div class="stat-section">
+    <div class="section-header">
+      <span class="section-header-icon">&#x1F3E2;</span>
+      Hva betyr dette for bedriftene?
+    </div>
+  </div>
+
+  <div class="impact-row" id="businessKPIs" style="display:none">
+    <div class="impact-card">
+      <div class="impact-value" id="kpiBizEnterprises">&mdash;</div>
+      <div class="impact-label">bedrifter i utsatte bransjer</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-value" id="kpiBizRevenue">&mdash;</div>
+      <div class="impact-label">i omsetning i faresonen</div>
+    </div>
+  </div>
+
+  <div class="stat-section" id="bizInsightsSection" style="display:none">
+    <div class="insights-list" id="bizInsightsList"></div>
+  </div>
+
+  <div class="stat-section" id="industryRankingSection" style="display:none">
+    <h3>Bransjerisiko</h3>
+    <div class="industry-ranking" id="industryRanking"></div>
+  </div>
+
   <div class="sidebar-footer">
     <span class="about-link" onclick="showAbout()">&#9432; Om analysen</span>
     <div class="credits">
-      Data fra <a href="https://utdanning.no">utdanning.no</a> og <a href="https://www.ssb.no">SSB</a><br>
+      Data fra <a href="https://utdanning.no">utdanning.no</a>, <a href="https://www.ssb.no">SSB</a> og <a href="https://data.brreg.no">Br&oslash;nn&oslash;ysund</a><br>
       KI-scoring via <a href="https://openai.com">OpenAI</a> / <a href="https://anthropic.com">Anthropic</a><br>
+      Bedriftsdata: SSB StatBank (tabell 09789, 12817, 07091)<br>
       Basert på <a href="https://github.com/karpathy/2025-ai-job-exposure">karpathy/2025-ai-job-exposure</a>
     </div>
     <a href="https://github.com/mlervaag/jobber">&#9734; GitHub</a>
@@ -1128,13 +1363,28 @@ canvas#canvas {
         hvor raskt l&oslash;nnskostnad per levert enhet faller &mdash; og hvem som fanger verdien.
       </p>
 
+      <h3>Bedriftsperspektivet</h3>
+      <p>
+        Portalen kobler ogs&aring; yrkesdata mot n&aelig;ringsdata fra SSB StatBank.
+        Ved &aring; se p&aring; hvordan yrker fordeler seg p&aring; bransjer (SSB tabell 09789) beregner vi
+        en vektet KI-eksponering per n&aelig;ring. Antall foretak, omsetning og bedriftsst&oslash;rrelse
+        er hentet fra SSB tabell 12817 og 07091. Dette gir innsikt i hvor mange <em>bedrifter</em>
+        som opererer i utsatte bransjer &mdash; ikke bare hvor mange <em>ansatte</em>.
+      </p>
+
       <div class="about-method">
-        <strong>Metode:</strong> Hvert yrke er scoret 0&ndash;10 av en KI-modell basert p&aring; yrkesbeskrivelser fra
-        <a href="https://utdanning.no" style="color:var(--accent2)">utdanning.no</a>.
-        L&oslash;nn og sysselsetting er hentet fra
-        <a href="https://www.ssb.no" style="color:var(--accent2)">SSB</a>.
-        Scoringen er et estimat, ikke en fasit &mdash; den m&aring;ler hvor mye av arbeidet som <em>kan</em>
-        ber&oslash;res av KI, ikke hvor mye som <em>vil</em> automatiseres.
+        <strong>Metode og datakilder:</strong>
+        <ul style="margin:6px 0 0 16px;font-size:11px;color:var(--fg2);line-height:1.6">
+          <li><strong>Yrkesdata:</strong> 599 yrker fra <a href="https://utdanning.no" style="color:var(--accent2)">utdanning.no</a> med beskrivelser, utdanningskrav og STYRK-08 koder</li>
+          <li><strong>L&oslash;nn og sysselsetting:</strong> SSB StatBank tabell 11418 (l&oslash;nn) og 12542 (sysselsatte) via STYRK-08</li>
+          <li><strong>KI-scoring av yrker:</strong> Hvert yrke er scoret 0&ndash;10 av en KI-modell (GPT-4o/Claude) basert p&aring; yrkesbeskrivelsen</li>
+          <li><strong>Bedriftsdata:</strong> SSB tabell 09789 (sysselsatte etter n&aelig;ring &times; yrke), 12817 (foretak og omsetning), 07091 (bedriftsst&oslash;rrelse)</li>
+          <li><strong>Bransjerisiko:</strong> Beregnet bottom-up fra yrkeseksponeringen, vektet etter sysselsetting per n&aelig;ring</li>
+        </ul>
+        <p style="margin-top:8px">
+          Scoringen er et estimat, ikke en fasit &mdash; den m&aring;ler hvor mye av arbeidet som <em>kan</em>
+          ber&oslash;res av KI, ikke hvor mye som <em>vil</em> automatiseres.
+        </p>
       </div>
     </div>
     <div class="about-cta">
@@ -1660,6 +1910,262 @@ function animateValue(el, end, duration, formatter) {
   requestAnimationFrame(tick);
 }
 
+// ── Impact KPIs ───────────────────────────────────────────────────────
+
+function computeKPIs(src, animate) {
+  // Exposed = exposure >= 6
+  let exposedJobs = 0, exposedWages = 0;
+  for (const d of src) {
+    if (d.exposure != null && d.exposure >= 6 && d.jobs) {
+      exposedJobs += d.jobs;
+      if (d.pay) exposedWages += d.jobs * d.pay;
+    }
+  }
+
+  const jobsEl = document.getElementById("kpiExposedJobs");
+  const wagesEl = document.getElementById("kpiExposedWages");
+
+  if (animate) {
+    animateValue(jobsEl, exposedJobs, 1200, n => {
+      if (n >= 1000000) return (n / 1e6).toFixed(1).replace(".", ",") + " mill.";
+      return Math.round(n / 1000) + "\u00a0000";
+    });
+    const mrd = Math.round(exposedWages / 1e9);
+    animateValue(wagesEl, mrd, 1200, n => n + " mrd. kr");
+  } else {
+    if (exposedJobs >= 1000000) {
+      jobsEl.textContent = (exposedJobs / 1e6).toFixed(1).replace(".", ",") + " mill.";
+    } else {
+      jobsEl.textContent = formatNumber(exposedJobs);
+    }
+    wagesEl.textContent = Math.round(exposedWages / 1e9) + " mrd. kr";
+  }
+}
+
+// ── Auto-generated insights ───────────────────────────────────────────
+
+function generateInsights(src) {
+  const section = document.getElementById("insightsSection");
+  const list = document.getElementById("insightsList");
+
+  if (src.length < 20) {
+    section.style.display = "none";
+    return;
+  }
+
+  const insights = [];
+
+  // 1. Category contrast: highest vs lowest exposure
+  const catStats = {};
+  for (const d of src) {
+    const cat = d.category || "";
+    if (!cat || !d.jobs || d.exposure == null) continue;
+    if (!catStats[cat]) catStats[cat] = { wSum: 0, wCount: 0, jobs: 0 };
+    catStats[cat].wSum += d.exposure * d.jobs;
+    catStats[cat].wCount += d.jobs;
+    catStats[cat].jobs += d.jobs;
+  }
+  const catList = Object.entries(catStats)
+    .map(([name, s]) => ({ name, avg: s.wSum / s.wCount, jobs: s.jobs }))
+    .filter(c => c.jobs > 10000)
+    .sort((a, b) => b.avg - a.avg);
+
+  if (catList.length >= 2) {
+    const hi = catList[0];
+    const lo = catList[catList.length - 1];
+    const ratio = (hi.avg / lo.avg).toFixed(1).replace(".", ",");
+    insights.push(
+      `<strong>${hi.name}</strong> har ${ratio}\u00d7 h\u00f8yere eksponering enn <strong>${lo.name.toLowerCase()}</strong>`
+    );
+  }
+
+  // 2. Biggest exposed group
+  if (catList.length > 0) {
+    const biggest = catList.filter(c => c.avg >= 5.5).sort((a, b) => b.jobs - a.jobs)[0];
+    if (biggest) {
+      insights.push(
+        `<strong>${biggest.name}</strong>: ${formatNumber(biggest.jobs)} sysselsatte med snitt ${biggest.avg.toFixed(1).replace(".", ",")}/10 \u2014 st\u00f8rste eksponerte gruppe`
+      );
+    }
+  }
+
+  // 3. Wage share exposed
+  let wagesTotal = 0, wagesExposed = 0;
+  for (const d of src) {
+    if (d.jobs && d.pay) {
+      wagesTotal += d.jobs * d.pay;
+      if (d.exposure != null && d.exposure >= 6) wagesExposed += d.jobs * d.pay;
+    }
+  }
+  if (wagesTotal > 0) {
+    const pct = Math.round(wagesExposed / wagesTotal * 100);
+    if (pct > 30) {
+      insights.push(
+        `<strong>${pct}%</strong> av total l\u00f8nnssum er i yrker med h\u00f8y KI-eksponering`
+      );
+    }
+  }
+
+  if (insights.length === 0) {
+    section.style.display = "none";
+    return;
+  }
+
+  section.style.display = "";
+  list.innerHTML = insights.map(text =>
+    `<div class="insight-card">${text}</div>`
+  ).join("");
+}
+
+// ── Category ranking ──────────────────────────────────────────────────
+
+function renderCategoryRanking(src) {
+  const catStats = {};
+  for (const d of src) {
+    const cat = d.category || "";
+    if (!cat) continue;
+    if (!catStats[cat]) catStats[cat] = { wSum: 0, wCount: 0, jobs: 0, wages: 0 };
+    if (d.exposure != null && d.jobs) {
+      catStats[cat].wSum += d.exposure * d.jobs;
+      catStats[cat].wCount += d.jobs;
+    }
+    catStats[cat].jobs += (d.jobs || 0);
+    if (d.pay && d.jobs) catStats[cat].wages += d.pay * d.jobs;
+  }
+
+  const cats = Object.entries(catStats)
+    .map(([name, s]) => ({
+      name,
+      avg: s.wCount > 0 ? s.wSum / s.wCount : 0,
+      jobs: s.jobs,
+      wages: s.wages,
+    }))
+    .filter(c => c.jobs > 0 && c.name)
+    .sort((a, b) => b.avg - a.avg);
+
+  const maxAvg = Math.max(...cats.map(c => c.avg), 1);
+
+  const container = document.getElementById("categoryRanking");
+  container.innerHTML = cats.map(c => {
+    const pct = (c.avg / maxAvg * 100).toFixed(0);
+    const jobsStr = c.jobs >= 1000000
+      ? (c.jobs / 1e6).toFixed(1).replace(".", ",") + "M"
+      : Math.round(c.jobs / 1000) + "k";
+    return `<div class="cat-rank-row" data-category="${c.name}" onclick="setCategoryFilter('${c.name.replace(/'/g, "\\'")}')">
+      <span class="cat-rank-name" title="${c.name}">${c.name}</span>
+      <div class="cat-rank-bar"><div class="cat-rank-bar-fill" style="width:${pct}%;background:${exposureColorCSS(c.avg, 0.85)}"></div></div>
+      <span class="cat-rank-stats">${c.avg.toFixed(1).replace(".", ",")} \u00b7 ${jobsStr}</span>
+    </div>`;
+  }).join("");
+}
+
+// ── Industry/business risk rendering ──────────────────────────────────
+
+let industryData = null;
+
+function disruptionColorCSS(score, alpha) {
+  if (score == null) return "rgba(100,100,100,0.3)";
+  const t = Math.max(0, Math.min(10, score)) / 10;
+  // Orange(0) → Red(1)
+  const r = Math.round(245);
+  const g = Math.round(158 - t * 120);
+  const b = Math.round(11 + t * 60);
+  return `rgba(${r},${g},${b},${alpha != null ? alpha : 1})`;
+}
+
+function renderIndustrySection(indData) {
+  industryData = indData;
+  const industries = indData.industries || [];
+  const totals = indData.totals || {};
+
+  if (!industries.length) return;
+
+  // Show business KPIs
+  const bizKPIs = document.getElementById("businessKPIs");
+  bizKPIs.style.display = "";
+
+  // High risk = exposure >= 5.5 (bottom-up threshold, LLM scoring not run yet)
+  const highRisk = industries.filter(i => (i.disruption_risk || 0) >= 5.5);
+  const hrEnterprises = highRisk.reduce((s, i) => s + (i.enterprises || 0), 0);
+  const hrRevenue = highRisk.reduce((s, i) => s + (i.revenue_mnok || 0), 0);
+
+  const entEl = document.getElementById("kpiBizEnterprises");
+  const revEl = document.getElementById("kpiBizRevenue");
+
+  entEl.textContent = hrEnterprises >= 1000
+    ? Math.round(hrEnterprises / 1000) + "\u00a0000"
+    : hrEnterprises.toLocaleString("nb-NO");
+  revEl.textContent = hrRevenue >= 1000000
+    ? (hrRevenue / 1000000).toFixed(1).replace(".", ",") + " bill. kr"
+    : Math.round(hrRevenue / 1000) + " mrd. kr";
+
+  // Business insights
+  const bizSection = document.getElementById("bizInsightsSection");
+  const bizList = document.getElementById("bizInsightsList");
+  const bizInsights = [];
+
+  if (totals.small_enterprises_pct) {
+    bizInsights.push(
+      `<strong>${totals.small_enterprises_pct}%</strong> av norske bedrifter har 0\u20134 ansatte \u2014 disse \u00abmellomvare-bedriftene\u00bb er mest s\u00e5rbare`
+    );
+  }
+
+  if (highRisk.length > 0) {
+    const topRisk = highRisk[0];
+    bizInsights.push(
+      `<strong>${topRisk.name}</strong> har h\u00f8yest eksponering (${(topRisk.disruption_risk || 0).toFixed(1).replace(".", ",")}/10) med ${topRisk.enterprises ? topRisk.enterprises.toLocaleString("nb-NO") : "?"} foretak`
+    );
+  }
+
+  const totalRev = industries.reduce((s, i) => s + (i.revenue_mnok || 0), 0);
+  if (totalRev > 0 && hrRevenue > 0) {
+    const pct = Math.round(hrRevenue / totalRev * 100);
+    bizInsights.push(
+      `<strong>${pct}%</strong> av n\u00e6ringslivets omsetning er i bransjer med h\u00f8y KI-eksponering`
+    );
+  }
+
+  if (bizInsights.length > 0) {
+    bizSection.style.display = "";
+    bizList.innerHTML = bizInsights.map(t => `<div class="insight-card">${t}</div>`).join("");
+  }
+
+  // Industry ranking
+  const rankSection = document.getElementById("industryRankingSection");
+  const rankEl = document.getElementById("industryRanking");
+  rankSection.style.display = "";
+
+  const maxRisk = Math.max(...industries.map(i => i.disruption_risk || 0), 1);
+
+  rankEl.innerHTML = industries.map((ind, idx) => {
+    const risk = ind.disruption_risk || 0;
+    const pct = (risk / maxRisk * 100).toFixed(0);
+    const entStr = ind.enterprises
+      ? (ind.enterprises >= 1000 ? Math.round(ind.enterprises / 1000) + "k" : ind.enterprises)
+      : "?";
+    const shortName = ind.name.length > 30 ? ind.name.substring(0, 28) + "\u2026" : ind.name;
+
+    return `<div class="industry-row" onclick="toggleIndustryDetail(${idx})" title="${ind.name}">
+      <span class="industry-name">${shortName}</span>
+      <div class="industry-bar"><div class="industry-bar-fill" style="width:${pct}%;background:${disruptionColorCSS(risk, 0.85)}"></div></div>
+      <span class="industry-stats">${risk.toFixed(1).replace(".", ",")} \u00b7 ${entStr}</span>
+    </div>
+    <div class="industry-detail" id="indDetail${idx}">
+      ${ind.rationale ? `<p>${ind.rationale}</p>` : ""}
+      ${ind.enterprises ? `Foretak: ${ind.enterprises.toLocaleString("nb-NO")}` : ""}
+      ${ind.revenue_mnok ? ` \u00b7 Omsetning: ${Math.round(ind.revenue_mnok / 1000)} mrd. kr` : ""}
+      ${ind.small_pct ? ` \u00b7 Sm\u00e5bedrifter: ${ind.small_pct}%` : ""}
+      ${ind.employed_thousands ? `<br>Sysselsatte: ${Math.round(ind.employed_thousands)}\u00a0000` : ""}
+      ${ind.exposure_weighted ? ` \u00b7 Yrkeseksponering: ${ind.exposure_weighted}/10` : ""}
+    </div>`;
+  }).join("");
+}
+
+function toggleIndustryDetail(idx) {
+  const el = document.getElementById("indDetail" + idx);
+  if (el) el.classList.toggle("open");
+}
+
 // ── Sidebar stats ──────────────────────────────────────────────────────
 
 function computeStats(subset, animate) {
@@ -1829,6 +2335,10 @@ function computeStats(subset, animate) {
 
   document.getElementById("statWagesLabel").textContent =
     `${wagesPct.toFixed(0)}% av total lønnssum (score 7+)`;
+
+  // Update KPIs and insights
+  computeKPIs(src, animate);
+  generateInsights(src);
 }
 
 function initChartHandlers() {
@@ -2066,8 +2576,13 @@ function updateFilterUI() {
     el.classList.toggle("active", el.dataset.education === activeEducationFilter);
   });
 
-  // Category chips
+  // Category chips (legacy hidden container)
   document.querySelectorAll("#categoryFilters .filter-chip").forEach(el => {
+    el.classList.toggle("active", el.dataset.category === activeCategoryFilter);
+  });
+
+  // Category ranking rows
+  document.querySelectorAll("#categoryRanking .cat-rank-row").forEach(el => {
     el.classList.toggle("active", el.dataset.category === activeCategoryFilter);
   });
 
@@ -2455,6 +2970,7 @@ function initCategoryChips() {
     const cat = d.category || "Annet";
     cats[cat] = (cats[cat] || 0) + (d.jobs || 1);
   }
+  // Legacy hidden chips for backward compatibility
   const container = document.getElementById("categoryFilters");
   Object.keys(cats).sort((a, b) => cats[b] - cats[a]).forEach(cat => {
     if (!cat) return;
@@ -2465,6 +2981,8 @@ function initCategoryChips() {
     btn.addEventListener("click", () => setCategoryFilter(cat));
     container.appendChild(btn);
   });
+  // Render the visual ranking
+  renderCategoryRanking(data);
 }
 
 function setCategoryFilter(cat) {
@@ -2523,6 +3041,11 @@ loadData().then(d => {
   populateAboutModal();
   initFilterChips();
   initCategoryChips();
+
+  // Load industry data (non-blocking)
+  fetch("industries.json").then(r => r.ok ? r.json() : null).then(indData => {
+    if (indData) renderIndustrySection(indData);
+  }).catch(() => {});
 
   resize();
   setTimeout(() => {
