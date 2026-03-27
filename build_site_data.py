@@ -158,7 +158,7 @@ def build_industries_json():
 
     print(f"Wrote {len(industries)} industries to site/industries.json")
     high_risk = [i for i in industries if (i.get("disruption_risk") or 0) >= 6]
-    print(f"  High risk (≥6): {len(high_risk)} industries")
+    print(f"  High risk (>=6): {len(high_risk)} industries")
 
 
 def main():
@@ -206,9 +206,9 @@ def main():
             "url": row.get("url", ""),
         }
 
-        # Add student trend for this occupation's category
-        if category in student_trends:
-            entry["student_trend"] = student_trends[category]["student_trend_pct"]
+        # Student trends removed from per-occupation data — too coarse
+        # (only 7 unique values at fagfelt level). Kept in students_data.json
+        # for potential future use at aggregate level.
 
         # Add vacancy count from NAV data (match via STYRK codes)
         if vacancies and slug in styrk_lookup:

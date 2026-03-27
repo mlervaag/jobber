@@ -36,6 +36,61 @@ EDUCATION_LEVELS = [
 ]
 
 
+# Manual category overrides for occupations without STYRK-08 codes.
+# These 46 occupations from utdanning.no lack STYRK codes entirely,
+# so we assign categories based on the nature of the work.
+CATEGORY_OVERRIDES = {
+    "animatoer": "Akademiske yrker",
+    "apotektekniker": "Høyskoleyrker",
+    "astronaut": "Akademiske yrker",
+    "au-pair": "Salgs- og serviceyrker",
+    "bistandsarbeider": "Akademiske yrker",
+    "byggmontoer": "Håndverkere",
+    "baatbygger": "Håndverkere",
+    "droneoperatoer": "Høyskoleyrker",
+    "e-sportsutoever": "Akademiske yrker",
+    "eurytmist": "Akademiske yrker",
+    "forretningsutvikler": "Ledere",
+    "gestaltterapeut": "Høyskoleyrker",
+    "gruender": "Ledere",
+    "gr-nder": "Ledere",
+    "husoekonom": "Salgs- og serviceyrker",
+    "illustratoer": "Akademiske yrker",
+    "industrioppmaaler": "Høyskoleyrker",
+    "influenser": "Akademiske yrker",
+    "kirkeverge": "Ledere",
+    "kostoekonom": "Høyskoleyrker",
+    "kulturskokelaerer": "Akademiske yrker",
+    "kulturskolelaerer": "Akademiske yrker",
+    "kurvmaker": "Håndverkere",
+    "landbruksraadgiver": "Akademiske yrker",
+    "lydkunstner": "Akademiske yrker",
+    "lystekniker": "Høyskoleyrker",
+    "massasjeterapeut": "Salgs- og serviceyrker",
+    "modellbygger": "Håndverkere",
+    "naprapat": "Høyskoleyrker",
+    "obduksjonstekniker": "Høyskoleyrker",
+    "orgelbygger": "Håndverkere",
+    "osteopat": "Høyskoleyrker",
+    "paleontolog": "Akademiske yrker",
+    "planteviter": "Akademiske yrker",
+    "profileringsdesigner": "Akademiske yrker",
+    "prosjektleder": "Ledere",
+    "redningsmann": "Salgs- og serviceyrker",
+    "repslager": "Håndverkere",
+    "sexolog": "Akademiske yrker",
+    "skofagoperatoer": "Håndverkere",
+    "skriftgransker": "Akademiske yrker",
+    "studiekonsulent": "Kontoryrker",
+    "stoettekontakt": "Salgs- og serviceyrker",
+    "taksidermist": "Håndverkere",
+    "terapeut": "Høyskoleyrker",
+    "togleder": "Kontoryrker",
+    "trebaatbygger": "Håndverkere",
+    "videokunstner": "Akademiske yrker",
+}
+
+
 def classify_education(edu_text):
     """Map free-text education description to a standardized level."""
     if not edu_text:
@@ -100,6 +155,10 @@ def main():
                 if not category and parent in styrk_cats:
                     cat_entry = styrk_cats[parent]
                     category = cat_entry.get("major_group", cat_entry.get("name", ""))
+
+        # Fall back to manual category overrides for occupations without STYRK codes
+        if not category:
+            category = CATEGORY_OVERRIDES.get(occ.get("slug", ""), "")
 
         education = classify_education(occ.get("education", ""))
 
