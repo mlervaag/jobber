@@ -2186,8 +2186,6 @@ function renderCategoryRanking(src) {
 
 // ── Industry/business risk rendering ──────────────────────────────────
 
-let industryData = null;
-
 function disruptionColorCSS(score, alpha) {
   if (score == null) return "rgba(100,100,100,0.3)";
   const t = Math.max(0, Math.min(10, score)) / 10;
