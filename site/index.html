@@ -1870,6 +1870,11 @@ function draw() {
 }
 
 function hitTest(mx, my) {
+  // Ignore hits when mobile sidebar is open and click is in sidebar area
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar.classList.contains("open") && mx < sidebar.offsetWidth) {
+    return null;
+  }
   const [cx, cy] = screenToWorld(mx, my);
   for (let i = rects.length - 1; i >= 0; i--) {
     const r = rects[i];
@@ -2826,6 +2831,12 @@ let touchStartX = 0, touchStartY = 0;
 let touchMoved = false;
 
 canvas.addEventListener("touchstart", (e) => {
+  // Ignore touches that land on the open sidebar (mobile)
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar.classList.contains("open") && e.touches.length > 0) {
+    const tx = e.touches[0].clientX;
+    if (tx < sidebar.offsetWidth) return;
+  }
   touches = Array.from(e.touches);
   if (touches.length === 1) {
     touchStartTime = Date.now();
@@ -2894,6 +2905,10 @@ canvas.addEventListener("touchmove", (e) => {
 }, { passive: false });
 
 canvas.addEventListener("touchend", (e) => {
+  // Ignore if sidebar is open and touch was in sidebar area
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar.classList.contains("open") && touchStartX < sidebar.offsetWidth) return;
+
   const remaining = e.touches.length;
   if (remaining === 0 && !touchMoved && touches.length === 1) {
     // Single tap — select occupation
