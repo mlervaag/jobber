@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Aktuar",
+    "current_agent": 7,
+    "suggested_agent": 5,
+    "reason": "Mye kan automatiseres, men rollen krever fortsatt faglig skjønn, modellansvar og regulatorisk ansvar som gjør full agent-erstatning lite realistisk."
+  },
+  {
+    "title": "Art director",
+    "current_agent": 5,
+    "suggested_agent": 7,
+    "reason": "Dette er en svært digital og kreativt-produserende rolle der agent kan gjøre store deler av idéutvikling, konsept og produksjonsstyring end-to-end, med menneskelig godkjenning."
+  },
+  {
+    "title": "Dommer",
+    "current_agent": 2,
+    "suggested_agent": 0,
+    "reason": "Dommerrollen handler om rettslig legitimitet, tillit, prosessledelse og formelt ansvar. AI kan støtte, men ikke erstatte rollen end-to-end."
+  },
+  {
+    "title": "Forretningsutvikler",
+    "current_agent": 4,
+    "suggested_agent": 6,
+    "reason": "Rollen er i stor grad digital og analytisk. Agent kan gjøre markedsanalyse, strategiutkast, prioritering og oppfølging, mens mennesket tar relasjonelle og politiske beslutninger."
+  },
+  {
+    "title": "Intensivsykepleier",
+    "current_agent": 1,
+    "suggested_agent": 3,
+    "reason": "Kjernejobben kan ikke erstattes av agent, men AI kan håndtere overvåking, dokumentasjon, triagering og beslutningsstøtte i betydelig grad. 1 er for lavt."
+  },
+  {
+    "title": "Journalist",
+    "current_agent": 6,
+    "suggested_agent": 4,
+    "reason": "Agent kan produsere mye innhold, men journalistikk krever kildearbeid, feltarbeid, redaksjonelt ansvar og offentlig tillit. Full erstatning er for høyt satt."
+  },
+  {
+    "title": "Jurist",
+    "current_agent": 6,
+    "suggested_agent": 4,
+    "reason": "Mye juridisk arbeid er digitalt, men rollen innebærer ansvar, skjønn, klienttillit og ofte prosessuell eller organisatorisk forankring som begrenser full agent-autonomi."
+  },
+  {
+    "title": "Lege",
+    "current_agent": 4,
+    "suggested_agent": 2,
+    "reason": "Selv om AI kan støtte diagnostikk og dokumentasjon, krever legeyrket klinisk ansvar, pasienttillit, fysisk undersøkelse og formell autorisasjon."
+  },
+  {
+    "title": "Modell",
+    "current_agent": 2,
+    "suggested_agent": 4,
+    "reason": "Store deler av kommersiell modellbruk kan erstattes av genererte digitale modeller og syntetisk innhold. Fysisk tilstedeværelse trengs fortsatt i noen segmenter, men 2 er for lavt."
+  },
+  {
+    "title": "Politibetjent",
+    "current_agent": 3,
+    "suggested_agent": 1,
+    "reason": "Rollen krever fysisk tilstedeværelse, myndighetsutøvelse, konflikthåndtering og rettslig ansvar. AI kan støtte administrativt, men ikke erstatte end-to-end."
+  },
+  {
+    "title": "Regnskapsfører",
+    "current_agent": 7,
+    "suggested_agent": 9,
+    "reason": "Dette er en svært strukturert, digital og regelstyrt rolle. Agent kan i mange tilfeller utføre bokføring, avstemming, rapportering og oppfølging med minimal menneskelig kontroll."
+  },
+  {
+    "title": "Revisor",
+    "current_agent": 5,
+    "suggested_agent": 7,
+    "reason": "Mye revisjonsarbeid er dokumentbasert, regelstyrt og digitalt. Formell signering og ansvar krever fortsatt menneske, men agent kan gjøre mesteparten av arbeidet."
+  },
+  {
+    "title": "Siviløkonom",
+    "current_agent": 4,
+    "suggested_agent": 6,
+    "reason": "Mange oppgaver er analytiske, digitale og presentasjonsbaserte. Agent kan håndtere modellering, analyse, rapportering og beslutningsgrunnlag i stor grad."
+  },
+  {
+    "title": "Teknisk tegner",
+    "current_agent": 8,
+    "suggested_agent": 10,
+    "reason": "Rollen er svært digital, standardiserbar og godt egnet for full agentutførelse fra spesifikasjon til ferdig tegning uten behov for menneskelig kjerneinnsats."
+  },
+  {
+    "title": "Økonomikonsulent",
+    "current_agent": 7,
+    "suggested_agent": 9,
+    "reason": "Arbeidet er i stor grad digitalt, rutinepreget og regelstyrt. Agent kan håndtere analyser, rapporter, budsjetter og oppfølging nesten fullt ut."
+  }
+]

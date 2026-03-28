@@ -44,8 +44,8 @@
   {
     "slug": "aktuar",
     "title": "Aktuar",
-    "agent_autonomy": 7,
-    "rationale": "Aktuarer arbeider primært med dataanalyse, risikovurdering og prissetting, som er oppgaver som kan automatiseres i stor grad med avanserte algoritmer og maskinlæring. Imidlertid krever rollen også kommunikasjon av komplekse resultater til ledelse og kolleger, samt tilpasning til spesifikke forretningskontekster, noe som fortsatt krever menneskelig innsikt og beslutningstaking. Derfor kan en AI-agent håndtere mange av de tekniske aspektene, men menneskelig tilsyn er nødvendig for å sikre forståelse og implementering av resultatene."
+    "agent_autonomy": 5,
+    "rationale": "Aktuarer arbeider primært med dataanalyse, risikovurdering og prissetting, som er oppgaver som kan automatiseres i stor grad med avanserte algoritmer og maskinlæring. Imidlertid krever rollen også kommunikasjon av komplekse resultater til ledelse og kolleger, samt tilpasning til spesifikke forretningskontekster, noe som fortsatt krever menneskelig innsikt og beslutningstaking. Derfor kan en AI-agent håndtere mange av de tekniske aspektene, men menneskelig tilsyn er nødvendig for å sikre forståelse og implementering av resultatene. [QA-justert fra 7 av gpt-5.4: Mye kan automatiseres, men rollen krever fortsatt faglig skjønn, modellansvar og regulatorisk ansvar som gjør full agent-erstatning lite realistisk.]"
   },
   {
     "slug": "akupunktoer",
@@ -200,8 +200,8 @@
   {
     "slug": "art-director",
     "title": "Art director",
-    "agent_autonomy": 5,
-    "rationale": "En AI-agent kan håndtere mange av de digitale og repeterbare oppgavene som skissering av konsepter, generering av visuelle elementer og til og med noen aspekter av ideutvikling. Imidlertid krever rollen som art director kreativitet, estetisk dømmekraft og evnen til å lede og inspirere tverrfaglige team, noe som fortsatt er utfordrende for AI å replikere fullt ut. Menneskelig innspill er nødvendig for å sikre at kreative prosesser og kommunikasjon er effektive og tilpasset kundens behov."
+    "agent_autonomy": 7,
+    "rationale": "En AI-agent kan håndtere mange av de digitale og repeterbare oppgavene som skissering av konsepter, generering av visuelle elementer og til og med noen aspekter av ideutvikling. Imidlertid krever rollen som art director kreativitet, estetisk dømmekraft og evnen til å lede og inspirere tverrfaglige team, noe som fortsatt er utfordrende for AI å replikere fullt ut. Menneskelig innspill er nødvendig for å sikre at kreative prosesser og kommunikasjon er effektive og tilpasset kundens behov. [QA-justert fra 5 av gpt-5.4: Dette er en svært digital og kreativt-produserende rolle der agent kan gjøre store deler av idéutvikling, konsept og produksjonsstyring end-to-end, med menneskelig godkjenning.]"
   },
   {
     "slug": "asfaltoer",
@@ -698,8 +698,8 @@
   {
     "slug": "dommer",
     "title": "Dommer",
-    "agent_autonomy": 2,
-    "rationale": "Dommerrollen krever høy grad av menneskelig dømmekraft, etisk vurdering og evne til å håndtere komplekse juridiske spørsmål i en rettssal. Selv om AI kan bistå med juridisk forskning og analyse, kan den ikke erstatte den menneskelige evnen til å forstå nyanser, bygge tillit og ta ansvarlige beslutninger i rettslige prosesser. Den fysiske tilstedeværelsen i retten og behovet for å lede rettsmøter er også kritiske aspekter som AI ikke kan håndtere autonomt."
+    "agent_autonomy": 0,
+    "rationale": "Dommerrollen krever høy grad av menneskelig dømmekraft, etisk vurdering og evne til å håndtere komplekse juridiske spørsmål i en rettssal. Selv om AI kan bistå med juridisk forskning og analyse, kan den ikke erstatte den menneskelige evnen til å forstå nyanser, bygge tillit og ta ansvarlige beslutninger i rettslige prosesser. Den fysiske tilstedeværelsen i retten og behovet for å lede rettsmøter er også kritiske aspekter som AI ikke kan håndtere autonomt. [QA-justert fra 2 av gpt-5.4: Dommerrollen handler om rettslig legitimitet, tillit, prosessledelse og formelt ansvar. AI kan støtte, men ikke erstatte rollen end-to-end.]"
   },
   {
     "slug": "dramaturg",
@@ -1076,8 +1076,8 @@
   {
     "slug": "forretningsutvikler",
     "title": "Forretningsutvikler",
-    "agent_autonomy": 4,
-    "rationale": "Forretningsutvikling innebærer mange oppgaver som kan automatiseres, som markedsanalyse og overvåking av trender. Imidlertid krever rollen også kreativitet, strategisk tenkning, og evnen til å bygge relasjoner og samarbeide med ulike avdelinger, noe som er vanskelig for en AI å erstatte fullt ut. Menneskelig innsikt og ledelse er nødvendig for å drive innovasjon og tilpasse strategier til dynamiske markedsforhold."
+    "agent_autonomy": 6,
+    "rationale": "Forretningsutvikling innebærer mange oppgaver som kan automatiseres, som markedsanalyse og overvåking av trender. Imidlertid krever rollen også kreativitet, strategisk tenkning, og evnen til å bygge relasjoner og samarbeide med ulike avdelinger, noe som er vanskelig for en AI å erstatte fullt ut. Menneskelig innsikt og ledelse er nødvendig for å drive innovasjon og tilpasse strategier til dynamiske markedsforhold. [QA-justert fra 4 av gpt-5.4: Rollen er i stor grad digital og analytisk. Agent kan gjøre markedsanalyse, strategiutkast, prioritering og oppfølging, mens mennesket tar relasjonelle og politiske beslutninger.]"
   },
   {
     "slug": "forsikringsraadgiver",
@@ -1628,8 +1628,8 @@
   {
     "slug": "intensivsykepleier",
     "title": "Intensivsykepleier",
-    "agent_autonomy": 1,
-    "rationale": "Intensivsykepleiere jobber i et miljø som krever fysisk tilstedeværelse, rask beslutningstaking i kritiske situasjoner, og omsorg for pasienter og deres pårørende. Arbeidet innebærer også bruk av avansert medisinsk utstyr og samarbeid med andre helsepersonell. Disse faktorene gjør det svært utfordrende for en AI-agent å erstatte en intensivsykepleier fullt ut."
+    "agent_autonomy": 3,
+    "rationale": "Intensivsykepleiere jobber i et miljø som krever fysisk tilstedeværelse, rask beslutningstaking i kritiske situasjoner, og omsorg for pasienter og deres pårørende. Arbeidet innebærer også bruk av avansert medisinsk utstyr og samarbeid med andre helsepersonell. Disse faktorene gjør det svært utfordrende for en AI-agent å erstatte en intensivsykepleier fullt ut. [QA-justert fra 1 av gpt-5.4: Kjernejobben kan ikke erstattes av agent, men AI kan håndtere overvåking, dokumentasjon, triagering og beslutningsstøtte i betydelig grad. 1 er for lavt.]"
   },
   {
     "slug": "interaksjonsdesigner",
@@ -1670,14 +1670,14 @@
   {
     "slug": "journalist",
     "title": "Journalist",
-    "agent_autonomy": 6,
-    "rationale": "En AI-agent kan håndtere mange av de rutinemessige oppgavene til en journalist, som å samle inn og analysere informasjon, skrive artikler og utføre research. Imidlertid krever journalistrollen også menneskelig dømmekraft, etisk vurdering og evnen til å bygge tillit med kilder, noe som er vanskelig for en AI å erstatte fullt ut. Derfor vil det fortsatt være behov for menneskelig innblanding i kritiske aspekter av journalistikken."
+    "agent_autonomy": 4,
+    "rationale": "En AI-agent kan håndtere mange av de rutinemessige oppgavene til en journalist, som å samle inn og analysere informasjon, skrive artikler og utføre research. Imidlertid krever journalistrollen også menneskelig dømmekraft, etisk vurdering og evnen til å bygge tillit med kilder, noe som er vanskelig for en AI å erstatte fullt ut. Derfor vil det fortsatt være behov for menneskelig innblanding i kritiske aspekter av journalistikken. [QA-justert fra 6 av gpt-5.4: Agent kan produsere mye innhold, men journalistikk krever kildearbeid, feltarbeid, redaksjonelt ansvar og offentlig tillit. Full erstatning er for høyt satt.]"
   },
   {
     "slug": "jurist",
     "title": "Jurist",
-    "agent_autonomy": 6,
-    "rationale": "En AI-agent kan håndtere mange av de analytiske og dokumentbaserte oppgavene som jurister utfører, som å utforme og tolke dokumenter og kontrakter. Imidlertid krever forhandlinger, mekling og rådgivning ofte menneskelig innsikt, empati og etisk vurdering, som AI ikke kan erstatte fullt ut. Juridisk arbeid involverer også et høyt nivå av ansvarlighet og tillit, noe som begrenser agentens autonomi."
+    "agent_autonomy": 4,
+    "rationale": "En AI-agent kan håndtere mange av de analytiske og dokumentbaserte oppgavene som jurister utfører, som å utforme og tolke dokumenter og kontrakter. Imidlertid krever forhandlinger, mekling og rådgivning ofte menneskelig innsikt, empati og etisk vurdering, som AI ikke kan erstatte fullt ut. Juridisk arbeid involverer også et høyt nivå av ansvarlighet og tillit, noe som begrenser agentens autonomi. [QA-justert fra 6 av gpt-5.4: Mye juridisk arbeid er digitalt, men rollen innebærer ansvar, skjønn, klienttillit og ofte prosessuell eller organisatorisk forankring som begrenser full agent-autonomi.]"
   },
   {
     "slug": "kabinpersonale-fly",
@@ -2012,8 +2012,8 @@
   {
     "slug": "lege",
     "title": "Lege",
-    "agent_autonomy": 4,
-    "rationale": "Selv om KI kan bidra med diagnostikk og behandlingsplanlegging, krever legeyrket menneskelig interaksjon, empati og tillit som er avgjørende for pasientbehandling. Legeyrket innebærer også komplekse beslutninger i uforutsigbare situasjoner og juridisk ansvar som ikke kan overlates til en agent. KI kan støtte med administrative oppgaver og dataanalyse, men en menneskelig lege må lede og ta de endelige beslutningene."
+    "agent_autonomy": 2,
+    "rationale": "Selv om KI kan bidra med diagnostikk og behandlingsplanlegging, krever legeyrket menneskelig interaksjon, empati og tillit som er avgjørende for pasientbehandling. Legeyrket innebærer også komplekse beslutninger i uforutsigbare situasjoner og juridisk ansvar som ikke kan overlates til en agent. KI kan støtte med administrative oppgaver og dataanalyse, men en menneskelig lege må lede og ta de endelige beslutningene. [QA-justert fra 4 av gpt-5.4: Selv om AI kan støtte diagnostikk og dokumentasjon, krever legeyrket klinisk ansvar, pasienttillit, fysisk undersøkelse og formell autorisasjon.]"
   },
   {
     "slug": "legemiddelkonsulent",
@@ -2276,8 +2276,8 @@
   {
     "slug": "modell",
     "title": "Modell",
-    "agent_autonomy": 2,
-    "rationale": "Modellarbeid krever fysisk tilstedeværelse og unike menneskelige egenskaper som utseende og personlighet, som ikke kan erstattes av en AI-agent. Selv om digitale modeller og AI-genererte bilder kan brukes i noen sammenhenger, er det fortsatt behov for menneskelige modeller i mange situasjoner, spesielt der autentisitet og menneskelig interaksjon er viktig."
+    "agent_autonomy": 4,
+    "rationale": "Modellarbeid krever fysisk tilstedeværelse og unike menneskelige egenskaper som utseende og personlighet, som ikke kan erstattes av en AI-agent. Selv om digitale modeller og AI-genererte bilder kan brukes i noen sammenhenger, er det fortsatt behov for menneskelige modeller i mange situasjoner, spesielt der autentisitet og menneskelig interaksjon er viktig. [QA-justert fra 2 av gpt-5.4: Store deler av kommersiell modellbruk kan erstattes av genererte digitale modeller og syntetisk innhold. Fysisk tilstedeværelse trengs fortsatt i noen segmenter, men 2 er for lavt.]"
   },
   {
     "slug": "modellbygger",
@@ -2612,8 +2612,8 @@
   {
     "slug": "politibetjent",
     "title": "Politibetjent",
-    "agent_autonomy": 3,
-    "rationale": "Politibetjentens arbeid krever fysisk tilstedeværelse, menneskelig interaksjon, og evnen til å håndtere uforutsigbare og potensielt farlige situasjoner. Selv om AI kan bistå med administrative oppgaver og dataanalyse, er kjerneoppgavene som patruljering, pågripelser, og krisehåndtering avhengig av menneskelig vurdering og empati. Derfor kan AI kun ha minimal autonomi i denne rollen."
+    "agent_autonomy": 1,
+    "rationale": "Politibetjentens arbeid krever fysisk tilstedeværelse, menneskelig interaksjon, og evnen til å håndtere uforutsigbare og potensielt farlige situasjoner. Selv om AI kan bistå med administrative oppgaver og dataanalyse, er kjerneoppgavene som patruljering, pågripelser, og krisehåndtering avhengig av menneskelig vurdering og empati. Derfor kan AI kun ha minimal autonomi i denne rollen. [QA-justert fra 3 av gpt-5.4: Rollen krever fysisk tilstedeværelse, myndighetsutøvelse, konflikthåndtering og rettslig ansvar. AI kan støtte administrativt, men ikke erstatte end-to-end.]"
   },
   {
     "slug": "politijurist",
@@ -2744,8 +2744,8 @@
   {
     "slug": "regnskapsfoerer",
     "title": "Regnskapsfører",
-    "agent_autonomy": 7,
-    "rationale": "Mange av oppgavene til en regnskapsfører, som registrering av bilag, rapportering til myndighetene, fakturering, lønnskjøring og budsjettering, kan automatiseres med AI. Disse oppgavene følger klare regler og mønstre. Imidlertid krever rådgivning, bærekraftsrapportering og utvikling av forretningsmodeller menneskelig innsikt og relasjonsbygging, noe som reduserer full autonomi."
+    "agent_autonomy": 9,
+    "rationale": "Mange av oppgavene til en regnskapsfører, som registrering av bilag, rapportering til myndighetene, fakturering, lønnskjøring og budsjettering, kan automatiseres med AI. Disse oppgavene følger klare regler og mønstre. Imidlertid krever rådgivning, bærekraftsrapportering og utvikling av forretningsmodeller menneskelig innsikt og relasjonsbygging, noe som reduserer full autonomi. [QA-justert fra 7 av gpt-5.4: Dette er en svært strukturert, digital og regelstyrt rolle. Agent kan i mange tilfeller utføre bokføring, avstemming, rapportering og oppfølging med minimal menneskelig kontroll.]"
   },
   {
     "slug": "reindriftsutoever",
@@ -2804,8 +2804,8 @@
   {
     "slug": "revisor",
     "title": "Revisor",
-    "agent_autonomy": 5,
-    "rationale": "Revisoryrket har høy eksponering for AI, spesielt innen dataanalyse og kontroll av regnskap, som kan automatiseres. Imidlertid krever revisjon også vurderinger, diskusjoner med ledelsen, og en forståelse av komplekse kontekster som AI ikke fullt ut kan håndtere. Tillit og juridisk ansvar gjør at en menneskelig revisor fortsatt er nødvendig for å lede prosessen og ta endelige beslutninger."
+    "agent_autonomy": 7,
+    "rationale": "Revisoryrket har høy eksponering for AI, spesielt innen dataanalyse og kontroll av regnskap, som kan automatiseres. Imidlertid krever revisjon også vurderinger, diskusjoner med ledelsen, og en forståelse av komplekse kontekster som AI ikke fullt ut kan håndtere. Tillit og juridisk ansvar gjør at en menneskelig revisor fortsatt er nødvendig for å lede prosessen og ta endelige beslutninger. [QA-justert fra 5 av gpt-5.4: Mye revisjonsarbeid er dokumentbasert, regelstyrt og digitalt. Formell signering og ansvar krever fortsatt menneske, men agent kan gjøre mesteparten av arbeidet.]"
   },
   {
     "slug": "revmatolog",
@@ -2972,8 +2972,8 @@
   {
     "slug": "siviloekonom",
     "title": "Siviløkonom",
-    "agent_autonomy": 4,
-    "rationale": "Siviløkonomer har en høy grad av KI-eksponering, spesielt innen økonomisk analyse, regnskap og prognosearbeid, hvor AI kan håndtere mye av det repetitive og dataintensive arbeidet. Imidlertid krever rollen ofte ledelse, strategisk beslutningstaking og menneskelig interaksjon, som AI ikke kan erstatte. Mange siviløkonomer fungerer også som ledere, hvor menneskelige egenskaper som motivasjon og kommunikasjon er essensielle."
+    "agent_autonomy": 6,
+    "rationale": "Siviløkonomer har en høy grad av KI-eksponering, spesielt innen økonomisk analyse, regnskap og prognosearbeid, hvor AI kan håndtere mye av det repetitive og dataintensive arbeidet. Imidlertid krever rollen ofte ledelse, strategisk beslutningstaking og menneskelig interaksjon, som AI ikke kan erstatte. Mange siviløkonomer fungerer også som ledere, hvor menneskelige egenskaper som motivasjon og kommunikasjon er essensielle. [QA-justert fra 4 av gpt-5.4: Mange oppgaver er analytiske, digitale og presentasjonsbaserte. Agent kan håndtere modellering, analyse, rapportering og beslutningsgrunnlag i stor grad.]"
   },
   {
     "slug": "sjaafoer",
@@ -3344,8 +3344,8 @@
   {
     "slug": "teknisk-tegner",
     "title": "Teknisk tegner",
-    "agent_autonomy": 8,
-    "rationale": "Tekniske tegnere arbeider hovedsakelig med digitale verktøy for å lage tekniske tegninger og 3D-modeller, noe som gjør arbeidet svært egnet for automatisering. AI kan allerede produsere komplekse modeller og tegninger basert på spesifikasjoner fra ingeniører og arkitekter. Imidlertid krever rollen fortsatt noe menneskelig innblanding for å sikre at designene oppfyller spesifikke krav og for å håndtere samarbeid og kommunikasjon med andre fagfolk."
+    "agent_autonomy": 10,
+    "rationale": "Tekniske tegnere arbeider hovedsakelig med digitale verktøy for å lage tekniske tegninger og 3D-modeller, noe som gjør arbeidet svært egnet for automatisering. AI kan allerede produsere komplekse modeller og tegninger basert på spesifikasjoner fra ingeniører og arkitekter. Imidlertid krever rollen fortsatt noe menneskelig innblanding for å sikre at designene oppfyller spesifikke krav og for å håndtere samarbeid og kommunikasjon med andre fagfolk. [QA-justert fra 8 av gpt-5.4: Rollen er svært digital, standardiserbar og godt egnet for full agentutførelse fra spesifikasjon til ferdig tegning uten behov for menneskelig kjerneinnsats.]"
   },
   {
     "slug": "tekstforfatter",
@@ -3578,8 +3578,8 @@
   {
     "slug": "oekonomikonsulent",
     "title": "Økonomikonsulent",
-    "agent_autonomy": 7,
-    "rationale": "Økonomikonsulenter arbeider hovedsakelig med digitale oppgaver som økonomisk rapportering, budsjettering og fakturering, som kan automatiseres i stor grad. KI kan håndtere mange av disse oppgavene uavhengig, men menneskelig tilsyn er nødvendig for å håndtere komplekse situasjoner, sikre nøyaktighet og opprettholde relasjoner med klienter og kolleger. Menneskelig vurdering er også viktig for saksbehandling og beslutninger som krever kontekstuell forståelse."
+    "agent_autonomy": 9,
+    "rationale": "Økonomikonsulenter arbeider hovedsakelig med digitale oppgaver som økonomisk rapportering, budsjettering og fakturering, som kan automatiseres i stor grad. KI kan håndtere mange av disse oppgavene uavhengig, men menneskelig tilsyn er nødvendig for å håndtere komplekse situasjoner, sikre nøyaktighet og opprettholde relasjoner med klienter og kolleger. Menneskelig vurdering er også viktig for saksbehandling og beslutninger som krever kontekstuell forståelse. [QA-justert fra 7 av gpt-5.4: Arbeidet er i stor grad digitalt, rutinepreget og regelstyrt. Agent kan håndtere analyser, rapporter, budsjetter og oppfølging nesten fullt ut.]"
   },
   {
     "slug": "oekonomisjef",
