@@ -1339,6 +1339,22 @@ canvas#canvas {
     <div class="stat-label" id="statWagesLabel">h&oslash;yt eksponerte yrker (score 7+)</div>
   </div>
 
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:8px 0">
+
+  <div class="stat-section">
+    <h3>Agentrisiko</h3>
+    <div class="stat-label" style="margin-bottom:6px">Kan en KI-agent gj&oslash;re jobben alene?</div>
+    <div class="tier-bar" id="agentTierBar"></div>
+  </div>
+
+  <div class="stat-section">
+    <h3>Fargelegg etter</h3>
+    <div class="view-toggle" id="colorModeToggle">
+      <button class="view-btn active" data-colormode="exposure" onclick="setColorMode('exposure')">KI-eksponering</button>
+      <button class="view-btn" data-colormode="agent" onclick="setColorMode('agent')">Agentrisiko</button>
+    </div>
+  </div>
+
   </div><!-- /occView -->
 
   <div id="indView" style="display:none">
@@ -1446,6 +1462,18 @@ canvas#canvas {
         KI treffer hardest der arbeidet er kognitivt, analytisk og digitalt.
       </p>
 
+      <h3>Eksponering er ikke det samme som erstatning</h3>
+      <p>
+        Portalen skiller mellom to dimensjoner: <em>KI-eksponering</em> (hvor mye KI kan endre jobben)
+        og <em>agentrisiko</em> (om en KI-agent kan gj&oslash;re jobben helt alene).
+        En advokat har h&oslash;y eksponering (8/10) men lav agentrisiko (4/10) &mdash;
+        KI hjelper mye, men klienttillit og rettssalen krever mennesker.
+        En regnskapsf&oslash;rer har b&aring;de h&oslash;y eksponering og h&oslash;y agentrisiko (9/10) &mdash;
+        jobben er strukturert, digital og regelstyrt nok til at en agent kan overta.
+        <span class="stat-highlight" id="aboutAgentJobs"></span> sysselsatte er i yrker der
+        en KI-agent kan gj&oslash;re det meste av jobben.
+      </p>
+
       <h3>Transformasjon, ikke apokalypse</h3>
       <p>
         Tallene peker mot gradvis effektivisering av store l&oslash;nnsmasser, ikke mot plutselig massearbeidsledighet.
@@ -1470,6 +1498,7 @@ canvas#canvas {
           <li><strong>L&oslash;nn og sysselsetting:</strong> SSB StatBank tabell 11418 (l&oslash;nn) og 12542 (sysselsatte) via STYRK-08</li>
           <li><strong>KI-scoring av yrker:</strong> Hvert yrke er scoret 0&ndash;10 av en KI-modell (GPT-4o/Claude) basert p&aring; yrkesbeskrivelsen</li>
           <li><strong>Bedriftsdata:</strong> SSB tabell 09789 (sysselsatte etter n&aelig;ring &times; yrke), 12817 (foretak og omsetning), 07091 (bedriftsst&oslash;rrelse)</li>
+          <li><strong>Agentrisiko:</strong> Hvert yrke er i tillegg scoret 0&ndash;10 p&aring; om en KI-agent kan <em>erstatte</em> rollen end-to-end, ikke bare assistere. QA-validert av GPT-5.4</li>
           <li><strong>Bransjerisiko:</strong> Beregnet bottom-up fra yrkeseksponeringen, vektet etter sysselsetting per n&aelig;ring</li>
         </ul>
         <p style="margin-top:8px">
@@ -1749,7 +1778,9 @@ function draw() {
 
     if (lit) {
       const fillAlpha = isHovered ? 0.9 : 0.55;
-      ctx.fillStyle = exposureColorCSS(r.exposure, fillAlpha);
+      const tileScore = (colorMode === "agent" && r.agent_autonomy != null) ? r.agent_autonomy : r.exposure;
+      const tileColorFn = (colorMode === "agent" && r.agent_autonomy != null) ? agentColorCSS : exposureColorCSS;
+      ctx.fillStyle = tileColorFn(tileScore, fillAlpha);
     } else {
       ctx.fillStyle = "rgba(30,30,40,0.4)";
     }
@@ -1775,7 +1806,7 @@ function draw() {
         ctx.strokeRect(rx, ry, rw, rh);
       }
     } else if (lit && hasFilter) {
-      ctx.strokeStyle = exposureColorCSS(r.exposure, 0.5);
+      ctx.strokeStyle = tileColorFn(tileScore, 0.5);
       ctx.lineWidth = 1 / s;
       if (radius > 0.5) {
         ctx.beginPath();
@@ -2185,6 +2216,80 @@ function renderCategoryRanking(src) {
       <span class="cat-rank-stats">${c.avg.toFixed(1).replace(".", ",")} \u00b7 ${jobsStr}</span>
     </div>`;
   }).join("");
+}
+
+// ── Agent autonomy tier bar ───────────────────────────────────────────
+
+function computeAgentTiers(src) {
+  const tierEl = document.getElementById("agentTierBar");
+  if (!tierEl) return;
+  const totalJobs = src.reduce((s, d) => s + (d.jobs || 0), 0);
+
+  const tiers = [
+    { name: "Lav", range: [0, 3], color: "#22c55e", desc: "Agent hjelper litt" },
+    { name: "Moderat", range: [4, 5], color: "#f59e0b", desc: "Agent gj\u00f8r mye, menneske leder" },
+    { name: "H\u00f8y", range: [6, 7], color: "#f97316", desc: "Agent gj\u00f8r det meste" },
+    { name: "Erstattbar", range: [8, 10], color: "#f43f5e", desc: "Agent overtar rollen" },
+  ];
+  for (const tier of tiers) {
+    tier.jobs = 0;
+    for (const d of src) {
+      if (d.agent_autonomy != null && d.jobs &&
+          d.agent_autonomy >= tier.range[0] && d.agent_autonomy <= tier.range[1]) {
+        tier.jobs += d.jobs;
+      }
+    }
+    tier.pct = totalJobs > 0 ? (tier.jobs / totalJobs * 100) : 0;
+  }
+  tierEl.innerHTML = tiers.map(t =>
+    `<div class="tier-row" style="cursor:default">
+      <div class="tier-color" style="background:${t.color}"></div>
+      <span class="tier-name">${t.name} (${t.range[0]}\u2013${t.range[1]})</span>
+      <span class="tier-jobs">${formatNumber(t.jobs)}</span>
+      <span class="tier-pct">${t.pct.toFixed(0)}%</span>
+    </div>`
+  ).join("");
+}
+
+// ── Color mode toggle (exposure vs agent autonomy) ───────────────────
+
+let colorMode = "exposure"; // "exposure" | "agent"
+
+function agentColor(score) {
+  if (score == null) return [70, 70, 85];
+  const t = Math.max(0, Math.min(10, score)) / 10;
+  // Green(0) → Amber(0.5) → Red(1)
+  let r, g, b;
+  if (t < 0.4) {
+    const s = t / 0.4;
+    r = Math.round(34 + s * 211);
+    g = Math.round(197 - s * 39);
+    b = Math.round(94 - s * 83);
+  } else if (t < 0.7) {
+    const s = (t - 0.4) / 0.3;
+    r = Math.round(245);
+    g = Math.round(158 - s * 95);
+    b = Math.round(11 + s * 12);
+  } else {
+    const s = (t - 0.7) / 0.3;
+    r = Math.round(244);
+    g = Math.round(63 - s * 10);
+    b = Math.round(23 + s * 71);
+  }
+  return [r, g, b];
+}
+
+function agentColorCSS(score, alpha) {
+  const [r, g, b] = agentColor(score);
+  return `rgba(${r},${g},${b},${alpha != null ? alpha : 1})`;
+}
+
+function setColorMode(mode) {
+  colorMode = mode;
+  document.querySelectorAll("#colorModeToggle .view-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.colormode === mode);
+  });
+  draw();
 }
 
 // ── Industry/business risk rendering ──────────────────────────────────
@@ -2999,6 +3104,14 @@ function populateAboutModal() {
   el("aboutUnweightedAvg").textContent = fmtD(unweightedAvg);
   el("aboutHighPct").textContent = Math.round(highPct) + "\u00a0%";
   el("aboutWagePct").textContent = Math.round(wagePct) + "\u00a0%";
+
+  // Agent autonomy stat
+  let agentJobs = 0;
+  for (const d of withJobs) {
+    if (d.agent_autonomy != null && d.agent_autonomy >= 6) agentJobs += d.jobs;
+  }
+  const agentEl = el("aboutAgentJobs");
+  if (agentEl) agentEl.textContent = fmt(agentJobs);
 }
 
 document.addEventListener("keydown", (e) => {
@@ -3311,15 +3424,18 @@ function populateInsightBar(src) {
     const masterAvg = eduAvg("Master");
     const fagbrevAvg = eduAvg("Fagbrev/fagskole");
 
-    const highExpJobs = src.filter(d => d.exposure != null && d.exposure >= 8 && d.jobs).reduce((s, d) => s + d.jobs, 0);
+    // Agent-replaceable jobs (autonomy >= 7)
+    const agentReplaceJobs = src.filter(d => d.agent_autonomy != null && d.agent_autonomy >= 7 && d.jobs).reduce((s, d) => s + d.jobs, 0);
 
     parts.push(`<span class="insight"><span class="insight-val">${wagePct}%</span> av l\u00f8nnsmasse i h\u00f8yt eksponerte yrker</span>`);
     if (masterAvg != null && fagbrevAvg != null) {
       parts.push(`<span class="insight-sep"></span>`);
       parts.push(`<span class="insight">Master: <span class="insight-val">${fmtD(masterAvg)}</span> vs. fagbrev: <span class="insight-val">${fmtD(fagbrevAvg)}</span></span>`);
     }
-    parts.push(`<span class="insight-sep"></span>`);
-    parts.push(`<span class="insight"><span class="insight-val">${fmtK(highExpJobs)}</span> sysselsatte med sv\u00e6rt h\u00f8y eksponering (8+)</span>`);
+    if (agentReplaceJobs > 0) {
+      parts.push(`<span class="insight-sep"></span>`);
+      parts.push(`<span class="insight"><span class="insight-val">${fmtK(agentReplaceJobs)}</span> i yrker en KI-agent kan overta</span>`);
+    }
   }
 
   bar.innerHTML = parts.join("");
@@ -3334,6 +3450,7 @@ Promise.all([
   window._occData = d;
   industryData = ind;
   computeStats(data, true);
+  computeAgentTiers(data);
   initChartHandlers();
   populateAboutModal();
   initFilterChips();
