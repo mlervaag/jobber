@@ -1302,6 +1302,11 @@ canvas#canvas {
     <h3>Sysselsatte etter eksponering</h3>
     <div class="histogram" id="histogram"></div>
     <div class="hist-labels"><span>0</span><span>5</span><span>10</span></div>
+    <div class="gradient-legend" style="margin-top:6px">
+      <span>Trygg</span>
+      <div class="gradient-bar"></div>
+      <span>Eksponert</span>
+    </div>
   </div>
 
   <div class="stat-section">
@@ -1333,14 +1338,6 @@ canvas#canvas {
     <div class="stat-label" id="statWagesLabel">h&oslash;yt eksponerte yrker (score 7+)</div>
   </div>
 
-  <div class="stat-section">
-    <h3>Fargeskala</h3>
-    <div class="gradient-legend">
-      <span>Trygg</span>
-      <div class="gradient-bar"></div>
-      <span>Eksponert</span>
-    </div>
-  </div>
   </div><!-- /occView -->
 
   <div id="indView" style="display:none">
@@ -1366,45 +1363,34 @@ canvas#canvas {
         <span>Eksponert</span>
       </div>
     </div>
+
+    <div class="impact-row" id="businessKPIs" style="display:none">
+      <div class="impact-card">
+        <div class="impact-value" id="kpiBizEnterprises">&mdash;</div>
+        <div class="impact-label">bedrifter i utsatte bransjer</div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-value" id="kpiBizRevenue">&mdash;</div>
+        <div class="impact-label">i omsetning i faresonen</div>
+      </div>
+    </div>
+
+    <div class="stat-section" id="bizInsightsSection" style="display:none">
+      <div class="insights-list" id="bizInsightsList"></div>
+    </div>
+
+    <div class="stat-section" id="industryRankingSection" style="display:none">
+      <h3>Bransjeranking</h3>
+      <div class="industry-ranking" id="industryRanking"></div>
+    </div>
   </div><!-- /indView -->
-
-  <!-- Business Risk Section -->
-  <hr class="section-divider">
-
-  <div class="stat-section">
-    <div class="section-header">
-      <span class="section-header-icon">&#x1F3E2;</span>
-      Fra jobb til bedrift: KI-risiko i n&aelig;ringslivet
-    </div>
-  </div>
-
-  <div class="impact-row" id="businessKPIs" style="display:none">
-    <div class="impact-card">
-      <div class="impact-value" id="kpiBizEnterprises">&mdash;</div>
-      <div class="impact-label">bedrifter i utsatte bransjer</div>
-    </div>
-    <div class="impact-card">
-      <div class="impact-value" id="kpiBizRevenue">&mdash;</div>
-      <div class="impact-label">i omsetning i faresonen</div>
-    </div>
-  </div>
-
-  <div class="stat-section" id="bizInsightsSection" style="display:none">
-    <div class="insights-list" id="bizInsightsList"></div>
-  </div>
-
-  <div class="stat-section" id="industryRankingSection" style="display:none">
-    <h3>Bransjerisiko</h3>
-    <div class="industry-ranking" id="industryRanking"></div>
-  </div>
 
   <div class="sidebar-footer">
     <span class="about-link" onclick="showAbout()">&#9432; Om analysen</span>
     <div class="credits">
       Data fra <a href="https://utdanning.no">utdanning.no</a>, <a href="https://www.ssb.no">SSB</a> og <a href="https://data.brreg.no">Br&oslash;nn&oslash;ysund</a><br>
       KI-scoring via <a href="https://openai.com">OpenAI</a> / <a href="https://anthropic.com">Anthropic</a><br>
-      Bedriftsdata: SSB StatBank (tabell 09789, 12817, 07091)<br>
-      Basert på <a href="https://github.com/karpathy/2025-ai-job-exposure">karpathy/2025-ai-job-exposure</a>
+      Bedriftsdata: SSB StatBank (tabell 09789, 12817, 07091)
     </div>
     <a href="https://github.com/mlervaag/jobber">&#9734; GitHub</a>
   </div>
@@ -3175,6 +3161,8 @@ function setView(mode) {
   });
   document.getElementById("occView").style.display = mode === "occupations" ? "" : "none";
   document.getElementById("indView").style.display = mode === "industries" ? "" : "none";
+  // Scroll sidebar back to top when switching views
+  document.getElementById("sidebar").scrollTop = 0;
 
   if (mode === "industries" && industryData) {
     // Clear occupation filters
@@ -3256,34 +3244,53 @@ function computeIndustryStats(industries) {
 
 function populateInsightBar(src) {
   const bar = document.getElementById("insightBar");
-  const withJobs = src.filter(d => d.jobs && d.pay && d.exposure != null);
-  const totalWages = withJobs.reduce((s, d) => s + d.jobs * d.pay, 0);
-  const exposedWages = withJobs.filter(d => d.exposure >= 6).reduce((s, d) => s + d.jobs * d.pay, 0);
-  const wagePct = totalWages > 0 ? Math.round(exposedWages / totalWages * 100) : 0;
-
-  // Education comparison: master vs fagbrev
-  const eduAvg = (level) => {
-    const items = src.filter(d => d.education === level && d.exposure != null && d.jobs);
-    if (!items.length) return null;
-    const w = items.reduce((s, d) => s + d.exposure * d.jobs, 0);
-    const c = items.reduce((s, d) => s + d.jobs, 0);
-    return c > 0 ? w / c : null;
-  };
-  const masterAvg = eduAvg("Master");
-  const fagbrevAvg = eduAvg("Fagbrev/fagskole");
-
-  // High-exposure high-pay count
-  const highBoth = src.filter(d => d.exposure != null && d.exposure >= 7 && d.pay && d.pay >= 700000).length;
-
   const fmtD = n => n.toFixed(1).replace(".", ",");
+  const fmtK = n => n >= 1000000 ? (n/1e6).toFixed(1).replace(".",",") + " mill." : n.toLocaleString("nb-NO");
   const parts = [];
-  parts.push(`<span class="insight"><span class="insight-val">${wagePct}%</span> av l\u00f8nnsmasse i h\u00f8yt eksponerte yrker</span>`);
-  if (masterAvg != null && fagbrevAvg != null) {
+
+  if (viewMode === "industries") {
+    // Industry-specific insights
+    const withJobs = src.filter(d => d.jobs && d.exposure != null);
+    const totalJobs = withJobs.reduce((s, d) => s + d.jobs, 0);
+    const highRisk = withJobs.filter(d => d.exposure >= 5.5);
+    const highRiskJobs = highRisk.reduce((s, d) => s + d.jobs, 0);
+    const highRiskPct = totalJobs > 0 ? Math.round(highRiskJobs / totalJobs * 100) : 0;
+
+    parts.push(`<span class="insight"><span class="insight-val">${highRiskPct}%</span> av sysselsatte i h\u00f8yrisikosbransjer</span>`);
     parts.push(`<span class="insight-sep"></span>`);
-    parts.push(`<span class="insight">Master: <span class="insight-val">${fmtD(masterAvg)}</span> vs. fagbrev: <span class="insight-val">${fmtD(fagbrevAvg)}</span></span>`);
+    parts.push(`<span class="insight"><span class="insight-val">${highRisk.length}</span> av ${withJobs.length} bransjer med forh\u00f8yet risiko</span>`);
+    if (src.length > 0) {
+      const top = src.reduce((a, b) => (a.exposure || 0) > (b.exposure || 0) ? a : b);
+      parts.push(`<span class="insight-sep"></span>`);
+      parts.push(`<span class="insight">Mest utsatt: <span class="insight-val">${top.title}</span></span>`);
+    }
+  } else {
+    // Occupation insights
+    const withJobs = src.filter(d => d.jobs && d.pay && d.exposure != null);
+    const totalWages = withJobs.reduce((s, d) => s + d.jobs * d.pay, 0);
+    const exposedWages = withJobs.filter(d => d.exposure >= 6).reduce((s, d) => s + d.jobs * d.pay, 0);
+    const wagePct = totalWages > 0 ? Math.round(exposedWages / totalWages * 100) : 0;
+
+    const eduAvg = (level) => {
+      const items = src.filter(d => d.education === level && d.exposure != null && d.jobs);
+      if (!items.length) return null;
+      const w = items.reduce((s, d) => s + d.exposure * d.jobs, 0);
+      const c = items.reduce((s, d) => s + d.jobs, 0);
+      return c > 0 ? w / c : null;
+    };
+    const masterAvg = eduAvg("Master");
+    const fagbrevAvg = eduAvg("Fagbrev/fagskole");
+
+    const highExpJobs = src.filter(d => d.exposure != null && d.exposure >= 8 && d.jobs).reduce((s, d) => s + d.jobs, 0);
+
+    parts.push(`<span class="insight"><span class="insight-val">${wagePct}%</span> av l\u00f8nnsmasse i h\u00f8yt eksponerte yrker</span>`);
+    if (masterAvg != null && fagbrevAvg != null) {
+      parts.push(`<span class="insight-sep"></span>`);
+      parts.push(`<span class="insight">Master: <span class="insight-val">${fmtD(masterAvg)}</span> vs. fagbrev: <span class="insight-val">${fmtD(fagbrevAvg)}</span></span>`);
+    }
+    parts.push(`<span class="insight-sep"></span>`);
+    parts.push(`<span class="insight"><span class="insight-val">${fmtK(highExpJobs)}</span> sysselsatte med sv\u00e6rt h\u00f8y eksponering (8+)</span>`);
   }
-  parts.push(`<span class="insight-sep"></span>`);
-  parts.push(`<span class="insight"><span class="insight-val">${highBoth}</span> yrker med h\u00f8y eksponering og 700k+ l\u00f8nn</span>`);
 
   bar.innerHTML = parts.join("");
   bar.classList.add("visible");
@@ -3303,10 +3310,8 @@ Promise.all([
   initCategoryChips();
   populateInsightBar(data);
 
-  // Load industry data (non-blocking)
-  fetch("industries.json").then(r => r.ok ? r.json() : null).then(indData => {
-    if (indData) renderIndustrySection(indData);
-  }).catch(() => {});
+  // Render industry sidebar section from already-loaded data
+  if (industryData) renderIndustrySection(industryData);
 
   resize();
   setTimeout(() => {
