@@ -218,6 +218,25 @@ a:hover { text-decoration: underline; }
   undervurderer i KI-debatten.
 </p>
 
+<h2>Eksponering vs. agentrisiko</h2>
+<p>
+  Portalen skiller mellom to dimensjoner. <strong>KI-eksponering</strong> m&aring;ler
+  hvor mye av arbeidet som kan ber&oslash;res av KI. <strong>Agentrisiko</strong> m&aring;ler
+  om en KI-agent kan gj&oslash;re jobben <em>helt alene</em>, uten menneskelig involvering.
+</p>
+<p>
+  Denne forskjellen er avgj&oslash;rende. En advokat har h&oslash;y eksponering (8/10) fordi
+  KI kan hjelpe med juridisk research, dokumentutkast og analyse. Men agentrisikoen
+  er lav (4/10) fordi klienttillit, rettssalen og juridisk ansvar krever et menneske.
+  En regnskapsf&oslash;rer har ogs&aring; h&oslash;y eksponering (8/10), men agentrisikoen er sv&aelig;rt
+  h&oslash;y (9/10) &mdash; arbeidet er strukturert, regelstyrt og digitalt nok til at en
+  agent kan utf&oslash;re det meste fra ende til annen.
+</p>
+<p>
+  Bruk &laquo;Fargelegg etter&raquo;-togglen i portalen for &aring; bytte mellom de to
+  dimensjonene og se hvordan bildet endrer seg.
+</p>
+
 <hr class="divider">
 
 <h2>Hva betyr dette?</h2>
@@ -257,7 +276,10 @@ a:hover { text-decoration: underline; }
     av en KI-modell (GPT), basert p&aring; yrkesbeskrivelser fra
     <a href="https://utdanning.no">utdanning.no</a>.
     Scoringen vurderer hvor stor andel av arbeidet som kan ber&oslash;res av
-    spr&aring;kmodeller og KI-verkt&oslash;y. Tiln&aelig;rmingen er inspirert av
+    spr&aring;kmodeller og KI-verkt&oslash;y. I tillegg er hvert yrke scoret p&aring;
+    <strong>agentrisiko</strong> (0&ndash;10): kan en KI-agent gj&oslash;re jobben alene,
+    eller bare assistere? Agentscorene er QA-validert av GPT-5.4.
+    Tiln&aelig;rmingen er inspirert av
     <a href="https://github.com/karpathy/2025-ai-job-exposure">Andrej Karpathys AI Job Exposure-analyse</a>,
     tilpasset norske yrker med data fra utdanning.no og SSB.
   </p>
