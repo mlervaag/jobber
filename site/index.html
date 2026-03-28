@@ -1255,6 +1255,11 @@ canvas#canvas {
   </div>
 
   <div id="occView">
+
+  <div class="view-toggle" id="colorModeToggle" style="margin-top:-8px">
+    <button class="view-btn active" data-colormode="exposure" onclick="setColorMode('exposure')">KI-eksponering</button>
+    <button class="view-btn" data-colormode="agent" onclick="setColorMode('agent')">Agentrisiko</button>
+  </div>
   <div class="search-wrap">
     <span class="search-icon">&#x1F50D;</span>
     <input type="text" id="searchBox" placeholder="S&oslash;k etter yrke...">
@@ -1345,14 +1350,6 @@ canvas#canvas {
     <h3>Agentrisiko</h3>
     <div class="stat-label" style="margin-bottom:6px">Kan en KI-agent gj&oslash;re jobben alene?</div>
     <div class="tier-bar" id="agentTierBar"></div>
-  </div>
-
-  <div class="stat-section">
-    <h3>Fargelegg etter</h3>
-    <div class="view-toggle" id="colorModeToggle">
-      <button class="view-btn active" data-colormode="exposure" onclick="setColorMode('exposure')">KI-eksponering</button>
-      <button class="view-btn" data-colormode="agent" onclick="setColorMode('agent')">Agentrisiko</button>
-    </div>
   </div>
 
   </div><!-- /occView -->
