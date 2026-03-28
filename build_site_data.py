@@ -187,11 +187,22 @@ def main():
             if slug and codes:
                 styrk_lookup[slug] = codes
 
+    # Load agent autonomy scores
+    agent_scores = {}
+    if os.path.exists("agent_scores.json"):
+        with open("agent_scores.json", encoding="utf-8") as f:
+            for entry in json.load(f):
+                agent_scores[entry["slug"]] = entry
+        print(f"  Agent autonomy scores for {len(agent_scores)} occupations")
+    else:
+        print("  No agent_scores.json found — skipping agent autonomy.")
+
     # Merge
     data = []
     for row in rows:
         slug = row["slug"]
         score = scores.get(slug, {})
+        agent = agent_scores.get(slug, {})
         category = row["category"]
 
         entry = {
@@ -203,6 +214,8 @@ def main():
             "education": row["education"],
             "exposure": score.get("exposure"),
             "exposure_rationale": score.get("rationale"),
+            "agent_autonomy": agent.get("agent_autonomy"),
+            "agent_rationale": agent.get("rationale"),
             "url": row.get("url", ""),
         }
 
@@ -227,9 +240,9 @@ def main():
     print(f"Wrote {len(data)} occupations to site/data.json")
     total_jobs = sum(d["jobs"] for d in data if d["jobs"])
     print(f"Total jobs represented: {total_jobs:,}")
-    with_trend = sum(1 for d in data if "student_trend" in d)
+    with_agent = sum(1 for d in data if d.get("agent_autonomy") is not None)
     with_vac = sum(1 for d in data if d.get("vacancies"))
-    print(f"With student trends: {with_trend}")
+    print(f"With agent autonomy: {with_agent}")
     print(f"With vacancy data: {with_vac}")
 
     # Build industries data

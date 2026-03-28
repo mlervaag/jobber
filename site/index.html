@@ -1266,6 +1266,7 @@ canvas#canvas {
     <div class="filter-chips" id="quickFilters">
       <button class="filter-chip" data-filter="vulnerable" title="AI-eksponering &ge;6 og kun grunnskole, VGS eller ingen formelle krav">S&aring;rbare yrker</button>
       <button class="filter-chip" data-filter="transform" title="AI-eksponering &ge;7 og &aring;rsl&oslash;nn &ge;700 000 kr">Transformasjon</button>
+      <button class="filter-chip" data-filter="agent_replace" title="Agent-autonomi &ge;7 &mdash; yrker der en KI-agent kan gj&oslash;re jobben n&aelig;rmest alene">Kan erstattes av agent</button>
     </div>
   </div>
 
@@ -1901,18 +1902,28 @@ function showTooltip(d, mx, my) {
   tt.querySelector(".tt-title").textContent = d.title;
 
   const score = d.exposure != null ? d.exposure : null;
+  let exposureHtml = "";
   if (score != null) {
     const barWidth = score * 10;
     const color = exposureColorCSS(score, 1);
     const label = d._isIndustry ? "Disrupsjonsrisiko" : "KI-eksponering";
     const scoreText = d._isIndustry ? score.toFixed(1).replace(".", ",") + "/10" : score + "/10";
-    tt.querySelector(".tt-exposure").innerHTML =
+    exposureHtml =
       `<span style="color:${color};font-weight:600;">${label}: ${scoreText}</span>` +
       `<div style="margin-top:4px;height:4px;background:rgba(255,255,255,0.06);border-radius:3px;">` +
       `<div style="height:100%;width:${barWidth}%;background:${color};border-radius:3px;"></div></div>`;
-  } else {
-    tt.querySelector(".tt-exposure").innerHTML = "";
   }
+  // Agent autonomy bar (occupations only)
+  if (!d._isIndustry && d.agent_autonomy != null) {
+    const aa = d.agent_autonomy;
+    const aaWidth = aa * 10;
+    const aaColor = aa >= 7 ? "#f43f5e" : aa >= 4 ? "#f59e0b" : "#22c55e";
+    exposureHtml +=
+      `<div style="margin-top:8px"><span style="color:${aaColor};font-weight:600;">Agentrisiko: ${aa}/10</span>` +
+      `<div style="margin-top:4px;height:4px;background:rgba(255,255,255,0.06);border-radius:3px;">` +
+      `<div style="height:100%;width:${aaWidth}%;background:${aaColor};border-radius:3px;"></div></div></div>`;
+  }
+  tt.querySelector(".tt-exposure").innerHTML = exposureHtml;
 
   if (d._isIndustry) {
     const fmtK = n => n != null ? n.toLocaleString("nb-NO") : '\u2014';
@@ -1923,14 +1934,15 @@ function showTooltip(d, mx, my) {
     `;
   } else {
     tt.querySelector(".tt-stats").innerHTML = `
-      <span class="label">Median årslønn</span><span class="value">${formatPay(d.pay)}</span>
+      <span class="label">Median \u00e5rsl\u00f8nn</span><span class="value">${formatPay(d.pay)}</span>
       <span class="label">Sysselsatte</span><span class="value">${formatNumber(d.jobs)}</span>
       <span class="label">Utdanning</span><span class="value">${d.education || '\u2014'}</span>
     `;
   }
 
-  tt.querySelector(".tt-rationale").textContent =
-    d.exposure_rationale || "";
+  // Show agent rationale if available, otherwise exposure rationale
+  const rationale = (!d._isIndustry && d.agent_rationale) ? d.agent_rationale : (d.exposure_rationale || "");
+  tt.querySelector(".tt-rationale").textContent = rationale;
 
   tt.querySelector(".tt-link").innerHTML =
     d.url ? `<a href="${d.url}" target="_blank" rel="noopener">Les mer på utdanning.no \u2192</a>` : "";
@@ -2516,6 +2528,9 @@ function matchesChipFilter(d) {
   }
   if (activeChipFilter === "transform") {
     return d.exposure != null && d.exposure >= 7 && d.pay != null && d.pay >= 700000;
+  }
+  if (activeChipFilter === "agent_replace") {
+    return d.agent_autonomy != null && d.agent_autonomy >= 7;
   }
   return true;
 }
