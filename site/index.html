@@ -1266,7 +1266,7 @@ canvas#canvas {
     <div id="searchResults"></div>
   </div>
 
-  <div class="stat-section" id="filterChipsSection" style="display:none">
+  <div class="stat-section" id="filterChipsSection">
     <div class="filter-group-label">Hurtigfiltre</div>
     <div class="filter-chips" id="quickFilters">
       <button class="filter-chip" data-filter="vulnerable" title="AI-eksponering &ge;6 og kun grunnskole, VGS eller ingen formelle krav">S&aring;rbare yrker</button>
@@ -1419,7 +1419,7 @@ canvas#canvas {
 </div>
 
 <div id="insightBar"></div>
-<canvas id="canvas"></canvas>
+<canvas id="canvas" role="img" aria-label="Interaktiv treemap over KI-eksponering for norske yrker"></canvas>
 <button id="resetZoom" onclick="resetZoom()" aria-label="Tilbakestill zoom">&#x2196; 1:1</button>
 
 <div id="tooltip">
@@ -1773,10 +1773,11 @@ function draw() {
 
     if (rw <= 0 || rh <= 0) continue;
 
+    const tileScore = (colorMode === "agent" && r.agent_autonomy != null) ? r.agent_autonomy : r.exposure;
+    const tileColorFn = (colorMode === "agent" && r.agent_autonomy != null) ? agentColorCSS : exposureColorCSS;
+
     if (lit) {
       const fillAlpha = isHovered ? 0.9 : 0.55;
-      const tileScore = (colorMode === "agent" && r.agent_autonomy != null) ? r.agent_autonomy : r.exposure;
-      const tileColorFn = (colorMode === "agent" && r.agent_autonomy != null) ? agentColorCSS : exposureColorCSS;
       ctx.fillStyle = tileColorFn(tileScore, fillAlpha);
     } else {
       ctx.fillStyle = "rgba(30,30,40,0.4)";
@@ -2286,6 +2287,15 @@ function setColorMode(mode) {
   document.querySelectorAll("#colorModeToggle .view-btn").forEach(b => {
     b.classList.toggle("active", b.dataset.colormode === mode);
   });
+  // Update gradient legend to match active color scale
+  const bar = document.querySelector("#occView .gradient-bar");
+  if (bar) {
+    if (mode === "agent") {
+      bar.style.background = "linear-gradient(to right, rgb(34,197,94) 0%, rgb(245,158,11) 50%, rgb(244,63,94) 100%)";
+    } else {
+      bar.style.background = "";
+    }
+  }
   draw();
 }
 
@@ -3178,9 +3188,10 @@ mobileSearchBox.addEventListener("input", () => {
     draw();
     updateStats();
     const r = rects.find(r => r.slug === slug);
-    if (r) {
-      pinnedTooltip = r;
-      showTooltip(r, 0, 0);
+    const d = r || data.find(d => d.slug === slug);
+    if (d) {
+      pinnedTooltip = d;
+      showTooltip(d, 0, 0);
       document.getElementById("tooltip").classList.add("pinned");
       setTooltipBackdrop(true);
     }
