@@ -1,0 +1,98 @@
+[
+  {
+    "nace": "58-63",
+    "name": "Informasjon og kommunikasjon",
+    "disruption_risk": 8,
+    "rationale": "Næringen består hovedsakelig av småbedrifter som selger kunnskapsbaserte tjenester, noe som gjør dem svært utsatt for KI-drevet disrupsjon. KI kan automatisere mange av de informasjonsbearbeidende oppgavene som er kjernevirksomheten i denne sektoren. Dette kan føre til betydelig prispress og redusert behov for menneskelig arbeidskraft."
+  },
+  {
+    "nace": "85",
+    "name": "Undervisning",
+    "disruption_risk": 4,
+    "rationale": "Undervisning har en betydelig fysisk komponent med behov for menneskelig interaksjon, noe som reduserer disrupsjonsrisikoen. Samtidig kan KI effektivisere administrative oppgaver og tilpasse læringsopplevelser, men kjernevirksomheten krever fortsatt menneskelig tilstedeværelse."
+  },
+  {
+    "nace": "64-66",
+    "name": "Finansiering og forsikring",
+    "disruption_risk": 7,
+    "rationale": "Finansiering og forsikring er overveiende kunnskapsbasert med en høy andel småbedrifter som selger kompetanse, noe som gjør dem sårbare for KI-drevet automatisering. KI kan effektivisere prosesser som risikovurdering og kundeservice, noe som kan føre til færre ansatte og prispress. Regulatoriske krav gir noe beskyttelse, men ikke nok til å hindre betydelig disrupsjon."
+  },
+  {
+    "nace": "84",
+    "name": "Off.adm., forsvar, sosialforsikring",
+    "disruption_risk": 6,
+    "rationale": "Offentlig administrasjon og forsvar er preget av høyt kunnskapsarbeid, men også sterke regulatoriske barrierer som gir lavere risiko. KI kan effektivisere og automatisere mange administrative oppgaver, men kjernefunksjoner som krever fysisk tilstedeværelse og menneskelig vurdering vil fortsatt være nødvendige."
+  },
+  {
+    "nace": "68-82",
+    "name": "Teknisk og forretningsmessig tjenesteyting, eiendomsdrift",
+    "disruption_risk": 7,
+    "rationale": "Næringen består av en høy andel småbedrifter som selger kompetanse, noe som gjør dem sårbare for KI-drevet automatisering. Mange av tjenestene er kunnskapsbaserte, og KI kan effektivt redusere behovet for menneskelig arbeidskraft i informasjonsbehandling og administrative oppgaver. Selv om det er noen fysiske komponenter, er risikoen for disrupsjon betydelig."
+  },
+  {
+    "nace": "86-88",
+    "name": "Helse- og sosialtjenester",
+    "disruption_risk": 5,
+    "rationale": "Helse- og sosialtjenester kombinerer fysisk og kunnskapsarbeid, med en betydelig andel småbedrifter. KI kan forbedre diagnostikk og administrasjon, men direkte pasientkontakt og omsorg krever fysisk tilstedeværelse. Regulatoriske krav og behovet for menneskelig interaksjon demper risikoen for fullstendig disrupsjon."
+  },
+  {
+    "nace": "90-99",
+    "name": "Personlig tjenesteyting",
+    "disruption_risk": 5,
+    "rationale": "Personlig tjenesteyting er en blanding av fysisk og kunnskapsarbeid, med en høy andel småbedrifter som selger kompetanse. KI kan effektivisere og automatisere enkelte tjenester, men mange oppgaver krever fortsatt fysisk tilstedeværelse og personlig interaksjon. Dette gir en moderat disrupsjonsrisiko."
+  },
+  {
+    "nace": "05-09",
+    "name": "Bergverksdrift og utvinning",
+    "disruption_risk": 2,
+    "rationale": "Bergverksdrift og utvinning er en næring med en sterk fysisk komponent som ikke lett kan erstattes av KI. Selv om det er en høy andel småbedrifter, er kjernevirksomheten avhengig av fysisk utvinning og prosessering av ressurser, noe som gir lavere risiko for fundamental disrupsjon fra KI."
+  },
+  {
+    "nace": "35-39",
+    "name": "Elektrisitet, vann og renovasjon",
+    "disruption_risk": 3,
+    "rationale": "Næringen er primært fysisk med fokus på infrastruktur og drift av elektrisitet, vann og renovasjon. Selv om KI kan effektivisere administrasjon og prosessovervåking, vil kjernevirksomheten fortsatt kreve fysisk tilstedeværelse og vedlikehold. Regulatoriske krav og behovet for fysisk infrastruktur reduserer disrupsjonsrisikoen."
+  },
+  {
+    "nace": "03",
+    "name": "Fiske, fangst og akvakultur",
+    "disruption_risk": 1,
+    "rationale": "Fiske, fangst og akvakultur er fundamentalt fysiske næringer med sterke krav til fysisk tilstedeværelse og manuell arbeidskraft. Selv om KI kan bidra til effektivisering av administrasjon og prosessoptimalisering, vil kjernevirksomheten forbli uendret. Den høye andelen småbedrifter påvirker ikke risikoen betydelig i dette tilfellet."
+  },
+  {
+    "nace": "10-33",
+    "name": "Industri",
+    "disruption_risk": 4,
+    "rationale": "Næringen består av en blanding av fysisk arbeid og kunnskapsarbeid, med en betydelig andel småbedrifter. KI kan effektivisere prosesser og redusere behovet for enkelte typer arbeidskraft, men den fysiske komponenten i produksjon og håndverk begrenser den totale disrupsjonsrisikoen."
+  },
+  {
+    "nace": "45-47",
+    "name": "Varehandel, reparasjon av motorvogner",
+    "disruption_risk": 5,
+    "rationale": "Varehandel og reparasjon av motorvogner har en blanding av fysisk og kunnskapsarbeid. KI kan effektivisere salgsprosesser og kundeservice, men den fysiske komponenten i reparasjon og vedlikehold begrenser disrupsjonsrisikoen. Den høye andelen småbedrifter kan imidlertid være sårbare for prispress fra KI-drevne aktører."
+  },
+  {
+    "nace": "49-53",
+    "name": "Transport og lagring",
+    "disruption_risk": 5,
+    "rationale": "Transport og lagring er en blanding av fysisk og kunnskapsarbeid, hvor KI kan forbedre logistikk og administrasjon, men ikke eliminere behovet for fysisk transport. Den høye andelen småbedrifter kan oppleve prispress fra større aktører som bruker KI for effektivisering, men den fysiske komponenten i transport begrenser total disrupsjon."
+  },
+  {
+    "nace": "55-56",
+    "name": "Overnattings- og serveringsvirksomhet",
+    "disruption_risk": 3,
+    "rationale": "Overnattings- og serveringsvirksomhet er primært fysisk arbeid med en høy andel småbedrifter. KI kan effektivisere administrative oppgaver og kundeservice, men kjernevirksomheten krever fysisk tilstedeværelse og menneskelig interaksjon, noe som reduserer disrupsjonsrisikoen."
+  },
+  {
+    "nace": "41-43",
+    "name": "Bygge- og anleggsvirksomhet",
+    "disruption_risk": 2,
+    "rationale": "Bygge- og anleggsvirksomhet er primært fysisk arbeid med en høy andel håndverkere og maskinoperatører. Selv om KI kan effektivisere enkelte administrative oppgaver og planlegging, vil kjernevirksomheten fortsatt kreve fysisk tilstedeværelse og manuell arbeidskraft. Den høye andelen småbedrifter kan imidlertid oppleve noe press fra KI-drevne verktøy som forbedrer produktivitet."
+  },
+  {
+    "nace": "01-02",
+    "name": "Jordbruk og skogbruk",
+    "disruption_risk": 1,
+    "rationale": "Jordbruk og skogbruk er fundamentalt fysiske næringer med høy andel småbedrifter, men KI kan primært effektivisere administrative oppgaver. Kjernevirksomheten krever fysisk tilstedeværelse og er mindre utsatt for digital disrupsjon."
+  }
+]

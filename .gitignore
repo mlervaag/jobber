@@ -22,5 +22,16 @@ pages/
 embed.py
 embeddings.json
 
-# macOS
+# IDE / editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# Logs
+*.log
