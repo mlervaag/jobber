@@ -2326,9 +2326,7 @@ function renderIndustrySection(indData) {
   entEl.textContent = hrEnterprises >= 1000
     ? Math.round(hrEnterprises / 1000) + "\u00a0000"
     : hrEnterprises.toLocaleString("nb-NO");
-  revEl.textContent = hrRevenue >= 1000000
-    ? (hrRevenue / 1000000).toFixed(1).replace(".", ",") + " bill. kr"
-    : Math.round(hrRevenue / 1000) + " mrd. kr";
+  revEl.textContent = Math.round(hrRevenue / 1000).toLocaleString("nb-NO") + " mrd. kr";
 
   // Business insights — broader framing about knowledge work disruption
   const bizSection = document.getElementById("bizInsightsSection");
@@ -2532,7 +2530,7 @@ function computeStats(subset, animate) {
 
   // Exposure by education
   const eduGroups = [
-    { label: "Grunnskole/VGS", match: ["Grunnskole", "Videregående", "Ingen formelle krav"] },
+    { label: "Grunnskole/vgs.", match: ["Grunnskole", "Videregående", "Ingen formelle krav"] },
     { label: "Fagbrev/fagskole", match: ["Fagbrev/fagskole"] },
     { label: "Bachelor", match: ["Bachelor"] },
     { label: "Master", match: ["Master"] },
@@ -2563,17 +2561,10 @@ function computeStats(subset, animate) {
   const wagesPct = wagesTotal > 0 ? wagesExposed / wagesTotal * 100 : 0;
 
   if (animate) {
-    if (mrdKr >= 1000) {
-      animateValue(wagesEl, Math.round(mrdKr / 1000 * 10), 1200,
-        n => (n / 10).toFixed(1).replace(".", ",") + " bill. kr");
-    } else {
-      animateValue(wagesEl, Math.round(mrdKr), 1200,
-        n => n + " mrd. kr");
-    }
+    animateValue(wagesEl, Math.round(mrdKr), 1200,
+      n => n + " mrd. kr");
   } else {
-    wagesEl.textContent = mrdKr >= 1000
-      ? (mrdKr / 1000).toFixed(1).replace(".", ",") + " bill. kr"
-      : Math.round(mrdKr) + " mrd. kr";
+    wagesEl.textContent = Math.round(mrdKr) + " mrd. kr";
   }
 
   document.getElementById("statWagesLabel").textContent =
@@ -3399,7 +3390,7 @@ function populateInsightBar(src) {
     const highRiskJobs = highRisk.reduce((s, d) => s + d.jobs, 0);
     const highRiskPct = totalJobs > 0 ? Math.round(highRiskJobs / totalJobs * 100) : 0;
 
-    parts.push(`<span class="insight"><span class="insight-val">${highRiskPct}%</span> av sysselsatte i h\u00f8yrisikosbransjer</span>`);
+    parts.push(`<span class="insight"><span class="insight-val">${highRiskPct}%</span> av sysselsatte i h\u00f8yrisikobransjer</span>`);
     parts.push(`<span class="insight-sep"></span>`);
     parts.push(`<span class="insight"><span class="insight-val">${highRisk.length}</span> av ${withJobs.length} bransjer med forh\u00f8yet risiko</span>`);
     if (src.length > 0) {
