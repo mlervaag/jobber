@@ -1157,9 +1157,35 @@ canvas#canvas {
 #mobileSearchResults .sr-item .sr-title { flex: 1; color: var(--fg); }
 #mobileSearchResults .sr-item .sr-score { flex-shrink: 0; font-size: 13px; font-weight: 600; }
 
+/* ── Sidebar close button (mobile only) ──────────────── */
+
+.sidebar-close {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255,255,255,0.06);
+  color: var(--fg2);
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  z-index: 1;
+}
+.sidebar-close:hover {
+  background: rgba(255,255,255,0.12);
+  color: var(--fg);
+}
+
 /* ── Mobile ───────────────────────────────────────────── */
 
 @media (max-width: 700px) {
+  .sidebar-close { display: flex; }
   :root { --sidebar-w: 0px; }
 
   #sidebarToggle { display: flex; }
@@ -1245,6 +1271,7 @@ canvas#canvas {
 
 <div id="sidebar">
   <div class="logo-wrap">
+    <button class="sidebar-close" onclick="closeSidebar()" aria-label="Lukk meny">&#x2715;</button>
     <div class="logo"><span class="ki">KI</span><span class="trusselen">Trusselen</span></div>
     <div class="tagline">Hvordan kunstig intelligens påvirker det norske arbeidsmarkedet</div>
   </div>
