@@ -27,6 +27,8 @@ EDUCATION_LEVELS = [
     ("medisinstudi", "Master"),
     ("legespesialisering", "Master"),
     ("tannlegeutdanning", "Master"),
+    ("femårig", "Master"),
+    ("seksårig", "Master"),
     ("bachelor", "Bachelor"),
     ("høgskole", "Bachelor"),
     ("høyskole", "Bachelor"),

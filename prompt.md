@@ -49,10 +49,10 @@ I tillegg er hvert yrke scoret på **agentrisiko** (0-10): kan en autonom KI-age
 
 | Utdanning | Gj.snitt eksponering | Sysselsatte |
 |-----------|---------------------|-------------|
-| Grunnskole/VGS | 4.0 | 79 000 |
+| Grunnskole/VGS | 3.3 | 59 000 |
 | Fagbrev/fagskole | 3.5 | 888 000 |
 | Bachelor | 6.0 | 427 000 |
-| Master | 6.3 | 256 000 |
+| Master | 6.3 | 276 000 |
 | Doktorgrad | 6.8 | 26 000 |
 
 ## Alle 599 yrker
@@ -221,7 +221,7 @@ Sortert etter KI-eksponering (synkende), deretter etter antall sysselsatte (synk
 |---|------|------|-------------|-----------|-------------|-------------|
 | 1 | Bilselger | 504 240 kr | 41 000 | Fagbrev/fagskole | 3/10 | Bilselger har en blanding av digitalt informasjonsarbeid og menneskenær salgsdialog. AI kan i stor grad støtte lead-håndtering, prisvurdering av bruktbiler, tilbud, markedsføring og kundeoppfølging, men selve relasjonsbyggingen, forhandlingen og den fysiske kundeopplevelsen ved bilkjøp gjør at yrket ikke er fullt ut digitalt. |
 | 2 | Diplomat | 739 560 kr | 23 000 | Master | 2/10 | Diplomatarbeid inneholder mye kunnskapsarbeid som rapportskriving, analyse, dokumentbehandling og informasjonsinnhenting, der AI kan gi betydelig produktivitetsgevinst. Samtidig er kjerneoppgaver som forhandlinger, relasjonsbygging, konsulær bistand, representasjon og politisk skjønn sterkt avhengige av tillit, menneskelig dømmekraft og fysisk tilstedeværelse, noe som begrenser hvor mye yrket kan automatiseres. |
-| 3 | Grunnskolelærer | 705 000 kr | 20 000 | Grunnskole | 3/10 | Grunnskolelærer har høy AI-eksponering på planlegging, tilpasning av undervisningsopplegg, vurderingsstøtte, administrasjon og produksjon av læringsmateriell, der AI kan gjøre hver lærer betydelig mer produktiv. Samtidig krever kjerneoppgavene fysisk tilstedeværelse, klasseledelse, relasjonsbygging, sosial oppfølging og håndtering av uforutsigbare situasjoner med barn og foreldre, noe som begrenser hvor mye yrket kan automatiseres fullt ut. |
+| 3 | Grunnskolelærer | 705 000 kr | 20 000 | Master | 3/10 | Grunnskolelærer har høy AI-eksponering på planlegging, tilpasning av undervisningsopplegg, vurderingsstøtte, administrasjon og produksjon av læringsmateriell, der AI kan gjøre hver lærer betydelig mer produktiv. Samtidig krever kjerneoppgavene fysisk tilstedeværelse, klasseledelse, relasjonsbygging, sosial oppfølging og håndtering av uforutsigbare situasjoner med barn og foreldre, noe som begrenser hvor mye yrket kan automatiseres fullt ut. |
 | 4 | Undervisningsinspektør | 705 000 kr | 20 000 | Master | 3/10 | Stillingen har mye administrativt og digitalt kunnskapsarbeid som timeplanlegging, dokumentasjon, analyse, kommunikasjon og oppfølging, der AI kan gi betydelig produktivitetsgevinst. Samtidig er kjerneoppgavene tett knyttet til ledelse av ansatte, samarbeid, skolemiljø og situasjonsforståelse i en fysisk skolehverdag, noe som begrenser hvor mye jobben kan automatiseres fullt ut. |
 | 5 | Butikksjef | 664 680 kr | 17 000 | ? | 3/10 | Butikksjef har en blanding av digitalt administrativt arbeid og fysisk, stedbundet ledelse i butikk. AI kan effektivisere bemanning, innkjøp, kampanjeplanlegging, analyse og rapportering betydelig, men personalledelse, kundekontakt og ansvar for den daglige driften på stedet gjør at yrket ikke er fullt ut digitalt. |
 | 6 | Prosessingeniør | 849 960 kr | 15 000 | Master | 4/10 | Prosessingeniørarbeid har en betydelig digital og analytisk del, som beregninger, simuleringer, optimalisering, dokumentasjon og design, der AI kan gi stor produktivitetsgevinst. Samtidig er jobben tett knyttet til fysiske anlegg, sikkerhetsansvar, drift i sanntid og samarbeid med operativt personell, noe som begrenser hvor mye AI kan overta hele rollen. |

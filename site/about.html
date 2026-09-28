@@ -233,8 +233,8 @@ a:hover { text-decoration: underline; }
   agent kan utf&oslash;re det meste fra ende til annen.
 </p>
 <p>
-  Bruk &laquo;Fargelegg etter&raquo;-togglen i portalen for &aring; bytte mellom de to
-  dimensjonene og se hvordan bildet endrer seg.
+  Bruk bryteren &laquo;KI-eksponering / Agentrisiko&raquo; &oslash;verst i sidepanelet for &aring; bytte
+  mellom de to dimensjonene og se hvordan bildet endrer seg.
 </p>
 
 <hr class="divider">
@@ -273,7 +273,7 @@ a:hover { text-decoration: underline; }
   <h3>Metode og forbehold</h3>
   <p>
     Hvert yrke er scoret p&aring; en skala fra 0 (minimal eksponering) til 10 (maksimal)
-    av en KI-modell (GPT), basert p&aring; yrkesbeskrivelser fra
+    av en KI-modell (OpenAI GPT), basert p&aring; yrkesbeskrivelser fra
     <a href="https://utdanning.no">utdanning.no</a>.
     Scoringen vurderer hvor stor andel av arbeidet som kan ber&oslash;res av
     spr&aring;kmodeller og KI-verkt&oslash;y. I tillegg er hvert yrke scoret p&aring;
@@ -286,7 +286,9 @@ a:hover { text-decoration: underline; }
   <p>
     L&oslash;nns- og sysselsettingsdata er hentet fra
     <a href="https://www.ssb.no">SSB</a> (tabell 11418 og 12542),
-    koblet via STYRK-08 yrkeskoder.
+    koblet via STYRK-08 yrkeskoder. N&aring;r flere yrker deler samme STYRK-kode, fordeles
+    sysselsettingen likt mellom dem, s&aring; tallene for enkeltyrker er omtrentlige.
+    Bransjedata kommer fra SSB tabell 09789, 12817 og 07091.
   </p>
   <p>
     <strong>Viktige forbehold:</strong> Scorene er indikatorer for trender og vekter,
@@ -310,7 +312,7 @@ a:hover { text-decoration: underline; }
 
 <script>
 fetch("data.json")
-  .then(r => r.json())
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
   .then(data => {
     const withJobs = data.filter(d => d.jobs);
     const totalJobs = withJobs.reduce((s, d) => s + d.jobs, 0);
@@ -383,7 +385,8 @@ fetch("data.json")
 
     el("aWagePct6").textContent = fmtD(wagePctAbove(6)) + "\u00a0%";
     el("aWagePct8").textContent = fmtD(wagePctAbove(8)) + "\u00a0%";
-  });
+  })
+  .catch(err => console.error("Kunne ikke laste data.json", err));
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
