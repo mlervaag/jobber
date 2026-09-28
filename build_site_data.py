@@ -4,7 +4,7 @@ Build compact JSON files for the website.
 1. site/data.json — occupations with AI exposure scores (existing)
 2. site/industries.json — industry/business data with disruption risk (new)
 
-Reads yrker.csv, scores.json, students_data.json, nav_data.json,
+Reads yrker.csv, scores.json, agent_scores.json, nav_data.json (optional),
 ssb_business_data.json, and industry_scores.json.
 
 Usage:
@@ -14,61 +14,21 @@ Usage:
 import csv
 import json
 import os
+import re
+
+# qa_agents.py appends "[QA-justert fra N av MODEL: reason]" to rationales it corrects.
+QA_NOTE = re.compile(r"\s*\[QA-justert fra (\d+) av [^:\]]+: (.*)\]\s*$", re.S)
 
 
-# Mapping from SSB fagfelt codes to STYRK category names (used in data.json).
-# Each fagfelt can map to multiple STYRK categories. We assign each
-# fagfelt to the categories where most graduates end up working.
-FAGFELT_TO_CATEGORIES = {
-    "1": ["Akademiske yrker"],                          # Humanistiske og estetiske fag
-    "2": ["Akademiske yrker"],                          # Lærerutdanninger og pedagogikk
-    "3": ["Akademiske yrker", "Kontoryrker"],           # Samfunnsfag og juridiske fag
-    "4": ["Ledere", "Kontoryrker", "Akademiske yrker"], # Økonomiske og administrative fag
-    "5": ["Akademiske yrker", "Høyskoleyrker", "Håndverkere"],  # Naturvit/tekn/håndverk
-    "6": ["Høyskoleyrker", "Akademiske yrker"],         # Helse-, sosial- og idrettsfag
-    "7": ["Bønder, fiskere mv."],                       # Primærnæringsfag
-    "8": ["Prosess- og maskinoperatører, transportarbeidere mv.",
-          "Salgs- og serviceyrker"],                    # Samferdsel/sikkerhet/service
-}
-
-# Reverse mapping: STYRK category → list of fagfelt codes (for aggregation)
-CATEGORY_TO_FAGFELT = {}
-for fcode, cats in FAGFELT_TO_CATEGORIES.items():
-    for cat in cats:
-        CATEGORY_TO_FAGFELT.setdefault(cat, []).append(fcode)
-
-
-def load_student_trends():
-    """Load student enrollment trends. Returns dict of category → trend info."""
-    if not os.path.exists("students_data.json"):
-        print("  No students_data.json found — skipping student trends.")
-        return {}
-
-    with open("students_data.json", encoding="utf-8") as f:
-        sdata = json.load(f)
-
-    fields = sdata.get("fields", {})
-
-    # Build per-category trend by averaging mapped fagfelt growth rates
-    category_trends = {}
-    for cat, fagfelt_codes in CATEGORY_TO_FAGFELT.items():
-        growths = []
-        total_students = 0
-        for fc in fagfelt_codes:
-            field = fields.get(fc)
-            if field and "growth_5y_pct" in field:
-                growths.append((field["latest_count"], field["growth_5y_pct"]))
-                total_students += field["latest_count"]
-        if growths and total_students > 0:
-            # Student-weighted average growth
-            weighted = sum(count * g for count, g in growths) / total_students
-            category_trends[cat] = {
-                "student_trend_pct": round(weighted, 1),
-                "students": total_students,
-            }
-
-    print(f"  Student trends for {len(category_trends)} categories")
-    return category_trends
+def split_qa_note(rationale):
+    """Return (rationale, previous_score) — for QA-corrected scores the QA reason
+    replaces the original rationale, which argued for the old score."""
+    if not rationale:
+        return rationale, None
+    m = QA_NOTE.search(rationale)
+    if not m:
+        return rationale, None
+    return m.group(2).strip(), int(m.group(1))
 
 
 def load_vacancy_data():
@@ -172,8 +132,8 @@ def main():
         reader = csv.DictReader(f)
         rows = list(reader)
 
-    # Load supplementary data
-    student_trends = load_student_trends()
+    # Load supplementary data. (Student trends in students_data.json are only
+    # available per fagfelt — too coarse per occupation — so they are not merged.)
     vacancies = load_vacancy_data()
 
     # Load STYRK code mapping for vacancy lookups
@@ -204,6 +164,7 @@ def main():
         score = scores.get(slug, {})
         agent = agent_scores.get(slug, {})
         category = row["category"]
+        agent_rationale, agent_qa_from = split_qa_note(agent.get("rationale"))
 
         entry = {
             "title": row["title"],
@@ -215,13 +176,12 @@ def main():
             "exposure": score.get("exposure"),
             "exposure_rationale": score.get("rationale"),
             "agent_autonomy": agent.get("agent_autonomy"),
-            "agent_rationale": agent.get("rationale"),
+            "agent_rationale": agent_rationale,
             "url": row.get("url", ""),
         }
 
-        # Student trends removed from per-occupation data — too coarse
-        # (only 7 unique values at fagfelt level). Kept in students_data.json
-        # for potential future use at aggregate level.
+        if agent_qa_from is not None:
+            entry["agent_qa_from"] = agent_qa_from
 
         # Add vacancy count from NAV data (match via STYRK codes)
         if vacancies and slug in styrk_lookup:

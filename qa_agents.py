@@ -9,18 +9,14 @@ This is much faster than re-scoring all 599 occupations individually.
 Usage:
     uv run python qa_agents.py                    # flag + rescore
     uv run python qa_agents.py --flag-only        # just flag, don't rescore
-    uv run python qa_agents.py --model gpt-5.4    # use specific model
+    uv run python qa_agents.py --model gpt-5.4    # use specific model (claude-* also works)
 """
 
 import argparse
 import json
-import os
-import time
 import httpx
-from dotenv import load_dotenv
 
-load_dotenv('.env')
-load_dotenv('.env.local', override=True)
+from llm import complete, parse_json_response, require_api_key
 
 QA_MODEL = "gpt-5.4"
 SCORE_FILE = "agent_scores.json"
@@ -80,8 +76,9 @@ def main():
                         help="Only flag issues, don't rescore")
     args = parser.parse_args()
 
-    if "OPENAI_API_KEY" not in os.environ:
-        print("Error: OPENAI_API_KEY not set")
+    key_error = require_api_key(args.model)
+    if key_error:
+        print(key_error)
         return
 
     # Load scores
@@ -102,34 +99,18 @@ def main():
     score_list = "\n".join(lines)
     print(f"Sending {len(lines)} scores to {args.model} for QA review...")
 
-    client = httpx.Client()
-    response = client.post(
-        "https://api.openai.com/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}",
-        },
-        json={
-            "model": args.model,
-            "messages": [
-                {"role": "system", "content": QA_PROMPT},
-                {"role": "user", "content": score_list},
-            ],
-            "temperature": 0.2,
-        },
-        timeout=120,
-    )
-    response.raise_for_status()
-    content = response.json()["choices"][0]["message"]["content"]
-
-    # Parse response
-    content = content.strip()
-    if content.startswith("```"):
-        content = content.split("\n", 1)[1]
-        if content.endswith("```"):
-            content = content[:-3]
-        content = content.strip()
-
-    corrections = json.loads(content)
+    with httpx.Client() as client:
+        content = complete(client, QA_PROMPT, score_list, args.model,
+                           max_tokens=8000, timeout=300)
+    corrections = parse_json_response(content)
+    if not isinstance(corrections, list):
+        print(f"Error: expected a JSON array from the model, got {type(corrections).__name__}")
+        return
+    corrections = [
+        c for c in corrections
+        if isinstance(c, dict) and isinstance(c.get("suggested_agent"), (int, float))
+        and 0 <= c["suggested_agent"] <= 10 and c.get("title")
+    ]
 
     if not corrections:
         print("No corrections needed! All scores look reasonable.")
@@ -156,7 +137,7 @@ def main():
         slug = title_to_slug.get(c["title"])
         if slug and slug in score_map:
             old = score_map[slug]["agent_autonomy"]
-            score_map[slug]["agent_autonomy"] = c["suggested_agent"]
+            score_map[slug]["agent_autonomy"] = int(round(c["suggested_agent"]))
             score_map[slug]["rationale"] = (
                 score_map[slug].get("rationale", "") +
                 f" [QA-justert fra {old} av {args.model}: {c['reason']}]"

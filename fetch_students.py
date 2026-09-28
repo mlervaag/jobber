@@ -14,59 +14,10 @@ Usage:
 import argparse
 import json
 import os
-import httpx
 
-SSB_API = "https://data.ssb.no/api/v0/no/table"
+from fetch_ssb import fetch_table, parse_jsonstat2
+
 OUTPUT_FILE = "students_data.json"
-
-
-def fetch_table(table_id, query, timeout=120):
-    """POST a query to the SSB StatBank API and return parsed JSON-stat2."""
-    url = f"{SSB_API}/{table_id}"
-    response = httpx.post(url, json=query, timeout=timeout)
-    response.raise_for_status()
-    return response.json()
-
-
-def parse_jsonstat2(result):
-    """Parse a JSON-stat2 response into a dict of {dimension_key: value}."""
-    datasets = {}
-
-    # JSON-stat2 format
-    dim_ids = result.get("id", [])
-    sizes = result.get("size", [])
-    categories = {}
-    for dim_id in dim_ids:
-        dim = result["dimension"][dim_id]
-        cat = dim["category"]
-        idx = cat.get("index", {})
-        labels = cat.get("label", {})
-        # Build ordered list of codes
-        if isinstance(idx, dict):
-            ordered = sorted(idx.items(), key=lambda x: x[1])
-            codes = [code for code, _ in ordered]
-        else:
-            codes = list(labels.keys())
-        categories[dim_id] = codes
-
-    values = result.get("value", [])
-
-    # Iterate through all combinations
-    records = []
-    total = len(values)
-    for flat_idx in range(total):
-        record = {}
-        remaining = flat_idx
-        for i in range(len(dim_ids) - 1, -1, -1):
-            dim_id = dim_ids[i]
-            size = sizes[i]
-            pos = remaining % size
-            remaining //= size
-            record[dim_id] = categories[dim_id][pos]
-        record["value"] = values[flat_idx]
-        records.append(record)
-
-    return records
 
 
 def get_dimension_labels(result, dim_id):

@@ -9,6 +9,7 @@ Usage:
 
 import csv
 import json
+import os
 
 
 def fmt_pay(pay):
@@ -38,6 +39,11 @@ def main():
     with open("scores.json", encoding="utf-8") as f:
         scores = {s["slug"]: s for s in json.load(f)}
 
+    agent_scores = {}
+    if os.path.exists("agent_scores.json"):
+        with open("agent_scores.json", encoding="utf-8") as f:
+            agent_scores = {s["slug"]: s for s in json.load(f)}
+
     # Merge into unified records
     records = []
     for occ in occupations:
@@ -55,6 +61,7 @@ def main():
             "education": row.get("education", ""),
             "exposure": score.get("exposure"),
             "rationale": score.get("rationale", ""),
+            "agent": agent_scores.get(slug, {}).get("agent_autonomy"),
             "url": occ.get("url", ""),
         })
 
@@ -84,6 +91,8 @@ def main():
     lines.append("- 8-9 Svært høy: programvareutvikler, grafisk designer, oversetter, advokatfullmektig")
     lines.append("- 10 Maksimal: dataregistrerer, telefonselger")
     lines.append("")
+    lines.append("I tillegg er hvert yrke scoret på **agentrisiko** (0-10): kan en autonom KI-agent gjøre jobben fra ende til annen, ikke bare assistere? Mange høyt eksponerte yrker (lege, advokat, leder) har lav agentrisiko fordi de krever tillit, fysisk tilstedeværelse eller juridisk ansvar.")
+    lines.append("")
 
     # ── Aggregate statistics ──
     lines.append("## Samlet statistikk")
@@ -101,6 +110,9 @@ def main():
     lines.append(f"- Totalt sysselsatte: {total_jobs:,}".replace(",", " "))
     lines.append(f"- Total årslønnsmasse: {fmt_pay(total_wages)}")
     lines.append(f"- Sysselsettingsvektet gj.snitt KI-eksponering: {w_avg:.1f}/10")
+    agent_jobs = sum(r["jobs"] or 0 for r in records if r["agent"] is not None and r["agent"] >= 7)
+    if agent_scores:
+        lines.append(f"- Sysselsatte i yrker med agentrisiko 7+: {agent_jobs:,}".replace(",", " "))
     lines.append("")
 
     # Tier breakdown
@@ -177,12 +189,13 @@ def main():
         group_jobs = sum(r["jobs"] or 0 for r in group)
         lines.append(f"### Eksponering {score_val}/10 ({len(group)} yrker, {fmt_jobs(group_jobs)} sysselsatte)")
         lines.append("")
-        lines.append("| # | Yrke | Lønn | Sysselsatte | Utdanning | Begrunnelse |")
-        lines.append("|---|------|------|-------------|-----------|-------------|")
+        lines.append("| # | Yrke | Lønn | Sysselsatte | Utdanning | Agentrisiko | Begrunnelse |")
+        lines.append("|---|------|------|-------------|-----------|-------------|-------------|")
         for i, r in enumerate(group, 1):
             edu = r["education"] if r["education"] else "?"
             rationale = r["rationale"].replace("|", "/").replace("\n", " ")
-            lines.append(f"| {i} | {r['title']} | {fmt_pay(r['pay'])} | {fmt_jobs(r['jobs'])} | {edu} | {rationale} |")
+            agent = f"{r['agent']}/10" if r["agent"] is not None else "?"
+            lines.append(f"| {i} | {r['title']} | {fmt_pay(r['pay'])} | {fmt_jobs(r['jobs'])} | {edu} | {agent} | {rationale} |")
         lines.append("")
 
     # Write

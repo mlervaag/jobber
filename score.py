@@ -7,8 +7,8 @@ structured scores. Results are cached incrementally to scores.json so the
 script can be resumed if interrupted.
 
 Usage:
-    uv run python score.py                          # default: gpt-5.4
-    uv run python score.py --model gpt-4o           # use older OpenAI model
+    uv run python score.py                          # default: gpt-4o
+    uv run python score.py --model claude-sonnet-5  # use Anthropic instead
     uv run python score.py --start 0 --end 10       # test on first 10
 """
 
@@ -17,10 +17,8 @@ import json
 import os
 import time
 import httpx
-from dotenv import load_dotenv
 
-load_dotenv('.env')
-load_dotenv('.env.local', override=True)
+from llm import complete_json, require_api_key, validate_score
 
 DEFAULT_MODEL = "gpt-4o"
 OUTPUT_FILE = "scores.json"
@@ -85,69 +83,6 @@ Respond with ONLY a JSON object in this exact format, no other text:
 """
 
 
-def is_anthropic_model(model):
-    """Check if the model string refers to an Anthropic/Claude model."""
-    return model.startswith("claude-")
-
-
-def score_occupation_anthropic(client, text, model):
-    """Send one occupation to the Anthropic API and parse the response."""
-    response = client.post(
-        "https://api.anthropic.com/v1/messages",
-        headers={
-            "x-api-key": os.environ["ANTHROPIC_API_KEY"],
-            "anthropic-version": "2023-06-01",
-            "content-type": "application/json",
-        },
-        json={
-            "model": model,
-            "max_tokens": 300,
-            "temperature": 0.2,
-            "system": SYSTEM_PROMPT,
-            "messages": [
-                {"role": "user", "content": text},
-            ],
-        },
-        timeout=60,
-    )
-    response.raise_for_status()
-    content = response.json()["content"][0]["text"]
-    return _parse_json_response(content)
-
-
-def score_occupation_openai(client, text, model):
-    """Send one occupation to the OpenAI API and parse the response."""
-    response = client.post(
-        "https://api.openai.com/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}",
-        },
-        json={
-            "model": model,
-            "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": text},
-            ],
-            "temperature": 0.2,
-        },
-        timeout=60,
-    )
-    response.raise_for_status()
-    content = response.json()["choices"][0]["message"]["content"]
-    return _parse_json_response(content)
-
-
-def _parse_json_response(content):
-    """Strip markdown code fences if present and parse JSON."""
-    content = content.strip()
-    if content.startswith("```"):
-        content = content.split("\n", 1)[1]
-        if content.endswith("```"):
-            content = content[:-3]
-        content = content.strip()
-    return json.loads(content)
-
-
 def build_prompt(occ):
     """Build a prompt from the occupation data."""
     parts = [f"# {occ['title']}"]
@@ -172,15 +107,10 @@ def main():
                         help="Re-score even if already cached")
     args = parser.parse_args()
 
-    use_anthropic = is_anthropic_model(args.model)
-    if use_anthropic:
-        if "ANTHROPIC_API_KEY" not in os.environ:
-            print("Error: ANTHROPIC_API_KEY not set in .env or .env.local")
-            return
-    else:
-        if "OPENAI_API_KEY" not in os.environ:
-            print("Error: OPENAI_API_KEY not set in .env or .env.local")
-            return
+    key_error = require_api_key(args.model)
+    if key_error:
+        print(key_error)
+        return
 
     with open("yrker.json", encoding="utf-8") as f:
         occupations = json.load(f)
@@ -190,14 +120,13 @@ def main():
     # Load existing scores
     scores = {}
     if os.path.exists(OUTPUT_FILE) and not args.force:
-        with open(OUTPUT_FILE) as f:
+        with open(OUTPUT_FILE, encoding="utf-8") as f:
             for entry in json.load(f):
                 scores[entry["slug"]] = entry
 
     print(f"Scoring {len(subset)} occupations with {args.model}")
     print(f"Already cached: {len(scores)}")
 
-    score_fn = score_occupation_anthropic if use_anthropic else score_occupation_openai
     errors = []
     client = httpx.Client()
 
@@ -215,7 +144,9 @@ def main():
         print(f"  [{i+1}/{len(subset)}] {occ['title']}...", end=" ", flush=True)
 
         try:
-            result = score_fn(client, prompt, args.model)
+            result = validate_score(
+                complete_json(client, SYSTEM_PROMPT, prompt, args.model, max_tokens=300),
+                "exposure")
             scores[slug] = {
                 "slug": slug,
                 "title": occ["title"],

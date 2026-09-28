@@ -14,13 +14,19 @@ import json
 import re
 
 
-# Map common education keywords from utdanning.no to standardized levels
+# Map common education keywords from utdanning.no to standardized levels.
+# Order matters: the first keyword found wins, so higher levels come first.
 EDUCATION_LEVELS = [
     ("doktorgrad", "Doktorgrad"),
     ("ph.d", "Doktorgrad"),
     ("master", "Master"),
     ("sivilingeniør", "Master"),
+    ("siviløkonom", "Master"),
     ("cand.", "Master"),
+    ("profesjonsstudi", "Master"),
+    ("medisinstudi", "Master"),
+    ("legespesialisering", "Master"),
+    ("tannlegeutdanning", "Master"),
     ("bachelor", "Bachelor"),
     ("høgskole", "Bachelor"),
     ("høyskole", "Bachelor"),
@@ -28,11 +34,20 @@ EDUCATION_LEVELS = [
     ("fagbrev", "Fagbrev/fagskole"),
     ("fagskole", "Fagbrev/fagskole"),
     ("svennebrev", "Fagbrev/fagskole"),
+    ("mesterbrev", "Fagbrev/fagskole"),
     ("lærling", "Fagbrev/fagskole"),
+    ("yrkesfaglig", "Fagbrev/fagskole"),
     ("videregående", "Videregående"),
     ("vgs", "Videregående"),
     ("ingen formelle krav", "Ingen formelle krav"),
+    ("ingen formell utdanning", "Ingen formelle krav"),
+    ("ingen krav til formell utdanning", "Ingen formelle krav"),
+    ("ingen utdanningskrav", "Ingen formelle krav"),
+    ("ingen spesielle krav til utdanning", "Ingen formelle krav"),
+    ("ingen offentlige krav", "Ingen formelle krav"),
     ("grunnskole", "Grunnskole"),
+    # Weak signal ("kan ha høyere utdanning") — only used when nothing else matched
+    ("høyere utdanning", "Bachelor"),
 ]
 
 
