@@ -22,10 +22,8 @@ import json
 import os
 import time
 import httpx
-from dotenv import load_dotenv
 
-load_dotenv(".env")
-load_dotenv(".env.local", override=True)
+from llm import complete_json, require_api_key, validate_score
 
 DEFAULT_MODEL = "gpt-4o"
 OUTPUT_FILE = "industry_scores.json"
@@ -97,61 +95,6 @@ STYRK_NAMES = {
 }
 
 
-def is_anthropic_model(model):
-    return model.startswith("claude-")
-
-
-def score_industry_anthropic(client, text, model):
-    response = client.post(
-        "https://api.anthropic.com/v1/messages",
-        headers={
-            "x-api-key": os.environ["ANTHROPIC_API_KEY"],
-            "anthropic-version": "2023-06-01",
-            "content-type": "application/json",
-        },
-        json={
-            "model": model,
-            "max_tokens": 400,
-            "temperature": 0.2,
-            "system": SYSTEM_PROMPT,
-            "messages": [{"role": "user", "content": text}],
-        },
-        timeout=60,
-    )
-    response.raise_for_status()
-    content = response.json()["content"][0]["text"]
-    return _parse_json_response(content)
-
-
-def score_industry_openai(client, text, model):
-    response = client.post(
-        "https://api.openai.com/v1/chat/completions",
-        headers={"Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}"},
-        json={
-            "model": model,
-            "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": text},
-            ],
-            "temperature": 0.2,
-        },
-        timeout=60,
-    )
-    response.raise_for_status()
-    content = response.json()["choices"][0]["message"]["content"]
-    return _parse_json_response(content)
-
-
-def _parse_json_response(content):
-    content = content.strip()
-    if content.startswith("```"):
-        content = content.split("\n", 1)[1]
-        if content.endswith("```"):
-            content = content[:-3]
-        content = content.strip()
-    return json.loads(content)
-
-
 def build_industry_prompt(industry):
     """Build a rich prompt with all available context about the industry."""
     parts = [f"# {industry['name']}"]
@@ -204,15 +147,10 @@ def main():
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
-    use_anthropic = is_anthropic_model(args.model)
-    if use_anthropic:
-        if "ANTHROPIC_API_KEY" not in os.environ:
-            print("Error: ANTHROPIC_API_KEY not set in .env or .env.local")
-            return
-    else:
-        if "OPENAI_API_KEY" not in os.environ:
-            print("Error: OPENAI_API_KEY not set in .env or .env.local")
-            return
+    key_error = require_api_key(args.model)
+    if key_error:
+        print(key_error)
+        return
 
     # Load industry data
     if not os.path.exists("ssb_business_data.json"):
@@ -235,7 +173,6 @@ def main():
     print(f"Scoring {len(subset)} industries with {args.model}")
     print(f"Already cached: {len(scores)}")
 
-    score_fn = score_industry_anthropic if use_anthropic else score_industry_openai
     errors = []
     client = httpx.Client()
 
@@ -249,7 +186,9 @@ def main():
         print(f"  [{i + 1}/{len(subset)}] {ind['name']}...", end=" ", flush=True)
 
         try:
-            result = score_fn(client, prompt, args.model)
+            result = validate_score(
+                complete_json(client, SYSTEM_PROMPT, prompt, args.model),
+                "disruption_risk")
             scores[nace] = {
                 "nace": nace,
                 "name": ind["name"],

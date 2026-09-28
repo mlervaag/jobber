@@ -30,9 +30,7 @@ def fetch_table(table_id, query, timeout=120):
 
 
 def parse_jsonstat2(result):
-    """Parse a JSON-stat2 response into a dict of {dimension_key: value}."""
-    datasets = {}
-
+    """Parse a JSON-stat2 response into a list of {dimension_id: code, "value": v} records."""
     # JSON-stat2 format
     dim_ids = result.get("id", [])
     sizes = result.get("size", [])

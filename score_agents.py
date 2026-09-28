@@ -17,6 +17,7 @@ Usage:
     uv run python score_agents.py                    # default: gpt-4o
     uv run python score_agents.py --start 0 --end 10 # test on first 10
     uv run python score_agents.py --force             # re-score all
+    uv run python score_agents.py --model claude-sonnet-5  # use Anthropic
 """
 
 import argparse
@@ -24,10 +25,8 @@ import json
 import os
 import time
 import httpx
-from dotenv import load_dotenv
 
-load_dotenv('.env')
-load_dotenv('.env.local', override=True)
+from llm import complete_json, require_api_key, validate_score
 
 DEFAULT_MODEL = "gpt-4o"
 OUTPUT_FILE = "agent_scores.json"
@@ -124,39 +123,6 @@ def build_prompt(occ, existing_exposure=None):
     return "\n".join(parts)
 
 
-def score_occupation(client, text, model):
-    """Send one occupation to the OpenAI API and parse the response."""
-    response = client.post(
-        "https://api.openai.com/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}",
-        },
-        json={
-            "model": model,
-            "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": text},
-            ],
-            "temperature": 0.2,
-        },
-        timeout=60,
-    )
-    response.raise_for_status()
-    content = response.json()["choices"][0]["message"]["content"]
-    return _parse_json_response(content)
-
-
-def _parse_json_response(content):
-    """Strip markdown code fences if present and parse JSON."""
-    content = content.strip()
-    if content.startswith("```"):
-        content = content.split("\n", 1)[1]
-        if content.endswith("```"):
-            content = content[:-3]
-        content = content.strip()
-    return json.loads(content)
-
-
 def main():
     parser = argparse.ArgumentParser(
         description="Score occupations on AI agent autonomy (0-10)")
@@ -168,8 +134,9 @@ def main():
                         help="Re-score even if already cached")
     args = parser.parse_args()
 
-    if "OPENAI_API_KEY" not in os.environ:
-        print("Error: OPENAI_API_KEY not set")
+    key_error = require_api_key(args.model)
+    if key_error:
+        print(key_error)
         return
 
     # Load occupations
@@ -210,7 +177,9 @@ def main():
         prompt = build_prompt(occ, exposure)
 
         try:
-            result = score_occupation(client, prompt, args.model)
+            result = validate_score(
+                complete_json(client, SYSTEM_PROMPT, prompt, args.model),
+                "agent_autonomy")
             entry = {
                 "slug": slug,
                 "title": occ["title"],

@@ -16,10 +16,7 @@ Usage:
 import argparse
 import json
 import os
-import sys
 
-# Reuse SSB helpers from fetch_ssb.py
-sys.path.insert(0, os.path.dirname(__file__))
 from fetch_ssb import fetch_table, parse_jsonstat2
 
 OUTPUT_FILE = "ssb_business_data.json"

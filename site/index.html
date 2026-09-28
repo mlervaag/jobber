@@ -10,6 +10,9 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kitrusselen.vercel.app">
 <meta property="og:image" content="https://kitrusselen.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="nb_NO">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="KI Trusselen – Norske jobber vs. kunstig intelligens">
 <meta name="twitter:description" content="Interaktiv treemap: KI-eksponering for 599 norske yrker">
@@ -95,6 +98,13 @@ body {
   transition: transform 0.25s ease;
 }
 
+/* View containers inherit the sidebar's vertical rhythm */
+#occView, #indView {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
 #sidebar::-webkit-scrollbar { width: 4px; }
 #sidebar::-webkit-scrollbar-track { background: transparent; }
 #sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
@@ -152,7 +162,8 @@ body {
 }
 .view-btn {
   flex: 1;
-  padding: 6px 12px;
+  padding: 6px 8px;
+  white-space: nowrap;
   font-size: 12px;
   font-weight: 500;
   font-family: inherit;
@@ -238,6 +249,7 @@ body {
   gap: 6px;
 }
 .stat-section h3 {
+  line-height: 1.35;
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
@@ -245,11 +257,12 @@ body {
   color: var(--fg3);
 }
 .stat-big {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 .stat-label {
   font-size: 11px;
@@ -337,7 +350,8 @@ body {
   gap: 10px;
 }
 .impact-card {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 10px;
@@ -347,7 +361,8 @@ body {
   gap: 2px;
 }
 .impact-value {
-  font-size: 22px;
+  font-size: 20px;
+  white-space: nowrap;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.1;
@@ -503,10 +518,6 @@ body {
 }
 .industry-detail.open { display: block; }
 
-/* disruption color scale: orange to red */
-.disruption-color {
-  background: linear-gradient(90deg, #f59e0b, #ef4444, #dc2626);
-}
 
 /* ── Filter clear button ──────────────────────────────── */
 
@@ -833,6 +844,24 @@ canvas#canvas {
   border-top: 1px solid rgba(255,255,255,0.06);
   padding-top: 10px;
 }
+#tooltip .tt-rat-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg3);
+  margin-bottom: 3px;
+}
+#tooltip .tt-rat + .tt-rat { margin-top: 8px; }
+#tooltip .tt-qa {
+  display: block;
+  font-size: 10px;
+  color: var(--fg3);
+  margin-top: 3px;
+  font-style: italic;
+}
+#tooltip .tt-rationale:empty { display: none; }
 #tooltip .tt-link {
   font-size: 11px;
   color: var(--accent2);
@@ -1042,6 +1071,11 @@ canvas#canvas {
 /* ── About link in sidebar ───────────────────────────── */
 
 .about-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
   font-size: 11px;
   color: var(--fg3);
   cursor: pointer;
@@ -1182,6 +1216,33 @@ canvas#canvas {
   color: var(--fg);
 }
 
+/* ── Keyboard focus ───────────────────────────────────── */
+
+button:focus-visible, [role="button"]:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent2);
+  outline-offset: 2px;
+}
+
+#loading .load-error {
+  font-size: 13px;
+  color: var(--fg2);
+  text-align: center;
+  max-width: 320px;
+  line-height: 1.5;
+}
+#loading .load-error button {
+  margin-top: 12px;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 /* ── Mobile ───────────────────────────────────────────── */
 
 @media (max-width: 700px) {
@@ -1224,6 +1285,8 @@ canvas#canvas {
     bottom: 8px !important;
     top: auto !important;
     max-width: none;
+    max-height: 70vh;
+    overflow-y: auto;
     border-radius: 16px;
     transform: translateY(calc(100% + 24px));
     opacity: 0;
@@ -1283,7 +1346,7 @@ canvas#canvas {
 
   <div id="occView">
 
-  <div class="view-toggle" id="colorModeToggle" style="margin-top:-8px">
+  <div class="view-toggle" id="colorModeToggle" style="margin-top:-8px" aria-label="Fargelegg etter">
     <button class="view-btn active" data-colormode="exposure" onclick="setColorMode('exposure')">KI-eksponering</button>
     <button class="view-btn" data-colormode="agent" onclick="setColorMode('agent')">Agentrisiko</button>
   </div>
@@ -1296,8 +1359,8 @@ canvas#canvas {
   <div class="stat-section" id="filterChipsSection">
     <div class="filter-group-label">Hurtigfiltre</div>
     <div class="filter-chips" id="quickFilters">
-      <button class="filter-chip" data-filter="vulnerable" title="AI-eksponering &ge;6 og kun grunnskole, VGS eller ingen formelle krav">S&aring;rbare yrker</button>
-      <button class="filter-chip" data-filter="transform" title="AI-eksponering &ge;7 og &aring;rsl&oslash;nn &ge;700 000 kr">Transformasjon</button>
+      <button class="filter-chip" data-filter="vulnerable" title="KI-eksponering &ge;6 og ingen krav om h&oslash;yere utdanning (grunnskole, VGS, fagbrev/fagskole eller ingen formelle krav)">S&aring;rbare yrker</button>
+      <button class="filter-chip" data-filter="transform" title="KI-eksponering &ge;7 og &aring;rsl&oslash;nn &ge;700 000 kr">Transformasjon</button>
       <button class="filter-chip" data-filter="agent_replace" title="Agent-autonomi &ge;7 &mdash; yrker der en KI-agent kan gj&oslash;re jobben n&aelig;rmest alene">Kan erstattes av agent</button>
     </div>
   </div>
@@ -1306,11 +1369,11 @@ canvas#canvas {
   <div class="impact-row" id="impactKPIs">
     <div class="impact-card">
       <div class="impact-value" id="kpiExposedJobs">&mdash;</div>
-      <div class="impact-label">sysselsatte ber&oslash;rt av KI</div>
+      <div class="impact-label">sysselsatte i h&oslash;yt eksponerte yrker (6+)</div>
     </div>
     <div class="impact-card">
       <div class="impact-value" id="kpiExposedWages">&mdash;</div>
-      <div class="impact-label">i l&oslash;nnssum eksponert</div>
+      <div class="impact-label">mrd. kr i l&oslash;nnssum i disse yrkene</div>
     </div>
   </div>
 
@@ -1366,9 +1429,9 @@ canvas#canvas {
   </div>
 
   <div class="stat-section">
-    <h3>Total l&oslash;nnssum eksponert</h3>
+    <h3>Andel av l&oslash;nnssum eksponert</h3>
     <div class="stat-big" id="statWages">&mdash;</div>
-    <div class="stat-label" id="statWagesLabel">h&oslash;yt eksponerte yrker (score 7+)</div>
+    <div class="stat-label" id="statWagesLabel">i yrker med eksponering 6+</div>
   </div>
 
   <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:8px 0">
@@ -1408,11 +1471,11 @@ canvas#canvas {
     <div class="impact-row" id="businessKPIs" style="display:none">
       <div class="impact-card">
         <div class="impact-value" id="kpiBizEnterprises">&mdash;</div>
-        <div class="impact-label">bedrifter i utsatte bransjer</div>
+        <div class="impact-label">foretak i h&oslash;yrisikobransjer</div>
       </div>
       <div class="impact-card">
         <div class="impact-value" id="kpiBizRevenue">&mdash;</div>
-        <div class="impact-label">i omsetning i faresonen</div>
+        <div class="impact-label">mrd. kr i omsetning i faresonen</div>
       </div>
     </div>
 
@@ -1427,9 +1490,9 @@ canvas#canvas {
   </div><!-- /indView -->
 
   <div class="sidebar-footer">
-    <span class="about-link" onclick="showAbout()">&#9432; Om analysen</span>
+    <button type="button" class="about-link" onclick="showAbout()">&#9432; Om analysen</button>
     <div class="credits">
-      Data fra <a href="https://utdanning.no">utdanning.no</a>, <a href="https://www.ssb.no">SSB</a> og <a href="https://data.brreg.no">Br&oslash;nn&oslash;ysund</a><br>
+      Data fra <a href="https://utdanning.no">utdanning.no</a> og <a href="https://www.ssb.no">SSB</a><br>
       KI-scoring via <a href="https://openai.com">OpenAI</a> / <a href="https://anthropic.com">Anthropic</a><br>
       Bedriftsdata: SSB StatBank (tabell 09789, 12817, 07091)
     </div>
@@ -1437,8 +1500,10 @@ canvas#canvas {
   </div>
 </div>
 
-<div id="loading">
-  <div class="spinner"></div>
+<noscript><div style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:50;background:#08080d;color:#e2e4ea;font:14px system-ui;padding:24px;text-align:center">KI Trusselen trenger JavaScript for &aring; vise visualiseringen.</div></noscript>
+
+<div id="loading" role="status" aria-live="polite">
+  <div class="spinner" id="loadingSpinner"></div>
   <div class="loading-text" id="loadingText">Laster yrker&hellip;</div>
   <div class="progress-track">
     <div class="progress-fill" id="progressFill"></div>
@@ -1494,8 +1559,8 @@ canvas#canvas {
         KI hjelper mye, men klienttillit og rettssalen krever mennesker.
         En regnskapsf&oslash;rer har b&aring;de h&oslash;y eksponering og h&oslash;y agentrisiko (9/10) &mdash;
         jobben er strukturert, digital og regelstyrt nok til at en agent kan overta.
-        <span class="stat-highlight" id="aboutAgentJobs"></span> sysselsatte er i yrker der
-        en KI-agent kan gj&oslash;re det meste av jobben.
+        <span class="stat-highlight" id="aboutAgentJobs"></span> sysselsatte er i yrker med agentrisiko 7 eller h&oslash;yere,
+        der en KI-agent kan gj&oslash;re det meste av jobben.
       </p>
 
       <h3>Transformasjon, ikke apokalypse</h3>
@@ -1523,7 +1588,7 @@ canvas#canvas {
           <li><strong>KI-scoring av yrker:</strong> Hvert yrke er scoret 0&ndash;10 av en KI-modell (GPT-4o/Claude) basert p&aring; yrkesbeskrivelsen</li>
           <li><strong>Bedriftsdata:</strong> SSB tabell 09789 (sysselsatte etter n&aelig;ring &times; yrke), 12817 (foretak og omsetning), 07091 (bedriftsst&oslash;rrelse)</li>
           <li><strong>Agentrisiko:</strong> Hvert yrke er i tillegg scoret 0&ndash;10 p&aring; om en KI-agent kan <em>erstatte</em> rollen end-to-end, ikke bare assistere. QA-validert av GPT-5.4</li>
-          <li><strong>Bransjerisiko:</strong> Beregnet bottom-up fra yrkeseksponeringen, vektet etter sysselsetting per n&aelig;ring</li>
+          <li><strong>Bransjerisiko:</strong> Hver n&aelig;ring er scoret 0&ndash;10 av en KI-modell, med yrkessammensetning, bedriftsstruktur og vektet yrkeseksponering (SSB tabell 09789) som grunnlag</li>
         </ul>
         <p style="margin-top:8px">
           Tiln&aelig;rmingen er inspirert av
@@ -1858,7 +1923,7 @@ function draw() {
       ctx.fillText(r.title, rx + 6 / s, ry + 5 / s);
 
       if (rh > 34 / s && rw > 60 / s) {
-        const info = (r.exposure != null ? r.exposure + "/10" : "") +
+        const info = (tileScore != null ? tileScore + "/10" : "") +
                      (r.jobs ? "  ·  " + formatNumber(r.jobs) : "");
         ctx.font = `400 ${Math.max(8 / s, fontSize - 2 / s)}px 'Inter', -apple-system, system-ui, sans-serif`;
         ctx.fillStyle = "rgba(255,255,255,0.4)";
@@ -1990,7 +2055,7 @@ function showTooltip(d, mx, my) {
     const fmtK = n => n != null ? n.toLocaleString("nb-NO") : '\u2014';
     tt.querySelector(".tt-stats").innerHTML = `
       <span class="label">Sysselsatte</span><span class="value">${formatNumber(d.jobs)}</span>
-      <span class="label">Virksomheter</span><span class="value">${fmtK(d.enterprises)}</span>
+      <span class="label">Foretak</span><span class="value">${fmtK(d.enterprises)}</span>
       <span class="label">Omsetning</span><span class="value">${d.revenue_mnok != null ? fmtK(d.revenue_mnok) + ' MNOK' : '\u2014'}</span>
     `;
   } else {
@@ -2001,12 +2066,46 @@ function showTooltip(d, mx, my) {
     `;
   }
 
-  // Show agent rationale if available, otherwise exposure rationale
-  const rationale = (!d._isIndustry && d.agent_rationale) ? d.agent_rationale : (d.exposure_rationale || "");
-  tt.querySelector(".tt-rationale").textContent = rationale;
+  // Rationales: the one matching the active color mode comes first
+  const ratEl = tt.querySelector(".tt-rationale");
+  ratEl.textContent = "";
+  const blocks = [];
+  if (d.exposure_rationale) {
+    blocks.push({ key: "exposure", label: d._isIndustry ? "Begrunnelse" : "Hvorfor KI-eksponering", text: d.exposure_rationale });
+  }
+  if (!d._isIndustry && d.agent_rationale) {
+    const qa = d.agent_qa_from != null
+      ? `Justert fra ${d.agent_qa_from}/10 etter kvalitetskontroll` : null;
+    blocks.push({ key: "agent", label: "Hvorfor agentrisiko", text: d.agent_rationale, note: qa });
+  }
+  if (colorMode === "agent") blocks.reverse();
+  for (const b of blocks) {
+    const div = document.createElement("div");
+    div.className = "tt-rat";
+    const lab = document.createElement("span");
+    lab.className = "tt-rat-label";
+    lab.textContent = b.label;
+    div.appendChild(lab);
+    div.appendChild(document.createTextNode(b.text));
+    if (b.note) {
+      const n = document.createElement("span");
+      n.className = "tt-qa";
+      n.textContent = b.note;
+      div.appendChild(n);
+    }
+    ratEl.appendChild(div);
+  }
 
-  tt.querySelector(".tt-link").innerHTML =
-    d.url ? `<a href="${d.url}" target="_blank" rel="noopener">Les mer på utdanning.no \u2192</a>` : "";
+  const linkEl = tt.querySelector(".tt-link");
+  linkEl.textContent = "";
+  if (d.url) {
+    const a = document.createElement("a");
+    a.href = d.url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "Les mer p\u00e5 utdanning.no \u2192";
+    linkEl.appendChild(a);
+  }
 
   positionTooltip(tt, mx, my);
   tt.classList.add("visible");
@@ -2037,6 +2136,7 @@ function hideTooltip() {
 
 function unpinTooltip() {
   hideTooltip();
+  syncUrl(null);
   draw();
 }
 
@@ -2081,10 +2181,15 @@ document.getElementById("tooltip").addEventListener("touchstart", (e) => {
 
 // ── Animated counter ───────────────────────────────────────────────────
 
+// Each element tracks its running animation; a newer animation or a direct
+// update (setStatText) cancels the old one so it can't overwrite fresh values.
 function animateValue(el, end, duration, formatter) {
   const start = 0;
   const startTime = performance.now();
+  const token = {};
+  el._anim = token;
   function tick(now) {
+    if (el._anim !== token) return;
     const t = Math.min((now - startTime) / duration, 1);
     const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
     const current = Math.round(start + (end - start) * eased);
@@ -2092,6 +2197,11 @@ function animateValue(el, end, duration, formatter) {
     if (t < 1) requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
+}
+
+function setStatText(el, text) {
+  el._anim = null;
+  el.textContent = text;
 }
 
 // ── Impact KPIs ───────────────────────────────────────────────────────
@@ -2115,14 +2225,12 @@ function computeKPIs(src, animate) {
       return Math.round(n / 1000) + "\u00a0000";
     });
     const mrd = Math.round(exposedWages / 1e9);
-    animateValue(wagesEl, mrd, 1200, n => n + " mrd. kr");
+    animateValue(wagesEl, mrd, 1200, n => n.toLocaleString("nb-NO"));
   } else {
-    if (exposedJobs >= 1000000) {
-      jobsEl.textContent = (exposedJobs / 1e6).toFixed(1).replace(".", ",") + " mill.";
-    } else {
-      jobsEl.textContent = formatNumber(exposedJobs);
-    }
-    wagesEl.textContent = Math.round(exposedWages / 1e9) + " mrd. kr";
+    setStatText(jobsEl, exposedJobs >= 1000000
+      ? (exposedJobs / 1e6).toFixed(1).replace(".", ",") + " mill."
+      : formatNumber(exposedJobs));
+    setStatText(wagesEl, Math.round(exposedWages / 1e9).toLocaleString("nb-NO"));
   }
 }
 
@@ -2235,7 +2343,7 @@ function renderCategoryRanking(src) {
     const jobsStr = c.jobs >= 1000000
       ? (c.jobs / 1e6).toFixed(1).replace(".", ",") + "M"
       : Math.round(c.jobs / 1000) + "k";
-    return `<div class="cat-rank-row" data-category="${c.name}" onclick="setCategoryFilter('${c.name.replace(/'/g, "\\'")}')">
+    return `<div class="cat-rank-row" role="button" tabindex="0" data-category="${c.name}" onclick="setCategoryFilter('${c.name.replace(/'/g, "\\'")}')">
       <span class="cat-rank-name" title="${c.name}">${c.name}</span>
       <div class="cat-rank-bar"><div class="cat-rank-bar-fill" style="width:${pct}%;background:${exposureColorCSS(c.avg, 0.85)}"></div></div>
       <span class="cat-rank-stats">${c.avg.toFixed(1).replace(".", ",")} \u00b7 ${jobsStr}</span>
@@ -2328,16 +2436,6 @@ function setColorMode(mode) {
 
 // ── Industry/business risk rendering ──────────────────────────────────
 
-function disruptionColorCSS(score, alpha) {
-  if (score == null) return "rgba(100,100,100,0.3)";
-  const t = Math.max(0, Math.min(10, score)) / 10;
-  // Orange(0) → Red(1)
-  const r = Math.round(245);
-  const g = Math.round(158 - t * 120);
-  const b = Math.round(11 + t * 60);
-  return `rgba(${r},${g},${b},${alpha != null ? alpha : 1})`;
-}
-
 function renderIndustrySection(indData) {
   industryData = indData;
   const industries = indData.industries || [];
@@ -2349,7 +2447,7 @@ function renderIndustrySection(indData) {
   const bizKPIs = document.getElementById("businessKPIs");
   bizKPIs.style.display = "";
 
-  // High risk = exposure >= 5.5 (bottom-up threshold, LLM scoring not run yet)
+  // High risk = LLM disruption score >= 5.5 (i.e. 6+ for integer scores)
   const highRisk = industries.filter(i => (i.disruption_risk || 0) >= 5.5);
   const hrEnterprises = highRisk.reduce((s, i) => s + (i.enterprises || 0), 0);
   const hrRevenue = highRisk.reduce((s, i) => s + (i.revenue_mnok || 0), 0);
@@ -2360,7 +2458,7 @@ function renderIndustrySection(indData) {
   entEl.textContent = hrEnterprises >= 1000
     ? Math.round(hrEnterprises / 1000) + "\u00a0000"
     : hrEnterprises.toLocaleString("nb-NO");
-  revEl.textContent = Math.round(hrRevenue / 1000).toLocaleString("nb-NO") + " mrd. kr";
+  revEl.textContent = Math.round(hrRevenue / 1000).toLocaleString("nb-NO");
 
   // Business insights — broader framing about knowledge work disruption
   const bizSection = document.getElementById("bizInsightsSection");
@@ -2379,7 +2477,7 @@ function renderIndustrySection(indData) {
   // Insight 2: Small enterprises are particularly vulnerable
   if (totals.small_enterprises_pct) {
     bizInsights.push(
-      `<strong>${totals.small_enterprises_pct}%</strong> av bedriftene har 0\u20134 ansatte. N\u00e5r KI kan gj\u00f8re \u00e9n person like produktiv som fem, endres hele konkurransedynamikken`
+      `<strong>${String(totals.small_enterprises_pct).replace(".", ",")}\u00a0%</strong> av bedriftene har 0\u20134 ansatte. N\u00e5r KI kan gj\u00f8re \u00e9n person like produktiv som fem, endres hele konkurransedynamikken`
     );
   }
 
@@ -2417,12 +2515,12 @@ function renderIndustrySection(indData) {
     const pct = (risk / maxRisk * 100).toFixed(0);
     const entStr = ind.enterprises
       ? (ind.enterprises >= 1000 ? Math.round(ind.enterprises / 1000) + "k" : ind.enterprises)
-      : "?";
+      : "\u2014";
     const shortName = ind.name.length > 30 ? ind.name.substring(0, 28) + "\u2026" : ind.name;
 
-    return `<div class="industry-row" onclick="toggleIndustryDetail(${idx})" title="${ind.name}">
+    return `<div class="industry-row" role="button" tabindex="0" onclick="toggleIndustryDetail(${idx})" title="${ind.name}">
       <span class="industry-name">${shortName}</span>
-      <div class="industry-bar"><div class="industry-bar-fill" style="width:${pct}%;background:${disruptionColorCSS(risk, 0.85)}"></div></div>
+      <div class="industry-bar"><div class="industry-bar-fill" style="width:${pct}%;background:${exposureColorCSS(risk, 0.85)}"></div></div>
       <span class="industry-stats">${risk.toFixed(1).replace(".", ",")} \u00b7 ${entStr}</span>
     </div>
     <div class="industry-detail" id="indDetail${idx}">
@@ -2484,13 +2582,13 @@ function computeStats(subset, animate) {
     tier.pct = totalJobs > 0 ? (tier.jobs / totalJobs * 100) : 0;
   }
 
-  // Wages exposed (score >= 7) vs. total
+  // Wages exposed (score >= 6) vs. total
   let wagesExposed = 0;
   let wagesTotal = 0;
   for (const d of src) {
     if (d.jobs && d.pay) {
       wagesTotal += d.jobs * d.pay;
-      if (d.exposure != null && d.exposure >= 7) {
+      if (d.exposure != null && d.exposure >= 6) {
         wagesExposed += d.jobs * d.pay;
       }
     }
@@ -2506,9 +2604,9 @@ function computeStats(subset, animate) {
       animateValue(totalEl, totalJobs, 1200, n => n.toLocaleString("nb-NO"));
     }
   } else {
-    totalEl.textContent = totalJobs >= 1000000
+    setStatText(totalEl, totalJobs >= 1000000
       ? (totalJobs / 1e6).toFixed(1).replace(".", ",") + " mill."
-      : totalJobs.toLocaleString("nb-NO");
+      : totalJobs.toLocaleString("nb-NO"));
   }
 
   const avgEl = document.getElementById("statAvgExposure");
@@ -2526,7 +2624,7 @@ function computeStats(subset, animate) {
   // Tier breakdown
   const tierEl = document.getElementById("tierBar");
   tierEl.innerHTML = tiers.map(t =>
-    `<div class="tier-row" data-lo="${t.range[0]}" data-hi="${t.range[1]}" onclick="setTierFilter(${t.range[0]},${t.range[1]})">
+    `<div class="tier-row" role="button" tabindex="0" data-lo="${t.range[0]}" data-hi="${t.range[1]}" onclick="setTierFilter(${t.range[0]},${t.range[1]})">
       <div class="tier-color" style="background:${t.color}"></div>
       <span class="tier-name">${t.name} (${t.range[0]}\u2013${t.range[1]})</span>
       <span class="tier-jobs">${formatNumber(t.jobs)}</span>
@@ -2555,7 +2653,7 @@ function computeStats(subset, animate) {
     const avg = wCount > 0 ? wSum / wCount : 0;
     const pct = avg / 10 * 100;
     const payKey = `${band.min},${band.max}`;
-    return `<div class="hbar-row" data-pay="${payKey}">
+    return `<div class="hbar-row" role="button" tabindex="0" data-pay="${payKey}">
       <span class="hbar-label">${band.label}</span>
       <div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${exposureColorCSS(avg, 0.85)}"></div></div>
       <span class="hbar-val">${avg.toFixed(1).replace(".", ",")}</span>
@@ -2582,27 +2680,23 @@ function computeStats(subset, animate) {
     const avg = wCount > 0 ? wSum / wCount : 0;
     const pct = avg / 10 * 100;
     const matchVal = grp.match.join(",");
-    return `<div class="hbar-row" data-education="${matchVal}">
+    return `<div class="hbar-row" role="button" tabindex="0" data-education="${matchVal}">
       <span class="hbar-label">${grp.label}</span>
       <div class="hbar-track"><div class="hbar-fill" style="width:${pct}%;background:${exposureColorCSS(avg, 0.85)}"></div></div>
       <span class="hbar-val">${avg.toFixed(1).replace(".", ",")}</span>
     </div>`;
   }).join("");
 
-  // Wages stat
-  const mrdKr = wagesExposed / 1e9;
+  // Wage share stat
   const wagesEl = document.getElementById("statWages");
   const wagesPct = wagesTotal > 0 ? wagesExposed / wagesTotal * 100 : 0;
-
   if (animate) {
-    animateValue(wagesEl, Math.round(mrdKr), 1200,
-      n => n + " mrd. kr");
+    animateValue(wagesEl, Math.round(wagesPct), 1200, n => n + "\u00a0%");
   } else {
-    wagesEl.textContent = Math.round(mrdKr) + " mrd. kr";
+    setStatText(wagesEl, Math.round(wagesPct) + "\u00a0%");
   }
-
   document.getElementById("statWagesLabel").textContent =
-    `${wagesPct.toFixed(0)}% av total lønnssum (score 7+)`;
+    `${Math.round(wagesExposed / 1e9).toLocaleString("nb-NO")} mrd. kr i yrker med eksponering 6+`;
 
   // Update KPIs and insights
   computeKPIs(src, animate);
@@ -2644,6 +2738,9 @@ function updateStats() {
 
 // ── Search & filter ────────────────────────────────────────────────────
 
+const mobileSearchBox = document.getElementById("mobileSearchBox");
+const mobileSearchResults = document.getElementById("mobileSearchResults");
+
 let searchQuery = "";
 let filterRange = null;
 let highlightSlug = null;
@@ -2652,14 +2749,15 @@ let activeEducationFilter = null; // education string or null
 let activePayFilter = null; // "min,max" string or null
 let activeCategoryFilter = null; // category name string or null
 
-const vulnerableEducations = new Set(["Videregående", "Grunnskole", "Ingen formelle krav", ""]);
+// "Lav utdanning" = no higher education required. Unknown education is excluded.
+const vulnerableEducations = new Set(["Grunnskole", "Videregående", "Fagbrev/fagskole", "Ingen formelle krav"]);
 
 function matchesChipFilter(d) {
   if (activeChipFilter === "highpay") return d.pay != null && d.pay >= 800000;
   if (activeChipFilter === "highai") return d.exposure != null && d.exposure >= 8;
   if (activeChipFilter === "lowai") return d.exposure != null && d.exposure <= 2;
   if (activeChipFilter === "vulnerable") {
-    return d.exposure != null && d.exposure >= 6 && vulnerableEducations.has(d.education || "");
+    return d.exposure != null && d.exposure >= 6 && vulnerableEducations.has(d.education);
   }
   if (activeChipFilter === "transform") {
     return d.exposure != null && d.exposure >= 7 && d.pay != null && d.pay >= 700000;
@@ -2711,73 +2809,75 @@ function hasAnyFilter() {
 const searchBox = document.getElementById("searchBox");
 const searchResults = document.getElementById("searchResults");
 
-searchBox.addEventListener("input", () => {
-  searchQuery = searchBox.value.toLowerCase().trim();
+function resetSearch() {
+  searchQuery = "";
   highlightSlug = null;
-
-  if (searchQuery.length >= 1) {
-    const matches = data
-      .filter(d => d.title.toLowerCase().includes(searchQuery))
-      .sort((a, b) => {
-        const aStart = a.title.toLowerCase().startsWith(searchQuery) ? 0 : 1;
-        const bStart = b.title.toLowerCase().startsWith(searchQuery) ? 0 : 1;
-        if (aStart !== bStart) return aStart - bStart;
-        return (b.jobs || 0) - (a.jobs || 0);
-      })
-      .slice(0, 10);
-
-    if (matches.length > 0) {
-      searchResults.style.display = "flex";
-      searchResults.innerHTML = matches.map(d => {
-        const color = exposureColorCSS(d.exposure, 1);
-        const scoreText = d.exposure != null ? d.exposure + "/10" : "\u2014";
-        return `<div class="sr-item" data-slug="${d.slug}">
-          <span class="sr-title">${d.title}</span>
-          <span class="sr-score" style="color:${color}">${scoreText}</span>
-        </div>`;
-      }).join("");
-
-      searchResults.querySelectorAll(".sr-item").forEach(el => {
-        el.addEventListener("click", () => {
-          highlightSlug = el.dataset.slug;
-          searchQuery = "";
-          searchBox.value = data.find(d => d.slug === highlightSlug)?.title || "";
-          searchResults.style.display = "none";
-          draw();
-          updateStats();
-          const r = rects.find(r => r.slug === highlightSlug);
-          if (r) {
-            const sidebarW = getSidebarW();
-            const mx = sidebarW + r.rx + r.rw / 2;
-            const my = r.ry + r.rh / 2;
-            pinnedTooltip = r;
-            showTooltip(r, mx, my);
-            document.getElementById("tooltip").classList.add("pinned");
-            setTooltipBackdrop(true);
-          }
-        });
-      });
-    } else {
-      searchResults.style.display = "flex";
-      searchResults.innerHTML = `<div style="font-size:12px;color:var(--fg3);padding:8px 10px;">Ingen treff</div>`;
-    }
-  } else {
-    searchResults.style.display = "none";
+  for (const [box, res] of [[searchBox, searchResults], [mobileSearchBox, mobileSearchResults]]) {
+    box.value = "";
+    res.style.display = "none";
   }
+}
+
+// Highlight one occupation, pin its tooltip and make the URL shareable
+function selectOccupation(slug) {
+  const d = data.find(x => x.slug === slug);
+  if (!d) return;
+  if (activeCategoryFilter && (d.category || "Annet") !== activeCategoryFilter) {
+    activeCategoryFilter = null;
+    resetZoom();
+    layout();
+    updateFilterUI();
+  }
+  highlightSlug = slug;
+  searchQuery = "";
+  searchBox.value = mobileSearchBox.value = d.title;
+  searchResults.style.display = mobileSearchResults.style.display = "none";
+  closeSidebar();
+  draw();
+  updateStats();
+  const r = rects.find(r => r.slug === slug) || d;
+  let [mx, my] = [0, 0];
+  if (r.rw != null) {
+    [mx, my] = worldToScreen(r.rx + r.rw / 2, r.ry + r.rh / 2);
+  }
+  pinnedTooltip = r;
+  showTooltip(r, mx, my);
+  document.getElementById("tooltip").classList.add("pinned");
+  setTooltipBackdrop(true);
+  syncUrl(slug);
+}
+
+function syncUrl(slug) {
+  try {
+    const url = new URL(window.location.href);
+    if (slug) url.searchParams.set("yrke", slug);
+    else url.searchParams.delete("yrke");
+    history.replaceState(null, "", url);
+  } catch (e) {}
+}
+
+function onSearchInput(box, res) {
+  searchQuery = box.value.toLowerCase().trim();
+  highlightSlug = null;
+  buildSearchResults(searchQuery, res, selectOccupation);
   updateStats();
   draw();
-});
+}
 
-searchBox.addEventListener("keydown", (e) => {
+function onSearchKey(e, box, res) {
   if (e.key === "Escape") {
-    searchBox.value = "";
-    searchQuery = "";
-    highlightSlug = null;
-    searchResults.style.display = "none";
-    searchBox.blur();
+    resetSearch();
+    box.blur();
+    updateStats();
     draw();
+  } else if (e.key === "Enter") {
+    const first = res.querySelector(".sr-item");
+    if (first) selectOccupation(first.dataset.slug);
   }
-});
+}
+
+searchBox.addEventListener("input", () => onSearchInput(searchBox, searchResults));
+searchBox.addEventListener("keydown", (e) => onSearchKey(e, searchBox, searchResults));
 
 function setTierFilter(lo, hi) {
   if (filterRange && filterRange[0] === lo && filterRange[1] === hi) {
@@ -2922,6 +3022,7 @@ window.addEventListener("mouseup", (e) => {
         showTooltip(hit, e.clientX, e.clientY);
         tt.classList.add("pinned");
         setTooltipBackdrop(true);
+        if (!hit._isIndustry) syncUrl(hit.slug);
       }
     }
   }
@@ -3050,6 +3151,7 @@ canvas.addEventListener("touchend", (e) => {
       showTooltip(hit, touchStartX, touchStartY);
       document.getElementById("tooltip").classList.add("pinned");
       setTooltipBackdrop(true);
+      if (!hit._isIndustry) syncUrl(hit.slug);
     }
   }
   if (remaining < 2) {
@@ -3133,15 +3235,26 @@ function populateAboutModal() {
   // Agent autonomy stat
   let agentJobs = 0;
   for (const d of withJobs) {
-    if (d.agent_autonomy != null && d.agent_autonomy >= 6) agentJobs += d.jobs;
+    if (d.agent_autonomy != null && d.agent_autonomy >= 7) agentJobs += d.jobs;
   }
   const agentEl = el("aboutAgentJobs");
   if (agentEl) agentEl.textContent = fmt(agentJobs);
 }
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && document.getElementById("aboutOverlay").classList.contains("visible")) {
+  if (e.key !== "Escape") return;
+  if (document.getElementById("aboutOverlay").classList.contains("visible")) {
     hideAbout();
+  } else if (pinnedTooltip) {
+    unpinTooltip();
+  }
+});
+
+// Keyboard support for clickable sidebar rows (rendered as divs)
+document.getElementById("sidebar").addEventListener("keydown", (e) => {
+  if ((e.key === "Enter" || e.key === " ") && e.target.matches('[role="button"]')) {
+    e.preventDefault();
+    e.target.click();
   }
 });
 
@@ -3199,45 +3312,8 @@ function buildSearchResults(query, containerEl, onSelect) {
   });
 }
 
-const mobileSearchBox = document.getElementById("mobileSearchBox");
-const mobileSearchResults = document.getElementById("mobileSearchResults");
-
-mobileSearchBox.addEventListener("input", () => {
-  const q = mobileSearchBox.value.toLowerCase().trim();
-  searchQuery = q;
-  highlightSlug = null;
-  buildSearchResults(q, mobileSearchResults, (slug) => {
-    highlightSlug = slug;
-    searchQuery = "";
-    mobileSearchBox.value = data.find(d => d.slug === slug)?.title || "";
-    mobileSearchResults.style.display = "none";
-    closeSidebar();
-    draw();
-    updateStats();
-    const r = rects.find(r => r.slug === slug);
-    const d = r || data.find(d => d.slug === slug);
-    if (d) {
-      pinnedTooltip = d;
-      showTooltip(d, 0, 0);
-      document.getElementById("tooltip").classList.add("pinned");
-      setTooltipBackdrop(true);
-    }
-  });
-  updateStats();
-  draw();
-});
-
-mobileSearchBox.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    mobileSearchBox.value = "";
-    searchQuery = "";
-    highlightSlug = null;
-    mobileSearchResults.style.display = "none";
-    mobileSearchBox.blur();
-    updateStats();
-    draw();
-  }
-});
+mobileSearchBox.addEventListener("input", () => onSearchInput(mobileSearchBox, mobileSearchResults));
+mobileSearchBox.addEventListener("keydown", (e) => onSearchKey(e, mobileSearchBox, mobileSearchResults));
 
 
 // ── Filter chips ───────────────────────────────────────────────────────
@@ -3284,6 +3360,7 @@ async function loadData() {
   const progressFill = document.getElementById("progressFill");
 
   const response = await fetch("data.json");
+  if (!response.ok) throw new Error(`data.json: HTTP ${response.status}`);
   const contentLength = response.headers.get("Content-Length");
 
   if (contentLength) {
@@ -3325,9 +3402,14 @@ let viewMode = "occupations"; // "occupations" | "industries"
 
 function setView(mode) {
   viewMode = mode;
-  document.querySelectorAll(".view-btn").forEach(b => {
+  document.querySelectorAll(".view-btn[data-view]").forEach(b => {
     b.classList.toggle("active", b.dataset.view === mode);
   });
+  // Search/selection belong to the occupation view — reset them on switch
+  resetSearch();
+  if (pinnedTooltip) hideTooltip();
+  hovered = null;
+  syncUrl(null);
   document.getElementById("occView").style.display = mode === "occupations" ? "" : "none";
   document.getElementById("indView").style.display = mode === "industries" ? "" : "none";
   // Scroll sidebar back to top when switching views
@@ -3468,6 +3550,14 @@ function populateInsightBar(src) {
   bar.classList.add("visible");
 }
 
+function showLoadError() {
+  document.getElementById("loadingSpinner").style.display = "none";
+  document.querySelector("#loading .progress-track").style.display = "none";
+  document.getElementById("loadingText").innerHTML =
+    `<div class="load-error">Kunne ikke laste data. Sjekk nettforbindelsen og pr\u00f8v igjen.` +
+    `<br><button type="button" onclick="location.reload()">Pr\u00f8v igjen</button></div>`;
+}
+
 Promise.all([
   loadData(),
   fetch("industries.json").then(r => r.ok ? r.json() : null).catch(() => null),
@@ -3487,13 +3577,23 @@ Promise.all([
   if (industryData) renderIndustrySection(industryData);
 
   resize();
+  let sharedSlug = null;
+  try { sharedSlug = new URL(window.location.href).searchParams.get("yrke"); } catch (e) {}
   setTimeout(() => {
     document.getElementById("loading").classList.add("hidden");
+    if (sharedSlug && data.some(d => d.slug === sharedSlug)) {
+      // Opened from a shared link — go straight to the occupation
+      selectOccupation(sharedSlug);
+      return;
+    }
     // Show about modal on first visit
     try {
       if (!localStorage.getItem("kitrusselen-about-seen")) showAbout();
     } catch(e) { showAbout(); }
   }, 300);
+}).catch(err => {
+  console.error(err);
+  showLoadError();
 });
 
 window.addEventListener("resize", () => {
