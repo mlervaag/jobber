@@ -14,10 +14,11 @@ En interaktiv treemap-visualisering som viser ~600 norske yrker, scoret for KI-e
 - **To fargemodi** — KI-eksponering (generell) eller agentrisiko (autonomi-potensial)
 - **Søk** — Finn yrker etter tittel med live-resultater
 - **Filtre** — Filtrer på eksponeringsgrad, lønnsnivå, utdanning, sektor, eller bruk forhåndsdefinerte filtre:
-  - *Sårbare yrker* (høy eksponering + lav utdanning)
+  - *Sårbare yrker* (eksponering 6+ og ingen krav om høyere utdanning)
   - *Transformasjon* (høy eksponering + høy lønn)
   - *Kan erstattes av agent* (høy agentautonomi)
 - **Interaktivt treemap** — Zoom, pan, klikk for detaljer
+- **Delbare lenker** — `?yrke=<slug>` åpner et bestemt yrke direkte
 - **Sidepanel** — Sanntidsstatistikk, fordelingsdiagrammer og sektorrangering som oppdateres med filtre
 - **Bransjevisning** — Disrupsjonrisiko per bransje med bedrifts- og omsetningsdata
 - **Mobilstøtte** — Responsivt design med touch-vennlige interaksjoner
@@ -31,6 +32,7 @@ En interaktiv treemap-visualisering som viser ~600 norske yrker, scoret for KI-e
 | [SSB Tabell 12542](https://www.ssb.no/statbank/table/12542/) | Antall sysselsatte per yrke |
 | [SSB Klass API](https://data.ssb.no/api/klass/v1/) | STYRK-08 yrkesklassifisering |
 | [SSB StatBank](https://www.ssb.no/statbank/) | Studentopptakstrender (2001–2024) |
+| [SSB Tabell 09789, 12817, 07091](https://www.ssb.no/statbank/) | Sysselsatte per næring × yrke, foretak, omsetning, bedriftsstørrelse |
 | [NAV Stillingsannonser](https://www.nav.no) | Ledige stillinger per STYRK-kode (valgfritt) |
 
 ## Datapipeline
@@ -46,6 +48,8 @@ NAV Feed API     → fetch_nav.py         → nav_data.json (ledige stillinger, 
                                           ↓
                    score.py             → scores.json (KI-eksponering 0–10, via LLM)
                    score_agents.py      → agent_scores.json (agentrisiko, via LLM)
+                   qa_agents.py         → kvalitetskontroll av agentscorene (valgfritt)
+SSB StatBank     → fetch_ssb_business.py → ssb_business_data.json (næring × yrke)
                    score_industries.py  → industry_scores.json (bransjedisrupsjon, via LLM)
                                           ↓
                    build_site_data.py   → site/data.json (sammenstilt for frontend)
@@ -95,16 +99,20 @@ uv run python build_data.py
 # Score KI-eksponering (bruker LLM API)
 uv run python score.py                  # generell KI-eksponering
 uv run python score_agents.py           # agentrisiko
+uv run python fetch_ssb_business.py     # bransjedata (etter score.py)
 uv run python score_industries.py       # bransjedisrupsjon
 
-# Bygg nettside-data
+# Bygg nettside-data og sjekk resultatet
 uv run python build_site_data.py
+uv run python validate_data.py
 
 # Start lokal server
 cd site && python -m http.server 8000
 ```
 
-Alle scripts støtter `--force` for å rekalkulere cachede resultater. `score.py` støtter også `--start N --end M`, `--model` og `--delay`.
+Alle scripts støtter `--force` for å rekalkulere cachede resultater. Scoring-scriptene støtter også `--start N --end M`, `--model` og `--delay`. Modeller som starter med `claude-` bruker Anthropic, alle andre OpenAI.
+
+CI (GitHub Actions) sjekker at scriptene kompilerer, at JavaScript i `site/` er syntaktisk gyldig, at committede data er i synk med byggescriptene, og kjører `validate_data.py`.
 
 ## Lisens
 

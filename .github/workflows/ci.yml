@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Compile Python scripts
+        run: uv run python -m compileall -q *.py
+
+      - name: Check inline JavaScript syntax
+        run: |
+          for page in site/index.html site/about.html; do
+            uv run python - "$page" > /tmp/page.js <<'EOF'
+          import re, sys
+          html = open(sys.argv[1], encoding="utf-8").read()
+          print("\n".join(re.findall(r"<script>(.*?)</script>", html, re.S)))
+          EOF
+            node --check /tmp/page.js
+          done
+
+      # The offline build steps must reproduce the committed data exactly
+      - name: Rebuild data from cached sources
+        run: |
+          uv run python build_data.py
+          uv run python build_site_data.py
+          uv run python make_prompt.py
+          git diff --exit-code -- yrker.csv site/data.json site/industries.json prompt.md \
+            || { echo "::error::Committed data is stale — run the build scripts and commit the result"; exit 1; }
+
+      - name: Validate site data
+        run: uv run python validate_data.py
